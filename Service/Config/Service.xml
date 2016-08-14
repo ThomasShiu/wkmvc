@@ -31,7 +31,11 @@
   <object id="Service.UserPermission" type="Service.ServiceImp.UserPermissionManage,Service" singleton="false">
   </object>
 
+  <object id="Service.Role" type="Service.ServiceImp.RoleManage,Service" singleton="false">
+  </object>
+
   <object id="Service.RolePermission" type="Service.ServiceImp.RolePermissionManage,Service" singleton="false">
+    <property name="PermissionManage" ref="Service.Permission"/>
   </object>
 
   <object id="Service.Permission" type="Service.ServiceImp.PermissionManage,Service" singleton="false">

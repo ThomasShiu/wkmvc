@@ -7,8 +7,7 @@ using Domain;
 
 namespace Service.IService
 {
-    public interface ISystemManage : IRepository<SYS_SYSTEM>
+    public interface IRoleManage : IRepository<SYS_ROLE>
     {
-        dynamic LoadSystemInfo(List<string> systems);
     }
 }

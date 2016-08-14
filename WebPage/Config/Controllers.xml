@@ -24,6 +24,14 @@
     <property name="CodeManage" ref="Service.Code"></property>
     <property name="UserPermissionManage" ref="Service.UserPermission"></property>
     <property name="RolePermissionManage" ref="Service.RolePermission"></property>
+    <property name="RoleManage" ref="Service.Role"></property>
+  </object>
+  <!--角色管理-->
+  <object type="WebPage.Areas.SysManage.Controllers.RoleController,WebPage" singleton="false">
+    <property name="RoleManage" ref="Service.Role"/>
+    <property name="UserRoleManage" ref="Service.UserRole"></property>
+    <property name="RolePermissionManage" ref="Service.RolePermission"></property>
+    <property name="SystemManage" ref="Service.System"/>
   </object>
   <!--系统管理 end-->
 </objects>

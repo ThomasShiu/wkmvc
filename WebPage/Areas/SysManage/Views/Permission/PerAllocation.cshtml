@@ -17,7 +17,7 @@
     <div class="row">
         <div class="col-sm-6">
             <label>系统：</label>
-            <label class="icheck_line" style="color:#1ab394"> @ViewData["systemId"]</label>
+            <label class="icheck_line" style="color:#1ab394"> @ViewData["systemName"]</label>
         </div>
         <div class="col-sm-6">
             <div class="input-group">
@@ -114,7 +114,8 @@
                 $.post('/Sys/Permission/SaveAllocation', {
                     tp: $('#tp').val(),
                     id: $('#id').val(),
-                    perid: perid
+                    perid: perid,
+                    sysid: "@ViewData["systemId"]",
                 }, function (result) {
                     if (result.Status == 'y') {
                         var dialog = top.dialog.get(window);
