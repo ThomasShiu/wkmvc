@@ -250,3 +250,7 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+WE-Palette.css
+WebEssentials2015-Settings.json
+MvcDemo/
+sql/

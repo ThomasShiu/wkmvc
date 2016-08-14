@@ -1,0 +1,227 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var MissionList = ViewData["MissionList"] as List<Domain.PRO_PROJECT_TEAMS>;
+    var mweek = Convert.ToInt32(ViewData["week"]);
+    var mmoth = Convert.ToInt32(ViewData["month"]);
+    if (mweek == 7) { mweek = 0; }
+    var daySum = DateTime.DaysInMonth(DateTime.Now.Year, mmoth);
+    var AttendanceList = ViewData["AttendanceList"] as List<Domain.COM_WORKATTENDANCE>;
+}
+@model Service.Account
+<link href="/Content/css/daily/dailydate.css" rel="stylesheet" />
+<style type="text/css">
+    .ibox-title-panel {
+        margin-left: 10px;
+        float: left;
+        color: #ff0000;
+        font-weight: 600;
+        margin-top: -1px;
+    }
+    .ibox-title-panel i {
+            font-size: 15px;
+            margin-top: -6px;
+        }
+    .f-dayitem .sigdetail{font-size:12px;}
+    .f-dayitem .sigdetail p{background:none;color:#999;padding:0;margin:0}
+</style>
+<div class="wrapper wrapper-content animated fadeInUp">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="ibox-content text-center">                        
+                        <div class="m-b-sm">
+                            <img alt="image" class="img-circle" src="@(string.IsNullOrEmpty(Model.Face_Img) ? "/Pro/Project/User_Default_Avatat?name="+Model.Name.Substring(0,1) : Model.Face_Img)" style="width:200px;height:200px;" />
+                        </div>
+                        <h1>@Model.Name</h1>
+                        <p class="font-bold">@(Model.DptInfo==null?"——":Model.DptInfo.NAME)</p>
+                        <div class="text-center">
+                            <a class="btn btn-xs btn-white text-danger">@(new Models.CommonHelper().GetUserZW(Model.Levels))</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" style=" padding-left: 0;">
+                    <div class="ibox-content" style="padding: 15px 6px;height:339px; overflow-x:hidden;overflow-y:scroll">
+                        <ul class="todo-list m-t ui-sortable">
+                            @{
+                                if (MissionList != null && MissionList.Count > 0)
+                                {
+                                    foreach (var mission in MissionList)
+                                    {
+                                        <li>
+                                            <span class="m-l-xs">@mission.PRO_PROJECT_STAGES.StageTitle</span>
+                                            @Html.Raw(new Models.CommonHelper().GetSurplusTime(mission.PRO_PROJECT_STAGES.EndDate))
+                                            <span class="pull-right"><a class="J_projectItem" href="javascript:void(0)" data-project="/Pro/ProjectHome/Detail/@mission.PRO_PROJECT_STAGES.PRO_PROJECTS.ID"><i class="fa fa-cube fa-fw"></i> @mission.PRO_PROJECT_STAGES.PRO_PROJECTS.ProjectTitle</a></span>
+                                        </li>
+                                    }
+                                }
+                            }                           
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="col-sm-6">
+                <div class="widget red-bg p-lg text-center">
+                        <div class="m-b-md">
+                            <i class="fa fa-bell fa-4x"></i>
+                            <h1 class="m-xs">@(MissionList!=null?MissionList.Count:0)</h1>
+                            <small>待办任务</small>
+                        </div>
+                </div>
+                <div class="widget style1 lazur-bg">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <i class="fa fa-envelope-o fa-5x"></i>
+                        </div>
+                        @*<div class="col-xs-8 text-right">
+                            <span> 新邮件 </span>
+                            <h2 class="font-bold">@ViewData["MailInBoxCount"]</h2>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="widget navy-bg p-lg text-center">
+                    <div class="m-b-md">
+                        <i class="fa fa-cloud fa-4x"></i>
+                        <h1 class="m-xs">26'C</h1>
+                        <small>@DateTime.Now.GetDateTimeFormats('D')[1].ToString()</small>
+                    </div>
+                </div>
+                <div class="widget style1 yellow-bg">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <i class="fa fa-warning fa-5x"></i>
+                        </div>
+                        <div class="col-xs-8 text-right">
+                            <span> 今日温度 </span>
+                            <h2 class="font-bold">26'C</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="animated fadeInLeft">
+                <div class="ibox" style="margin-bottom:0;">
+                    <div class="ibox-title">
+                        <h5>签到考勤</h5>
+                        <div class="ibox-title-panel">
+                            <i class="fa fa-calendar-check-o"></i> @DateTime.Now.Year 年 @mmoth 月
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox-content clearfix" >
+                        <div class="f-day-header">
+                            <div class="f-day-tab clearfix">
+                                <a href="javascript:void(0)"><i class="fa fa-calendar-check-o"></i>签到考勤</a><span class="pull-right m-r-sm m-t-n-xs"><i class="fa fa-clock-o"></i>@DateTime.Now.Year-@mmoth</span>
+                            </div>
+                        </div>
+                        <div class="f-week">
+                            <span>周日</span><span>周一</span><span>周二</span><span>周三</span><span>周四</span><span>周五</span><span>周六</span>
+                            <a href="@(mmoth > 1 ? "/sys/home/Default?month=" + (mmoth - 1) : "javascript:void(0)")" class="l-go" title="上一个月"><i class="fa fa-angle-left"></i></a>
+                            <a href="@(mmoth < DateTime.Now.Month ? "/sys/home/Default?month=" + (mmoth + 1) : "javascript:void(0)")" class="r-go" title="下一个月"><i class="fa fa-angle-right"></i></a>
+                        </div>
+                        @using (Ajax.BeginForm("Attendance", null, new AjaxOptions()
+                           {
+                               HttpMethod = "Post",
+                               OnBegin = "SubAjax.Loading",
+                               OnComplete = "SubAjax.Complate",
+                               OnFailure = "SubAjax.Failure",
+                               OnSuccess = "SubAjax.Success",
+                           }, new { @class = "form-horizontal dig-from" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="f-date clearfix">
+                                @{
+                            for (var i = 0; i < mweek; i++)
+                            {
+                                <div class="f-dayitem cur" style="height: 83px;"><span></span></div>
+                            }
+                            for (var i = 1; i < daySum + 1; i++)
+                            {
+                                DateTime tempDate = Convert.ToDateTime(DateTime.Now.Year + "-" + mmoth + "-" + i);
+                                <div class="f-dayitem add" style="height: 83px;">
+                                    <span>@(i)</span>
+                                    @{
+                                if (tempDate.Date > DateTime.Now.Date)
+                                {
+                                    <div></div>
+                                }
+                                else
+                                {
+                                    var tempData = AttendanceList.Where(p => p.CreateDate.Day == tempDate.Day && p.CreateDate.Year == DateTime.Now.Year && p.CreateDate.Month == mmoth).FirstOrDefault();
+                                    if (tempDate.Date == DateTime.Now.Date)
+                                    {
+                                        if (tempData != null)
+                                        {
+                                            if (!tempData.Is_SigOutAM)
+                                            {
+                                                <div><button class="btn-sign transition" type="submit">上午签退</button></div>
+                                            }
+                                            else if (!tempData.Is_SiginPM)
+                                            {
+                                                <div><button class="btn-sign transition" type="submit">下午签到</button></div>
+                                            }
+                                            else if (!tempData.Is_SigOutPM)
+                                            {
+                                                <div><button class="btn-sign transition" type="submit">下午签退</button></div>
+                                            }
+                                            else
+                                            {
+                                                <div><span class="success"><i class="fa fa-check text-navy"></i>已签</span></div>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <div><button class="btn-sign transition" type="submit">上午签到</button></div>
+
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (tempData != null)
+                                        {
+                                            if (!tempData.Is_SigOutAM)
+                                            {
+                                                <div><span class="warning"><i class="fa fa-exclamation-triangle"></i>上午未签退</span></div>
+                                            }
+                                            else if (!tempData.Is_SiginPM)
+                                            {
+                                                <div><span class="warning"><i class="fa fa-exclamation-triangle"></i>下午未签到</span></div>
+                                            }
+                                            else if (!tempData.Is_SigOutPM)
+                                            {
+                                                <div><span class="warning"><i class="fa fa-exclamation-triangle"></i>下午未签退</span></div>
+                                            }
+                                            else
+                                            {
+                                                <div><span class="success"><i class="fa fa-check text-navy"></i>已签</span></div>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <div><span class="warning"><i class="fa fa-exclamation-triangle"></i>缺勤</span></div>
+                                        }
+                                    }
+                                }
+
+                                    }
+                                </div>
+                            }
+                                }
+                            </div>
+                        }
+                </div>
+                </div>
+            </div>
+        <div class="col-sm-6">
+            <iframe class="J_iframe" name="iframe0" style="width:100%;height:824px;margin-top:-20px;" src="/pro/daily" frameborder="0"  seamless></iframe>
+        </div>
+    </div>
+</div>
+

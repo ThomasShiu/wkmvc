@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+  <description>Spring注入控制器，容器指向Service层封装的接口</description>
+  <!--系统管理 Begin-->
+  <!--主页控制器-->
+  <object type="WebPage.Areas.SysManage.Controllers.HomeController,WebPage" singleton="false">
+    <property name="ModuleManage" ref="Service.Module"/>
+  </object>
+  <!--登录控制器-->
+  <object type="WebPage.Areas.SysManage.Controllers.AccountController,WebPage" singleton="false">
+    <property name="UserManage" ref="Service.User"/>
+  </object>
+  <!--模块管理-->
+  <object type="WebPage.Areas.SysManage.Controllers.ModuleController,WebPage" singleton="false">
+    <property name="ModuleManage" ref="Service.Module"/>
+    <property name="PermissionManage" ref="Service.Permission"/>
+    <property name="SystemManage" ref="Service.System"/>
+  </object>
+  <!--权限管理-->
+  <object type="WebPage.Areas.SysManage.Controllers.PermissionController,WebPage" singleton="false">
+    <property name="ModuleManage" ref="Service.Module"/>
+    <property name="SystemManage" ref="Service.System"/>
+    <property name="PermissionManage" ref="Service.Permission"/>
+    <property name="CodeManage" ref="Service.Code"></property>
+    <property name="UserPermissionManage" ref="Service.UserPermission"></property>
+    <property name="RolePermissionManage" ref="Service.RolePermission"></property>
+  </object>
+  <!--系统管理 end-->
+</objects>

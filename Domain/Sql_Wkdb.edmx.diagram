@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4573c45ac01b41029db30e4980287a05" Name="Diagram1" ZoomLevel="55">
+        <EntityTypeShape EntityType="Domain.SYS_USER" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Domain.SYS_CODE" Width="1.5" PointX="11.25" PointY="11.875" />
+        <EntityTypeShape EntityType="Domain.SYS_CODE_AREA" Width="1.5" PointX="5.75" PointY="8.75" />
+        <EntityTypeShape EntityType="Domain.SYS_DEPARTMENT" Width="1.5" PointX="3.75" PointY="1.75" />
+        <EntityTypeShape EntityType="Domain.SYS_LOG" Width="1.5" PointX="7.75" PointY="10.75" />
+        <EntityTypeShape EntityType="Domain.SYS_MODULE" Width="1.5" PointX="11" PointY="6.25" />
+        <EntityTypeShape EntityType="Domain.SYS_PERMISSION" Width="1.5" PointX="13.25" PointY="6.625" />
+        <EntityTypeShape EntityType="Domain.SYS_POST" Width="1.5" PointX="3.75" PointY="7" />
+        <EntityTypeShape EntityType="Domain.SYS_POST_DEPARTMENT" Width="1.5" PointX="6" PointY="2.375" />
+        <EntityTypeShape EntityType="Domain.SYS_POST_USER" Width="1.5" PointX="8.25" PointY="2.375" />
+        <EntityTypeShape EntityType="Domain.SYS_ROLE" Width="1.5" PointX="13.25" PointY="2.875" />
+        <EntityTypeShape EntityType="Domain.SYS_ROLE_PERMISSION" Width="1.5" PointX="15.5" PointY="7.375" />
+        <EntityTypeShape EntityType="Domain.SYS_SYSTEM" Width="1.5" PointX="8.75" PointY="7" />
+        <EntityTypeShape EntityType="Domain.SYS_USER_DEPARTMENT" Width="1.5" PointX="6.375" PointY="6.375" />
+        <EntityTypeShape EntityType="Domain.SYS_USER_PERMISSION" Width="1.5" PointX="15.5" PointY="4.5" />
+        <EntityTypeShape EntityType="Domain.SYS_USER_ROLE" Width="1.5" PointX="15.5" PointY="1.375" />
+        <EntityTypeShape EntityType="Domain.SYS_USERINFO" Width="1.5" PointX="3.375" PointY="11.625" />
+        <AssociationConnector Association="Domain.FK_SYS_POST_DEPARTMENT_DPTID" />
+        <AssociationConnector Association="Domain.FK_SYS_USER_DEPARTMENT_DPTID" />
+        <AssociationConnector Association="Domain.FK_SYS_MODULE_SYSTEMID" />
+        <AssociationConnector Association="Domain.FK_SYS_PERMISSION_MODULEID" />
+        <AssociationConnector Association="Domain.FK_SYS_ROLE_PERMISSION_PERID" />
+        <AssociationConnector Association="Domain.FK_SYS_USER_PERMISSION_PERID" />
+        <AssociationConnector Association="Domain.FK_SYS_POST_DEPARTMENT_POSTID" />
+        <AssociationConnector Association="Domain.FK_SYS_POST_USER_POSTDPTID" />
+        <AssociationConnector Association="Domain.FK_SYS_POST_USER_USERID" />
+        <AssociationConnector Association="Domain.FK_SYS_ROLE_PERMISSION_ROLEID" />
+        <AssociationConnector Association="Domain.FK_SYS_USER_ROLE_ROLEID" />
+        <AssociationConnector Association="Domain.FK_SYS_USER_DEPARTMENT_USERID" />
+        <AssociationConnector Association="Domain.FK_SYS_USER_PERMISSION_USERID" />
+        <AssociationConnector Association="Domain.FK_SYS_USER_ROLE_USERID" />
+        <AssociationConnector Association="Domain.FK_SYS_USERINFO_SYSUSERID" />
+        <EntityTypeShape EntityType="Domain.COM_CONTENT" Width="1.5" PointX="0.75" PointY="7.25" />
+        <EntityTypeShape EntityType="Domain.COM_DAILYS" Width="1.5" PointX="0.75" PointY="10.25" />
+        <EntityTypeShape EntityType="Domain.COM_UPLOAD" Width="1.5" PointX="10.75" PointY="1.25" />
+        <EntityTypeShape EntityType="Domain.COM_WORKATTENDANCE" Width="1.5" PointX="0.75" PointY="13.25" />
+        <EntityTypeShape EntityType="Domain.MAIL_ATTACHMENT" Width="1.5" PointX="8" PointY="18.625" />
+        <EntityTypeShape EntityType="Domain.MAIL_INBOX" Width="1.5" PointX="8" PointY="15.625" />
+        <EntityTypeShape EntityType="Domain.MAIL_OUTBOX" Width="1.5" PointX="5.75" PointY="17" />
+        <EntityTypeShape EntityType="Domain.PRO_PROJECT_FILES" Width="1.5" PointX="10.75" PointY="17.25" />
+        <EntityTypeShape EntityType="Domain.PRO_PROJECT_MESSAGE" Width="1.5" PointX="16" PointY="17.625" />
+        <EntityTypeShape EntityType="Domain.PRO_PROJECT_STAGES" Width="1.5" PointX="16" PointY="12.625" />
+        <EntityTypeShape EntityType="Domain.PRO_PROJECT_TEAMS" Width="1.5" PointX="18.25" PointY="13.5" />
+        <EntityTypeShape EntityType="Domain.PRO_PROJECTS" Width="1.5" PointX="13.75" PointY="13.875" />
+        <EntityTypeShape EntityType="Domain.SYS_BUSSINESSCUSTOMER" Width="1.5" PointX="18.75" PointY="1.25" />
+        <EntityTypeShape EntityType="Domain.SYS_CHATMESSAGE" Width="1.5" PointX="18.75" PointY="7.25" />
+        <EntityTypeShape EntityType="Domain.SYS_USER_ONLINE" Width="1.5" PointX="3.375" PointY="21.625" />
+        <AssociationConnector Association="Domain.FK_MAIL_ATTACHMENT_MAIL_OUTBOX" />
+        <AssociationConnector Association="Domain.FK_MAIL_INBOX_MAIL_OUTBOX" />
+        <AssociationConnector Association="Domain.FK_PRO_PROJECT_MESSAGE_PRO_PROJECTS" />
+        <AssociationConnector Association="Domain.FK_PRO_PROJECT_STAGES_PRO_PROJECTS" />
+        <AssociationConnector Association="Domain.FK_PRO_PROJECT_TEAMS_PRO_PROJECT_STAGES" />
+        <AssociationConnector Association="Domain.FK_SYS_POST_SYS_DEPARTMENT" />
+        <AssociationConnector Association="Domain.FK_SYS_USER_ONLINE_SYS_USER_ONLINE" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,585 @@
+﻿@{
+    Layout = null;
+    var ModuleList = ViewData["Module"] as List<Domain.SYS_MODULE>;
+    var MissionList = ViewData["MissionList"] as List<Domain.PRO_PROJECT_TEAMS>;
+    var MailInbox = ViewData["MailInBox"] as List<Domain.MAIL_INBOX>;
+}
+@model Service.Account
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>信息管理平台</title>
+    <!--[if lt IE 8]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="/Content/css/animate.min.css" rel="stylesheet" />
+    <link href="/Content/css/style.min.css" rel="stylesheet" />  
+    <link href="/Content/css/dialog/ui-dialog.css" rel="stylesheet" />
+    <link href="/Content/css/sweetalert.css" rel="stylesheet" />
+    <link href="/Content/css/toastr/toastr.min.css" rel="stylesheet" />
+    <link href="/Content/js/switchery/switchery.min.css" rel="stylesheet" />
+</head>
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+    <div id="wrapper">
+        <!--左侧导航开始-->
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="nav-close">
+                <i class="fa fa-times-circle"></i>
+            </div>
+            <div class="sidebar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <span><img alt="image" class="img-circle" src="@(string.IsNullOrEmpty(Model.Face_Img) ? "/Pro/Project/User_Default_Avatat?name="+Model.Name.Substring(0,1) : Model.Face_Img)" style="width:64px;height:64px;" /></span>
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="clear">
+                                    <span class="block m-t-xs"><strong class="font-bold">@Model.Name</strong></span>
+                                    <span class="text-muted text-xs block">@(Model.DptInfo == null ? Model.Roles.FirstOrDefault().ROLENAME : Model.DptInfo.NAME + " - " + new Models.CommonHelper().GetUserZW(Model.Levels))<b class="caret"></b></span>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li>
+                                    <a class="J_menuItem" href="/Sys/User/UserFace">修改头像</a>
+                                </li>
+                                <li>
+                                    <a class="J_menuItem" href="/Sys/User/UserInfo">个人资料</a>
+                                </li>
+                                <li>
+                                    <a class="J_menuItem" href="contacts.html">联系我们</a>
+                                </li>
+                                <li>
+                                    <a class="J_menuItem" href="/mail/mail">邮箱</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="javascript:dig.logout();">安全退出</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="logo-element">
+                            GD
+                        </div>
+                    </li>
+                    @{
+                        if (ModuleList != null && ModuleList.Count > 0)
+                        {
+                            foreach (var module in ModuleList.FindAll(p => p.LEVELS == 0 && p.ISSHOW).OrderBy(p => p.SHOWORDER))
+                            {
+                                @Html.Raw(new Models.CommonHelper().GetModuleMenu(module, ModuleList))
+                            }
+                        }
+                    }
+                </ul>
+            </div>
+        </nav>
+        <!--左侧导航结束-->
+        <!--右侧部分开始-->
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-left">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="javascript:void(0)"><i class="fa fa-bars"></i> </a>
+                    </div>
+                    <ul id="J_Nav" class="nav navbar-top-links navbar-left">
+                        @{
+                            if (ModuleList != null && ModuleList.Count > 0)
+                            {
+                                foreach (var module in ModuleList.FindAll(p => p.LEVELS == 0 && p.ISSHOW).OrderBy(p => p.SHOWORDER))
+                                {
+                                    <li data-id="@module.ALIAS" class="@(module == ModuleList.FindAll(p => p.LEVELS == 0 && p.ISSHOW).OrderBy(p => p.SHOWORDER).FirstOrDefault()?"selected":"")"><a href="javascript:void(0)"><i class="@module.ICON"></i><span>@module.NAME</span></a></li>
+                                }
+                            }
+                        }
+                    </ul>
+                    <div class="curBg" style="left: 0px; width: 68px; display: block;"></div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                                <i class="fa fa-envelope"></i> @Html.Raw(MailInbox != null && MailInbox.Count > 0 ? "<span class=\"label label-warning\">" + MailInbox.Count + "</span>" : "")
+                            </a>
+                            @*<ul class="dropdown-menu dropdown-messages">
+                                @{
+                                    if (MailInbox != null && MailInbox.Count > 0)
+                                    {
+                                        foreach (var mail in MailInbox)
+                                        {
+                                            var FromUser = new Models.CommonHelper().GetUserByAccount(mail.MAIL_OUTBOX.FK_UserId) ?? new Domain.SYS_USER();
+                                            <li class="m-t-xs">
+                                                <div class="dropdown-messages-box">
+                                                    <a href="javascript:void(0)" class="pull-left">
+                                                        <img alt="image" class="img-circle" src="@(string.IsNullOrEmpty(FromUser.FACE_IMG) ? "/Pro/Project/User_Default_Avatat?name=" + FromUser.NAME.Substring(0, 1) : FromUser.FACE_IMG)">
+                                                    </a>
+                                                    <div class="media-body">
+                                                        @Html.Raw(mail.MAIL_OUTBOX.MAIL_ATTACHMENT != null && mail.MAIL_OUTBOX.MAIL_ATTACHMENT.Count > 0 ? "<small class=\"pull-right text-danger\"><i class=\"fa fa-paperclip\"></i></small>" : "")
+                                                        <strong>@FromUser.NAME ：</strong> @(new Models.CommonHelper().GetContentText(mail.MAIL_OUTBOX.FK_RELATIONID, "MAIL_OUTBOX").Length > 45 ? new Models.CommonHelper().GetContentText(mail.MAIL_OUTBOX.FK_RELATIONID, "MAIL_OUTBOX").Substring(0, 45) : new Models.CommonHelper().GetContentText(mail.MAIL_OUTBOX.FK_RELATIONID, "MAIL_OUTBOX"))
+                                                        <br>
+                                                        <small class="text-muted">@Html.Raw(mail.ReceivingTime.GetDateTimeFormats('D')[1].ToString() + "&nbsp;" + mail.ReceivingTime.ToString("HH:mm"))</small>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="divider"></li>
+                                        }
+                                    }
+                                }
+                                <li>
+                                    <div class="text-center link-block">
+                                        <a class="J_menuItem" href="/Mail/Mail">
+                                            <i class="fa fa-envelope"></i> <strong> 查看所有消息</strong>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>*@
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                                <i class="fa fa-bell"></i> <span class="label label-primary">@(MissionList != null ? MissionList.Count : 0)</span>
+                            </a>
+                            @*<ul class="dropdown-menu dropdown-alerts">
+                                @{
+                                    if (MissionList != null && MissionList.Count > 0)
+                                    {
+                                        foreach (var mission in MissionList)
+                                        {
+                                            <li>
+                                                <a class="J_menuItem" href="/Pro/ProjectHome/Acceptance/@mission.PRO_PROJECT_STAGES.PRO_PROJECTS.ID">
+                                                    <div>
+                                                        <i class="fa fa-github fa-fw"></i> @mission.PRO_PROJECT_STAGES.StageTitle
+                                                        <span class="pull-right text-muted small">@Html.Raw(new Models.CommonHelper().GetSurplusTimeNoClass(mission.PRO_PROJECT_STAGES.EndDate))</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="divider"></li>
+                                        }
+                                    }
+                                }
+                                <li>
+                                    <div class="text-center link-block">
+                                        <a class="J_menuItem" href="/Pro/ProjectMission">
+                                            <strong>查看所有 </strong>
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>*@
+                        </li>
+                        <li class="dropdown hidden-xs">
+                            <a class="right-sidebar-toggle" aria-expanded="false">
+                                <i class="fa fa-tasks"></i> 事项
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="row content-tabs">
+                <button class="roll-nav roll-left J_tabLeft">
+                    <i class="fa fa-backward"></i>
+                </button>
+                <nav class="page-tabs J_menuTabs">
+                    <div class="page-tabs-content">
+                        <a href="javascript:;" class="active J_menuTab" data-id="/sys/home/default">首页</a>
+                    </div>
+                </nav>
+                <button class="roll-nav roll-right J_tabRight">
+                    <i class="fa fa-forward"></i>
+                </button>
+                <div class="btn-group roll-nav roll-right">
+                    <button class="dropdown J_tabClose" data-toggle="dropdown">
+                        关闭操作<span class="caret"></span>
+                    </button>
+                    <ul role="menu" class="dropdown-menu dropdown-menu-right">
+                        <li class="J_tabShowActive">
+                            <a>定位当前选项卡</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li class="J_tabCloseAll">
+                            <a>关闭全部选项卡</a>
+                        </li>
+                        <li class="J_tabCloseOther">
+                            <a>关闭其他选项卡</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="javascript:dig.logout();" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
+            </div>
+            <div class="row J_mainContent" id="content-main">
+                <iframe class="J_iframe" name="iframe0" style="width:100%;height:100%;" src="/sys/home/default" frameborder="0" data-id="/sys/home/default" seamless></iframe>
+            </div>
+            <div class="footer">
+                <div class="pull-right">
+                    &copy; 2016 <a href="http://yuangang.cnblogs.com" target="_blank">果冻布丁喜之郎</a>
+                </div>
+            </div>
+        </div>
+        <!--右侧部分结束-->
+        <!--右侧边栏开始-->
+        <div id="right-sidebar">
+            <div class="sidebar-container">
+                <ul class="nav nav-tabs navs-3">
+                    <li class="active">
+                        <a data-toggle="tab" href="#tab-1">
+                            最新任务
+                        </a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#tab-2">
+                            消息通知
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div id="tab-1" class="tab-pane active">
+                        <div class="sidebar-title">
+                            <h3> <i class="fa fa-cube"></i> 最新任务</h3>
+                            <small><i class="fa fa-tim"></i> 您当前有 @(MissionList != null && MissionList.Count > 0 ? MissionList.Count : 0) 个任务未完成</small>
+                        </div>
+                        <ul class="sidebar-list">
+                            @{
+                                if (MissionList != null && MissionList.Count > 0)
+                                {
+                                    foreach (var mission in MissionList)
+                                    {
+                                        @*<li>
+
+                                            <div class="small pull-right m-t-xs">@Html.Raw(new Models.CommonHelper().GetSurplusTimeNoClass(mission.PRO_PROJECT_STAGES.EndDate))</div>
+                                            <h4><a class="J_menuItem" href="/Pro/ProjectHome/Acceptance/@mission.PRO_PROJECT_STAGES.PRO_PROJECTS.ID">@mission.PRO_PROJECT_STAGES.StageTitle</a></h4>
+                                            @(new Models.CommonHelper().GetContentText(mission.PRO_PROJECT_STAGES.PRO_PROJECTS.FK_RELATIONID, "PRO_PROJECTS").Length > 100 ? new Models.CommonHelper().GetContentText(mission.PRO_PROJECT_STAGES.PRO_PROJECTS.FK_RELATIONID, "PRO_PROJECTS").Substring(0, 45) : new Models.CommonHelper().GetContentText(mission.PRO_PROJECT_STAGES.PRO_PROJECTS.FK_RELATIONID, "PRO_PROJECTS"))
+                                            <div class="small">项目进度： @(new Models.CommonHelper().GetProgress(mission.PRO_PROJECT_STAGES.PRO_PROJECTS.ID))%</div>
+                                            <div class="progress progress-mini">
+                                                <div style="width: @(new Models.CommonHelper().GetProgress(mission.PRO_PROJECT_STAGES.PRO_PROJECTS.ID))%;" class="progress-bar"></div>
+                                            </div>
+                                        </li>*@
+                                    }
+                                }
+                            }
+                        </ul>
+                    </div>
+                    <div id="tab-2" class="tab-pane">
+                        <div class="sidebar-title">
+                            <h3> <i class="fa fa-comments-o"></i> 最新通知</h3>
+                            <small><i class="fa fa-tim"></i> 您当前有0条未读信息</small>
+                        </div>
+                        <div>
+                            <div class="sidebar-message">
+                                <a href="#">
+                                    <div class="media-body">
+                                        暂无消息
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--右侧边栏结束-->
+        <!--miniChat-->
+        @*<div id="small-chat-box" class="small-chat-box fadeInRight animated">
+            <input type="hidden" id="CurrentUser" value="@Model.Id" />
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="ibox chat-view">
+                        <div class="ibox-title">
+                            <small class="pull-right text-muted">
+                                <label class="jswitch_line">
+                                    上线通知 <input type="checkbox" id="LoginNotice" class="js-switch" checked="checked" />
+                                </label>
+                                <label class="jswitch_line">
+                                    离线通知 <input type="checkbox" id="LogOutNotice" class="js-switch" checked="checked" />
+                                </label>
+                            </small> 聊天窗口
+                        </div>
+                        <div class="ibox-content">
+                            <div class="row">
+                                <div class="col-xs-9 ">
+                                    <input type="hidden" id="group" />
+                                    <input type="hidden" id="person" />
+                                    <div class="chat-discussion">
+
+                                    </div>
+                                    <div class="col-xs-12 m-t-sm">
+                                        <span class="btn btn-danger btn-xs" style="font-family:sans-serif;" id="chatType">广播</span>
+                                    </div>
+                                    <div class="col-xs-12 m-t-sm">
+                                        <textarea id="sendMessage" class="form-control" style="resize:none;" placeholder="说点什么吧..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-xs-3">
+                                    <div class="chat-users" style="border-left: 1px solid #e7eaec;">
+                                        <div class="heading text-center" draggable="true">
+                                            <small>
+                                                通讯录
+                                            </small>
+                                        </div>
+                                        <div class="users-list">
+                                            @{
+                                                var departs = ViewData["Contacts"] as dynamic;
+                                                if (departs != null)
+                                                {
+                                                    <div class="panel-group">
+                                                        @{foreach (var depart in departs)
+                                                        {
+                                                            <div class=" panel-default">
+                                                                <div class="panel-heading">
+                                                                    <div class="panel-title">
+                                                                        <a role="button" data-toggle="collapse" href="#@depart.ID" aria-expanded="true">
+                                                                            @depart.DepartName
+                                                                        </a>
+                                                                        <a role="button" href="javascript:ChatGroup('@depart.ID','@depart.DepartName')" class="pull-right" data-toggle="tooltip" data-placement="left" title="" data-original-title="@depart.DepartName 聊天"><i class="fa fa-comments-o text-success"></i></a>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="@depart.ID" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                                                    <div class="panel-body" style="padding:0;">
+                                                                        @{
+                                                            foreach (var users in depart.UserList)
+                                                            {
+                                                                <div id="charUser-@users["ID"]" class="chat-user @(users["IsOnline"]?"":"offline")" role="button" data-email="sendMail-@users["ID"]" data-connectid="@users["ConnectId"]" data-username="@users["NAME"]">
+                                                                    <a id="sendMail-@users["ID"]" class="J_menuItem" href="/Mail/Mail/WriteMail?toUser=@users["InsideEmail"]" style="display:none;">邮箱</a>
+                                                                    <img class="chat-avatar img-circle" src="@users["FaceImg"]" alt=" ">
+                                                                    <div class=" chat-user-name text-navy">
+                                                                        @users["NAME"] <span class="pull-right text-danger">@(new Models.CommonHelper().GetUserZW(users["LEVELS"]))</span>
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                                        }
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                        }
+
+                                                    </div>
+                                                }
+                                            }
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+        <div id="small-chat">
+            <span class="badge badge-warning pull-right"></span>
+            <a class="open-small-chat">
+                <i class="fa fa-comments"></i>
+            </a>
+        </div>
+
+    </div>
+</body>
+</html>
+
+<script type="text/javascript" src="/Content/js/jquery.min.js"></script>
+<script type="text/javascript" src="/Content/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/Content/js/jquery.metisMenu.js"></script>
+<script type="text/javascript" src="/Content/js/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="/Content/js/system.min.js"></script>
+<script type="text/javascript" src="/Content/js/nprogress.js"></script>
+<script type="text/javascript" src="/Content/js/dialog-plus-min.js"></script>
+<script type="text/javascript" src="/Content/js/contabs.min.js"></script>
+<script type="text/javascript" src="/Content/js/sweetalert.min.js"></script>
+<script type="text/javascript" src="/Content/js/admin/icheck.min.js"></script>
+<script type="text/javascript" src="/Content/js/select2/select2.min.js"></script>
+<script type="text/javascript" src="/Content/js/admin/datatables/colResizable-1.5.min.js"></script>
+<script type="text/javascript" src="/Content/js/laydate/laydate.js"></script>
+<script type="text/javascript" src="/Content/js/toastr/toastr.min.js"></script>
+<script type="text/javascript" src="/Content/js/switchery/switchery.min.js"></script>
+<script type="text/javascript" src="/Content/js/admin/common.js"></script>
+<script type="text/javascript">
+    (function () {
+        NProgress.start();
+    })(jQuery)
+    $(window).load(function () { NProgress.done(); });
+    $(function () {
+        WEB.INITIALIZATION();
+        $("#J_Nav li").click(function () {
+            $(this).addClass("selected").siblings().removeClass('selected');
+            $("#side-menu li.FirstModule").hide();
+            $("#side-menu li[data-id='" + $(this).attr("data-id") + "']").show();
+        });
+    });
+    var WEB = {
+        INITIALIZATION: function () {
+            $("#side-menu li.FirstModule").hide();
+            $("#side-menu li[data-id='" + $("#J_Nav li.selected").attr("data-id") + "']").show();
+        }
+    }    
+</script>
+
+<script type="text/javascript" src="/Scripts/jquery.signalR-2.2.0.min.js"></script>
+<script type="text/javascript" src="/signalr/hubs"></script>
+<script type="text/javascript">    
+    $(function () {
+        var messagecount = 0;
+        $(".panel-body .chat-user").click(function () {
+            if ($(this).hasClass("offline")) {
+                var MailId = $(this).attr("data-Email");
+                var ConnectId = $(this).attr("data-connectid");
+                var UserName = $(this).attr("data-username");
+                swal({ title: "用户离线", text: "当前用户不在线，是否发送邮件？", type: "warning", showCancelButton: true, confirmButtonColor: "#DD6B55", confirmButtonText: "发送邮件", cancelButtonText: "发送离线消息", closeOnConfirm: false, closeOnCancel: false }, function (isConfirm) { if (isConfirm) { sweetAlert.close(); document.getElementById(MailId).click(); } else { sweetAlert.close(); ChatPerson(ConnectId, UserName); } });
+            }
+            else {
+                ChatPerson($(this).attr("data-connectid"), $(this).attr("data-username"));
+            }
+        });
+        $(".open-small-chat").click(function () {
+            messagecount = 0;
+            $("#small-chat .badge").html('');
+            $('.chat-discussion').scrollTop($('.chat-discussion')[0].scrollHeight);
+        });
+        var chat = $.connection.chatHub;
+        chat.logging = true;
+        //用户上线通知
+        chat.client.UserLoginNotice = function (message) {
+            if ($("#LoginNotice").prop("checked")) { toasSuccess.message_t(message); }
+        };
+        //用户离线通知
+        chat.client.UserLogOutNotice = function (message) {
+            if ($("#LogOutNotice").prop("checked")) { toasInfo.message_t(message); }
+        };
+        //通讯录用户上下线
+        chat.client.ContactsNotice = function (message) {
+            var data = eval("(" + message + ")");
+            if (!data.IsOnline) {
+                var current = $("#charUser-" + data.FK_UserId).addClass("offline");
+                var parentId = current.parent().parent().prop("id");
+                current.remove().appendTo($("#" + parentId + " .panel-body"));
+            }else
+            {
+                var current = $("#charUser-" + data.FK_UserId).removeClass("offline").attr("data-connectid", data.ConnectId);
+                var parentId = current.parent().parent().prop("id");
+                current.insertBefore($("#" + parentId + " .panel-body .offline").eq(0));
+            }
+            $(".panel-body .chat-user").click(function () {
+                if ($(this).hasClass("offline")) {
+                    var MailId = $(this).attr("data-Email");
+                    var ConnectId = $(this).attr("data-connectid");
+                    var UserName = $(this).attr("data-username");
+                    swal({ title: "用户离线", text: "当前用户不在线，是否发送邮件？", type: "warning", showCancelButton: true, confirmButtonColor: "#DD6B55", confirmButtonText: "发送邮件", cancelButtonText: "发送离线消息", closeOnConfirm: false, closeOnCancel: false }, function (isConfirm) { if (isConfirm) { sweetAlert.close(); document.getElementById(MailId).click(); } else { sweetAlert.close(); ChatPerson(ConnectId, UserName); } });
+                }
+                else {
+                    ChatPerson($(this).attr("data-connectid"), $(this).attr("data-username"));
+                }
+            });
+
+        };
+        //接收服务器信息
+        chat.client.addNewMessageToPage = function (message) {            
+            var data = eval("(" + message + ")");
+            var html = '';
+            if (data.UserId == $("#CurrentUser").val()) {
+                html += '<div class=" col-xs-12"><div class="chat-message clearfix">';
+                html += '<img class="message-avatar img-circle pull-right" src="' + data.UserFace + '" />';
+                html += '<div class="chat-title pull-left col-xs-12"><a class="message-author pull-right" href="javascript:void(0)">' + data.UserName + '</a><span class="message-date pull-right"> ' + data.MessageDate + ' </span></div>';
+                html += ' <div class="message  pull-right self"><i></i><span class="message-content">' + data.MessageContent + '</span></div>';
+                html += '</div></div>';
+            }
+            else {
+                html += '<div class=" col-xs-12"><div class="chat-message clearfix">';
+                html += '<img class="message-avatar img-circle pull-left" src="' + data.UserFace + '" />';
+                html += '<div class="chat-title pull-left col-xs-12"><a class="message-author pull-left" href="javascript:ChatPerson(\'' + data.ConnectId + '\',\'' + data.UserName + '\')" >' + data.UserName + '</a><span class="message-date pull-left"> ' + data.MessageDate + ' </span></div>';
+                html += ' <div class="message  pull-left ' + data.MessageType + '"><i></i><span class="message-content">' + data.MessageContent + '</span></div>';
+                html += '</div></div>';
+            }
+            $(html).appendTo(".chat-discussion");
+            $('.chat-discussion').scrollTop($('.chat-discussion')[0].scrollHeight);
+            if(!$("#small-chat-box").hasClass("active"))
+            {
+                messagecount = messagecount + 1;
+            }
+            if (messagecount > 0)
+            {
+                $("#small-chat .badge").html(messagecount);
+            }
+        };
+        //接收系统消息
+        chat.client.addSysMessageToPage = function (message) {
+            $('<div class=" col-xs-12 m-t-sm m-b-sm text-center sysmessage">' + message + '</div>').appendTo(".chat-discussion");
+            $('.chat-discussion').scrollTop($('.chat-discussion')[0].scrollHeight);
+        };
+        //接收历史信息
+        chat.client.addHistoryMessageToPage = function (message) {
+            var data = eval("(" + message + ")");
+            var html = '';
+            for(var i=0;i<data.length;i++)
+            {
+                if (data[i].FromUser == $("#CurrentUser").val()) {
+                    html += '<div class=" col-xs-12"><div class="chat-message clearfix">';
+                    html += '<img class="message-avatar img-circle pull-right" src="' + data[i].UserFace + '" />';
+                    html += '<div class="chat-title pull-left col-xs-12"><a class="message-author pull-right" href="javascript:void(0)">' + data[i].UserName + '</a><span class="message-date pull-right"> ' + data[i].MessageDate + ' </span></div>';
+                    html += ' <div class="message  pull-right self"><i></i><span class="message-content">' + data[i].MessageContent + '</span></div>';
+                    html += '</div></div>';
+                }
+                else {
+                    html += '<div class=" col-xs-12"><div class="chat-message clearfix">';
+                    html += '<img class="message-avatar img-circle pull-left" src="' + data[i].UserFace + '" />';
+                    html += '<div class="chat-title pull-left col-xs-12"><a class="message-author pull-left" href="javascript:ChatPerson(\'' + data[i].ConnectId + '\',\'' + data[i].UserName + '\')" >' + data[i].UserName + '</a><span class="message-date pull-left"> ' + data[i].MessageDate + ' </span></div>';
+                    html += ' <div class="message  pull-left ' + data[i].MessageType + '"><i></i><span class="message-content">' + data[i].MessageContent + '</span></div>';
+                    html += '</div></div>';
+                }
+            }                        
+            $(html).appendTo(".chat-discussion");
+            $('<div class=" col-xs-12 m-t-sm m-b-sm text-center sysmessage"> — 以上是历史消息 — </div>').appendTo(".chat-discussion");                        
+        };
+        $.connection.hub.start().done(function () {            
+            chat.server.register('@Model.LogName', '@Model.PassWord');
+            //文本框回车推送
+            $("#sendMessage").keyup(function (event) {
+                if (event.keyCode == 13 || event.which == 13)
+                {
+                    if ($.trim($(this).val()) == '' || $.trim($(this).val()).length < 1) {
+                        $(this).val($.trim($(this).val()));
+                        $(this).focus();
+                        return false;
+                    }
+                    else {
+                        //私聊
+                        if ($.trim($("#person").val()) != '' && $.trim($("#person").val()).length > 1) {
+                            chat.server.sendSingle($("#person").val(), $(this).val());
+                        }
+                        else {
+                            chat.server.send($(this).val(), $("#group").val());
+                        }
+                        $(this).val("").focus();                       
+                    }
+                    
+                }
+            });
+            
+        });
+        $.connection.hub.error(function (err) {
+            $.connection.hub.stop();
+        });
+    });
+    //选择组聊
+    function ChatGroup(n, g) {
+        $("#person").val('');
+        $("#group").val(n);
+        $("#chatType").html(g + '<a href="javascript:void(0)" class="text-white"><i class="fa fa-close fa-fw"></i></a>');
+        $("#chatType a").click(function () {
+            $("#group").val('');
+            $("#chatType").html('广播');
+        });
+    }
+    //选择私聊
+    function ChatPerson(n, g) {
+        $("#group").val('');
+        $("#person").val(n);
+        $("#chatType").html(g + '<a href="javascript:void(0)" class="text-white"><i class="fa fa-close fa-fw"></i></a>');
+        $("#chatType a").click(function () {
+            $("#person").val('');
+            $("#chatType").html('广播');
+        });
+    }
+</script>

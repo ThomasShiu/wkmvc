@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7415725A-9CB4-4B25-852E-FC8CEC447C57}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Service</RootNamespace>
+    <AssemblyName>Service</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Account.cs" />
+    <Compile Include="DatabaseExtensions.cs" />
+    <Compile Include="IRepository.cs" />
+    <Compile Include="IService\SysManage\ICodeManage.cs" />
+    <Compile Include="IService\SysManage\IDepartmentManage.cs" />
+    <Compile Include="IService\SysManage\IModuleManage.cs" />
+    <Compile Include="IService\SysManage\IPermissionManage.cs" />
+    <Compile Include="IService\SysManage\IRolePermissionManage.cs" />
+    <Compile Include="IService\SysManage\ISystemManage.cs" />
+    <Compile Include="IService\SysManage\IUserDepartmentManage.cs" />
+    <Compile Include="IService\SysManage\IUserInfoManage.cs" />
+    <Compile Include="IService\SysManage\IUserManage.cs" />
+    <Compile Include="IService\SysManage\IPostUserManage.cs" />
+    <Compile Include="IService\SysManage\IUserPermissionManage.cs" />
+    <Compile Include="IService\SysManage\IUserRoleManage.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryBase.cs" />
+    <Compile Include="ServiceImp\SysManage\CodeManage.cs" />
+    <Compile Include="ServiceImp\SysManage\DepartmentManage.cs" />
+    <Compile Include="ServiceImp\SysManage\ModuleManage.cs" />
+    <Compile Include="ServiceImp\SysManage\PermissionManage.cs" />
+    <Compile Include="ServiceImp\SysManage\PostUserManage.cs" />
+    <Compile Include="ServiceImp\SysManage\RolePermissionManage.cs" />
+    <Compile Include="ServiceImp\SysManage\SystemManage.cs" />
+    <Compile Include="ServiceImp\SysManage\UserDepartmentManage.cs" />
+    <Compile Include="ServiceImp\SysManage\UserInfoManage.cs" />
+    <Compile Include="ServiceImp\SysManage\UserManage.cs" />
+    <Compile Include="ServiceImp\SysManage\UserPermissionManage.cs" />
+    <Compile Include="ServiceImp\SysManage\UserRoleManage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{9bec400c-cf33-490d-aca8-d10db9bb3b73}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{ca396697-1d0f-490b-97ee-6b09324c8c33}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="IService\ComManage\" />
+    <Folder Include="ServiceImp\ComManage\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Config\Service.xml" />
+    <EmbeddedResource Include="Config\ComService.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
