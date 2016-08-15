@@ -243,7 +243,7 @@ namespace WebPage.Areas.SysManage.Controllers
                 Status = "n"
             };
             string userId = Request.Form["UserId"];
-            string roleId = Request.Form["checkbox_name"];
+            string roleId = Request.Form["checkbox_name"]??"";
             if (string.IsNullOrEmpty(userId))
             {
                 json.Msg = "未找到要分配角色用户";

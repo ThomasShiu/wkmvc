@@ -56,9 +56,9 @@ namespace WebPage.Areas.SysManage.Controllers
                             string cookievalue = $@"{{""id"":""{account.Id}"",""username"":""{account.LogName}"",""password"":""{account.PassWord}"",""ToKen"":""{Session.SessionID}""}}";
                             CookieHelper.SetCookie("cookie_rememberme", new Common.CryptHelper.AESCrypt().Encrypt(cookievalue));
 
-                            //更新用户登录IP
-                            user.LastLoginIP = Utils.GetIP();
-                            UserManage.Update(user);
+                            ////更新用户登录IP
+                            //user.LastLoginIP = Utils.GetIP();
+                            //UserManage.Update(user); //保存会出错
 
 
 
