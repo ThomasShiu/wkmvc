@@ -147,9 +147,6 @@
     <Compile Include="SYS_POST.cs">
       <DependentUpon>Sql_Wkdb.tt</DependentUpon>
     </Compile>
-    <Compile Include="SYS_POST_DEPARTMENT.cs">
-      <DependentUpon>Sql_Wkdb.tt</DependentUpon>
-    </Compile>
     <Compile Include="SYS_POST_USER.cs">
       <DependentUpon>Sql_Wkdb.tt</DependentUpon>
     </Compile>

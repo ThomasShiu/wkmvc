@@ -14,12 +14,6 @@ namespace Domain
     
     public partial class SYS_POST
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SYS_POST()
-        {
-            this.SYS_POST_DEPARTMENT = new HashSet<SYS_POST_DEPARTMENT>();
-        }
-    
         public string ID { get; set; }
         public string POSTNAME { get; set; }
         public string POSTTYPE { get; set; }
@@ -32,8 +26,6 @@ namespace Domain
         public string FK_DEPARTID { get; set; }
         public string CREATEUSER { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SYS_POST_DEPARTMENT> SYS_POST_DEPARTMENT { get; set; }
         public virtual SYS_DEPARTMENT SYS_DEPARTMENT { get; set; }
     }
 }

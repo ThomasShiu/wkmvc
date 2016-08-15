@@ -198,7 +198,82 @@ namespace WebPage.Areas.SysManage.Controllers
             }
             return Json(json);
         }
-                
+
+
+        /// <summary>
+        /// 用户角色分配
+        /// </summary>
+        /// <param name="id">用户ID</param>
+        /// <returns></returns>
+        [UserAuthorizeAttribute(ModuleAlias = "User", OperaAction = "AllocationRole")]
+        public ActionResult RoleCall(int? id)
+        {
+            try
+            {
+                if (id != null && id > 0)
+                {
+                    //用户ID
+                    ViewData["userId"] = id;
+                    //获取用户角色信息
+                    var userRoleList = this.UserRoleManage.LoadAll(p => p.FK_USERID == id).Select(p => p.FK_ROLEID).ToList();
+                    return View(JsonConverter.JsonClass(this.RoleManage.LoadAll(p => this.CurrentUser.System_Id.Any(e => e == p.FK_BELONGSYSTEM)).OrderBy(p => p.FK_BELONGSYSTEM).OrderByDescending(p => p.ID).ToList().Select(p => new { p.ID, p.ROLENAME, ISCUSTOMSTATUS = p.ISCUSTOM==1 ? "<i class=\"fa fa-circle text-navy\"></i>" : "<i class=\"fa fa-circle text-danger\"></i>", SYSNAME = SystemManage.Get(m => m.ID == p.FK_BELONGSYSTEM).NAME, IsChoosed = userRoleList.Contains(p.ID) })));
+                }
+                else
+                {
+                    return View();
+                }
+
+            }
+            catch (Exception e)
+            {
+                WriteLog(Common.Enums.enumOperator.Select, "获取用户分配的角色：", e);
+                throw e.InnerException;
+            }
+        }
+
+        /// <summary>
+        /// 设置用户角色
+        /// </summary>
+        [UserAuthorizeAttribute(ModuleAlias = "Role", OperaAction = "Allocation")]
+        public ActionResult UserRole()
+        {
+            var json = new JsonHelper()
+            {
+                Msg = "设置用户角色成功",
+                Status = "n"
+            };
+            string userId = Request.Form["UserId"];
+            string roleId = Request.Form["checkbox_name"];
+            if (string.IsNullOrEmpty(userId))
+            {
+                json.Msg = "未找到要分配角色用户";
+                return Json(json);
+            }
+            roleId = roleId.TrimEnd(',');
+
+            try
+            {
+                //设置用户角色
+                this.UserRoleManage.SetUserRole(int.Parse(userId), roleId);
+                json.Status = "y";
+                WriteLog(Common.Enums.enumOperator.Allocation, "设置用户角色：" + json.Msg, Common.Enums.enumLog4net.INFO);
+            }
+            catch (Exception e)
+            {
+                json.Msg = "设置失败，错误：" + e.Message;
+                WriteLog(Common.Enums.enumOperator.Allocation, "设置用户角色：", e);
+            }
+            return Json(json);
+        }
+
+
+
+
+
+
+
+
+
         /// <summary>
         /// 分页查询角色列表
         /// </summary>

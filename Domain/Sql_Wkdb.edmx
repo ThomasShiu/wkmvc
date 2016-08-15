@@ -343,21 +343,12 @@
           <Property Name="FK_DEPARTID" Type="nvarchar" MaxLength="36" Nullable="false" />
           <Property Name="CREATEUSER" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="SYS_POST_DEPARTMENT">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FK_DEPARTMENT_ID" Type="nvarchar" MaxLength="36" Nullable="false" />
-          <Property Name="FK_POST_ID" Type="nvarchar" MaxLength="36" Nullable="false" />
-        </EntityType>
         <EntityType Name="SYS_POST_USER">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FK_USERID" Type="int" Nullable="false" />
-          <Property Name="FK_POST_DEPARTMENTID" Type="int" Nullable="false" />
           <Property Name="FK_POSTID" Type="nvarchar" MaxLength="36" Nullable="false" />
         </EntityType>
         <EntityType Name="SYS_ROLE">
@@ -579,30 +570,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SYS_POST_DEPARTMENT_DPTID">
-          <End Role="SYS_DEPARTMENT" Type="Self.SYS_DEPARTMENT" Multiplicity="1" />
-          <End Role="SYS_POST_DEPARTMENT" Type="Self.SYS_POST_DEPARTMENT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SYS_DEPARTMENT">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="SYS_POST_DEPARTMENT">
-              <PropertyRef Name="FK_DEPARTMENT_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SYS_POST_DEPARTMENT_POSTID">
-          <End Role="SYS_POST" Type="Self.SYS_POST" Multiplicity="1" />
-          <End Role="SYS_POST_DEPARTMENT" Type="Self.SYS_POST_DEPARTMENT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SYS_POST">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="SYS_POST_DEPARTMENT">
-              <PropertyRef Name="FK_POST_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SYS_POST_SYS_DEPARTMENT">
           <End Role="SYS_DEPARTMENT" Type="Self.SYS_DEPARTMENT" Multiplicity="1" />
           <End Role="SYS_POST" Type="Self.SYS_POST" Multiplicity="*" />
@@ -612,18 +579,6 @@
             </Principal>
             <Dependent Role="SYS_POST">
               <PropertyRef Name="FK_DEPARTID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SYS_POST_USER_POSTDPTID">
-          <End Role="SYS_POST_DEPARTMENT" Type="Self.SYS_POST_DEPARTMENT" Multiplicity="1" />
-          <End Role="SYS_POST_USER" Type="Self.SYS_POST_USER" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SYS_POST_DEPARTMENT">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="SYS_POST_USER">
-              <PropertyRef Name="FK_POST_DEPARTMENTID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -781,7 +736,6 @@
           <EntitySet Name="SYS_MODULE" EntityType="Self.SYS_MODULE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SYS_PERMISSION" EntityType="Self.SYS_PERMISSION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SYS_POST" EntityType="Self.SYS_POST" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SYS_POST_DEPARTMENT" EntityType="Self.SYS_POST_DEPARTMENT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SYS_POST_USER" EntityType="Self.SYS_POST_USER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SYS_ROLE" EntityType="Self.SYS_ROLE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SYS_ROLE_PERMISSION" EntityType="Self.SYS_ROLE_PERMISSION" Schema="dbo" store:Type="Tables" />
@@ -820,21 +774,9 @@
             <End Role="SYS_MODULE" EntitySet="SYS_MODULE" />
             <End Role="SYS_PERMISSION" EntitySet="SYS_PERMISSION" />
           </AssociationSet>
-          <AssociationSet Name="FK_SYS_POST_DEPARTMENT_DPTID" Association="Self.FK_SYS_POST_DEPARTMENT_DPTID">
-            <End Role="SYS_DEPARTMENT" EntitySet="SYS_DEPARTMENT" />
-            <End Role="SYS_POST_DEPARTMENT" EntitySet="SYS_POST_DEPARTMENT" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SYS_POST_DEPARTMENT_POSTID" Association="Self.FK_SYS_POST_DEPARTMENT_POSTID">
-            <End Role="SYS_POST" EntitySet="SYS_POST" />
-            <End Role="SYS_POST_DEPARTMENT" EntitySet="SYS_POST_DEPARTMENT" />
-          </AssociationSet>
           <AssociationSet Name="FK_SYS_POST_SYS_DEPARTMENT" Association="Self.FK_SYS_POST_SYS_DEPARTMENT">
             <End Role="SYS_DEPARTMENT" EntitySet="SYS_DEPARTMENT" />
             <End Role="SYS_POST" EntitySet="SYS_POST" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SYS_POST_USER_POSTDPTID" Association="Self.FK_SYS_POST_USER_POSTDPTID">
-            <End Role="SYS_POST_DEPARTMENT" EntitySet="SYS_POST_DEPARTMENT" />
-            <End Role="SYS_POST_USER" EntitySet="SYS_POST_USER" />
           </AssociationSet>
           <AssociationSet Name="FK_SYS_POST_USER_USERID" Association="Self.FK_SYS_POST_USER_USERID">
             <End Role="SYS_USER" EntitySet="SYS_USER" />
@@ -922,7 +864,6 @@
           <EntitySet Name="SYS_MODULE" EntityType="Domain.SYS_MODULE" />
           <EntitySet Name="SYS_PERMISSION" EntityType="Domain.SYS_PERMISSION" />
           <EntitySet Name="SYS_POST" EntityType="Domain.SYS_POST" />
-          <EntitySet Name="SYS_POST_DEPARTMENT" EntityType="Domain.SYS_POST_DEPARTMENT" />
           <EntitySet Name="SYS_POST_USER" EntityType="Domain.SYS_POST_USER" />
           <EntitySet Name="SYS_ROLE" EntityType="Domain.SYS_ROLE" />
           <EntitySet Name="SYS_ROLE_PERMISSION" EntityType="Domain.SYS_ROLE_PERMISSION" />
@@ -931,10 +872,6 @@
           <EntitySet Name="SYS_USER_PERMISSION" EntityType="Domain.SYS_USER_PERMISSION" />
           <EntitySet Name="SYS_USER_ROLE" EntityType="Domain.SYS_USER_ROLE" />
           <EntitySet Name="SYS_USERINFO" EntityType="Domain.SYS_USERINFO" />
-          <AssociationSet Name="FK_SYS_POST_DEPARTMENT_DPTID" Association="Domain.FK_SYS_POST_DEPARTMENT_DPTID">
-            <End Role="SYS_DEPARTMENT" EntitySet="SYS_DEPARTMENT" />
-            <End Role="SYS_POST_DEPARTMENT" EntitySet="SYS_POST_DEPARTMENT" />
-          </AssociationSet>
           <AssociationSet Name="FK_SYS_USER_DEPARTMENT_DPTID" Association="Domain.FK_SYS_USER_DEPARTMENT_DPTID">
             <End Role="SYS_DEPARTMENT" EntitySet="SYS_DEPARTMENT" />
             <End Role="SYS_USER_DEPARTMENT" EntitySet="SYS_USER_DEPARTMENT" />
@@ -954,14 +891,6 @@
           <AssociationSet Name="FK_SYS_USER_PERMISSION_PERID" Association="Domain.FK_SYS_USER_PERMISSION_PERID">
             <End Role="SYS_PERMISSION" EntitySet="SYS_PERMISSION" />
             <End Role="SYS_USER_PERMISSION" EntitySet="SYS_USER_PERMISSION" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SYS_POST_DEPARTMENT_POSTID" Association="Domain.FK_SYS_POST_DEPARTMENT_POSTID">
-            <End Role="SYS_POST" EntitySet="SYS_POST" />
-            <End Role="SYS_POST_DEPARTMENT" EntitySet="SYS_POST_DEPARTMENT" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SYS_POST_USER_POSTDPTID" Association="Domain.FK_SYS_POST_USER_POSTDPTID">
-            <End Role="SYS_POST_DEPARTMENT" EntitySet="SYS_POST_DEPARTMENT" />
-            <End Role="SYS_POST_USER" EntitySet="SYS_POST_USER" />
           </AssociationSet>
           <AssociationSet Name="FK_SYS_POST_USER_USERID" Association="Domain.FK_SYS_POST_USER_USERID">
             <End Role="SYS_USER" EntitySet="SYS_USER" />
@@ -1076,7 +1005,6 @@
           <Property Name="UPDATEDATE" Type="DateTime" Precision="3" />
           <Property Name="UPDATEUSER" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
           <Property Name="PARENTCODE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="SYS_POST_DEPARTMENT" Relationship="Domain.FK_SYS_POST_DEPARTMENT_DPTID" FromRole="SYS_DEPARTMENT" ToRole="SYS_POST_DEPARTMENT" />
           <NavigationProperty Name="SYS_USER_DEPARTMENT" Relationship="Domain.FK_SYS_USER_DEPARTMENT_DPTID" FromRole="SYS_DEPARTMENT" ToRole="SYS_USER_DEPARTMENT" />
           <NavigationProperty Name="SYS_POST" Relationship="Domain.FK_SYS_POST_SYS_DEPARTMENT" FromRole="SYS_DEPARTMENT" ToRole="SYS_POST" />
         </EntityType>
@@ -1149,21 +1077,9 @@
           <Property Name="CREATEDATE" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UPDATEDATE" Type="DateTime" Precision="3" />
           <Property Name="UPDATEUSER" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="SYS_POST_DEPARTMENT" Relationship="Domain.FK_SYS_POST_DEPARTMENT_POSTID" FromRole="SYS_POST" ToRole="SYS_POST_DEPARTMENT" />
           <Property Name="FK_DEPARTID" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="true" />
           <Property Name="CREATEUSER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="SYS_DEPARTMENT" Relationship="Domain.FK_SYS_POST_SYS_DEPARTMENT" FromRole="SYS_POST" ToRole="SYS_DEPARTMENT" />
-        </EntityType>
-        <EntityType Name="SYS_POST_DEPARTMENT">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FK_DEPARTMENT_ID" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="true" />
-          <Property Name="FK_POST_ID" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="SYS_DEPARTMENT" Relationship="Domain.FK_SYS_POST_DEPARTMENT_DPTID" FromRole="SYS_POST_DEPARTMENT" ToRole="SYS_DEPARTMENT" />
-          <NavigationProperty Name="SYS_POST" Relationship="Domain.FK_SYS_POST_DEPARTMENT_POSTID" FromRole="SYS_POST_DEPARTMENT" ToRole="SYS_POST" />
-          <NavigationProperty Name="SYS_POST_USER" Relationship="Domain.FK_SYS_POST_USER_POSTDPTID" FromRole="SYS_POST_DEPARTMENT" ToRole="SYS_POST_USER" />
         </EntityType>
         <EntityType Name="SYS_POST_USER">
           <Key>
@@ -1171,8 +1087,6 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FK_USERID" Type="Int32" Nullable="false" />
-          <Property Name="FK_POST_DEPARTMENTID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="SYS_POST_DEPARTMENT" Relationship="Domain.FK_SYS_POST_USER_POSTDPTID" FromRole="SYS_POST_USER" ToRole="SYS_POST_DEPARTMENT" />
           <NavigationProperty Name="SYS_USER" Relationship="Domain.FK_SYS_POST_USER_USERID" FromRole="SYS_POST_USER" ToRole="SYS_USER" />
           <Property Name="FK_POSTID" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -1289,18 +1203,6 @@
           <Property Name="UPDATEUSER" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="SYS_USER" Relationship="Domain.FK_SYS_USERINFO_SYSUSERID" FromRole="SYS_USERINFO" ToRole="SYS_USER" />
         </EntityType>
-        <Association Name="FK_SYS_POST_DEPARTMENT_DPTID">
-          <End Type="Domain.SYS_DEPARTMENT" Role="SYS_DEPARTMENT" Multiplicity="1" />
-          <End Type="Domain.SYS_POST_DEPARTMENT" Role="SYS_POST_DEPARTMENT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SYS_DEPARTMENT">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="SYS_POST_DEPARTMENT">
-              <PropertyRef Name="FK_DEPARTMENT_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SYS_USER_DEPARTMENT_DPTID">
           <End Type="Domain.SYS_DEPARTMENT" Role="SYS_DEPARTMENT" Multiplicity="1" />
           <End Type="Domain.SYS_USER_DEPARTMENT" Role="SYS_USER_DEPARTMENT" Multiplicity="*" />
@@ -1358,30 +1260,6 @@
             </Principal>
             <Dependent Role="SYS_USER_PERMISSION">
               <PropertyRef Name="FK_PERMISSIONID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SYS_POST_DEPARTMENT_POSTID">
-          <End Type="Domain.SYS_POST" Role="SYS_POST" Multiplicity="1" />
-          <End Type="Domain.SYS_POST_DEPARTMENT" Role="SYS_POST_DEPARTMENT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SYS_POST">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="SYS_POST_DEPARTMENT">
-              <PropertyRef Name="FK_POST_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SYS_POST_USER_POSTDPTID">
-          <End Type="Domain.SYS_POST_DEPARTMENT" Role="SYS_POST_DEPARTMENT" Multiplicity="1" />
-          <End Type="Domain.SYS_POST_USER" Role="SYS_POST_USER" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SYS_POST_DEPARTMENT">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="SYS_POST_USER">
-              <PropertyRef Name="FK_POST_DEPARTMENTID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1950,21 +1828,11 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SYS_POST_DEPARTMENT">
-      <EntityTypeMapping TypeName="IsTypeOf(Domain.SYS_POST_DEPARTMENT)">
-        <MappingFragment StoreEntitySet="SYS_POST_DEPARTMENT">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="FK_DEPARTMENT_ID" ColumnName="FK_DEPARTMENT_ID" />
-          <ScalarProperty Name="FK_POST_ID" ColumnName="FK_POST_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="SYS_POST_USER">
       <EntityTypeMapping TypeName="IsTypeOf(Domain.SYS_POST_USER)">
         <MappingFragment StoreEntitySet="SYS_POST_USER">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="FK_USERID" ColumnName="FK_USERID" />
-          <ScalarProperty Name="FK_POST_DEPARTMENTID" ColumnName="FK_POST_DEPARTMENTID" />
           <ScalarProperty Name="FK_POSTID" ColumnName="FK_POSTID" />
         </MappingFragment>
       </EntityTypeMapping>

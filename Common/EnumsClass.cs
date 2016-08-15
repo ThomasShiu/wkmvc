@@ -292,19 +292,17 @@ namespace Common.Enums
             get
             {
                 Dictionary<string, string> _dic = new Dictionary<string, string>();
-                try
+               
+                string dicStr = "职务-ZW,在岗状态-ZGZT,婚姻状况-HYZK,学历-XL,政治面貌-ZZMM,民族-MZ,职称-ZC,业务授权-YWSQ,岗位类型-POSTTYPE,权限值-ROLEVALUE,员工级别-YGJB,合同类型-HTLB,合同状态-HTZT,客户分类-KHFL,IP类型-IPLX,项目类型-XMLX,项目状态-XMZT,成本类别-CBLB,任务状态-RWZT,任务类别-RWLB,任务阶段-RWJD,日志类别-RZLB,文章类别-WZLB,流程状态-WZZT,优先级-YXJ,联系人类型-LXRLX,消息类型-XXLX";
+                var diclist = dicStr.TrimEnd(',').TrimStart(',').Split(',').ToList();
+                if (diclist.Count > 0)
                 {
-                    string dicStr = Utils.GetFileContent(System.Web.HttpContext.Current.Server.MapPath("/Models/DicType.txt"), false);
-                    var diclist = dicStr.TrimEnd(',').TrimStart(',').Split(',').ToList();
-                    if (diclist.Count > 0)
+                    foreach (var item in diclist)
                     {
-                        foreach (var item in diclist)
-                        {
-                            _dic.Add(item.Split('-')[0], item.Split('-')[1]);
-                        }
+                        _dic.Add(item.Split('-')[0], item.Split('-')[1]);
                     }
                 }
-                catch { }
+                
                 return _dic;
             }
         }

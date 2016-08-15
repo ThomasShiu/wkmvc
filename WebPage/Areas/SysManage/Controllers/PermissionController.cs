@@ -408,7 +408,7 @@ namespace WebPage.Areas.SysManage.Controllers
             {
                 if (tp == "user")
                 {
-                    if (!this.UserPermissionManage.SetUserPermission(int.Parse(id), perid, sysid)) { json.Msg = "保存失败"; WriteLog(Common.Enums.enumOperator.Allocation, "设置用户权限，结果：" + json.Msg, Common.Enums.enumLog4net.ERROR); return Json(json); }
+                    if (!this.UserPermissionManage.SetUserPermission(int.Parse(id), perid)) { json.Msg = "保存失败"; WriteLog(Common.Enums.enumOperator.Allocation, "设置用户权限，结果：" + json.Msg, Common.Enums.enumLog4net.ERROR); return Json(json); }
                 }
                 else if (tp == "role")
                 {

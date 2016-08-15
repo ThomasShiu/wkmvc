@@ -16,10 +16,8 @@ namespace Domain
     {
         public int ID { get; set; }
         public int FK_USERID { get; set; }
-        public int FK_POST_DEPARTMENTID { get; set; }
         public string FK_POSTID { get; set; }
     
-        public virtual SYS_POST_DEPARTMENT SYS_POST_DEPARTMENT { get; set; }
         public virtual SYS_USER SYS_USER { get; set; }
     }
 }
