@@ -254,3 +254,4 @@ WE-Palette.css
 WebEssentials2015-Settings.json
 MvcDemo/
 sql/
+!/WebPage/Areas/ComManage/Views/BackupRestore
