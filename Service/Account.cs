@@ -63,6 +63,7 @@ namespace Service
         /// </summary>
         public List<Domain.SYS_MODULE> Modules { get; set; }
 
+        public string PinYin {get;set;}
         /// <summary>
         /// 为了实现不同角色不同系统的登录，把角色拥有的系统ID 添加到这个List里面
         /// </summary>

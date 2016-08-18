@@ -724,6 +724,13 @@
     <Content Include="Areas\SysManage\Views\User\UserFace.cshtml" />
     <Content Include="Areas\SysManage\Views\User\UserInfo.cshtml" />
     <Content Include="Areas\SysManage\Views\User\ViewDetail.cshtml" />
+    <Content Include="Areas\ComManage\Views\Upload\Compress.cshtml" />
+    <Content Include="Areas\ComManage\Views\Upload\Copy.cshtml" />
+    <Content Include="Areas\ComManage\Views\Upload\Cut.cshtml" />
+    <Content Include="Areas\ComManage\Views\Upload\Expand.cshtml" />
+    <Content Include="Areas\ComManage\Views\Upload\FileMain.cshtml" />
+    <Content Include="Areas\ComManage\Views\Upload\Home.cshtml" />
+    <Content Include="Config\WebSite.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -737,6 +744,9 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\ComManage\ComManageAreaRegistration.cs" />
+    <Compile Include="Areas\ComManage\Controllers\UploadController.cs" />
+    <Compile Include="Areas\ComManage\Models\FileModel.cs" />
+    <Compile Include="Areas\ComManage\Models\Thumbnail.cs" />
     <Compile Include="Areas\SysManage\Controllers\AccountController.cs" />
     <Compile Include="Areas\SysManage\Controllers\DepartmentController.cs" />
     <Compile Include="Areas\SysManage\Controllers\PermissionController.cs" />
@@ -770,8 +780,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\ComManage\Controllers\" />
-    <Folder Include="Areas\ComManage\Models\" />
     <Folder Include="Areas\ComManage\Views\Shared\" />
     <Folder Include="Areas\SysManage\Models\" />
     <Folder Include="Views\Base\" />

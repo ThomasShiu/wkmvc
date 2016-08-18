@@ -188,7 +188,8 @@ namespace Service.ServiceImp
                 PostUser = post,
                 Modules = module,
                 System_Id = systemid,
-                Levels = user.LEVELS
+                Levels = user.LEVELS,
+                PinYin = user.PINYIN1,
             };
             return account;
         }

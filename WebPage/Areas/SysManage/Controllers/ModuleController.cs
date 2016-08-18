@@ -283,7 +283,24 @@ namespace WebPage.Areas.SysManage.Controllers
         }
 
 
-
+        public ActionResult FindParnetModule()
+        {
+            string text = base.Request.Form["s"];
+            if (!string.IsNullOrEmpty(text))
+            {
+                return base.Json(this.GetModuleByDetail(text), JsonRequestBehavior.AllowGet);
+            }
+            return new EmptyResult();
+        }
+        public object GetModuleByDetail(string sysid)
+        {
+            return (from p in this.ModuleManage.RecursiveModule(ModuleManage.LoadAll(p => p.FK_BELONGSYSTEM == sysid).ToList())
+                    select new
+                    {
+                        ID = p.ID,
+                        NAME = this.GetModuleName(p.NAME, new decimal?(p.LEVELS))
+                    }).ToList();
+        }
 
         public ActionResult ShowIcon()
         {

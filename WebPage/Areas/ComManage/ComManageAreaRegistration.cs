@@ -16,7 +16,7 @@ namespace WebPage.Areas.ComManage
         {
             context.MapRoute(
                 "ComManage_default",
-                "ComManage/{controller}/{action}/{id}",
+                "Com/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional },
                 new[] { "WebPage.Areas.ComManage.Controllers" }
             );
