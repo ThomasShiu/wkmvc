@@ -195,9 +195,14 @@ var dig = {
             confirmButtonText: "是的,我确定",
             confirmButtonColor: "#ec6c62",
             closeOnConfirm: false,
-            closeOnCancel: false
+            closeOnCancel: true
         }, function (isConfirm) {
-            if (isConfirm) { i && i(); }else {swal({title: '取消操作',text: '您已取消本次操作 :)',type: "error",confirmButtonColor: "#DD6B55"});}
+            if (isConfirm) {
+                i && i();
+            }
+            //else {
+            //    swal({ title: '取消操作', text: '您已取消本次操作 :)', type: "error", confirmButtonColor: "#DD6B55" });
+            //}
         });
     },
     loading: function (t) {
@@ -272,9 +277,10 @@ var dig = {
             confirmButtonText: "是的,我确定",
             confirmButtonColor: "#ec6c62",
             closeOnConfirm: false,
-            closeOnCancel: false
+            closeOnCancel: true
         }, function (isConfirm) {
-            if (isConfirm) { window.location.href = "/sys/account"; } else { swal({ title: '取消操作', text: '您已取消本次操作 :)', type: "error", confirmButtonColor: "#DD6B55" }); }
+            if (isConfirm) { window.location.href = "/sys/account"; }
+            //else { swal({ title: '取消操作', text: '您已取消本次操作 :)', type: "error", confirmButtonColor: "#DD6B55" }); }
         });
     },
     msg:function(t,n)

@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ICSharpCode.SharpZipLib.Checksums; 
+using ICSharpCode.SharpZipLib.Checksums;
 using ICSharpCode.SharpZipLib.Zip;
 using System.IO;
+using System.Configuration;
+using Common.CryptHelper;
 
 namespace Common
 {
@@ -80,6 +82,68 @@ namespace Common
                 }
 
                 ZipFile.Close();
+            }
+        }
+
+        
+        public static void ZipDirectory(string DirectoryToZip, string ZipedPath, string ZipedFileName = "", bool IsEncrypt = true, System.Collections.Generic.List<string> IgNoreFiles = null)
+        {
+            if (!Directory.Exists(DirectoryToZip))
+            {
+                throw new FileNotFoundException("指定的目录: " + DirectoryToZip + " 不存在!");
+            }
+            string path = string.IsNullOrEmpty(ZipedFileName) ? (ZipedPath + "\\" + new DirectoryInfo(DirectoryToZip).Name + ".zip") : (ZipedPath + "\\" + ZipedFileName + ".zip");
+            using (FileStream fileStream = File.Create(path))
+            {
+                using (ZipOutputStream zipOutputStream = new ZipOutputStream(fileStream))
+                {
+                    if (IsEncrypt)
+                    {
+                        zipOutputStream.Password = ((ConfigurationManager.AppSettings["ZipPassword"] != null) ? new AESCrypt().Decrypt(ConfigurationManager.AppSettings["ZipPassword"].ToString()) : "guodongbudingxizhilang");
+                    }
+                    ZipSetp(DirectoryToZip, zipOutputStream, "", IgNoreFiles);
+                }
+            }
+        }
+        private static void ZipSetp(string strDirectory, ZipOutputStream s, string parentPath, System.Collections.Generic.List<string> IgNoreFiles = null)
+        {
+            if (strDirectory[strDirectory.Length - 1] != System.IO.Path.DirectorySeparatorChar)
+            {
+                strDirectory += System.IO.Path.DirectorySeparatorChar;
+            }
+            Crc32 crc = new Crc32();
+            string[] fileSystemEntries = Directory.GetFileSystemEntries(strDirectory);
+            string[] array = fileSystemEntries;
+            for (int i = 0; i < array.Length; i++)
+            {
+                string text = array[i];
+                if (IgNoreFiles == null || IgNoreFiles.Count <= 0 || !IgNoreFiles.Contains(text + "\\"))
+                {
+                    if (Directory.Exists(text))
+                    {
+                        string text2 = parentPath + text.Substring(text.LastIndexOf("\\") + 1);
+                        text2 += "\\";
+                        ZipSetp(text, s, text2, null);
+                    }
+                    else
+                    {
+                        using (FileStream fileStream = File.OpenRead(text))
+                        {
+                            byte[] array2 = new byte[fileStream.Length];
+                            fileStream.Read(array2, 0, array2.Length);
+                            string name = parentPath + text.Substring(text.LastIndexOf("\\") + 1);
+                            ZipEntry zipEntry = new ZipEntry(name);
+                            zipEntry.DateTime = DateTime.Now;
+                            zipEntry.Size = fileStream.Length;
+                            fileStream.Close();
+                            crc.Reset();
+                            crc.Update(array2);
+                            zipEntry.Crc = crc.Value;
+                            s.PutNextEntry(zipEntry);
+                            s.Write(array2, 0, array2.Length);
+                        }
+                    }
+                }
             }
         }
 
