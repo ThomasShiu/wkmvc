@@ -17,7 +17,7 @@ namespace WebPage.Areas.SysManage
             context.MapRoute(
                 "SysManage_default",
                 "Sys/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional },
+                new {controller = "Home", action = "Index", id = UrlParameter.Optional },
                 new[] { "WebPage.Areas.SysManage.Controllers" }
             );
         }

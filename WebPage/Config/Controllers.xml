@@ -54,5 +54,17 @@
     <property name="UserInfoManage" ref="Service.UserInfo"/>
     <property name="RoleManage" ref="Service.Role"/>
   </object>
+
+  <!--公司客户管理-->
+  <object type="WebPage.Areas.SysManage.Controllers.BussinessCustomerController,WebPage" singleton="false">
+    <property name="BussinessCustomerManage" ref="Service.BussinessCustomer"/>
+    <property name="CodeAreaManage" ref="Service.CodeArea"/>
+    <property name="ContentManage" ref="Service.Com.Content"/>
+    <property name="CodeManage" ref="Service.Code"/>
+  </object>
+  <!--省市级联管理-->
+  <object type="WebPage.Areas.SysManage.Controllers.CodeAreaController,WebPage" singleton="false">
+    <property name="CodeAreaManage" ref="Service.CodeArea"/>
+  </object>
   <!--系统管理 end-->
 </objects>

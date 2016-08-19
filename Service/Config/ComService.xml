@@ -4,4 +4,8 @@
   <!--通用资料上传管理-->
   <object id="Service.Com.Upload" type="Service.ServiceImp.UploadManage,Service" singleton="false">
   </object>
+
+  <!--通用大数据管理-->
+  <object id="Service.Com.Content" type="Service.ServiceImp.ContentManage,Service" singleton="false">
+  </object>
 </objects>

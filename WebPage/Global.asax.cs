@@ -15,8 +15,7 @@ namespace WebPage
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-
-
+            
             //var db = new MyConfig().db;
             //Database.SetInitializer(new UserInitializer());
             //db.Database.Initialize(true);

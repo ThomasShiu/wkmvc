@@ -105,71 +105,72 @@
                                 <i class="fa fa-envelope"></i> @Html.Raw(MailInbox != null && MailInbox.Count > 0 ? "<span class=\"label label-warning\">" + MailInbox.Count + "</span>" : "")
                             </a>
                             @*<ul class="dropdown-menu dropdown-messages">
-                                @{
-                                    if (MailInbox != null && MailInbox.Count > 0)
-                                    {
-                                        foreach (var mail in MailInbox)
-                                        {
-                                            var FromUser = new Models.CommonHelper().GetUserByAccount(mail.MAIL_OUTBOX.FK_UserId) ?? new Domain.SYS_USER();
-                                            <li class="m-t-xs">
-                                                <div class="dropdown-messages-box">
-                                                    <a href="javascript:void(0)" class="pull-left">
-                                                        <img alt="image" class="img-circle" src="@(string.IsNullOrEmpty(FromUser.FACE_IMG) ? "/Pro/Project/User_Default_Avatat?name=" + FromUser.NAME.Substring(0, 1) : FromUser.FACE_IMG)">
-                                                    </a>
-                                                    <div class="media-body">
-                                                        @Html.Raw(mail.MAIL_OUTBOX.MAIL_ATTACHMENT != null && mail.MAIL_OUTBOX.MAIL_ATTACHMENT.Count > 0 ? "<small class=\"pull-right text-danger\"><i class=\"fa fa-paperclip\"></i></small>" : "")
-                                                        <strong>@FromUser.NAME ：</strong> @(new Models.CommonHelper().GetContentText(mail.MAIL_OUTBOX.FK_RELATIONID, "MAIL_OUTBOX").Length > 45 ? new Models.CommonHelper().GetContentText(mail.MAIL_OUTBOX.FK_RELATIONID, "MAIL_OUTBOX").Substring(0, 45) : new Models.CommonHelper().GetContentText(mail.MAIL_OUTBOX.FK_RELATIONID, "MAIL_OUTBOX"))
-                                                        <br>
-                                                        <small class="text-muted">@Html.Raw(mail.ReceivingTime.GetDateTimeFormats('D')[1].ToString() + "&nbsp;" + mail.ReceivingTime.ToString("HH:mm"))</small>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="divider"></li>
-                                        }
-                                    }
-                                }
-                                <li>
-                                    <div class="text-center link-block">
-                                        <a class="J_menuItem" href="/Mail/Mail">
-                                            <i class="fa fa-envelope"></i> <strong> 查看所有消息</strong>
+                    @{
+                        if (MailInbox != null && MailInbox.Count > 0)
+                        {
+                            foreach (var mail in MailInbox)
+                            {
+                                var FromUser = new Models.CommonHelper().GetUserByAccount(mail.MAIL_OUTBOX.FK_UserId) ?? new Domain.SYS_USER();
+                                <li class="m-t-xs">
+                                    <div class="dropdown-messages-box">
+                                        <a href="javascript:void(0)" class="pull-left">
+                                            <img alt="image" class="img-circle" src="@(string.IsNullOrEmpty(FromUser.FACE_IMG) ? "/Pro/Project/User_Default_Avatat?name=" + FromUser.NAME.Substring(0, 1) : FromUser.FACE_IMG)">
                                         </a>
+                                        <div class="media-body">
+                                            @Html.Raw(mail.MAIL_OUTBOX.MAIL_ATTACHMENT != null && mail.MAIL_OUTBOX.MAIL_ATTACHMENT.Count > 0 ? "<small class=\"pull-right text-danger\"><i class=\"fa fa-paperclip\"></i></small>" : "")
+                                            <strong>@FromUser.NAME ：</strong> @(new Models.CommonHelper().GetContentText(mail.MAIL_OUTBOX.FK_RELATIONID, "MAIL_OUTBOX").Length > 45 ? new Models.CommonHelper().GetContentText(mail.MAIL_OUTBOX.FK_RELATIONID, "MAIL_OUTBOX").Substring(0, 45) : new Models.CommonHelper().GetContentText(mail.MAIL_OUTBOX.FK_RELATIONID, "MAIL_OUTBOX"))
+                                            <br>
+                                            <small class="text-muted">@Html.Raw(mail.ReceivingTime.GetDateTimeFormats('D')[1].ToString() + "&nbsp;" + mail.ReceivingTime.ToString("HH:mm"))</small>
+                                        </div>
                                     </div>
                                 </li>
-                            </ul>*@
+                                <li class="divider"></li>
+                            }
+                        }
+                    }
+                    <li>
+                        <div class="text-center link-block">
+                            <a class="J_menuItem" href="/Mail/Mail">
+                                <i class="fa fa-envelope"></i> <strong> 查看所有消息</strong>
+                            </a>
+                        </div>
+                    </li>
+                </ul>*@
                         </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
                                 <i class="fa fa-bell"></i> <span class="label label-primary">@(MissionList != null ? MissionList.Count : 0)</span>
                             </a>
                             @*<ul class="dropdown-menu dropdown-alerts">
-                                @{
-                                    if (MissionList != null && MissionList.Count > 0)
-                                    {
-                                        foreach (var mission in MissionList)
-                                        {
-                                            <li>
-                                                <a class="J_menuItem" href="/Pro/ProjectHome/Acceptance/@mission.PRO_PROJECT_STAGES.PRO_PROJECTS.ID">
-                                                    <div>
-                                                        <i class="fa fa-github fa-fw"></i> @mission.PRO_PROJECT_STAGES.StageTitle
-                                                        <span class="pull-right text-muted small">@Html.Raw(new Models.CommonHelper().GetSurplusTimeNoClass(mission.PRO_PROJECT_STAGES.EndDate))</span>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li class="divider"></li>
-                                        }
-                                    }
-                                }
+                    @{
+                        if (MissionList != null && MissionList.Count > 0)
+                        {
+                            foreach (var mission in MissionList)
+                            {
                                 <li>
-                                    <div class="text-center link-block">
-                                        <a class="J_menuItem" href="/Pro/ProjectMission">
-                                            <strong>查看所有 </strong>
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </div>
+                                    <a class="J_menuItem" href="/Pro/ProjectHome/Acceptance/@mission.PRO_PROJECT_STAGES.PRO_PROJECTS.ID">
+                                        <div>
+                                            <i class="fa fa-github fa-fw"></i> @mission.PRO_PROJECT_STAGES.StageTitle
+                                            <span class="pull-right text-muted small">@Html.Raw(new Models.CommonHelper().GetSurplusTimeNoClass(mission.PRO_PROJECT_STAGES.EndDate))</span>
+                                        </div>
+                                    </a>
                                 </li>
-                            </ul>*@
+                                <li class="divider"></li>
+                            }
+                        }
+                    }
+                    <li>
+                        <div class="text-center link-block">
+                            <a class="J_menuItem" href="/Pro/ProjectMission">
+                                <strong>查看所有 </strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+                    </li>
+                </ul>*@
                         </li>
-                        <li class="dropdown hidden-xs">
+                        @*<li class="dropdown hidden-xs">*@
+                        <li class="dropdown">
                             <a class="right-sidebar-toggle" aria-expanded="false">
                                 <i class="fa fa-tasks"></i> 事项
                             </a>

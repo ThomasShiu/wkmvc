@@ -1,0 +1,301 @@
+﻿
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var content = ViewData["CompanyInstroduce"] == null ? new Domain.COM_CONTENT() : ViewData["CompanyInstroduce"] as Domain.COM_CONTENT;
+}
+@model Domain.SYS_BUSSINESSCUSTOMER
+<style type="text/css">
+    .gray-bg {
+        background-color: white;
+    }
+</style>
+@using (Ajax.BeginForm("Save", null, new AjaxOptions()
+                           {
+                               HttpMethod = "Post",
+                               OnBegin = "SubAjax.Loading",
+                               OnComplete = "SubAjax.Complate",
+                               OnFailure = "SubAjax.Failure",
+                               OnSuccess = "SubAjax.Success"
+                           },
+                               new { @class = "form-horizontal dig-from", @role = "form" }))
+{
+    @Html.HiddenFor(p => p.ID)
+    @Html.HiddenFor(p=>p.FK_RELATIONID)
+    @Html.HiddenFor(p=>p.Fk_DepartId)
+    @Html.HiddenFor(p => p.CreateUser)
+    @Html.HiddenFor(p => p.CreateDate)
+    @Html.Hidden("ContentId", content.ID)
+    <div class="wrapper wrapper-content animated fadeInUp">
+        <div class="row">
+            <div class="ibox-detail-title">
+                <i class="fa fa-pencil-square-o"></i>添加/修改客户
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label class="col-xs-4 control-label">客户名称：</label>
+                            <div class="col-xs-8">
+                                @Html.TextBoxFor(p => p.CompanyName, new { @class = "form-control", @placeholder = "请输入客户名称", @datatype = "*", @nullmsg = "请输入客户名称！", @errormsg = "请输入客户名称！" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label class="col-xs-4 control-label">客户类型：</label>
+                            <div class="col-xs-8">
+                                <select name="CustomerStyle" class="form-control input-sm  input-s-sm inline">
+                                    @{
+                                        foreach (var item in ViewBag.KHLX)
+                                        {
+                                            <option value="@item.CODEVALUE" @(Model.CustomerStyle!=null&&Model.CustomerStyle.ToString() == @item.CODEVALUE ? "selected" : "")>@item.NAMETEXT</option>
+                                        }
+                                    }
+                                </select>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label class="col-xs-4 control-label">公司电话：</label>
+                            <div class="col-xs-8">
+                                @Html.TextBoxFor(p => p.CompanyTel, new { @class = "form-control", @placeholder = "请输入公司电话" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label class="col-xs-4 control-label">公司网址：</label>
+                            <div class="col-xs-8">
+                                @Html.TextBoxFor(p => p.CompanyWebSite, new { @class = "form-control", @placeholder = "请输入公司网址" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-xs-2 control-label">所在地：</label>
+                            <div class="col-xs-10">
+                                @Html.HiddenFor(p => p.CompanyProvince)
+                                @Html.HiddenFor(p => p.CompanyCity)
+                                @Html.HiddenFor(p => p.CompanyArea)
+                                <select name="Province" id="Province" onchange="SelectCity('Province', 'City')" class="form-control input-sm  input-s-sm inline">
+                                    <option value="-1">--请选择--</option>
+                                </select>
+                                <select name="City" id="City" onchange="SelectCountry('City', 'Area')" class="form-control input-sm  input-s-sm inline">
+                                    <option value="-1">--请选择--</option>
+                                </select>
+                                <select name="Area" id="Area" onchange="SelectAreas('Area')" class="form-control input-sm  input-s-sm inline">
+                                    <option value="-1">--请选择--</option>
+                                </select>
+                            </div>
+                        </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">通讯地址：</label>
+                    <div class="col-xs-10">
+                        @Html.TextBoxFor(p => p.CompanyAddress, new { @class = "form-control", @placeholder = "请输入通讯地址" })
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label class="col-xs-4 control-label">负责人：</label>
+                            <div class="col-xs-8">
+                                @Html.TextBoxFor(p => p.ChargePersionName, new { @class = "form-control", @placeholder = "请输入负责人姓名", @datatype = "*", @nullmsg = "请输入负责人姓名！", @errormsg = "请输入负责人姓名！" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label class="col-xs-4 control-label">性别：</label>
+                            <div class="col-xs-8">
+                                <label class="icheck_line">
+                                    <input type="radio" name="ChargePersionSex" value="1" @(Model.ChargePersionSex != null && Model.ChargePersionSex == 1 ? "checked" : "") class="icheck_box">男
+                                </label>
+                                <label class="icheck_line">
+                                    <input type="radio" name="ChargePersionSex" value="2" @(Model.ChargePersionSex != null && Model.ChargePersionSex == 2 ? "checked" : "") class="icheck_box">女
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label class="col-xs-4 control-label">联系电话：</label>
+                            <div class="col-xs-8">
+                                @Html.TextBoxFor(p => p.ChargePersionPhone, new { @class = "form-control", @placeholder = "请输入负责人电话" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label class="col-xs-4 control-label">QQ：</label>
+                            <div class="col-xs-8">
+                               @Html.TextBoxFor(p => p.ChargePersionQQ, new { @class = "form-control", @placeholder = "请输入负责人QQ" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label class="col-xs-4 control-label">Email：</label>
+                            <div class="col-xs-8">
+                                @Html.TextBoxFor(p => p.ChargePersionEmail, new { @class = "form-control", @placeholder = "请输入负责人邮箱" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label class="col-xs-4 control-label">验证状态：</label>
+                            <div class="col-xs-8">
+                                <label class="jswitch_line">
+                                    @Html.CheckBoxFor(p => p.IsValidate, new { @class = "js-switch" })
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">公司简介：</label>
+                    <div class="col-xs-10">
+                        <script id="Content" name="Content" type="text/plain" style="width:100%;height:200px;">
+                            @Html.Raw(content.CONTENT)
+                        </script>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="text-center">
+                    <button class="btn btn-primary btn-save" type="submit"><i class="fa fa-check"></i> <span>确定保存</span></button>
+                    <button class="btn btn-warning" id="btn-dig-close" type="button"><i class="fa fa-reply-all"></i> 取消返回</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@section scripts{
+<script type="text/javascript" src="/Content/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="/Content/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript" src="/Content/ueditor/lang/zh-cn/zh-cn.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.form-horizontal').initValidform();
+            UE.getEditor('Content');
+            r.Initial();
+        });
+        var r = {
+            Initial: function () {
+                $.ajax({
+                    url: '/Sys/CodeArea/prov',
+                    data: null,
+                    type: 'post',
+                    dataType: 'json',
+                    cache: false,
+                    success: function (res) {
+                        if (res.Status == 'y') {
+                            var option = '';
+                            var data = eval(res.Data);
+                            for (var i = 0; i < data.length; i++) {
+                                var jsonH = data[i];
+                                if (jsonH.ID == $("#CompanyProvince").val()) {
+                                    option += '<option value="' + jsonH.ID + '" selected="selected">' + jsonH.NAME + '</option>';
+                                }
+                                else {
+                                    option += '<option value="' + jsonH.ID + '">' + jsonH.NAME + '</option>';
+                                }
+                            }
+                            $('#Province').html(option);
+                            SelectCity('Province', 'City');
+                        }
+                    }
+                });
+            }
+        };
+        //加载城市
+        function SelectCity(t, n) {
+            var prov = $('#' + t).val();
+            $("#CompanyProvince").val(prov);
+            var city = $('#' + n);
+            var option = '';
+            if (prov == '') {
+                city.html(option);
+            } else {
+                $.ajax({
+                    url: '/Sys/CodeArea/City/' + prov,
+                    data: null,
+                    type: 'post',
+                    dataType: 'json',
+                    async: false,
+                    cache: false,
+                    success: function (res) {
+                        if (res.Status == 'y') {
+                            var data = eval(res.Data);
+                            for (var i = 0; i < data.length; i++) {
+                                var jsonH = data[i];
+                                if (jsonH.ID == $("#CompanyCity").val()) {
+                                    option += '<option value="' + jsonH.ID + '" selected="selected">' + jsonH.NAME + '</option>';
+                                }
+                                else {
+                                    option += '<option value="' + jsonH.ID + '">' + jsonH.NAME + '</option>';
+                                }
+                            }
+                        }
+                        city.html(option);
+                        SelectCountry('City', 'Area')
+                    }
+                });
+            }
+        }
+        //加载县级市
+        function SelectCountry(t, n) {
+            var city = $('#' + t).val();
+            $("#CompanyCity").val(city);
+            var country = $('#' + n);
+            var option = '';
+            if (city == '') {
+                country.html(option);
+            } else {
+                $.ajax({
+                    url: '/Sys/CodeArea/Country/' + city,
+                    data: null,
+                    type: 'post',
+                    dataType: 'json',
+                    async: false,
+                    cache: false,
+                    success: function (res) {
+                        if (res.Status == 'y') {
+                            var data = eval(res.Data);
+                            for (var i = 0; i < data.length; i++) {
+                                var jsonH = data[i];
+                                if (jsonH.ID == $("#CompanyArea").val()) {
+                                    option += '<option value="' + jsonH.ID + '" selected="selected">' + jsonH.NAME + '</option>';
+                                }
+                                else {
+                                    option += '<option value="' + jsonH.ID + '">' + jsonH.NAME + '</option>';
+                                }
+                            }
+                        }
+                        country.html(option);
+                        SelectAreas('Area')
+                    }
+                });
+            }
+        }
+        function SelectAreas(t) {
+            var area = $('#' + t).val();
+            $("#CompanyArea").val(area);
+        }
+    </script>
+}
+

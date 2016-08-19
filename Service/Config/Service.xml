@@ -52,7 +52,14 @@
   </object>
 
   <!--预置编码管理-->
-  <object id="Service.Code" type="Service.ServiceImp.CodeManage,Service" singleton="false">
+  <object id="Service.Code" type="Service.ServiceImp.CodeManage,Service" singleton="false"></object>
 
+    <object id="Service.BussinessCustomer" type="Service.ServiceImp.BussinessCustomerManage,Service" singleton="false">
+
+    </object>
+
+
+  <!--省市县级联管理-->
+  <object id="Service.CodeArea" type="Service.ServiceImp.CodeAreaManage,Service" singleton="false">
   </object>
 </objects>
