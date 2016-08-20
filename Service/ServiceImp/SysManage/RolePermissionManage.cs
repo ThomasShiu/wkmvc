@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Domain;
 using Service.IService;
 
 namespace Service.ServiceImp
@@ -38,10 +39,10 @@ namespace Service.ServiceImp
                     ROLEID = roleId
                 }))
                 {
-                    this.dbSet.Add(per);
+                    this._Context.Set<SYS_ROLE_PERMISSION>().Add(per);
                 }
                 //5、Save
-                return this.Context.SaveChanges() > 0;
+                return this._Context.SaveChanges() > 0;
             }
             catch (Exception e) { throw e.InnerException; }
         }

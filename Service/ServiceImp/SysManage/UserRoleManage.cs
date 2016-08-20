@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Domain;
 
 namespace Service.ServiceImp
 {
@@ -31,9 +32,9 @@ namespace Service.ServiceImp
                     FK_ROLEID = int.Parse(t)
                 }))
                 {
-                    this.dbSet.Add(entity);
+                    _Context.Set<SYS_USER_ROLE>().Add(entity);
                 }
-                return this.Context.SaveChanges() > 0;
+                return this._Context.SaveChanges() > 0;
             }
             catch (Exception e) { throw e; }
         }

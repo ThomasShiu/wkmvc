@@ -310,7 +310,7 @@ namespace WebPage.Areas.SysManage.Controllers
                     });
                 }
                 //批量添加
-                if (this.PermissionManage.SaveList(list) > 0)
+                if (this.PermissionManage.SaveList(list))
                 {
                     json.Status = "y";
                 }

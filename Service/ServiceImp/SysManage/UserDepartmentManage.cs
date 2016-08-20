@@ -53,7 +53,7 @@ namespace Service.ServiceImp
                         DEPARTMENT_ID = item,
                         USER_ID = userId
                     }).ToList();
-                    return this.SaveList(list) > 0;
+                    return SaveList(list);
                 }
                 return true;
             }

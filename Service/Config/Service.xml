@@ -54,12 +54,15 @@
   <!--预置编码管理-->
   <object id="Service.Code" type="Service.ServiceImp.CodeManage,Service" singleton="false"></object>
 
-    <object id="Service.BussinessCustomer" type="Service.ServiceImp.BussinessCustomerManage,Service" singleton="false">
+  <object id="Service.BussinessCustomer" type="Service.ServiceImp.BussinessCustomerManage,Service" singleton="false">
 
-    </object>
+  </object>
 
 
   <!--省市县级联管理-->
   <object id="Service.CodeArea" type="Service.ServiceImp.CodeAreaManage,Service" singleton="false">
   </object>
+
+  <!--用户在线管理-->
+  <object id="Service.UserOnlineManage" type="Service.ServiceImp.UserOnlineManage,Service" singleton="false"> </object>
 </objects>

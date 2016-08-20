@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Domain;
 using Service.IService;
 
 namespace Service.ServiceImp
@@ -10,7 +11,7 @@ namespace Service.ServiceImp
     /// Service层用户授权接口
     /// add yuangang by 2016-05-19
     /// </summary>
-    public class UserPermissionManage : RepositoryBase<Domain.SYS_USER_PERMISSION>, IService.IUserPermissionManage
+    public class UserPermissionManage : RepositoryBase<SYS_USER_PERMISSION>, IUserPermissionManage
     {
         IPermissionManage PermissionManage { get; set; }
         /// <summary>
@@ -36,10 +37,10 @@ namespace Service.ServiceImp
                     FK_PERMISSIONID = int.Parse(t)
                 }))
                 {
-                    this.dbSet.Add(per);
+                    this._Context.Set<SYS_USER_PERMISSION>().Add(per);
                 }
                 //5、Save
-                return this.Context.SaveChanges() > 0;
+                return this._Context.SaveChanges() > 0;
             }
             catch (Exception e) { throw e; }
         }
