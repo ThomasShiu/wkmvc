@@ -67,5 +67,9 @@
   <object type="WebPage.Areas.SysManage.Controllers.CodeAreaController,WebPage" singleton="false">
     <property name="CodeAreaManage" ref="Service.CodeArea"/>
   </object>
+  <!--日志管理-->
+  <object type="WebPage.Areas.SysManage.Controllers.SysLogController,WebPage" singleton="false">
+    <property name="SyslogManage" ref="Service.Syslog"/>
+  </object>
   <!--系统管理 end-->
 </objects>

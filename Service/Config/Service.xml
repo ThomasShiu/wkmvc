@@ -65,4 +65,7 @@
 
   <!--用户在线管理-->
   <object id="Service.UserOnlineManage" type="Service.ServiceImp.UserOnlineManage,Service" singleton="false"> </object>
+
+  <!--系统日志管理-->
+  <object id="Service.Syslog" type="Service.ServiceImp.SyslogManage,Service" singleton="false"></object>
 </objects>

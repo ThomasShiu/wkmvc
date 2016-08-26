@@ -739,6 +739,8 @@
     <Content Include="Areas\SysManage\Views\BussinessCustomer\CustomerInfo.cshtml" />
     <Content Include="Areas\SysManage\Views\BussinessCustomer\Detail.cshtml" />
     <Content Include="Areas\SysManage\Views\BussinessCustomer\Index.cshtml" />
+    <Content Include="Areas\SysManage\Views\SysLog\Detail.cshtml" />
+    <Content Include="Areas\SysManage\Views\SysLog\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -763,6 +765,7 @@
     <Compile Include="Areas\SysManage\Controllers\PermissionController.cs" />
     <Compile Include="Areas\SysManage\Controllers\PostController.cs" />
     <Compile Include="Areas\SysManage\Controllers\RoleController.cs" />
+    <Compile Include="Areas\SysManage\Controllers\SysLogController.cs" />
     <Compile Include="Areas\SysManage\Controllers\UserController.cs" />
     <Compile Include="Areas\SysManage\SysManageAreaRegistration.cs" />
     <Compile Include="Controllers\BaseController.cs" />

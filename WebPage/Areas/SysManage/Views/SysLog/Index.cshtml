@@ -1,0 +1,130 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Common.PageInfo<Domain.SYS_LOG>
+<div class="wrapper wrapper-content animated fadeInUp">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>系统日志管理</h5>
+                    <div class="ibox-tools">
+                        <a class="btn btn-danger btn-xs p210" id="delete" action="remove"><i class="fa fa-trash-o fa-fw"></i> 删除日志</a>
+                        <a class="reload-link" style="color: #c4c4c4" href="javascript:dig.reload()" data-toggle="tooltip" data-placement="left" title="刷新">
+                            <i class="fa fa-repeat fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    @using (Ajax.BeginForm("Index", null, new AjaxOptions() { }, new { @id = "form1", @class = "form-horizontal", @method = "get" }))
+                    {
+                        <div class="row">
+                            <div class="col-sm-9">
+                                <label>日志级别：</label>
+                                <select id="Level" name="Level" class="form-control input-sm  input-s-sm inline" onchange="submit()">
+                                    <option value="">全部</option>
+                                    <option value="INFO" @(ViewData["lev"] != null && ViewData["lev"].ToString() == "INFO" ? "selected" : "")>普通</option>
+                                    <option value="WARN" @(ViewData["lev"] != null && ViewData["lev"].ToString() == "WARN" ? "selected" : "")>警告</option>
+                                    <option value="ERROR" @(ViewData["lev"] != null && ViewData["lev"].ToString() == "ERROR" ? "selected" : "")>错误</option>
+                                    <option value="FATAL" @(ViewData["lev"] != null && ViewData["lev"].ToString() == "FATAL" ? "selected" : "")>异常</option>
+                                </select>
+                                &nbsp;
+                                <label>操作动作：</label>
+                                <select id="actions" name="actions" class="form-control input-sm  input-s-sm inline" onchange="submit()">
+                                    <option value="">全部</option>
+                                    @{
+                        var list = ViewData["logaction"] as Dictionary<string, string>;
+                        foreach (var item in list)
+                        {
+                            <option value="@item.Key" @(ViewData["sellog"] != null && ViewData["sellog"].ToString() == item.Key ? "selected" : "")>@item.Value</option>
+                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    @Html.TextBox("Search", null, new { @class = "input-sm form-control", @placeholder = "请输入查询关键词" })
+                                    <span class="input-group-btn">
+                                        <button type="submit" onclick="submit()" class="btn btn-sm btn-primary"> 搜索</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <table id="dataTable" class="table table-striped table-bordered table-hover dataTables-example" style="text-align:center;">
+                                <thead>
+                                    <tr>
+                                        <th class="tn" style="width: 50px !important"><input name="checkall" class="icheck_box" type="checkbox" value=""></th>
+                                        <th style="width: 170px !important">日期</th>
+                                        <th style="width: 70px !important">级别</th>
+                                        <th style="width: 100px !important">操作用户</th>
+                                        <th style="width: 70px !important">动作</th>
+                                        <th>消息</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{foreach (var item in Model.List)
+                                    {
+                                        <tr>
+                                            <td class="tn" style="width: 50px !important"><input name="checkbox_name" class="icheck_box" type="checkbox" value="@item.ID" /></td>
+                                            <td>
+                                                <a href="javascript:Show(@item.ID)" listaction="detail" data-toggle="tooltip" data-placement="right" title="日志详情">
+                                                    @item.DATES
+                                                </a>
+                                            </td>
+                                            <td>
+                                                @{
+                                        var dic = Common.Tools.BindEnums(typeof(Common.Enums.enumLog4net));
+                                        var level = dic.Where(p => p.Key == item.LEVELS).First().Value;
+                                                }
+                                                @level
+                                            </td>
+                                            <td title="@item.CLIENTUSER">@item.CLIENTUSER</td>
+                                            <td>
+                                                @{
+                                        var dicl = Common.Tools.BindEnums(typeof(Common.Enums.enumOperator));
+                                        var action = dicl.Where(p => p.Key == item.ACTION);
+                                            }
+                                            @(action.Any() ? action.First().Value : "")
+                                        </td>
+                                        <td>@item.MESSAGE</td>
+                                    </tr>
+                                    }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="dataTables_info">
+                                    显示 @Model.BeginPage 到 @Model.EndPage 项，共 @Model.Count 项, 每页显示
+                                    <select name="example_length" class="form-control input-sm input-xs-sm inline" onchange="submit()">
+                                        <option value="10" @(Model.PageSize == 10 ? "selected" : "")>10</option>
+                                        <option value="25" @(Model.PageSize == 25 ? "selected" : "")>25</option>
+                                        <option value="50" @(Model.PageSize == 50 ? "selected" : "")>50</option>
+                                        <option value="100" @(Model.PageSize == 100 ? "selected" : "")>100</option>
+                                    </select> 条记录
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                @WebPages.CommonHtmlHelper.PaginationPager(Model.Index, Model.PageSize, Model.Count, 7, Model.Url)
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        //点击展示详情
+        function Show(n) {
+            dig.addPage('日志详情', '/Sys/Syslog/Detail/' + n, 700, 400, function () {
+            });
+        }
+    </script>
+}
+
