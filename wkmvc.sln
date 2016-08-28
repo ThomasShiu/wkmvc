@@ -28,6 +28,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		WebEssentials2015-Settings.json = WebEssentials2015-Settings.json
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSignalR", "TestSignalR\TestSignalR.csproj", "{1125E91E-7A92-485D-B21F-7039C27F7201}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +56,10 @@ Global
 		{914F7C77-361E-4F32-9F30-5F407F34496C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{914F7C77-361E-4F32-9F30-5F407F34496C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{914F7C77-361E-4F32-9F30-5F407F34496C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1125E91E-7A92-485D-B21F-7039C27F7201}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1125E91E-7A92-485D-B21F-7039C27F7201}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1125E91E-7A92-485D-B21F-7039C27F7201}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1125E91E-7A92-485D-B21F-7039C27F7201}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,5 +70,6 @@ Global
 		{CA396697-1D0F-490B-97EE-6B09324C8C33} = {3AB6E840-15FB-4369-BBEF-07797227F1BA}
 		{BF1517BE-FD29-46D8-B490-B04AA04313AC} = {5C8BCFCD-B363-449F-8178-F9EDC8B5829B}
 		{914F7C77-361E-4F32-9F30-5F407F34496C} = {7D88480E-32BB-4496-A2C3-80CBED348403}
+		{1125E91E-7A92-485D-B21F-7039C27F7201} = {7D88480E-32BB-4496-A2C3-80CBED348403}
 	EndGlobalSection
 EndGlobal

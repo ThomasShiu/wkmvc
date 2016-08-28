@@ -64,8 +64,12 @@
   </object>
 
   <!--用户在线管理-->
-  <object id="Service.UserOnlineManage" type="Service.ServiceImp.UserOnlineManage,Service" singleton="false"> </object>
+  <object id="Service.UserOnline" type="Service.ServiceImp.UserOnlineManage,Service" singleton="false"> </object>
 
   <!--系统日志管理-->
   <object id="Service.Syslog" type="Service.ServiceImp.SyslogManage,Service" singleton="false"></object>
+
+  <!--聊天消息-->
+  <object id="Service.ChatMessage" type="Service.ServiceImp.ChatMessageManage,Service" singleton="false">
+  </object>
 </objects>

@@ -433,7 +433,7 @@ namespace WebPage.Areas.SysManage.Controllers
         private Common.PageInfo BindList(string DepartId)
         {
             //基础数据
-            var query = this.UserManage.LoadAll(p => p.ID > 1);
+            var query = this.UserManage.LoadAll(p => p.ID > 0);
 
             //部门(本部门用户及所有下级部门用户)
             if (!string.IsNullOrEmpty(DepartId))

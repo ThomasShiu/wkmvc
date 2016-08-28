@@ -5,11 +5,13 @@
   <!--主页控制器-->
   <object type="WebPage.Areas.SysManage.Controllers.HomeController,WebPage" singleton="false">
     <property name="ModuleManage" ref="Service.Module"/>
+    <property name="DepartmentManage" ref="Service.Department"/>
+    <property name="UserOnlineManage" ref="Service.UserOnline"/>
   </object>
   <!--登录控制器-->
   <object type="WebPage.Areas.SysManage.Controllers.AccountController,WebPage" singleton="false">
     <property name="UserManage" ref="Service.User"/>
-    <property name="UserOnlineManage" ref="Service.UserOnlineManage"/>
+    <property name="UserOnlineManage" ref="Service.UserOnline"/>
   </object>
   <!--模块管理-->
   <object type="WebPage.Areas.SysManage.Controllers.ModuleController,WebPage" singleton="false">

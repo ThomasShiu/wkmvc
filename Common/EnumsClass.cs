@@ -228,6 +228,23 @@ namespace Common.Enums
     public class ClsDic
     {
         /// <summary>
+        /// 聊天信息类型
+        /// </summary>
+        public static Dictionary<string, int> DicMessageType
+        {
+            get
+            {
+                return new Dictionary<string, int>
+                {
+                    {"广播",0},
+                    {"群组",1},
+                    {"私聊",2}
+                };
+            }
+        }
+
+
+        /// <summary>
         /// 根据DicKey值获取value
         /// </summary>
         public static string GetDicValueByKey(string key, Dictionary<string, string> p)

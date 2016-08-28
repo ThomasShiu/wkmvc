@@ -56,6 +56,7 @@
     <Compile Include="IService\ComManage\IContentManage.cs" />
     <Compile Include="IService\ComManage\IUploadManage.cs" />
     <Compile Include="IService\SysManage\IBussinessCustomerManage.cs" />
+    <Compile Include="IService\SysManage\IChatMessageManage.cs" />
     <Compile Include="IService\SysManage\ICodeAreaManage.cs" />
     <Compile Include="IService\SysManage\ICodeManage.cs" />
     <Compile Include="IService\SysManage\IDepartmentManage.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="ServiceImp\ComManage\ContentManage.cs" />
     <Compile Include="ServiceImp\ComManage\UploadManage.cs" />
     <Compile Include="ServiceImp\SysManage\BussinessCustomerManage.cs" />
+    <Compile Include="ServiceImp\SysManage\ChatMessageManage.cs" />
     <Compile Include="ServiceImp\SysManage\CodeAreaManage.cs" />
     <Compile Include="ServiceImp\SysManage\PostManage.cs" />
     <Compile Include="ServiceImp\SysManage\RoleManage.cs" />

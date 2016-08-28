@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -53,6 +54,8 @@ namespace WebPage.Controllers
                 return account;
             }
         }
+
+        public string EmailDomain => ConfigurationManager.AppSettings["EmailDomain"];
         #endregion
 
         // GET: Base

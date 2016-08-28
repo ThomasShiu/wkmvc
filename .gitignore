@@ -255,3 +255,4 @@ WebEssentials2015-Settings.json
 MvcDemo/
 !/WebPage/Areas/ComManage/Views/BackupRestore
 /WebPage/upload
+/TestSignalR

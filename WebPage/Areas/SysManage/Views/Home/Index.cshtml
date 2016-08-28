@@ -44,7 +44,7 @@
                                     <span class="text-muted text-xs block">@(Model.DptInfo == null ? Model.Roles.FirstOrDefault().ROLENAME : Model.DptInfo.NAME + " - " + new Models.CommonHelper().GetUserZW(Model.Levels))<b class="caret"></b></span>
                                 </span>
                             </a>
-                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                            <ul class="dropdown-menu animated fadeInLeft m-t-xs">
                                 <li>
                                     <a class="J_menuItem" href="/Sys/User/UserFace">修改头像</a>
                                 </li>
@@ -281,7 +281,7 @@
         </div>
         <!--右侧边栏结束-->
         <!--miniChat-->
-        @*<div id="small-chat-box" class="small-chat-box fadeInRight animated">
+        <div id="small-chat-box" class="small-chat-box fadeInRight animated">
             <input type="hidden" id="CurrentUser" value="@Model.Id" />
             <div class="row">
                 <div class="col-sm-12">
@@ -343,7 +343,7 @@
                                                                 <div id="charUser-@users["ID"]" class="chat-user @(users["IsOnline"]?"":"offline")" role="button" data-email="sendMail-@users["ID"]" data-connectid="@users["ConnectId"]" data-username="@users["NAME"]">
                                                                     <a id="sendMail-@users["ID"]" class="J_menuItem" href="/Mail/Mail/WriteMail?toUser=@users["InsideEmail"]" style="display:none;">邮箱</a>
                                                                     <img class="chat-avatar img-circle" src="@users["FaceImg"]" alt=" ">
-                                                                    <div class=" chat-user-name text-navy">
+                                                                    <div class="chat-user-name text-navy">
                                                                         @users["NAME"] <span class="pull-right text-danger">@(new Models.CommonHelper().GetUserZW(users["LEVELS"]))</span>
                                                                     </div>
                                                                 </div>
@@ -368,7 +368,7 @@
                     </div>
                 </div>
             </div>
-        </div>*@
+        </div>
 
         <div id="small-chat">
             <span class="badge badge-warning pull-right"></span>
@@ -418,7 +418,7 @@
     }    
 </script>
 
-<script type="text/javascript" src="/Scripts/jquery.signalR-2.2.0.min.js"></script>
+<script type="text/javascript" src="/Scripts/jquery.signalR-2.2.1.js"></script>
 <script type="text/javascript" src="/signalr/hubs"></script>
 <script type="text/javascript">    
     $(function () {
