@@ -1,7 +1,9 @@
 # wk_mvc
 
 根据博主[果冻布丁喜之郎](http://yuangang.cnblogs.com)（以下称“博主”）的教程走的Asp.Net MVC项目。  
-已更新到 **2016-08-20** 发布的 [（16）源码分享二：登录功能以及UI、数据库、仓储源码分享](http://www.cnblogs.com/yuangang/p/5789748.html)。  
+已更新到 **2016-08-20** 发布的 [（16）源码分享二：登录功能以及UI、数据库、仓储源码分享](http://www.cnblogs.com/yuangang/p/5789748.html)。   
+并且根据博主的[SignalR教程](http://www.cnblogs.com/yuangang/p/5617704.html)实现了**在线聊天室**的功能。
+
 其教程目录为：<http://www.cnblogs.com/yuangang/p/5581423.html>
 
 ## 数据库说明
