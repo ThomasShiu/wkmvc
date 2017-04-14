@@ -48,6 +48,7 @@ namespace Domain
                     case "mssql":
                         defaultConn = new System.Data.SqlClient.SqlConnection();
                         DefaultConnectionString = ConfigurationManager.ConnectionStrings["SqlConnectionString"].ConnectionString;
+                        //DefaultConnectionString = ConfigurationManager.ConnectionStrings["Entities"].ConnectionString;
                         break;
                     default:
                         break;

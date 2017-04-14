@@ -1,3 +1,3 @@
 ﻿create database wkmvc_db
-on(filename = 'E:\CodeProjects\GitRepo\coding_up\asp.net\Domain\wkmvc.mdf')
+on(filename = 'D:\Git_Source\wk_mvc\WebPage\App_Data\wkmvc.mdf')
 for attach
