@@ -11,45 +11,45 @@
     }
 </style>
 @using (Ajax.BeginForm("Save", null, new AjaxOptions()
-                           {
-                               HttpMethod = "Post",
-                               OnBegin = "SubAjax.Loading",
-                               OnComplete = "SubAjax.Complate",
-                               OnFailure = "SubAjax.Failure",
-                               OnSuccess = "SubAjax.Success"
-                           },
-                               new { @class = "form-horizontal dig-from", @role = "form" }))
+{
+    HttpMethod = "Post",
+    OnBegin = "SubAjax.Loading",
+    OnComplete = "SubAjax.Complate",
+    OnFailure = "SubAjax.Failure",
+    OnSuccess = "SubAjax.Success"
+},
+                                           new { @class = "form-horizontal dig-from", @role = "form" }))
 {
     @Html.HiddenFor(p => p.ID)
-    @Html.HiddenFor(p=>p.FK_RELATIONID)
-    @Html.HiddenFor(p=>p.Fk_DepartId)
+    @Html.HiddenFor(p => p.FK_RELATIONID)
+    @Html.HiddenFor(p => p.Fk_DepartId)
     @Html.HiddenFor(p => p.CreateUser)
     @Html.HiddenFor(p => p.CreateDate)
     @Html.Hidden("ContentId", content.ID)
     <div class="wrapper wrapper-content animated fadeInUp">
         <div class="row">
             <div class="ibox-detail-title">
-                <i class="fa fa-pencil-square-o"></i>添加/修改客户
+                <i class="fa fa-pencil-square-o"></i>添加/修改客戶
             </div>
             <div class="ibox-content">
                 <div class="row">
                     <div class="col-xs-6">
                         <div class="form-group">
-                            <label class="col-xs-4 control-label">客户名称：</label>
+                            <label class="col-xs-4 control-label">客戶名稱：</label>
                             <div class="col-xs-8">
-                                @Html.TextBoxFor(p => p.CompanyName, new { @class = "form-control", @placeholder = "请输入客户名称", @datatype = "*", @nullmsg = "请输入客户名称！", @errormsg = "请输入客户名称！" })
+                                @Html.TextBoxFor(p => p.CompanyName, new { @class = "form-control", @placeholder = "請輸入客戶名稱", @datatype = "*", @nullmsg = "請輸入客戶名稱！", @errormsg = "請輸入客戶名稱！" })
                             </div>
                         </div>
                     </div>
                     <div class="col-xs-6">
                         <div class="form-group">
-                            <label class="col-xs-4 control-label">客户类型：</label>
+                            <label class="col-xs-4 control-label">客戶類型：</label>
                             <div class="col-xs-8">
                                 <select name="CustomerStyle" class="form-control input-sm  input-s-sm inline">
                                     @{
                                         foreach (var item in ViewBag.KHLX)
                                         {
-                                            <option value="@item.CODEVALUE" @(Model.CustomerStyle!=null&&Model.CustomerStyle.ToString() == @item.CODEVALUE ? "selected" : "")>@item.NAMETEXT</option>
+                                            <option value="@item.CODEVALUE" @(Model.CustomerStyle != null && Model.CustomerStyle.ToString() == @item.CODEVALUE ? "selected" : "")>@item.NAMETEXT</option>
                                         }
                                     }
                                 </select>
@@ -62,59 +62,59 @@
                 <div class="row">
                     <div class="col-xs-6">
                         <div class="form-group">
-                            <label class="col-xs-4 control-label">公司电话：</label>
+                            <label class="col-xs-4 control-label">公司電話：</label>
                             <div class="col-xs-8">
-                                @Html.TextBoxFor(p => p.CompanyTel, new { @class = "form-control", @placeholder = "请输入公司电话" })
+                                @Html.TextBoxFor(p => p.CompanyTel, new { @class = "form-control", @placeholder = "請輸入公司電話" })
                             </div>
                         </div>
                     </div>
                     <div class="col-xs-6">
                         <div class="form-group">
-                            <label class="col-xs-4 control-label">公司网址：</label>
+                            <label class="col-xs-4 control-label">公司網址：</label>
                             <div class="col-xs-8">
-                                @Html.TextBoxFor(p => p.CompanyWebSite, new { @class = "form-control", @placeholder = "请输入公司网址" })
+                                @Html.TextBoxFor(p => p.CompanyWebSite, new { @class = "form-control", @placeholder = "請輸入公司網址" })
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <label class="col-xs-2 control-label">所在地：</label>
-                            <div class="col-xs-10">
-                                @Html.HiddenFor(p => p.CompanyProvince)
-                                @Html.HiddenFor(p => p.CompanyCity)
-                                @Html.HiddenFor(p => p.CompanyArea)
-                                <select name="Province" id="Province" onchange="SelectCity('Province', 'City')" class="form-control input-sm  input-s-sm inline">
-                                    <option value="-1">--请选择--</option>
-                                </select>
-                                <select name="City" id="City" onchange="SelectCountry('City', 'Area')" class="form-control input-sm  input-s-sm inline">
-                                    <option value="-1">--请选择--</option>
-                                </select>
-                                <select name="Area" id="Area" onchange="SelectAreas('Area')" class="form-control input-sm  input-s-sm inline">
-                                    <option value="-1">--请选择--</option>
-                                </select>
-                            </div>
-                        </div>
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">所在地：</label>
+                    <div class="col-xs-10">
+                        @Html.HiddenFor(p => p.CompanyProvince)
+                        @Html.HiddenFor(p => p.CompanyCity)
+                        @Html.HiddenFor(p => p.CompanyArea)
+                        <select name="Province" id="Province" onchange="SelectCity('Province', 'City')" class="form-control input-sm  input-s-sm inline">
+                            <option value="-1">--請選擇--</option>
+                        </select>
+                        <select name="City" id="City" onchange="SelectCountry('City', 'Area')" class="form-control input-sm  input-s-sm inline">
+                            <option value="-1">--請選擇--</option>
+                        </select>
+                        <select name="Area" id="Area" onchange="SelectAreas('Area')" class="form-control input-sm  input-s-sm inline">
+                            <option value="-1">--請選擇--</option>
+                        </select>
+                    </div>
+                </div>
                 <div class="hr-line-dashed"></div>
                 <div class="form-group">
-                    <label class="col-xs-2 control-label">通讯地址：</label>
+                    <label class="col-xs-2 control-label">通訊位址：</label>
                     <div class="col-xs-10">
-                        @Html.TextBoxFor(p => p.CompanyAddress, new { @class = "form-control", @placeholder = "请输入通讯地址" })
+                        @Html.TextBoxFor(p => p.CompanyAddress, new { @class = "form-control", @placeholder = "請輸入通訊位址" })
                     </div>
                 </div>
                 <div class="hr-line-dashed"></div>
                 <div class="row">
                     <div class="col-xs-6">
                         <div class="form-group">
-                            <label class="col-xs-4 control-label">负责人：</label>
+                            <label class="col-xs-4 control-label">負責人：</label>
                             <div class="col-xs-8">
-                                @Html.TextBoxFor(p => p.ChargePersionName, new { @class = "form-control", @placeholder = "请输入负责人姓名", @datatype = "*", @nullmsg = "请输入负责人姓名！", @errormsg = "请输入负责人姓名！" })
+                                @Html.TextBoxFor(p => p.ChargePersionName, new { @class = "form-control", @placeholder = "請輸入負責人姓名", @datatype = "*", @nullmsg = "請輸入負責人姓名！", @errormsg = "請輸入負責人姓名！" })
                             </div>
                         </div>
                     </div>
                     <div class="col-xs-6">
                         <div class="form-group">
-                            <label class="col-xs-4 control-label">性别：</label>
+                            <label class="col-xs-4 control-label">性別：</label>
                             <div class="col-xs-8">
                                 <label class="icheck_line">
                                     <input type="radio" name="ChargePersionSex" value="1" @(Model.ChargePersionSex != null && Model.ChargePersionSex == 1 ? "checked" : "") class="icheck_box">男
@@ -130,9 +130,9 @@
                 <div class="row">
                     <div class="col-xs-6">
                         <div class="form-group">
-                            <label class="col-xs-4 control-label">联系电话：</label>
+                            <label class="col-xs-4 control-label">聯繫電話：</label>
                             <div class="col-xs-8">
-                                @Html.TextBoxFor(p => p.ChargePersionPhone, new { @class = "form-control", @placeholder = "请输入负责人电话" })
+                                @Html.TextBoxFor(p => p.ChargePersionPhone, new { @class = "form-control", @placeholder = "請輸入負責人電話" })
                             </div>
                         </div>
                     </div>
@@ -140,7 +140,7 @@
                         <div class="form-group">
                             <label class="col-xs-4 control-label">QQ：</label>
                             <div class="col-xs-8">
-                               @Html.TextBoxFor(p => p.ChargePersionQQ, new { @class = "form-control", @placeholder = "请输入负责人QQ" })
+                                @Html.TextBoxFor(p => p.ChargePersionQQ, new { @class = "form-control", @placeholder = "請輸入負責人QQ" })
                             </div>
                         </div>
                     </div>
@@ -151,13 +151,13 @@
                         <div class="form-group">
                             <label class="col-xs-4 control-label">Email：</label>
                             <div class="col-xs-8">
-                                @Html.TextBoxFor(p => p.ChargePersionEmail, new { @class = "form-control", @placeholder = "请输入负责人邮箱" })
+                                @Html.TextBoxFor(p => p.ChargePersionEmail, new { @class = "form-control", @placeholder = "請輸入負責人郵箱" })
                             </div>
                         </div>
                     </div>
                     <div class="col-xs-6">
                         <div class="form-group">
-                            <label class="col-xs-4 control-label">验证状态：</label>
+                            <label class="col-xs-4 control-label">驗證狀態：</label>
                             <div class="col-xs-8">
                                 <label class="jswitch_line">
                                     @Html.CheckBoxFor(p => p.IsValidate, new { @class = "js-switch" })
@@ -168,7 +168,7 @@
                 </div>
                 <div class="hr-line-dashed"></div>
                 <div class="form-group">
-                    <label class="col-xs-2 control-label">公司简介：</label>
+                    <label class="col-xs-2 control-label">公司簡介：</label>
                     <div class="col-xs-10">
                         <script id="Content" name="Content" type="text/plain" style="width:100%;height:200px;">
                             @Html.Raw(content.CONTENT)
@@ -177,17 +177,17 @@
                 </div>
                 <div class="hr-line-dashed"></div>
                 <div class="text-center">
-                    <button class="btn btn-primary btn-save" type="submit"><i class="fa fa-check"></i> <span>确定保存</span></button>
+                    <button class="btn btn-primary btn-save" type="submit"><i class="fa fa-check"></i> <span>確定保存</span></button>
                     <button class="btn btn-warning" id="btn-dig-close" type="button"><i class="fa fa-reply-all"></i> 取消返回</button>
                 </div>
             </div>
         </div>
     </div>
-}
+                                        }
 @section scripts{
-<script type="text/javascript" src="/Content/ueditor/ueditor.config.js"></script>
-<script type="text/javascript" src="/Content/ueditor/ueditor.all.min.js"></script>
-<script type="text/javascript" src="/Content/ueditor/lang/zh-cn/zh-cn.js"></script>
+    <script type="text/javascript" src="/Content/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="/Content/ueditor/ueditor.all.min.js"></script>
+    <script type="text/javascript" src="/Content/ueditor/lang/zh-cn/zh-cn.js"></script>
     <script type="text/javascript">
         $(function () {
             $('.form-horizontal').initValidform();
@@ -222,7 +222,7 @@
                 });
             }
         };
-        //加载城市
+        //載入城市
         function SelectCity(t, n) {
             var prov = $('#' + t).val();
             $("#CompanyProvince").val(prov);
@@ -257,7 +257,7 @@
                 });
             }
         }
-        //加载县级市
+        //載入縣級市
         function SelectCountry(t, n) {
             var city = $('#' + t).val();
             $("#CompanyCity").val(city);
@@ -298,4 +298,3 @@
         }
     </script>
 }
-

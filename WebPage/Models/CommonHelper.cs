@@ -126,15 +126,15 @@ namespace Models
             TimeSpan timeSpan = DateTime.Now - dt;
             if (timeSpan.TotalSeconds < 60.0)
             {
-                return "刚刚";
+                return "剛剛";
             }
             if (timeSpan.TotalMinutes < 60.0)
             {
-                return (int)Math.Round(timeSpan.TotalMinutes) + "分钟前";
+                return (int)Math.Round(timeSpan.TotalMinutes) + "分鐘前";
             }
             if (timeSpan.TotalHours < 24.0)
             {
-                return (int)Math.Round(timeSpan.TotalHours) + "小时前";
+                return (int)Math.Round(timeSpan.TotalHours) + "小時前";
             }
             if (timeSpan.TotalDays < 60.0)
             {
@@ -149,15 +149,15 @@ namespace Models
                 TimeSpan timeSpan = dt - DateTime.Now;
                 if (timeSpan.TotalSeconds < 60.0)
                 {
-                    return "<small class=\"label label-danger\"><i class=\"fa fa-clock-o\"></i> 即将超时</small>";
+                    return "<small class=\"label label-danger\"><i class=\"fa fa-clock-o\"></i> 即將超時</small>";
                 }
                 if (timeSpan.TotalMinutes < 60.0)
                 {
-                    return "<small class=\"label label-warning\"><i class=\"fa fa-clock-o\"></i> " + (int)Math.Round(timeSpan.TotalMinutes) + " 分钟</small>";
+                    return "<small class=\"label label-warning\"><i class=\"fa fa-clock-o\"></i> " + (int)Math.Round(timeSpan.TotalMinutes) + " 分鐘</small>";
                 }
                 if (timeSpan.TotalHours < 24.0)
                 {
-                    return "<small class=\"label label-info\"><i class=\"fa fa-clock-o\"></i> " + (int)Math.Round(timeSpan.TotalHours) + " 小时</small>";
+                    return "<small class=\"label label-info\"><i class=\"fa fa-clock-o\"></i> " + (int)Math.Round(timeSpan.TotalHours) + " 小時</small>";
                 }
                 return "<small class=\"label label-primary\"><i class=\"fa fa-clock-o\"></i> " + (int)Math.Round(timeSpan.TotalDays) + " 天</small>";
             }
@@ -166,17 +166,17 @@ namespace Models
                 TimeSpan timeSpan2 = DateTime.Now - dt;
                 if (timeSpan2.TotalSeconds < 60.0)
                 {
-                    return "<small class=\"label label-danger\"><i class=\"fa fa-clock-o\"></i> 已超时 " + (int)Math.Round(timeSpan2.TotalSeconds) + " 秒</small>";
+                    return "<small class=\"label label-danger\"><i class=\"fa fa-clock-o\"></i> 已超時 " + (int)Math.Round(timeSpan2.TotalSeconds) + " 秒</small>";
                 }
                 if (timeSpan2.TotalMinutes < 60.0)
                 {
-                    return "<small class=\"label label-danger\"><i class=\"fa fa-clock-o\"></i> 已超时 " + (int)Math.Round(timeSpan2.TotalMinutes) + " 分钟</small>";
+                    return "<small class=\"label label-danger\"><i class=\"fa fa-clock-o\"></i> 已超時 " + (int)Math.Round(timeSpan2.TotalMinutes) + " 分鐘</small>";
                 }
                 if (timeSpan2.TotalHours < 24.0)
                 {
-                    return "<small class=\"label label-danger\"><i class=\"fa fa-clock-o\"></i> 已超时 " + (int)Math.Round(timeSpan2.TotalHours) + " 小时</small>";
+                    return "<small class=\"label label-danger\"><i class=\"fa fa-clock-o\"></i> 已超時 " + (int)Math.Round(timeSpan2.TotalHours) + " 小時</small>";
                 }
-                return "<small class=\"label label-danger\"><i class=\"fa fa-clock-o\"></i> 已超时 " + (int)Math.Round(timeSpan2.TotalDays) + " 天</small>";
+                return "<small class=\"label label-danger\"><i class=\"fa fa-clock-o\"></i> 已超時 " + (int)Math.Round(timeSpan2.TotalDays) + " 天</small>";
             }
         }
         public string GetSurplusTimeNoClass(DateTime dt)
@@ -186,15 +186,15 @@ namespace Models
                 TimeSpan timeSpan = dt - DateTime.Now;
                 if (timeSpan.TotalSeconds < 60.0)
                 {
-                    return "<span class=\"text-danger\"><i class=\"fa fa-clock-o\"></i> 即将超时</span>";
+                    return "<span class=\"text-danger\"><i class=\"fa fa-clock-o\"></i> 即將超時</span>";
                 }
                 if (timeSpan.TotalMinutes < 60.0)
                 {
-                    return "<span class=\"text-warning\"><i class=\"fa fa-clock-o\"></i> " + (int)Math.Round(timeSpan.TotalMinutes) + " 分钟</span>";
+                    return "<span class=\"text-warning\"><i class=\"fa fa-clock-o\"></i> " + (int)Math.Round(timeSpan.TotalMinutes) + " 分鐘</span>";
                 }
                 if (timeSpan.TotalHours < 24.0)
                 {
-                    return "<span class=\"text-info\"><i class=\"fa fa-clock-o\"></i> " + (int)Math.Round(timeSpan.TotalHours) + " 小时</span>";
+                    return "<span class=\"text-info\"><i class=\"fa fa-clock-o\"></i> " + (int)Math.Round(timeSpan.TotalHours) + " 小時</span>";
                 }
                 return "<span><i class=\"fa fa-clock-o\"></i> " + (int)Math.Round(timeSpan.TotalDays) + " 天</span>";
             }
@@ -203,17 +203,17 @@ namespace Models
                 TimeSpan timeSpan2 = DateTime.Now - dt;
                 if (timeSpan2.TotalSeconds < 60.0)
                 {
-                    return "<span class=\"text-danger\"><i class=\"fa fa-clock-o\"></i> 已超时 " + (int)Math.Round(timeSpan2.TotalSeconds) + " 秒</span>";
+                    return "<span class=\"text-danger\"><i class=\"fa fa-clock-o\"></i> 已超時 " + (int)Math.Round(timeSpan2.TotalSeconds) + " 秒</span>";
                 }
                 if (timeSpan2.TotalMinutes < 60.0)
                 {
-                    return "<span class=\"text-danger\"><i class=\"fa fa-clock-o\"></i> 已超时 " + (int)Math.Round(timeSpan2.TotalMinutes) + " 分钟</span>";
+                    return "<span class=\"text-danger\"><i class=\"fa fa-clock-o\"></i> 已超時 " + (int)Math.Round(timeSpan2.TotalMinutes) + " 分鐘</span>";
                 }
                 if (timeSpan2.TotalHours < 24.0)
                 {
-                    return "<span class=\"text-danger\"><i class=\"fa fa-clock-o\"></i> 已超时 " + (int)Math.Round(timeSpan2.TotalHours) + " 小时</span>";
+                    return "<span class=\"text-danger\"><i class=\"fa fa-clock-o\"></i> 已超時 " + (int)Math.Round(timeSpan2.TotalHours) + " 小時</span>";
                 }
-                return "<span class=\"text-danger\"><i class=\"fa fa-clock-o\"></i> 已超时 " + (int)Math.Round(timeSpan2.TotalDays) + " 天</span>";
+                return "<span class=\"text-danger\"><i class=\"fa fa-clock-o\"></i> 已超時 " + (int)Math.Round(timeSpan2.TotalDays) + " 天</span>";
             }
         }
         public string GetStageTeams(PRO_PROJECT_STAGES Stages)
@@ -226,7 +226,7 @@ namespace Models
                     while (enumerator.MoveNext())
                     {
                         PRO_PROJECT_TEAMS team = enumerator.Current;
-                        if (team.JionStatus == ClsDic.DicStatus["通过"])
+                        if (team.JionStatus == ClsDic.DicStatus["通過"])
                         {
                             text = text + "&nbsp;" + (string.IsNullOrEmpty(this.UserManage.Get((SYS_USER p) => p.ID == team.FK_UserId).FACE_IMG) ? string.Concat(new string[]
                             {
@@ -277,27 +277,27 @@ namespace Models
             switch (rank)
             {
                 case 1:
-                    return "<span class=\"text-danger\" style=\"padding:5px 10px;font-size:15px;\"><img src=\"/Content/images/expression/e_59.png\" />&nbsp;神功绝世</span>";
+                    return "<span class=\"text-danger\" style=\"padding:5px 10px;font-size:15px;\"><img src=\"/Content/images/expression/e_59.png\" />&nbsp;神功絕世</span>";
                 case 2:
                     return "<span class=\"text-warning\" style=\"padding:5px 10px;font-size:15px;\"><img src=\"/Content/images/expression/e_64.png\" />&nbsp;出神入化</span>";
                 case 3:
-                    return "<span class=\"text-info\" style=\"padding:5px 10px;font-size:15px;\"><img src=\"/Content/images/expression/e_02.png\" />&nbsp;登峰造极</span>";
+                    return "<span class=\"text-info\" style=\"padding:5px 10px;font-size:15px;\"><img src=\"/Content/images/expression/e_02.png\" />&nbsp;登峰造極</span>";
                 case 4:
-                    return "<span class=\"text-success\" style=\"padding:5px 10px;font-size:15px;\"><img src=\"/Content/images/expression/e_27.png\" />&nbsp;功行圆满</span>";
+                    return "<span class=\"text-success\" style=\"padding:5px 10px;font-size:15px;\"><img src=\"/Content/images/expression/e_27.png\" />&nbsp;功行圓滿</span>";
                 case 5:
                     return "<span class=\"text-primary\" style=\"padding:5px 10px;font-size:15px;\"><img src=\"/Content/images/expression/e_37.png\" />&nbsp;已臻大成</span>";
                 case 6:
                     return "<span class=\"text-default\" style=\"padding:5px 10px;font-size:15px;\"><img src=\"/Content/images/expression/e_18.png\" />&nbsp;自成一派</span>";
                 case 7:
-                    return "<span class=\"text-default\" style=\"padding:5px 10px;font-size:15px;\"><img src=\"/Content/images/expression/e_24.png\" />&nbsp;炉火纯青</span>";
+                    return "<span class=\"text-default\" style=\"padding:5px 10px;font-size:15px;\"><img src=\"/Content/images/expression/e_24.png\" />&nbsp;爐火純青</span>";
                 case 8:
-                    return "<span class=\"text-default\" style=\"padding:5px 10px;font-size:15px;\"><img src=\"/Content/images/expression/e_16.png\" />&nbsp;渐入佳境</span>";
+                    return "<span class=\"text-default\" style=\"padding:5px 10px;font-size:15px;\"><img src=\"/Content/images/expression/e_16.png\" />&nbsp;漸入佳境</span>";
                 case 9:
                     return "<span class=\"text-default\" style=\"padding:5px 10px;font-size:15px;\"><img src=\"/Content/images/expression/e_08.png\" />&nbsp;略有小成</span>";
                 case 10:
-                    return "<span class=\"text-default\" style=\"padding:5px 10px;font-size:15px;\"><img src=\"/Content/images/expression/e_17.png\" />&nbsp;初亏堂奥</span>";
+                    return "<span class=\"text-default\" style=\"padding:5px 10px;font-size:15px;\"><img src=\"/Content/images/expression/e_17.png\" />&nbsp;初虧堂奧</span>";
                 default:
-                    return "<span class=\"text-default\" style=\"padding:5px 10px;font-size:15px;\"><img src=\"/Content/images/expression/e_18.png\" />&nbsp;初学乍练</span>";
+                    return "<span class=\"text-default\" style=\"padding:5px 10px;font-size:15px;\"><img src=\"/Content/images/expression/e_18.png\" />&nbsp;初學乍練</span>";
             }
         }
         //public string GetContentText(string FK_RELATIONID, string TableName)
@@ -317,7 +317,7 @@ namespace Models
         //        int count = list.Count;
         //        int count2 = (
         //            from p in list
-        //            where p.StageStatus == ClsDic.DicProject["已验收"] || p.StageStatus == ClsDic.DicProject["已超时"]
+        //            where p.StageStatus == ClsDic.DicProject["已驗收"] || p.StageStatus == ClsDic.DicProject["已超時"]
         //            select p).ToList<PRO_PROJECT_STAGES>().Count;
         //        result = ((count > 0) ? ((int)Math.Floor((double)count2 / ((double)count * 1.0) * 100.0)) : 0);
         //    }

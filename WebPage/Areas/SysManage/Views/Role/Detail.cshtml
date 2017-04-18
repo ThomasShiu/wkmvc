@@ -2,7 +2,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @model Domain.SYS_ROLE
-<style type="text/css">.gray-bg {background-color: white;}</style>
+<style type="text/css">
+    .gray-bg {
+        background-color: white;
+    }
+</style>
 @using (Ajax.BeginForm("Save", null, new AjaxOptions()
                            {
                                HttpMethod = "Post",
@@ -23,7 +27,7 @@
             </div>
             <div class="ibox-content">
                 <div class="form-group">
-                    <label class="col-xs-2 control-label">所属系统：</label>
+                    <label class="col-xs-2 control-label">所屬系統：</label>
                     <div class="col-xs-10">
                         <select name="FK_BELONGSYSTEM" class="form-control input-sm  input-s inline">
                             @{
@@ -40,18 +44,18 @@
                 <div class="row">
                     <div class="col-xs-6">
                         <div class="form-group">
-                            <label class="col-xs-4 control-label">角色名称：</label>
+                            <label class="col-xs-4 control-label">角色名稱：</label>
                             <div class="col-xs-8">
-                                @Html.TextBoxFor(p => p.ROLENAME, new { @class = "form-control", @placeholder = "请输入角色名称", @datatype = "*", @nullmsg = "请输入角色名称！", @errormsg = "请输入角色名称！" })
+                                @Html.TextBoxFor(p => p.ROLENAME, new { @class = "form-control", @placeholder = "請輸入角色名稱", @datatype = "*", @nullmsg = "請輸入角色名稱！", @errormsg = "請輸入角色名稱！" })
                             </div>
                         </div>
                     </div>
                     <div class="col-xs-6">
                         <div class="form-group">
-                            <label class="col-xs-4 control-label">系统预置：</label>
+                            <label class="col-xs-4 control-label">系統預置：</label>
                             <div class="col-xs-8">
                                 <label class="jswitch_line">
-                                    @Html.CheckBox("cbx-custom",Model.ISCUSTOM==1, new { @class = "js-switch" })
+                                    @Html.CheckBox("cbx-custom", Model.ISCUSTOM == 1, new { @class = "js-switch" })
                                 </label>
                             </div>
                         </div>
@@ -59,20 +63,20 @@
                 </div>
                 <div class="hr-line-dashed"></div>
                 <div class="form-group">
-                    <label class="col-xs-2 control-label">备注：</label>
+                    <label class="col-xs-2 control-label">備註：</label>
                     <div class="col-xs-10">
-                        @Html.TextAreaFor(p => p.ROLEDESC, new { @class = "form-control", @row = "4", @placeholder = "备注" })
+                        @Html.TextAreaFor(p => p.ROLEDESC, new { @class = "form-control", @row = "4", @placeholder = "備註" })
                     </div>
                 </div>
                 <div class="hr-line-dashed"></div>
                 <div class="text-center">
-                    <button class="btn btn-primary btn-save" type="submit"><i class="fa fa-check"></i> <span>确定保存</span></button>
+                    <button class="btn btn-primary btn-save" type="submit"><i class="fa fa-check"></i> <span>確定保存</span></button>
                     <button class="btn btn-warning" id="btn-dig-close" type="button"><i class="fa fa-reply-all"></i> 取消返回</button>
                 </div>
             </div>
         </div>
     </div>
-}
+                                }
 @section scripts{
     <script type="text/javascript">
         $(function () {

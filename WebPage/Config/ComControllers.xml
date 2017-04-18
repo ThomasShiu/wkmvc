@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <objects xmlns="http://www.springframework.net">
-  <description>Spring注入控制器，容器指向Service层封装的接口</description>
-  <!--上传控制器-->
+  <description>Spring注入控制器，容器指向Service層封裝的介面</description>
+  <!--上傳控制器-->
   <object type="WebPage.Areas.ComManage.Controllers.UploadController,WebPage" singleton="false">
     <property name="UploadManage" ref="Service.Com.Upload"/>
   </object>

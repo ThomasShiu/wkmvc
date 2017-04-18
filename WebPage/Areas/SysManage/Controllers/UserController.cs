@@ -67,10 +67,6 @@ namespace WebPage.Areas.SysManage.Controllers
 
         }
 
-
-
-
-
         /// <summary>
         /// 載入使用者詳情資訊（基本）
         /// </summary>

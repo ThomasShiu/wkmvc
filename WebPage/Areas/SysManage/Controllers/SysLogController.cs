@@ -42,21 +42,21 @@ namespace WebPage.Areas.SysManage.Controllers
         {
             var jsonHelper = new JsonHelper
             {
-                Msg = "删除日志完毕",
+                Msg = "刪除日誌完畢",
                 Status = "n"
             };
-            List<int> id = (from p in idList.Trim(new []{','}).Split(new []{","}, StringSplitOptions.RemoveEmptyEntries)
+            List<int> id = (from p in idList.Trim(new[] { ',' }).Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries)
                             select int.Parse(p)).ToList();
             try
             {
                 this.SyslogManage.Delete(p => id.Contains(p.ID));
                 jsonHelper.Status = "y";
-                WriteLog(enumOperator.Remove, "删除系统日志：" + jsonHelper.Msg, enumLog4net.WARN);
+                WriteLog(enumOperator.Remove, "刪除系統日誌：" + jsonHelper.Msg, enumLog4net.WARN);
             }
             catch (Exception e)
             {
-                jsonHelper.Msg = "删除系统日志发生内部错误！";
-                WriteLog(enumOperator.Remove, "删除系统日志：", e);
+                jsonHelper.Msg = "刪除系統日誌發生內部錯誤！";
+                WriteLog(enumOperator.Remove, "刪除系統日誌：", e);
             }
             return Json(jsonHelper);
         }
@@ -82,8 +82,8 @@ namespace WebPage.Areas.SysManage.Controllers
                 expression = expression.And(p => p.CLIENTUSER == CurrentUser.Name);
             }
             return SyslogManage.Query(from p in SyslogManage.LoadAll(expression)
-                                           orderby p.DATES descending
-                                           select p, base.page, base.pagesize);
+                                      orderby p.DATES descending
+                                      select p, base.page, base.pagesize);
         }
     }
 }

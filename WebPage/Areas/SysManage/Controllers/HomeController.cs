@@ -27,7 +27,7 @@ namespace WebPage.Areas.SysManage.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            //系统模块列表
+            //系統模組清單
             ViewData["Module"] = ModuleManage.GetModule(CurrentUser.Id, CurrentUser.Permissions, CurrentUser.System_Id);
             ViewData["Contacts"] = Contacts();
             return View(CurrentUser);
@@ -37,8 +37,8 @@ namespace WebPage.Areas.SysManage.Controllers
         {
             ViewData["MissionList"] = new List<Domain.PRO_PROJECT_TEAMS>();
             ViewData["week"] = DateTime.Now.DayOfWeek;
-            ViewData["month"] = DateTime.Now.Month;            
-            ViewData["AttendanceList"] =new List<Domain.COM_WORKATTENDANCE>();
+            ViewData["month"] = DateTime.Now.Month;
+            ViewData["AttendanceList"] = new List<Domain.COM_WORKATTENDANCE>();
             return View(CurrentUser);
         }
 
@@ -62,7 +62,7 @@ namespace WebPage.Areas.SysManage.Controllers
             List<string> departs = (from p in getAllChildrenDeptIds(departId) // DepartmentManage.LoadAll(p => p.PARENTID == departId)
                                     orderby p.SHOWORDER
                                     select p.ID).ToList();
-            departs.Add(departId); //加上顶层id，否则在顶层部门用户不显示
+            departs.Add(departId); //加上頂層id，否則在頂層部門使用者不顯示
             var users = UserManage.LoadListAll(p => p.ID != CurrentUser.Id && departs.Any(e => e == p.DPTID))
                 .OrderBy(p => p.LEVELS).ThenBy(p => p.CREATEDATE);
             var ret = users
@@ -79,19 +79,19 @@ namespace WebPage.Areas.SysManage.Controllers
                         IsOnline = (UserOnlineManage.LoadAll(m => m.FK_UserId == p.ID).FirstOrDefault() != null && UserOnlineManage.LoadAll(m => m.FK_UserId == p.ID).FirstOrDefault().IsOnline)
                     };
                 })
-                .OrderBy(p=>p.IsOnline);
-            return ret.ToList();            
+                .OrderBy(p => p.IsOnline);
+            return ret.ToList();
         }
 
         /// <summary>
-        /// 循环查找部门的下属部门
+        /// 迴圈查找部門的下屬部門
         /// </summary>
         /// <param name="topDeptId"></param>
         /// <returns></returns>
         private List<SYS_DEPARTMENT> getAllChildrenDeptIds(string topDeptId)
         {
             List<SYS_DEPARTMENT> ret = new List<SYS_DEPARTMENT>();
-            
+
             var depts = DepartmentManage.LoadAll(p => p.PARENTID == topDeptId);
             ret.AddRange(depts);
 
@@ -99,7 +99,7 @@ namespace WebPage.Areas.SysManage.Controllers
             {
                 ret.AddRange(getAllChildrenDeptIds(d.ID));
             });
-           
+
 
             return ret;
         }

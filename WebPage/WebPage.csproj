@@ -438,6 +438,7 @@
     <Content Include="Content\images\expression\e_71.png" />
     <Content Include="Content\images\login\egg_shell.png" />
     <Content Include="Content\images\login\login_top_tip.png" />
+    <Content Include="Content\images\login\login_top_tip_ccm.png" />
     <Content Include="Content\images\login\puff.svg" />
     <Content Include="Content\images\login\puffred.svg" />
     <Content Include="Content\images\selected-icon.png" />

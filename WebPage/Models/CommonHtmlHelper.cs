@@ -92,22 +92,22 @@ namespace WebPages
             if (Page > 1)
             {
                 stringBuilder.Append("<li class=\"paginate_button previous\" id=\"example_first\">");
-                stringBuilder.Append("<a href=\"" + ((Url.IndexOf("@p@") >= 0) ? Url.Replace("@p@", "1") : (Url + "page=1")) + "\" aria-controls=\"example\" data-dt-idx=\"1\" tabindex=\"0\">首页</a></li>");
+                stringBuilder.Append("<a href=\"" + ((Url.IndexOf("@p@") >= 0) ? Url.Replace("@p@", "1") : (Url + "page=1")) + "\" aria-controls=\"example\" data-dt-idx=\"1\" tabindex=\"0\">首頁</a></li>");
             }
             else
             {
-                stringBuilder.Append("<li class=\"paginate_button previous disabled\" id=\"example_first\"><a href=\"\" aria-controls=\"example\" data-dt-idx=\"1\" tabindex=\"0\">首页</a></li></li>");
+                stringBuilder.Append("<li class=\"paginate_button previous disabled\" id=\"example_first\"><a href=\"\" aria-controls=\"example\" data-dt-idx=\"1\" tabindex=\"0\">首頁</a></li></li>");
             }
             if (Page > 1)
             {
                 num2 = Page - 1;
                 stringBuilder.Append("<li class=\"paginate_button previous\" id=\"example_previous\">");
-                stringBuilder.Append("<a href=\"" + ((Url.IndexOf("@p@") >= 0) ? Url.Replace("@p@", num2.ToString()) : (Url + "page=" + num2.ToString())) + "\" aria-controls=\"example\" data-dt-idx=\"1\" tabindex=\"0\">上一页</a></li>");
+                stringBuilder.Append("<a href=\"" + ((Url.IndexOf("@p@") >= 0) ? Url.Replace("@p@", num2.ToString()) : (Url + "page=" + num2.ToString())) + "\" aria-controls=\"example\" data-dt-idx=\"1\" tabindex=\"0\">上一頁</a></li>");
             }
             else
             {
                 stringBuilder.Append("<li class=\"paginate_button previous disabled\" id=\"example_previous\">");
-                stringBuilder.Append("<a href=\"\" aria-controls=\"example\" data-dt-idx=\"1\" tabindex=\"0\">上一页</a></li>");
+                stringBuilder.Append("<a href=\"\" aria-controls=\"example\" data-dt-idx=\"1\" tabindex=\"0\">上一頁</a></li>");
             }
             stringBuilder.Append("");
             if (Page + PageNum / 2 <= num)
@@ -160,20 +160,20 @@ namespace WebPages
             {
                 num2 = Page + 1;
                 stringBuilder.Append("<li class=\"paginate_button next\" id=\"example_next\">");
-                stringBuilder.Append("<a href=\"" + ((Url.IndexOf("@p@") >= 0) ? Url.Replace("@p@", num2.ToString()) : (Url + "page=" + num2.ToString())) + "\"  aria-controls=\"example\" data-dt-idx=\"4\" tabindex=\"0\">下一页</a></li>");
+                stringBuilder.Append("<a href=\"" + ((Url.IndexOf("@p@") >= 0) ? Url.Replace("@p@", num2.ToString()) : (Url + "page=" + num2.ToString())) + "\"  aria-controls=\"example\" data-dt-idx=\"4\" tabindex=\"0\">下一頁</a></li>");
             }
             else
             {
-                stringBuilder.Append("<li class=\"paginate_button next disabled\" id=\"example_next\"><a href=\"javascript:void(0)\" aria-controls=\"example\" data-dt-idx=\"4\" tabindex=\"0\">下一页</a></li>");
+                stringBuilder.Append("<li class=\"paginate_button next disabled\" id=\"example_next\"><a href=\"javascript:void(0)\" aria-controls=\"example\" data-dt-idx=\"4\" tabindex=\"0\">下一頁</a></li>");
             }
             if (Page < num)
             {
                 stringBuilder.Append("<li class=\"paginate_button next\" id=\"example_last\">");
-                stringBuilder.Append("<a href=\"" + ((Url.IndexOf("@p@") >= 0) ? Url.Replace("@p@", num.ToString()) : (Url + "page=" + num.ToString())) + "\"  aria-controls=\"example\" data-dt-idx=\"5\" tabindex=\"0\">末页</a></li>");
+                stringBuilder.Append("<a href=\"" + ((Url.IndexOf("@p@") >= 0) ? Url.Replace("@p@", num.ToString()) : (Url + "page=" + num.ToString())) + "\"  aria-controls=\"example\" data-dt-idx=\"5\" tabindex=\"0\">末頁</a></li>");
             }
             else
             {
-                stringBuilder.Append("<li class=\"paginate_button next disabled\" id=\"example_last\"><a href=\"\" aria-controls=\"example\" data-dt-idx=\"1\" tabindex=\"0\">末页</a></li></li>");
+                stringBuilder.Append("<li class=\"paginate_button next disabled\" id=\"example_last\"><a href=\"\" aria-controls=\"example\" data-dt-idx=\"1\" tabindex=\"0\">末頁</a></li></li>");
             }
             stringBuilder.Append("</ul>");
             stringBuilder.Append("</div>");
@@ -237,20 +237,20 @@ namespace WebPages
             if (Page > 1)
             {
                 int num2 = Page - 1;
-                stringBuilder.Append("<a class=\"btn btn-white btn-sm\" href=\"" + ((Url.IndexOf("@p@") >= 0) ? Url.Replace("@p@", num2.ToString()) : (Url + "page=" + num2.ToString())) + "\" title=\"上一页\" ><i class=\"fa fa-angle-left\"></i></a>");
+                stringBuilder.Append("<a class=\"btn btn-white btn-sm\" href=\"" + ((Url.IndexOf("@p@") >= 0) ? Url.Replace("@p@", num2.ToString()) : (Url + "page=" + num2.ToString())) + "\" title=\"上一頁\" ><i class=\"fa fa-angle-left\"></i></a>");
             }
             else
             {
-                stringBuilder.Append("<a class=\"btn btn-white btn-sm\" href=\"javascript:void(0)\"  disabled=\"disabled\" title=\"上一页\" ><i class=\"fa fa-angle-left\"></i></a>");
+                stringBuilder.Append("<a class=\"btn btn-white btn-sm\" href=\"javascript:void(0)\"  disabled=\"disabled\" title=\"上一頁\" ><i class=\"fa fa-angle-left\"></i></a>");
             }
             if (Page < num)
             {
                 int num2 = Page + 1;
-                stringBuilder.Append("<a class=\"btn btn-white btn-sm\" href=\"" + ((Url.IndexOf("@p@") >= 0) ? Url.Replace("@p@", num2.ToString()) : (Url + "page=" + num2.ToString())) + "\" title=\"下一页\" > <i class=\"fa fa-angle-right\"></i></a>");
+                stringBuilder.Append("<a class=\"btn btn-white btn-sm\" href=\"" + ((Url.IndexOf("@p@") >= 0) ? Url.Replace("@p@", num2.ToString()) : (Url + "page=" + num2.ToString())) + "\" title=\"下一頁\" > <i class=\"fa fa-angle-right\"></i></a>");
             }
             else
             {
-                stringBuilder.Append("<a class=\"btn btn-white btn-sm\" href=\"javascript:void(0)\" disabled=\"disabled\" title=\"下一页\" > <i class=\"fa fa-angle-right\"></i></a>");
+                stringBuilder.Append("<a class=\"btn btn-white btn-sm\" href=\"javascript:void(0)\" disabled=\"disabled\" title=\"下一頁\" > <i class=\"fa fa-angle-right\"></i></a>");
             }
             stringBuilder.Append("</div>");
             return new MvcHtmlString(stringBuilder.ToString());

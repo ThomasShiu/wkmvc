@@ -8,11 +8,11 @@
         <div class="col-sm-8">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>客户管理</h5>
+                    <h5>客戶管理</h5>
                     <div class="ibox-tools">
-                        <a class="btn btn-primary btn-xs p210" id="insert" action="add"><i class="fa fa-plus-circle fa-fw"></i> 添加新客户</a>
-                        <a class="btn btn-warning btn-xs p210" id="modify" action="edit"><i class="fa fa-pencil fa-fw"></i> 编辑客户</a>
-                        <a class="btn btn-danger btn-xs p210" id="delete" action="remove"><i class="fa fa-trash-o fa-fw"></i> 删除客户</a>
+                        <a class="btn btn-primary btn-xs p210" id="insert" action="add"><i class="fa fa-plus-circle fa-fw"></i> 添加新客戶</a>
+                        <a class="btn btn-warning btn-xs p210" id="modify" action="edit"><i class="fa fa-pencil fa-fw"></i> 編輯客戶</a>
+                        <a class="btn btn-danger btn-xs p210" id="delete" action="remove"><i class="fa fa-trash-o fa-fw"></i> 刪除客戶</a>
                         <a class="reload-link" style="color: #c4c4c4" href="javascript:dig.reload()" data-toggle="tooltip" data-placement="left" title="刷新">
                             <i class="fa fa-repeat fa-lg"></i>
                         </a>
@@ -23,34 +23,34 @@
                     {
                         <div class="row">
                             <div class="col-sm-9">
-                                <label>选择省份：</label>
+                                <label>選擇省份：</label>
                                 <select id="Province" name="Province" class="form-control input-sm  input-s-sm inline" onchange="submit()">
                                     <option value="" @(ViewData["Province"] == null || ViewData["Province"].ToString() == "" ? "selected" : "")>全部省份</option>
                                     @{
-                        var provincelist = ViewData["ProvinceList"] as List<Domain.SYS_CODE_AREA>;
-                        if (provincelist != null && provincelist.Count > 0)
-                        {
-                            foreach (var province in provincelist)
-                            {
-                                <option value="@province.ID" @(ViewData["Province"] != null && ViewData["Province"].ToString() == province.ID ? "selected" : "")>@province.NAME</option>
-                            }
-                        }
+                                        var provincelist = ViewData["ProvinceList"] as List<Domain.SYS_CODE_AREA>;
+                                        if (provincelist != null && provincelist.Count > 0)
+                                        {
+                                            foreach (var province in provincelist)
+                                            {
+                                                <option value="@province.ID" @(ViewData["Province"] != null && ViewData["Province"].ToString() == province.ID ? "selected" : "")>@province.NAME</option>
+                                            }
+                                        }
                                     }
                                 </select>&emsp;
-                                <label>客户类型：</label>
+                                <label>客戶類型：</label>
                                 <select id="CustomerStyle" name="CustomerStyle" class="form-control input-sm  input-s-sm inline" onchange="submit()">
-                                    <option value="" @(ViewData["CustomerStyle"] == null || ViewData["CustomerStyle"].ToString() == "" ? "selected" : "")>全部客户</option>
+                                    <option value="" @(ViewData["CustomerStyle"] == null || ViewData["CustomerStyle"].ToString() == "" ? "selected" : "")>全部客戶</option>
                                     @{
-                        foreach (var hblx in ViewBag.KHLX)
-                            {
-                                <option value="@hblx.CODEVALUE" @(ViewData["CustomerStyle"] != null && ViewData["CustomerStyle"].ToString() == hblx.CODEVALUE ? "selected" : "")>@hblx.NAMETEXT</option>
-                            }
+                                        foreach (var hblx in ViewBag.KHLX)
+                                        {
+                                            <option value="@hblx.CODEVALUE" @(ViewData["CustomerStyle"] != null && ViewData["CustomerStyle"].ToString() == hblx.CODEVALUE ? "selected" : "")>@hblx.NAMETEXT</option>
+                                        }
                                     }
                                 </select>
                             </div>
                             <div class="col-sm-3">
                                 <div class="input-group">
-                                    @Html.TextBox("Search", null, new { @class = "input-sm form-control", @placeholder = "请输入查询关键词" })
+                                    @Html.TextBox("Search", null, new { @class = "input-sm form-control", @placeholder = "請輸入查詢關鍵字" })
                                     <span class="input-group-btn">
                                         <button type="submit" onclick="submit()" class="btn btn-sm btn-primary"> 搜索</button>
                                     </span>
@@ -62,27 +62,27 @@
                                 <thead>
                                     <tr>
                                         <th class="tn" style="width: 50px !important"><input name="checkall" class="icheck_box" type="checkbox" value=""></th>
-                                        <th class="tn" style="width: 310px !important">客户名称</th>
+                                        <th class="tn" style="width: 310px !important">客戶名稱</th>
                                         <th>所在地</th>
-                                        <th>公司电话</th>
-                                        <th>验证状态</th>
-                                        <th>创建时间</th>
-                                        <th>负责人</th>
+                                        <th>公司電話</th>
+                                        <th>驗證狀態</th>
+                                        <th>創建時間</th>
+                                        <th>負責人</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @{foreach (var item in Model.List)
-                                    {
-                                        <tr>
-                                            <td class="tn"><input name="checkbox_name" class="icheck_box" type="checkbox" value="@item.ID" /></td>
-                                            <td class="tn" style="width: 220px !important">@Html.Raw(item.CustomerStyle) &nbsp;<a href="javascript:EditCustomer('@item.ID')" listaction="detail" data-toggle="tooltip" data-placement="right" title="修改">@item.CompanyName</a></td>
-                                            <td>@Html.Raw(item.CompanyProvince + "&nbsp;" + item.CompanyCity + "&nbsp;" + item.CompanyArea)</td>
-                                            <td><i class="fa fa-phone fa-fw contact-type"></i> @item.CompanyTel</td>
-                                            <td>@Html.Raw(item.IsValidate ? "<span class=\"btn btn-primary btn-xs p210\">已验证</span>" : "<span class=\"btn btn-warning btn-xs p210\">等待验证</span>")</td>
-                                            <td>@item.CreateDate</td>
-                                            <td><a class="btn btn-white btn-xs p210" href="javascript:DetailInfo('@item.ID')" listaction="View" data-toggle="tooltip" data-placement="left" title="联系人信息"><i class="fa fa-user fa-fw"></i> @item.ChargePersionName</a></td>
-                                        </tr>
-                                    }
+                                        {
+                                            <tr>
+                                                <td class="tn"><input name="checkbox_name" class="icheck_box" type="checkbox" value="@item.ID" /></td>
+                                                <td class="tn" style="width: 220px !important">@Html.Raw(item.CustomerStyle) &nbsp;<a href="javascript:EditCustomer('@item.ID')" listaction="detail" data-toggle="tooltip" data-placement="right" title="修改">@item.CompanyName</a></td>
+                                                <td>@Html.Raw(item.CompanyProvince + "&nbsp;" + item.CompanyCity + "&nbsp;" + item.CompanyArea)</td>
+                                                <td><i class="fa fa-phone fa-fw contact-type"></i> @item.CompanyTel</td>
+                                                <td>@Html.Raw(item.IsValidate ? "<span class=\"btn btn-primary btn-xs p210\">已驗證</span>" : "<span class=\"btn btn-warning btn-xs p210\">等待驗證</span>")</td>
+                                                <td>@item.CreateDate</td>
+                                                <td><a class="btn btn-white btn-xs p210" href="javascript:DetailInfo('@item.ID')" listaction="View" data-toggle="tooltip" data-placement="left" title="連絡人信息"><i class="fa fa-user fa-fw"></i> @item.ChargePersionName</a></td>
+                                            </tr>
+                                        }
                                     }
                                 </tbody>
                             </table>
@@ -90,20 +90,20 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="dataTables_info">
-                                    显示 @Model.BeginPage 到 @Model.EndPage 项，共 @Model.Count 项, 每页显示
+                                    顯示 @Model.BeginPage 到 @Model.EndPage 項，共 @Model.Count 項, 每頁顯示
                                     <select name="example_length" class="form-control input-sm input-xs-sm inline" onchange="submit()">
                                         <option value="10" @(Model.PageSize == 10 ? "selected" : "")>10</option>
                                         <option value="25" @(Model.PageSize == 25 ? "selected" : "")>25</option>
                                         <option value="50" @(Model.PageSize == 50 ? "selected" : "")>50</option>
                                         <option value="100" @(Model.PageSize == 100 ? "selected" : "")>100</option>
-                                    </select> 条记录
+                                    </select> 條記錄
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 @WebPages.CommonHtmlHelper.PaginationPager(Model.Index, Model.PageSize, Model.Count, 7, Model.Url)
                             </div>
                         </div>
-                    }
+                                        }
                 </div>
             </div>
         </div>
@@ -115,15 +115,15 @@
 @section scripts{
     <script type="text/javascript">
         $(function () {
-            //添加新用户
+            //添加新用戶
             $("#insert").click(function () {
-                dig.addPage("添加新客户", "/Sys/BussinessCustomer/detail", 800, 450, function () {
+                dig.addPage("添加新客戶", "/Sys/BussinessCustomer/detail", 800, 450, function () {
                     if (this.returnValue == 'yes') {
                         location.reload();
                     }
                 });
             });
-            //列表选择修改
+            //列表選擇修改
             $('#modify').click(function () {
                 var vals = '';
                 var num = 0;
@@ -132,29 +132,29 @@
                     num++;
                 });
                 if (!vals) {
-                    dig.error("对不起，请选中您要操作的记录！");
+                    dig.error("對不起，請選中您要操作的記錄！");
                     return;
                 }
                 if (num > 1) {
-                    dig.error("对不起，每次只能修改一条记录！");
+                    dig.error("對不起，每次只能修改一條記錄！");
                     return;
                 }
-                dig.addPage("编辑客户", "/Sys/BussinessCustomer/detail/" + vals, 800, 450, function () {
+                dig.addPage("編輯客戶", "/Sys/BussinessCustomer/detail/" + vals, 800, 450, function () {
                     if (this.returnValue == 'yes') {
                         location.reload();
                     }
                 });
             });
         });
-        //跳转修改
+        //跳轉修改
         function EditCustomer(n) {
-            dig.addPage("编辑客户", "/Sys/BussinessCustomer/detail/" + n, 800, 450, function () {
+            dig.addPage("編輯客戶", "/Sys/BussinessCustomer/detail/" + n, 800, 450, function () {
                 if (this.returnValue == 'yes') {
                     location.reload();
                 }
             });
         }
-        //详细信息
+        //詳細資訊
         function DetailInfo(n)
         {
             $("#DeployBase").prop("src", "/sys/bussinesscustomer/customerinfo/"+ n);
@@ -168,4 +168,3 @@
         }
     </script>
 }
-

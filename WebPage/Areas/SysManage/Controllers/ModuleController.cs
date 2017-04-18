@@ -18,12 +18,12 @@ namespace WebPage.Areas.SysManage.Controllers
 
         ISystemManage SystemManage { get; set; }
         // GET: Module
-        [UserAuthorize(ModuleAlias ="Module",OperaAction ="View")] //验证是否有查看权限
+        [UserAuthorize(ModuleAlias = "Module", OperaAction = "View")] //驗證是否有查看許可權
         public ActionResult Index()
         {
             try
             {
-                //处理查询参数
+                //處理查詢參數
                 string systems = Request.QueryString["System"];
                 ViewBag.Search = base.keywords;
                 ViewData["System"] = systems;
@@ -33,17 +33,17 @@ namespace WebPage.Areas.SysManage.Controllers
             }
             catch (Exception e)
             {
-                WriteLog(Common.Enums.enumOperator.Select,"模块管理加载主页：",e);
+                WriteLog(Common.Enums.enumOperator.Select, "模組管理載入主頁：", e);
                 throw e.InnerException;
             }
         }
 
         /// <summary>
-        /// 加载模块详情
+        /// 載入模組詳情
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [UserAuthorize(ModuleAlias ="Module",OperaAction = "Detail")]
+        [UserAuthorize(ModuleAlias = "Module", OperaAction = "Detail")]
         public ActionResult Detail(int? id)
         {
             try
@@ -55,7 +55,7 @@ namespace WebPage.Areas.SysManage.Controllers
                     MODULETYPE = 1
                 };
 
-                //父模块
+                //父模組
                 string parentId = Request.QueryString["parentId"];
                 if (!string.IsNullOrEmpty(parentId))
                 {
@@ -65,59 +65,59 @@ namespace WebPage.Areas.SysManage.Controllers
                 {
                     _entity.PARENTID = 0;
                 }
-                //所属系统
+                //所屬系統
                 string sys = Request.QueryString["sys"];
                 if (!string.IsNullOrEmpty(sys))
                 {
                     _entity.FK_BELONGSYSTEM = sys;
                 }
-                //详情
-                if(id != null && id > 0)
+                //詳情
+                if (id != null && id > 0)
                 {
                     _entity = ModuleManage.Get(p => p.ID == id);
                 }
-                //页面类型
+                //頁面類型
                 ViewData["ModuleType"] = Enum.GetNames(typeof(enumModuleType));
-                //加载用户可操作的系统
+                //載入使用者可操作的系統
                 ViewData["Systemlist"] = SystemManage.LoadSystemInfo(CurrentUser.System_Id);
 
                 ViewData["Modules"] = BindList(_entity.FK_BELONGSYSTEM);
 
                 return View(_entity);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                WriteLog(enumOperator.Select, "模块管理加载详情", e);
+                WriteLog(enumOperator.Select, "模組管理載入詳情", e);
                 throw;
             }
         }
 
         /// <summary>
-        /// 保存模块
+        /// 保存模組
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        [UserAuthorize(ModuleAlias ="Module",OperaAction ="Add,Edit")]
+        [UserAuthorize(ModuleAlias = "Module", OperaAction = "Add,Edit")]
         public ActionResult Save(Domain.SYS_MODULE entity)
         {
             bool isEdit = false;
-            var json = new JsonHelper { Msg="保存成功",Status="n" };
+            var json = new JsonHelper { Msg = "保存成功", Status = "n" };
 
 
             try
             {
-                if (entity == null)                
+                if (entity == null)
                 {
-                    json.Msg = "未找到需要保存的模块";
+                    json.Msg = "未找到需要保存的模組";
                     return Json(json);
                 }
-                //验证
+                //驗證
                 if (!Regex.IsMatch(entity.ALIAS, @"^[A-Za-z0-9]{1,20}$"))
                 {
-                    json.Msg = "模块别名只能以字母数字组成，长度不能超过20个字符";
+                    json.Msg = "模組別名只能以字母數位組成，長度不能超過20個字元";
                     return Json(json);
                 }
-                //级别加1，一级模块默认0
+                //級別加1，一級模組預設0
                 if (entity.PARENTID <= 0)
                 {
                     entity.LEVELS = 0;
@@ -140,13 +140,13 @@ namespace WebPage.Areas.SysManage.Controllers
                     entity.UPDATEUSER = this.CurrentUser.Name;
                     isEdit = true;
                 }
-                //模块别名同系统下不能重复
+                //模組別名同系統下不能重複
                 if (this.ModuleManage.IsExist(p => p.FK_BELONGSYSTEM == entity.FK_BELONGSYSTEM && p.ALIAS == entity.ALIAS && p.ID != entity.ID))
                 {
-                    json.Msg = "同系统下模块别名不能重复";
+                    json.Msg = "同系統下模組別名不能重複";
                     return Json(json);
                 }
-                //判断同一个父模块下，是否重名 
+                //判斷同一個父模組下，是否重名 
                 if (!this.ModuleManage.IsExist(p => p.PARENTID == entity.PARENTID && p.FK_BELONGSYSTEM == entity.FK_BELONGSYSTEM && p.NAME == entity.NAME && p.ID != entity.ID))
                 {
 
@@ -157,36 +157,36 @@ namespace WebPage.Areas.SysManage.Controllers
                     }
                     else
                     {
-                        json.Msg = "保存失败";
+                        json.Msg = "保存失敗";
                     }
 
-                    //如果模块修改成功，我们变更下级模块的级别
+                    //如果模組修改成功，我們變更下級模組的級別
                     if (isEdit)
                         ModuleManage.MoreModifyModule(entity.ID, entity.LEVELS);
                 }
                 else
                 {
-                    json.Msg = "模块" + entity.NAME + "已存在，不能重复添加";
-                }               
+                    json.Msg = "模組" + entity.NAME + "已存在，不能重複添加";
+                }
 
-                
+
             }
             catch (Exception e)
             {
-                json.Msg = "保存模块发生内部错误！";
-                WriteLog(Common.Enums.enumOperator.None, "保存模块：", e);
+                json.Msg = "保存模組發生內部錯誤！";
+                WriteLog(Common.Enums.enumOperator.None, "保存模組：", e);
             }
             return Json(json);
         }
         /// <summary>
-        /// 删除模块
+        /// 刪除模組
         /// </summary>
         /// <param name="idList"></param>
         /// <returns></returns>
-        [UserAuthorize(ModuleAlias ="Module",OperaAction ="Remove")]
+        [UserAuthorize(ModuleAlias = "Module", OperaAction = "Remove")]
         public ActionResult Delete(string idList)
         {
-            JsonHelper json = new JsonHelper() { Msg = "删除模块成功", ReUrl = "", Status = "n" };
+            JsonHelper json = new JsonHelper() { Msg = "刪除模組成功", ReUrl = "", Status = "n" };
             try
             {
                 if (!string.IsNullOrEmpty(idList))
@@ -194,10 +194,10 @@ namespace WebPage.Areas.SysManage.Controllers
                     var idlist1 = idList.Trim(',').Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(p => int.Parse(p)).ToList();
 
 
-                    //判断权限里面有没有
+                    //判斷許可權裡面有沒有
                     if (!this.PermissionManage.IsExist(p => idlist1.Any(e => e == p.MODULEID)))
                     {
-                        //存在子模块与否
+                        //存在子模組與否
                         if (!this.ModuleManage.IsExist(p => idlist1.Any(e => e == p.PARENTID)))
                         {
                             this.ModuleManage.Delete(p => idlist1.Any(e => e == p.ID));
@@ -205,35 +205,33 @@ namespace WebPage.Areas.SysManage.Controllers
                         }
                         else
                         {
-                            json.Msg = "该模块下有子模块，不能删除";
+                            json.Msg = "該模組下有子模組，不能刪除";
                         }
                     }
                     else
                     {
-                        json.Msg = "该模块下有权限节点，不能删除";
+                        json.Msg = "該模組下有許可權節點，不能刪除";
                     }
 
                 }
                 else
                 {
-                    json.Msg = "未找到要删除的模块";
+                    json.Msg = "未找到要刪除的模組";
                 }
-                WriteLog(Common.Enums.enumOperator.Remove, "删除模块，结果：" + json.Msg, Common.Enums.enumLog4net.WARN);
+                WriteLog(Common.Enums.enumOperator.Remove, "刪除模組，結果：" + json.Msg, Common.Enums.enumLog4net.WARN);
             }
             catch (Exception e)
             {
-                json.Msg = "删除模块发生内部错误！";
-                WriteLog(Common.Enums.enumOperator.Remove, "删除模块：", e);
+                json.Msg = "刪除模組發生內部錯誤！";
+                WriteLog(Common.Enums.enumOperator.Remove, "刪除模組：", e);
             }
             return Json(json);
         }
-               
-
 
         /// <summary>
-        /// 查询模块列表
+        /// 查詢模組清單
         /// </summary>
-        /// <param name="systems">系统ID</param>
+        /// <param name="systems">系統ID</param>
         /// <returns></returns>
         private object BindList(string systems)
         {
@@ -245,7 +243,7 @@ namespace WebPage.Areas.SysManage.Controllers
             {
                 query = query.Where(p => CurrentUser.System_Id.Any(e => e == p.FK_BELONGSYSTEM));
             }
-            //递归排序
+            //遞迴排序
             var entity = ModuleManage.RecursiveModule(query.ToList())
                 .Select(p => new
                 {
@@ -256,7 +254,7 @@ namespace WebPage.Areas.SysManage.Controllers
                     p.SHOWORDER,
                     p.ICON,
                     MODULETYPE = ((Common.Enums.enumModuleType)p.MODULETYPE).ToString(),
-                    ISSHOW = p.ISSHOW ? "显示":"隐藏",
+                    ISSHOW = p.ISSHOW ? "顯示":"隱藏",
                     p.NAME,
                     SYSNAME = p.SYS_SYSTEM.NAME,
                     p.FK_BELONGSYSTEM

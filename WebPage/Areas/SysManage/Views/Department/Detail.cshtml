@@ -2,7 +2,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @model Domain.SYS_DEPARTMENT
-<style type="text/css">.gray-bg {background-color: white;}</style>
+<style type="text/css">
+    .gray-bg {
+        background-color: white;
+    }
+</style>
 @using (Ajax.BeginForm("Save", null, new AjaxOptions()
                            {
                                HttpMethod = "Post",
@@ -17,14 +21,14 @@
     <div class="wrapper wrapper-content animated fadeInUp">
         <div class="row">
             <div class="ibox-detail-title">
-                <i class="fa fa-pencil-square-o"></i>添加/修改部门
+                <i class="fa fa-pencil-square-o"></i>添加/修改部門
             </div>
             <div class="ibox-content">
                 <div class="form-group">
-                    <label class="col-xs-2 control-label">上级部门：</label>
+                    <label class="col-xs-2 control-label">上級部門：</label>
                     <div class="col-xs-10">
                         <select id="PARENTID" name="PARENTID" class="form-control inline select2">
-                            <option value="" @(Model.PARENTID == "" ? "selected" : "")>一级部门</option>
+                            <option value="" @(Model.PARENTID == "" ? "selected" : "")>一級部門</option>
                             @{
                                 foreach (var item in ViewBag.moduleparent)
                                 {
@@ -37,27 +41,27 @@
                 </div>
                 <div class="hr-line-dashed"></div>
                 <div class="form-group">
-                    <label class="col-xs-2 control-label">部门名称：</label>
+                    <label class="col-xs-2 control-label">部門名稱：</label>
                     <div class="col-xs-10">
-                        @Html.TextBoxFor(p => p.NAME, new { @class = "form-control", @placeholder = "请输入部门名称", @datatype = "*", @nullmsg = "请输入部门名称！", @errormsg = "请输入部门名称！" })
+                        @Html.TextBoxFor(p => p.NAME, new { @class = "form-control", @placeholder = "請輸入部門名稱", @datatype = "*", @nullmsg = "請輸入部門名稱！", @errormsg = "請輸入部門名稱！" })
                     </div>
                 </div>
                 <div class="hr-line-dashed"></div>
                 <div class="form-group">
-                    <label class="col-xs-2 control-label">部门排序：</label>
+                    <label class="col-xs-2 control-label">部門排序：</label>
                     <div class="col-xs-10">
-                        @Html.TextBoxFor(p => p.SHOWORDER, new { @class = "form-control", @id = "modulepath", @placeholder = "请输入部门排序值，正序排列", @datatype = "n", @nullmsg = "请输入部门排序值，正序排列", @errormsg = "只能输入数字" })
+                        @Html.TextBoxFor(p => p.SHOWORDER, new { @class = "form-control", @id = "modulepath", @placeholder = "請輸入部門排序值，正序排列", @datatype = "n", @nullmsg = "請輸入部門排序值，正序排列", @errormsg = "只能輸入數位" })
                     </div>
                 </div>
                 <div class="hr-line-dashed"></div>
                 <div class="text-center">
-                    <button class="btn btn-primary btn-save" type="submit"><i class="fa fa-check"></i> <span>确定保存</span></button>
+                    <button class="btn btn-primary btn-save" type="submit"><i class="fa fa-check"></i> <span>確定保存</span></button>
                     <button class="btn btn-warning" id="btn-dig-close" type="button"><i class="fa fa-reply-all"></i> 取消返回</button>
                 </div>
             </div>
         </div>
     </div>
-}
+                                }
 @section scripts{
     <script type="text/javascript">$(function () {$('.form-horizontal').initValidform();});</script>
 }

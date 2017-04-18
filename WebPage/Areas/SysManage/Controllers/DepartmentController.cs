@@ -15,12 +15,12 @@ namespace WebPage.Areas.SysManage.Controllers
         IDepartmentManage DepartmentManage { get; set; }
 
         /// <summary>
-        /// 岗位管理
+        /// 職位管理
         /// </summary>
         IPostManage PostManage { get; set; }
 
         /// <summary>
-        /// 加载主页
+        /// 載入主頁
         /// </summary>
         [UserAuthorizeAttribute(ModuleAlias = "Department", OperaAction = "View")]
         public ActionResult Index()
@@ -32,13 +32,13 @@ namespace WebPage.Areas.SysManage.Controllers
             }
             catch (Exception e)
             {
-                WriteLog(Common.Enums.enumOperator.Select, "部门管理加载主页：", e);
+                WriteLog(Common.Enums.enumOperator.Select, "部門管理載入主頁：", e);
                 throw e.InnerException;
             }
         }
 
         /// <summary>
-        /// 加载详情页
+        /// 載入詳情頁
         /// </summary>
         [UserAuthorizeAttribute(ModuleAlias = "Department", OperaAction = "Detail")]
         public ActionResult Detail(string id)
@@ -49,7 +49,7 @@ namespace WebPage.Areas.SysManage.Controllers
 
                 ViewBag.moduleparent = this.DepartmentManage.GetDepartmentByDetail();
 
-                //添加子部门
+                //添加子部門
                 string parentId = Request.QueryString["parentId"];
 
                 if (!string.IsNullOrEmpty(parentId))
@@ -64,14 +64,14 @@ namespace WebPage.Areas.SysManage.Controllers
             }
             catch (Exception e)
             {
-                WriteLog(Common.Enums.enumOperator.Select, "部门管理加载详情页：", e);
+                WriteLog(Common.Enums.enumOperator.Select, "部門管理載入詳情頁：", e);
                 throw e.InnerException;
             }
         }
 
 
         /// <summary>
-        /// 保存部门
+        /// 保存部門
         /// </summary>
         [ValidateInput(false)]
         [UserAuthorizeAttribute(ModuleAlias = "Department", OperaAction = "Add,Edit")]
@@ -100,10 +100,10 @@ namespace WebPage.Areas.SysManage.Controllers
                         {
                             entity.CODE = _entity.CODE;
                         }
-                        //获取父级记录
+                        //獲取父級記錄
                         if (string.IsNullOrEmpty(_entity.PARENTID))
                         {
-                            //业务等级
+                            //業務等級
                             entity.BUSINESSLEVEL = 1;
                             entity.PARENTCODE = null;
                         }
@@ -126,12 +126,12 @@ namespace WebPage.Areas.SysManage.Controllers
                         _entity.CREATEPERID = this.CurrentUser.Name;
                         _entity.UPDATEDATE = DateTime.Now;
                         _entity.UPDATEUSER = this.CurrentUser.Name;
-                        //根据上级部门的ID确定当前部门的CODE
+                        //根據上級部門的ID確定當前部門的CODE
                         _entity.CODE = this.DepartmentManage.CreateCode(entity.PARENTID);
-                        //获取父级记录
+                        //獲取父級記錄
                         if (string.IsNullOrEmpty(entity.PARENTID))
                         {
-                            //业务等级
+                            //業務等級
                             entity.BUSINESSLEVEL = 1;
                             entity.PARENTCODE = null;
                         }
@@ -143,7 +143,7 @@ namespace WebPage.Areas.SysManage.Controllers
                         }
                         #endregion
                     }
-                    //判断同一个部门下，是否重名 
+                    //判斷同一個部門下，是否重名 
                     var predicate = PredicateBuilder.True<Domain.SYS_DEPARTMENT>();
                     predicate = predicate.And(p => p.PARENTID == _entity.PARENTID);
                     predicate = predicate.And(p => p.NAME == _entity.NAME);
@@ -156,31 +156,31 @@ namespace WebPage.Areas.SysManage.Controllers
                         }
                         else
                         {
-                            json.Msg = "保存失败";
+                            json.Msg = "保存失敗";
                         }
                     }
                     else
                     {
-                        json.Msg = "部门" + entity.NAME + "已存在，不能重复添加";
+                        json.Msg = "部門" + entity.NAME + "已存在，不能重複添加";
                     }
                 }
                 else
                 {
-                    json.Msg = "未找到需要保存的部门信息";
+                    json.Msg = "未找到需要保存的部門資訊";
                 }
                 if (isEdit)
                 {
-                    WriteLog(Common.Enums.enumOperator.Edit, "修改部门信息，结果：" + json.Msg, Common.Enums.enumLog4net.INFO);
+                    WriteLog(Common.Enums.enumOperator.Edit, "修改部門資訊，結果：" + json.Msg, Common.Enums.enumLog4net.INFO);
                 }
                 else
                 {
-                    WriteLog(Common.Enums.enumOperator.Add, "添加部门信息，结果：" + json.Msg, Common.Enums.enumLog4net.INFO);
+                    WriteLog(Common.Enums.enumOperator.Add, "添加部門資訊，結果：" + json.Msg, Common.Enums.enumLog4net.INFO);
                 }
             }
             catch (Exception e)
             {
-                json.Msg = "保存部门信息发生内部错误！";
-                WriteLog(Common.Enums.enumOperator.None, "保存部门信息：", e);
+                json.Msg = "保存部門資訊發生內部錯誤！";
+                WriteLog(Common.Enums.enumOperator.None, "保存部門資訊：", e);
             }
             return Json(json);
 
@@ -188,21 +188,21 @@ namespace WebPage.Areas.SysManage.Controllers
 
 
         /// <summary>
-        /// 删除部门
+        /// 刪除部門
         /// </summary>
         [UserAuthorizeAttribute(ModuleAlias = "Department", OperaAction = "Remove")]
         public ActionResult Delete(string idList)
         {
-            JsonHelper json = new JsonHelper() { Msg = "删除部门成功", ReUrl = "/Department/Index", Status = "n" };
+            JsonHelper json = new JsonHelper() { Msg = "刪除部門成功", ReUrl = "/Department/Index", Status = "n" };
             try
             {
                 if (!string.IsNullOrEmpty(idList))
                 {
                     idList = idList.TrimEnd(',');
-                    //判断是否有下属部门
+                    //判斷是否有下屬部門
                     if (!this.DepartmentManage.DepartmentIsExists(idList))
                     {
-                        //判断该部门是否有岗位
+                        //判斷該部門是否有職位
                         if (!this.PostManage.IsExist(p => idList.Contains(p.FK_DEPARTID)))
                         {
                             var idList1 = idList.Split(',').ToList();
@@ -211,30 +211,30 @@ namespace WebPage.Areas.SysManage.Controllers
                         }
                         else
                         {
-                            json.Msg = "该部门有岗位信息不能删除";
+                            json.Msg = "該部門有職位資訊不能刪除";
                         }
                     }
                     else
                     {
-                        json.Msg = "该部门有下属部门不能删除";
+                        json.Msg = "該部門有下屬部門不能刪除";
                     }
                 }
                 else
                 {
-                    json.Msg = "未找到要删除的部门记录";
+                    json.Msg = "未找到要刪除的部門記錄";
                 }
-                WriteLog(Common.Enums.enumOperator.Remove, "删除部门：" + json.Msg, Common.Enums.enumLog4net.WARN);
+                WriteLog(Common.Enums.enumOperator.Remove, "刪除部門：" + json.Msg, Common.Enums.enumLog4net.WARN);
             }
             catch (Exception e)
             {
-                json.Msg = "删除部门发生内部错误！";
-                WriteLog(Common.Enums.enumOperator.Remove, "删除部门：", e);
+                json.Msg = "刪除部門發生內部錯誤！";
+                WriteLog(Common.Enums.enumOperator.Remove, "刪除部門：", e);
             }
             return Json(json);
         }
 
         /// <summary>
-        /// 获取部门树形菜单
+        /// 獲取部門樹形功能表
         /// </summary>
         public ActionResult GetTree()
         {
@@ -242,7 +242,7 @@ namespace WebPage.Areas.SysManage.Controllers
 
             try
             {
-                //获取部门列表 按照 SHOWORDER字段 升序排列
+                //獲取部門列表 按照 SHOWORDER欄位 昇冪排列
                 var query = this.DepartmentManage.LoadAll(null).OrderBy(p => p.SHOWORDER).ToList();
                 var result = query.Select(m => new
                 {
@@ -257,22 +257,22 @@ namespace WebPage.Areas.SysManage.Controllers
             catch (Exception e)
             {
                 json.Status = "n";
-                json.Msg = "服务器忙，请稍后再试！";
-                WriteLog(Common.Enums.enumOperator.Select, "权限管理，获取模块树：", e);
+                json.Msg = "伺服器忙，請稍後再試！";
+                WriteLog(Common.Enums.enumOperator.Select, "許可權管理，獲取模組樹：", e);
             }
             return Json(json);
         }
 
 
         /// <summary>
-        /// 分页查询部门列表
+        /// 分頁查詢部門列表
         /// </summary>
         private object BindList()
         {
-            //基础数据
+            //基礎資料
             var query = this.DepartmentManage.LoadAll(null);
 
-            //递归排序（无分页）
+            //遞迴排序（無分頁）
             var result = this.DepartmentManage.RecursiveDepartment(query.ToList())
                 .Select(p => new
                 {
@@ -284,7 +284,7 @@ namespace WebPage.Areas.SysManage.Controllers
                     p.CREATEDATE
                 });
 
-            //查询关键字
+            //查詢關鍵字
             if (!string.IsNullOrEmpty(keywords))
             {
                 result = result.Where(p => p.NAME.Contains(keywords));

@@ -11,12 +11,12 @@
                     if (module != null && module.MODULETYPE > 1)
                     {
                         <div class="ibox-title">
-                            <h5>@(module.NAME) - 权限</h5>                           
+                            <h5>@(module.NAME) - 許可權</h5>
                             <div class="ibox-tools">
-                                <a class="btn btn-info btn-xs p210" id="reset" action="reset"><i class="fa fa-terminal fa-fw"></i> 初始化权限</a>
-                                <a class="btn btn-primary btn-xs p210" id="insert" action="add"><i class="fa fa-plus-circle fa-fw"></i> 创建新权限</a>
-                                <a class="btn btn-warning btn-xs p210" id="modify" action="edit"><i class="fa fa-pencil fa-fw"></i> 编辑</a>
-                                <a class="btn btn-danger btn-xs p210" id="delete" action="remove"><i class="fa fa-trash-o fa-fw"></i> 删除</a>
+                                <a class="btn btn-info btn-xs p210" id="reset" action="reset"><i class="fa fa-terminal fa-fw"></i> 初始化許可權</a>
+                                <a class="btn btn-primary btn-xs p210" id="insert" action="add"><i class="fa fa-plus-circle fa-fw"></i> 創建新許可權</a>
+                                <a class="btn btn-warning btn-xs p210" id="modify" action="edit"><i class="fa fa-pencil fa-fw"></i> 編輯</a>
+                                <a class="btn btn-danger btn-xs p210" id="delete" action="remove"><i class="fa fa-trash-o fa-fw"></i> 刪除</a>
                                 <a class="reload-link" style="color: #c4c4c4" href="javascript:dig.reload()" data-toggle="tooltip" data-placement="left" title="刷新">
                                     <i class="fa fa-repeat fa-lg"></i>
                                 </a>
@@ -24,66 +24,66 @@
                         </div>
                         <div class="ibox-content">
                             @using (Ajax.BeginForm("Index", null, new AjaxOptions() { }, new { @id = "form1", @class = "form-horizontal", @method = "get" }))
-                    {
-                    <div class="row">
-                        <div class="col-sm-9">
-                            @Html.Hidden("moduleId", module.ID)
-                            @Html.Hidden("moduleType", module.MODULETYPE)
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="input-group">
-                                @Html.TextBox("Search", null, new { @class = "input-sm form-control", @placeholder = "请输入查询关键词" })
-                                <span class="input-group-btn">
-                                    <button type="submit" onclick="submit()" class="btn btn-sm btn-primary"> 搜索</button>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    }
+                            {
+                                <div class="row">
+                                    <div class="col-sm-9">
+                                        @Html.Hidden("moduleId", module.ID)
+                                        @Html.Hidden("moduleType", module.MODULETYPE)
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="input-group">
+                                            @Html.TextBox("Search", null, new { @class = "input-sm form-control", @placeholder = "請輸入查詢關鍵字" })
+                                            <span class="input-group-btn">
+                                                <button type="submit" onclick="submit()" class="btn btn-sm btn-primary"> 搜索</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
                             <div class="row">
                                 <table id="dataTable" class="table table-striped table-bordered table-hover dataTables-example" style="text-align:center;">
                                     <thead>
                                         <tr>
                                             <th class="tn" style="width: 50px !important"><input name="checkall" class="icheck_box" type="checkbox" value=""></th>
-                                            <th>权限名称</th>
-                                            <th>权限动作</th>
-                                            <th>图标</th>
-                                            <th>顺序</th>
+                                            <th>許可權名稱</th>
+                                            <th>許可權動作</th>
+                                            <th>圖示</th>
+                                            <th>順序</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @{
-                                    if (Model != null)
-                                    {
-                                @Html.Hidden("percount", Model.Count)
-                                        foreach (var item in Model)
-                                        {
-                                <tr>
-                                    <td class="tn"><input name="checkbox_name" class="icheck_box" type="checkbox" value="@item.ID"></td>
-                                    <td><a href="javascript:modify('@item.ID')" listaction="detail">  @item.NAME</a></td>
-                                    <td>@item.PERVALUE</td>
-                                    <td style="color:#1ab394; "><i class="@item.ICON"></i></td>
-                                    <td>@item.SHOWORDER</td>
-                                </tr>
-                                        }
-                                    }
+                                            if (Model != null)
+                                            {
+                                                @Html.Hidden("percount", Model.Count)
+                                                foreach (var item in Model)
+                                                {
+                                                    <tr>
+                                                        <td class="tn"><input name="checkbox_name" class="icheck_box" type="checkbox" value="@item.ID"></td>
+                                                        <td><a href="javascript:modify('@item.ID')" listaction="detail">  @item.NAME</a></td>
+                                                        <td>@item.PERVALUE</td>
+                                                        <td style="color:#1ab394; "><i class="@item.ICON"></i></td>
+                                                        <td>@item.SHOWORDER</td>
+                                                    </tr>
+                                                }
+                                            }
                                         }
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                    }
-                   
-}
+                                            }
+
+                }
             </div>
         </div>
     </div>
 </div>
 @section scripts{
     <script type="text/javascript">
-        //点击修改
+        //點擊修改
         function modify(n) {
-            dig.addPage('编辑权限', '/Sys/Permission/Detail/' + n, 600, 475, function () {
+            dig.addPage('編輯許可權', '/Sys/Permission/Detail/' + n, 600, 475, function () {
                 if (this.returnValue == 'yes') {
                     location.reload();
                 }
@@ -95,14 +95,14 @@
                 var moduleId = $('#moduleId').val();
                 var moduleType = $('#moduleType').val();
                 if (moduleId == '' || moduleId == undefined) {
-                    dig.error("请先选择模块后再进行添加权限操作！");
+                    dig.error("請先選擇模組後再進行添加許可權操作！");
                     return;
                 }
                 if (moduleType <= 1 || moduleType == '1') {
-                    dig.error("无页面的模块不能添加权限！");
+                    dig.error("無頁面的模組不能添加許可權！");
                     return;
                 }
-                dig.addPage('添加权限', '/Sys/Permission/Detail?moduleId=' + moduleId, 600, 475, function () {
+                dig.addPage('添加許可權', '/Sys/Permission/Detail?moduleId=' + moduleId, 600, 475, function () {
                     if (this.returnValue == 'yes') {
                         location.reload();
                     }
@@ -117,26 +117,26 @@
                     num++;
                 });
                 if (!vals) {
-                    dig.error("对不起，请选中您要操作的记录！");
+                    dig.error("對不起，請選中您要操作的記錄！");
                     return;
                 }
                 if (num > 1) {
-                    dig.error("对不起，每次只能修改一条记录！");
+                    dig.error("對不起，每次只能修改一條記錄！");
                     return;
                 }
-                dig.addPage('编辑权限', '/Sys/Permission/Detail/' + vals, 600, 475, function () {
+                dig.addPage('編輯許可權', '/Sys/Permission/Detail/' + vals, 600, 475, function () {
                     if (this.returnValue == 'yes') {
                         location.reload();
                     }
                 });
             });
-            //初始化权限
+            //初始化許可權
             $('#reset').click(function () {
                 if ($('#percount').val() > 0) {
-                    dig.error("对不起，该模块已存在权限，无法初始化！！");
+                    dig.error("對不起，該模組已存在許可權，無法初始化！！");
                     return;
                 }
-                dig.confirm('确认提示', '您确定要初始化权限吗？', function () {
+                dig.confirm('確認提示', '您確定要初始化許可權嗎？', function () {
                     $.post('/Sys/Permission/Reset/' + $('#moduleId').val(), null, function (result) {
                         if (result.Status == 'y') {
                             dig.successcallback(result.Msg, function () {
@@ -151,4 +151,3 @@
         });
     </script>
 }
-

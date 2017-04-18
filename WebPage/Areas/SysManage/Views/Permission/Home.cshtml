@@ -9,15 +9,15 @@
                 <div class="ibox-content mailbox-content">
                     <div class="file-manager">
                         <select id="sel-system" class="form-control" style="background-color: #1ab394; border-color: #1ab394; color: #FFF;border-radius:3px;">
-                         @{
-                             foreach (var item in ViewData["Systemlist"] as dynamic)
-                             {
-                                <option value="@item.ID">@item.NAME</option>
-                             }
-                          }
+                            @{
+                                foreach (var item in ViewData["Systemlist"] as dynamic)
+                                {
+                                    <option value="@item.ID">@item.NAME</option>
+                                }
+                            }
                         </select>
                         <div class="space-25"></div>
-                        <div id="ModuleTree">                            
+                        <div id="ModuleTree">
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -30,11 +30,11 @@
     </div>
 </div>
 @section scripts{
-<script type="text/javascript" src="/Content/js/jsTree/jstree.min.js"></script>
+    <script type="text/javascript" src="/Content/js/jsTree/jstree.min.js"></script>
     <script type="text/javascript">
         $(function () {
             ShowMoudle();
-            //切换系统
+            //切換系統
             $('#sel-system').change(function () {
                 ShowMoudle();
             });
@@ -64,6 +64,3 @@
         }
     </script>
 }
-
-
-
