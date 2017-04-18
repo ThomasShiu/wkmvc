@@ -2,14 +2,44 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style type="text/css">
-.gray-bg{background-color:#fff}
-.filesPanel>div{display:block;text-align:center;overflow:hidden;padding:15px 0}
-.filesPanel>div:hover{background:#F9F9F9}
-.filesPanel a:focus,.filesPanel a:hover{outline:0;color:#ec4758}
-.filesPanel .icon{margin-bottom:10px}
-.filesPanel .icon i{font-size:35px}
-.filesPanel .filename,.filesPanel .filesize{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.filesPanel .filesize{font-size:12px;color:#A9A1A1}
+    .gray-bg {
+        background-color: #fff;
+    }
+
+    .filesPanel > div {
+        display: block;
+        text-align: center;
+        overflow: hidden;
+        padding: 15px 0;
+    }
+
+        .filesPanel > div:hover {
+            background: #F9F9F9;
+        }
+
+    .filesPanel a:focus, .filesPanel a:hover {
+        outline: 0;
+        color: #ec4758;
+    }
+
+    .filesPanel .icon {
+        margin-bottom: 10px;
+    }
+
+        .filesPanel .icon i {
+            font-size: 35px;
+        }
+
+    .filesPanel .filename, .filesPanel .filesize {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .filesPanel .filesize {
+        font-size: 12px;
+        color: #A9A1A1;
+    }
 </style>
 <div class="wrapper">
     <div class="ibox-content">
@@ -19,7 +49,7 @@
                     <input id="spath" type="hidden" value="@ViewData["spath"]" />
                     <input id="operationfiles" type="hidden" value="@ViewData["Files"]" />
                     <input id="path" type="text" class="form-control" value="/upload/" disabled />
-                    <span class="input-group-btn"><button type="button" class="btn btn-white btn-higher-up" disabled><i class="fa fa-reply-all"></i> 上级目录</button></span>
+                    <span class="input-group-btn"><button type="button" class="btn btn-white btn-higher-up" disabled><i class="fa fa-reply-all"></i> 上級目錄</button></span>
                 </div>
             </div>
             <div class="hr-line-dashed"></div>
@@ -39,17 +69,13 @@
             </div>
             <div class="hr-line-dashed"></div>
             <div class="text-center">
-                <button class="btn btn-primary btn-save" type="button"><i class="fa fa-copy"></i> <span>压缩</span></button>
+                <button class="btn btn-primary btn-save" type="button"><i class="fa fa-copy"></i> <span>壓縮</span></button>
                 <button class="btn btn-warning" id="btn-dig-close" type="button"><i class="fa fa-reply-all"></i> 取消</button>
             </div>
         </div>
     </div>
 </div>
 @section scripts{
-<script type="text/javascript" src="/Content/js/jquery.tmpl.js"></script>
-<script type="text/javascript" src="/Content/js/files/compress.js"></script>
+    <script type="text/javascript" src="/Content/js/jquery.tmpl.js"></script>
+    <script type="text/javascript" src="/Content/js/files/compress.js"></script>
 }
-
-
-
-

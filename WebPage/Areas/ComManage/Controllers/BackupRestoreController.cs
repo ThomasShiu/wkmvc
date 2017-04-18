@@ -16,7 +16,7 @@ namespace WebPage.Areas.ComManage.Controllers
     public class BackupRestoreController : BaseController
     {
         /// <summary>
-        /// 系统备份加载列表
+        /// 系統備份載入清單
         /// </summary>
         /// <returns></returns>
         [UserAuthorizeAttribute(ModuleAlias = "Backup", OperaAction = "View")]
@@ -66,18 +66,18 @@ namespace WebPage.Areas.ComManage.Controllers
                 {
                     FileHelper.DeleteFile(base.Server.MapPath(current));
                 }
-                base.WriteLog(enumOperator.Remove, "删除文件：" + list, enumLog4net.WARN);
+                base.WriteLog(enumOperator.Remove, "刪除檔：" + list, enumLog4net.WARN);
             }
             catch (Exception e)
             {
                 jsonHelper.Status = "err";
-                jsonHelper.Msg = "删除过程中发生错误！";
-                base.WriteLog(enumOperator.Remove, "删除文件发生错误：", e);
+                jsonHelper.Msg = "刪除過程中發生錯誤！";
+                base.WriteLog(enumOperator.Remove, "刪除檔發生錯誤：", e);
             }
             return base.Json(jsonHelper);
         }
         /// <summary>
-        /// 获取备份文件信息
+        /// 獲取備份檔案資訊
         /// </summary>
         /// <returns></returns>
         public ActionResult GetBackUpData()
@@ -90,7 +90,7 @@ namespace WebPage.Areas.ComManage.Controllers
                 if (!FileHelper.IsExistDirectory(Server.MapPath(path)))
                 {
                     jsonM.Status = "n";
-                    jsonM.Msg = "目录不存在！";
+                    jsonM.Msg = "目錄不存在！";
                 }
                 else if (FileHelper.IsEmptyDirectory(Server.MapPath(path)))
                 {
@@ -113,37 +113,37 @@ namespace WebPage.Areas.ComManage.Controllers
             catch (Exception)
             {
                 jsonM.Status = "err";
-                jsonM.Msg = "获取文件失败！";
+                jsonM.Msg = "獲取檔失敗！";
             }
             return Content(JsonConverter.Serialize(jsonM, true));
         }
 
 
         /// <summary>
-        /// 备份程序文件
+        /// 備份程式檔
         /// </summary>
         /// <returns></returns>
         [UserAuthorizeAttribute(ModuleAlias = "Backup", OperaAction = "BackUpApplication")]
         public ActionResult BackUpFiles()
         {
-            var json = new JsonHelper() { Msg = "程序备份完成", Status = "n" };
+            var json = new JsonHelper() { Msg = "程式備份完成", Status = "n" };
 
             try
             {
-                //检查上传的物理路径是否存在，不存在则创建
+                //檢查上傳的物理路徑是否存在，不存在則創建
                 if (!Directory.Exists(Server.MapPath("/App_Data/BackUp/ApplicationBackUp/")))
                 {
                     Directory.CreateDirectory(Server.MapPath("/App_Data/BackUp/ApplicationBackUp/"));
                 }
 
                 ZipHelper.ZipDirectory(Server.MapPath("/"), Server.MapPath("/App_Data/BackUp/ApplicationBackUp/"), "App_" + this.CurrentUser.PinYin + "_" + DateTime.Now.ToString("yyyyMMddHHmmss"), true, new List<string>() { Server.MapPath("/App_Data/") });
-                WriteLog(Common.Enums.enumOperator.None, "程序备份：" + json.Msg, Common.Enums.enumLog4net.WARN);
+                WriteLog(Common.Enums.enumOperator.None, "程式備份：" + json.Msg, Common.Enums.enumLog4net.WARN);
                 json.Status = "y";
             }
             catch (Exception e)
             {
-                json.Msg = "程序备份失败！";
-                WriteLog(Common.Enums.enumOperator.None, "程序备份：", e);
+                json.Msg = "程式備份失敗！";
+                WriteLog(Common.Enums.enumOperator.None, "程式備份：", e);
             }
 
             return Json(json);
@@ -152,22 +152,22 @@ namespace WebPage.Areas.ComManage.Controllers
 
 
         /// <summary>
-        /// 备份数据
+        /// 備份資料
         /// </summary>
         /// <returns></returns>
         [UserAuthorizeAttribute(ModuleAlias = "Backup", OperaAction = "BackUpDataBase")]
         public ActionResult BackUpData()
         {
-            var json = new JsonHelper() { Msg = "数据备份完成", Status = "n" };
+            var json = new JsonHelper() { Msg = "資料備份完成", Status = "n" };
 
             try
             {
-                //检查上传的物理路径是否存在，不存在则创建
+                //檢查上傳的物理路徑是否存在，不存在則創建
                 if (!Directory.Exists(Server.MapPath("/App_Data/BackUp/DataBaseBackUp/")))
                 {
                     Directory.CreateDirectory(Server.MapPath("/App_Data/BackUp/DataBaseBackUp/"));
                 }
-                //备份数据库                
+                //備份資料庫                
                 using (SqlConnection conn = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["SqlConnectionString"].ConnectionString))
                 {
                     var bakPath = Server.MapPath("/App_Data/BackUp/DataBaseBackUp/");
@@ -193,13 +193,13 @@ namespace WebPage.Areas.ComManage.Controllers
                     }
                 }
 
-                WriteLog(Common.Enums.enumOperator.None, "数据备份：" + json.Msg, Common.Enums.enumLog4net.WARN);
+                WriteLog(Common.Enums.enumOperator.None, "資料備份：" + json.Msg, Common.Enums.enumLog4net.WARN);
                 json.Status = "y";
             }
             catch (Exception e)
             {
-                json.Msg = "数据备份失败！";
-                WriteLog(Common.Enums.enumOperator.None, "数据备份：", e);
+                json.Msg = "資料備份失敗！";
+                WriteLog(Common.Enums.enumOperator.None, "資料備份：", e);
             }
 
             return Json(json);
@@ -207,32 +207,32 @@ namespace WebPage.Areas.ComManage.Controllers
 
 
         /// <summary>
-        /// 还原数据
+        /// 還原資料
         /// </summary>
         /// <returns></returns>
         [UserAuthorizeAttribute(ModuleAlias = "Restore", OperaAction = "RestoreData")]
         public ActionResult RestoreData()
         {
-            var json = new JsonHelper() { Msg = "数据还原完成", Status = "n" };
+            var json = new JsonHelper() { Msg = "資料還原完成", Status = "n" };
 
             var path = Request.Form["path"];
 
             try
             {
-                //检查还原备份的物理路径是否存在
+                //檢查還原備份的物理路徑是否存在
                 if (!System.IO.File.Exists(Server.MapPath(path)))
                 {
-                    json.Msg = "还原数据失败，备份文件不存在或已损坏！";
+                    json.Msg = "還原資料失敗，備份檔案不存在或已損壞！";
                     return Json(json);
                 }
-                //还原数据库                
+                //還原資料庫                
                 using (SqlConnection Con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["SqlConnectionString"].ConnectionString))
                 {
 
                     try
                     {
                         Con.Open();
-                        //todo 因怕数据出错，还原未修改
+                        //todo 因怕資料出錯，還原未修改
                         SqlCommand Com = new SqlCommand("use master restore database wkmvc_comnwes  from disk='" + Server.MapPath(path) + "'", Con);
                         Com.ExecuteNonQuery();
                     }
@@ -242,13 +242,13 @@ namespace WebPage.Areas.ComManage.Controllers
                     }
                 }
 
-                WriteLog(Common.Enums.enumOperator.None, "数据还原：" + json.Msg, Common.Enums.enumLog4net.WARN);
+                WriteLog(Common.Enums.enumOperator.None, "資料還原：" + json.Msg, Common.Enums.enumLog4net.WARN);
                 json.Status = "y";
             }
             catch (Exception e)
             {
-                json.Msg = "数据还原失败！";
-                WriteLog(Common.Enums.enumOperator.None, "数据还原：", e);
+                json.Msg = "資料還原失敗！";
+                WriteLog(Common.Enums.enumOperator.None, "資料還原：", e);
             }
 
             return Json(json);

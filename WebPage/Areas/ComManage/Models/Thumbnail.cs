@@ -9,7 +9,7 @@ using System.Net;
 namespace WebPage.Areas.ComManage.Models
 {
     /// <summary>
-    /// 缩略图构造类
+    /// 縮略圖構造類
     /// </summary>
     public class Thumbnail
     {
@@ -17,9 +17,9 @@ namespace WebPage.Areas.ComManage.Models
         private string srcFileName;
 
         /// <summary>
-        /// 创建
+        /// 創建
         /// </summary>
-        /// <param name="FileName">原始图片路径</param>
+        /// <param name="FileName">原始圖片路徑</param>
         public bool SetImage(string FileName)
         {
             srcFileName = Utils.GetMapPath(FileName);
@@ -36,7 +36,7 @@ namespace WebPage.Areas.ComManage.Models
         }
 
         /// <summary>
-        /// 回调
+        /// 回檔
         /// </summary>
         /// <returns></returns>
         public bool ThumbnailCallback()
@@ -45,11 +45,11 @@ namespace WebPage.Areas.ComManage.Models
         }
 
         /// <summary>
-        /// 生成缩略图,返回缩略图的Image对象
+        /// 生成縮略圖,返回縮略圖的Image對象
         /// </summary>
-        /// <param name="Width">缩略图宽度</param>
-        /// <param name="Height">缩略图高度</param>
-        /// <returns>缩略图的Image对象</returns>
+        /// <param name="Width">縮略圖寬度</param>
+        /// <param name="Height">縮略圖高度</param>
+        /// <returns>縮略圖的Image對象</returns>
         public Image GetImage(int Width, int Height)
         {
             Image img;
@@ -59,7 +59,7 @@ namespace WebPage.Areas.ComManage.Models
         }
 
         /// <summary>
-        /// 保存缩略图
+        /// 保存縮略圖
         /// </summary>
         /// <param name="Width"></param>
         /// <param name="Height"></param>
@@ -83,12 +83,12 @@ namespace WebPage.Areas.ComManage.Models
         }
 
         /// <summary>
-        /// 生成缩略图并保存
+        /// 生成縮略圖並保存
         /// </summary>
-        /// <param name="Width">缩略图的宽度</param>
-        /// <param name="Height">缩略图的高度</param>
-        /// <param name="imgformat">保存的图像格式</param>
-        /// <returns>缩略图的Image对象</returns>
+        /// <param name="Width">縮略圖的寬度</param>
+        /// <param name="Height">縮略圖的高度</param>
+        /// <param name="imgformat">保存的圖像格式</param>
+        /// <returns>縮略圖的Image對象</returns>
         public void SaveImage(int Width, int Height, ImageFormat imgformat)
         {
             if (imgformat != ImageFormat.Gif && (srcImage.Width > Width) || (srcImage.Height > Height))
@@ -105,14 +105,14 @@ namespace WebPage.Areas.ComManage.Models
         #region Helper
 
         /// <summary>
-        /// 保存图片
+        /// 保存圖片
         /// </summary>
-        /// <param name="image">Image 对象</param>
-        /// <param name="savePath">保存路径</param>
-        /// <param name="ici">指定格式的编解码参数</param>
+        /// <param name="image">Image 對象</param>
+        /// <param name="savePath">保存路徑</param>
+        /// <param name="ici">指定格式的編解碼參數</param>
         private static void SaveImage(Image image, string savePath, ImageCodecInfo ici)
         {
-            //设置 原图片 对象的 EncoderParameters 对象
+            //設置 原圖片 物件的 EncoderParameters 物件
             EncoderParameters parameters = new EncoderParameters(1);
             parameters.Param[0] = new EncoderParameter(Encoder.Quality, ((long)100));
             image.Save(savePath, ici, parameters);
@@ -120,10 +120,10 @@ namespace WebPage.Areas.ComManage.Models
         }
 
         /// <summary>
-        /// 获取图像编码解码器的所有相关信息
+        /// 獲取圖像編碼解碼器的所有相關資訊
         /// </summary>
-        /// <param name="mimeType">包含编码解码器的多用途网际邮件扩充协议 (MIME) 类型的字符串</param>
-        /// <returns>返回图像编码解码器的所有相关信息</returns>
+        /// <param name="mimeType">包含編碼解碼器的多用途網際郵件擴充協議 (MIME) 類型的字串</param>
+        /// <returns>返回圖像編碼解碼器的所有相關資訊</returns>
         private static ImageCodecInfo GetCodecInfo(string mimeType)
         {
             ImageCodecInfo[] CodecInfo = ImageCodecInfo.GetImageEncoders();
@@ -136,21 +136,21 @@ namespace WebPage.Areas.ComManage.Models
         }
 
         /// <summary>
-        /// 计算新尺寸
+        /// 計算新尺寸
         /// </summary>
-        /// <param name="width">原始宽度</param>
+        /// <param name="width">原始寬度</param>
         /// <param name="height">原始高度</param>
-        /// <param name="maxWidth">最大新宽度</param>
+        /// <param name="maxWidth">最大新寬度</param>
         /// <param name="maxHeight">最大新高度</param>
         /// <returns></returns>
         private static Size ResizeImage(int width, int height, int maxWidth, int maxHeight)
         {
-            //此次2012-02-05修改过=================
+            //此次2012-02-05修改過=================
             if (maxWidth <= 0)
                 maxWidth = width;
             if (maxHeight <= 0)
                 maxHeight = height;
-            //以上2012-02-05修改过=================
+            //以上2012-02-05修改過=================
             decimal MAX_WIDTH = (decimal)maxWidth;
             decimal MAX_HEIGHT = (decimal)maxHeight;
             decimal ASPECT_RATIO = MAX_WIDTH / MAX_HEIGHT;
@@ -185,9 +185,9 @@ namespace WebPage.Areas.ComManage.Models
         }
 
         /// <summary>
-        /// 得到图片格式
+        /// 得到圖片格式
         /// </summary>
-        /// <param name="name">文件名称</param>
+        /// <param name="name">檔案名稱</param>
         /// <returns></returns>
         public static ImageFormat GetFormat(string name)
         {
@@ -210,11 +210,11 @@ namespace WebPage.Areas.ComManage.Models
         #endregion
 
         /// <summary>
-        /// 制作小正方形
+        /// 製作小正方形
         /// </summary>
-        /// <param name="image">图片对象</param>
+        /// <param name="image">圖片物件</param>
         /// <param name="newFileName">新地址</param>
-        /// <param name="newSize">长度或宽度</param>
+        /// <param name="newSize">長度或寬度</param>
         public static void MakeSquareImage(Image image, string newFileName, int newSize)
         {
             int i = 0;
@@ -230,12 +230,12 @@ namespace WebPage.Areas.ComManage.Models
             try
             {
                 Graphics g = Graphics.FromImage(b);
-                //设置高质量插值法
+                //設置高品質插值法
                 g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                //设置高质量,低速度呈现平滑程度
+                //設置高品質,低速度呈現平滑程度
                 g.SmoothingMode = SmoothingMode.AntiAlias;
                 g.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                //清除整个绘图面并以透明背景色填充
+                //清除整個繪圖面並以透明背景色填充
                 g.Clear(Color.Transparent);
                 if (width < height)
                     g.DrawImage(image, new Rectangle(0, 0, newSize, newSize), new Rectangle(0, (height - width) / 2, width, width), GraphicsUnit.Pixel);
@@ -252,22 +252,22 @@ namespace WebPage.Areas.ComManage.Models
         }
 
         /// <summary>
-        /// 制作小正方形
+        /// 製作小正方形
         /// </summary>
-        /// <param name="fileName">图片文件名</param>
+        /// <param name="fileName">圖片檔案名</param>
         /// <param name="newFileName">新地址</param>
-        /// <param name="newSize">长度或宽度</param>
+        /// <param name="newSize">長度或寬度</param>
         public static void MakeSquareImage(string fileName, string newFileName, int newSize)
         {
             MakeSquareImage(Image.FromFile(fileName), newFileName, newSize);
         }
 
         /// <summary>
-        /// 制作远程小正方形
+        /// 製作遠程小正方形
         /// </summary>
-        /// <param name="url">图片url</param>
+        /// <param name="url">圖片url</param>
         /// <param name="newFileName">新地址</param>
-        /// <param name="newSize">长度或宽度</param>
+        /// <param name="newSize">長度或寬度</param>
         public static void MakeRemoteSquareImage(string url, string newFileName, int newSize)
         {
             Stream stream = GetRemoteImage(url);
@@ -279,11 +279,11 @@ namespace WebPage.Areas.ComManage.Models
         }
 
         /// <summary>
-        /// 制作缩略图
+        /// 製作縮略圖
         /// </summary>
-        /// <param name="original">图片对象</param>
-        /// <param name="newFileName">新图路径</param>
-        /// <param name="maxWidth">最大宽度</param>
+        /// <param name="original">圖片物件</param>
+        /// <param name="newFileName">新圖路徑</param>
+        /// <param name="maxWidth">最大寬度</param>
         /// <param name="maxHeight">最大高度</param>
         public static void MakeThumbnailImage(Image original, string newFileName, int maxWidth, int maxHeight)
         {
@@ -306,15 +306,15 @@ namespace WebPage.Areas.ComManage.Models
         }
 
         /// <summary>
-        /// 制作缩略图
+        /// 製作縮略圖
         /// </summary>
-        /// <param name="fileName">文件名</param>
-        /// <param name="newFileName">新图路径</param>
-        /// <param name="maxWidth">最大宽度</param>
+        /// <param name="fileName">檔案名</param>
+        /// <param name="newFileName">新圖路徑</param>
+        /// <param name="maxWidth">最大寬度</param>
         /// <param name="maxHeight">最大高度</param>
         public static void MakeThumbnailImage(string fileName, string newFileName, int maxWidth, int maxHeight)
         {
-            //2012-02-05修改过，支持替换
+            //2012-02-05修改過，支持替換
             byte[] imageBytes = File.ReadAllBytes(fileName);
             Image img = Image.FromStream(new System.IO.MemoryStream(imageBytes));
             if (img.Width > maxWidth)
@@ -325,15 +325,15 @@ namespace WebPage.Areas.ComManage.Models
             //MakeThumbnailImage(Image.FromFile(fileName), newFileName, maxWidth, maxHeight);
         }
 
-        #region 2012-2-19 新增生成图片缩略图方法
+        #region 2012-2-19 新增生成圖片縮略圖方法
         /// <summary>
-        /// 生成缩略图
+        /// 生成縮略圖
         /// </summary>
-        /// <param name="fileName">源图路径（绝对路径）</param>
-        /// <param name="newFileName">缩略图路径（绝对路径）</param>
-        /// <param name="width">缩略图宽度</param>
-        /// <param name="height">缩略图高度</param>
-        /// <param name="mode">生成缩略图的方式</param>    
+        /// <param name="fileName">源圖路徑（絕對路徑）</param>
+        /// <param name="newFileName">縮略圖路徑（絕對路徑）</param>
+        /// <param name="width">縮略圖寬度</param>
+        /// <param name="height">縮略圖高度</param>
+        /// <param name="mode">生成縮略圖的方式</param>    
         public static bool MakeThumbnailImage(string fileName, string newFileName, int width, int height, string mode)
         {
             Image originalImage = Image.FromFile(fileName);
@@ -349,15 +349,15 @@ namespace WebPage.Areas.ComManage.Models
             {
                 switch (mode)
                 {
-                    case "HW"://指定高宽缩放（可能变形）                
+                    case "HW"://指定高寬縮放（可能變形）                
                         break;
-                    case "W"://指定宽，高按比例                    
+                    case "W"://指定寬，高按比例                    
                         toheight = originalImage.Height * width / originalImage.Width;
                         break;
-                    case "H"://指定高，宽按比例
+                    case "H"://指定高，寬按比例
                         towidth = originalImage.Width * height / originalImage.Height;
                         break;
-                    case "Cut"://指定高宽裁减（不变形）                
+                    case "Cut"://指定高寬裁減（不變形）                
                         if ((double)originalImage.Width / (double)originalImage.Height > (double)towidth / (double)toheight)
                         {
                             oh = originalImage.Height;
@@ -377,20 +377,20 @@ namespace WebPage.Areas.ComManage.Models
                         break;
                 }
 
-                //新建一个bmp图片
+                //新建一個bmp圖片
                 Bitmap b = new Bitmap(towidth, toheight);
                 try
                 {
-                    //新建一个画板
+                    //新建一個畫板
                     Graphics g = Graphics.FromImage(b);
-                    //设置高质量插值法
+                    //設置高品質插值法
                     g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                    //设置高质量,低速度呈现平滑程度
+                    //設置高品質,低速度呈現平滑程度
                     g.SmoothingMode = SmoothingMode.AntiAlias;
                     g.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                    //清空画布并以透明背景色填充
+                    //清空畫布並以透明背景色填充
                     g.Clear(Color.Transparent);
-                    //在指定位置并且按指定大小绘制原图片的指定部分
+                    //在指定位置並且按指定大小繪製原圖片的指定部分
                     g.DrawImage(originalImage, new Rectangle(0, 0, towidth, toheight), new Rectangle(x, y, ow, oh), GraphicsUnit.Pixel);
 
                     SaveImage(b, newFileName, GetCodecInfo("image/" + GetFormat(newFileName).ToString().ToLower()));
@@ -414,18 +414,18 @@ namespace WebPage.Areas.ComManage.Models
         }
         #endregion
 
-        #region 2012-10-30 新增图片裁剪方法
+        #region 2012-10-30 新增圖片裁剪方法
         /// <summary>
-        /// 裁剪图片并保存
+        /// 裁剪圖片並保存
         /// </summary>
-        /// <param name="fileName">源图路径（绝对路径）</param>
-        /// <param name="newFileName">缩略图路径（绝对路径）</param>
-        /// <param name="maxWidth">缩略图宽度</param>
-        /// <param name="maxHeight">缩略图高度</param>
-        /// <param name="cropWidth">裁剪宽度</param>
+        /// <param name="fileName">源圖路徑（絕對路徑）</param>
+        /// <param name="newFileName">縮略圖路徑（絕對路徑）</param>
+        /// <param name="maxWidth">縮略圖寬度</param>
+        /// <param name="maxHeight">縮略圖高度</param>
+        /// <param name="cropWidth">裁剪寬度</param>
         /// <param name="cropHeight">裁剪高度</param>
-        /// <param name="X">X轴</param>
-        /// <param name="Y">Y轴</param>
+        /// <param name="X">X軸</param>
+        /// <param name="Y">Y軸</param>
         public static bool MakeThumbnailImage(string fileName, string newFileName, int maxWidth, int maxHeight, int cropWidth, int cropHeight, int X, int Y)
         {
             byte[] imageBytes = File.ReadAllBytes(fileName);
@@ -435,14 +435,14 @@ namespace WebPage.Areas.ComManage.Models
             {
                 using (Graphics g = Graphics.FromImage(b))
                 {
-                    //设置高质量插值法
+                    //設置高品質插值法
                     g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                    //设置高质量,低速度呈现平滑程度
+                    //設置高品質,低速度呈現平滑程度
                     g.SmoothingMode = SmoothingMode.AntiAlias;
                     g.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                    //清空画布并以透明背景色填充
+                    //清空畫布並以透明背景色填充
                     g.Clear(Color.Transparent);
-                    //在指定位置并且按指定大小绘制原图片的指定部分
+                    //在指定位置並且按指定大小繪製原圖片的指定部分
                     g.DrawImage(originalImage, new Rectangle(0, 0, cropWidth, cropWidth), X, Y, cropWidth, cropHeight, GraphicsUnit.Pixel);
                     Image displayImage = new Bitmap(b, maxWidth, maxHeight);
                     SaveImage(displayImage, newFileName, GetCodecInfo("image/" + GetFormat(newFileName).ToString().ToLower()));
@@ -462,11 +462,11 @@ namespace WebPage.Areas.ComManage.Models
         #endregion
 
         /// <summary>
-        /// 制作远程缩略图
+        /// 製作遠程縮略圖
         /// </summary>
-        /// <param name="url">图片URL</param>
-        /// <param name="newFileName">新图路径</param>
-        /// <param name="maxWidth">最大宽度</param>
+        /// <param name="url">圖片URL</param>
+        /// <param name="newFileName">新圖路徑</param>
+        /// <param name="maxWidth">最大寬度</param>
         /// <param name="maxHeight">最大高度</param>
         public static void MakeRemoteThumbnailImage(string url, string newFileName, int maxWidth, int maxHeight)
         {
@@ -479,9 +479,9 @@ namespace WebPage.Areas.ComManage.Models
         }
 
         /// <summary>
-        /// 获取图片流
+        /// 獲取圖片流
         /// </summary>
-        /// <param name="url">图片URL</param>
+        /// <param name="url">圖片URL</param>
         /// <returns></returns>
         private static Stream GetRemoteImage(string url)
         {
@@ -503,19 +503,19 @@ namespace WebPage.Areas.ComManage.Models
         }
     }
     /// <summary>
-    /// 水印构造类
+    /// 浮水印構造類
     /// </summary>
     public class WaterMark
     {
         /// <summary>
-        /// 图片水印
+        /// 圖片浮水印
         /// </summary>
-        /// <param name="imgPath">服务器图片相对路径</param>
-        /// <param name="filename">保存文件名</param>
-        /// <param name="watermarkFilename">水印文件相对路径</param>
-        /// <param name="watermarkStatus">图片水印位置 0=不使用 1=左上 2=中上 3=右上 4=左中  9=右下</param>
-        /// <param name="quality">附加水印图片质量,0-100</param>
-        /// <param name="watermarkTransparency">水印的透明度 1--10 10为不透明</param>
+        /// <param name="imgPath">伺服器圖片相對路徑</param>
+        /// <param name="filename">保存檔案名</param>
+        /// <param name="watermarkFilename">浮水印檔相對路徑</param>
+        /// <param name="watermarkStatus">圖片浮水印位置 0=不使用 1=左上 2=中上 3=右上 4=左中  9=右下</param>
+        /// <param name="quality">附加浮水印圖片品質,0-100</param>
+        /// <param name="watermarkTransparency">浮水印的透明度 1--10 10為不透明</param>
         public static void AddImageSignPic(string imgPath, string filename, string watermarkFilename, int watermarkStatus, int quality, int watermarkTransparency)
         {
             if (!File.Exists(Utils.GetMapPath(imgPath)))
@@ -530,9 +530,9 @@ namespace WebPage.Areas.ComManage.Models
             if (!File.Exists(watermarkFilename))
                 return;
             Graphics g = Graphics.FromImage(img);
-            //设置高质量插值法
+            //設置高品質插值法
             //g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
-            //设置高质量,低速度呈现平滑程度
+            //設置高品質,低速度呈現平滑程度
             //g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             Image watermark = new Bitmap(watermarkFilename);
 
@@ -639,15 +639,15 @@ namespace WebPage.Areas.ComManage.Models
         }
 
         /// <summary>
-        /// 文字水印
+        /// 文字浮水印
         /// </summary>
-        /// <param name="imgPath">服务器图片相对路径</param>
-        /// <param name="filename">保存文件名</param>
-        /// <param name="watermarkText">水印文字</param>
-        /// <param name="watermarkStatus">图片水印位置 0=不使用 1=左上 2=中上 3=右上 4=左中  9=右下</param>
-        /// <param name="quality">附加水印图片质量,0-100</param>
-        /// <param name="fontname">字体</param>
-        /// <param name="fontsize">字体大小</param>
+        /// <param name="imgPath">伺服器圖片相對路徑</param>
+        /// <param name="filename">保存檔案名</param>
+        /// <param name="watermarkText">浮水印文字</param>
+        /// <param name="watermarkStatus">圖片浮水印位置 0=不使用 1=左上 2=中上 3=右上 4=左中  9=右下</param>
+        /// <param name="quality">附加浮水印圖片品質,0-100</param>
+        /// <param name="fontname">字體</param>
+        /// <param name="fontsize">字體大小</param>
         public static void AddImageSignText(string imgPath, string filename, string watermarkText, int watermarkStatus, int quality, string fontname, int fontsize)
         {
             byte[] _ImageBytes = File.ReadAllBytes(Utils.GetMapPath(imgPath));

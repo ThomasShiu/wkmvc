@@ -16,21 +16,21 @@ namespace WebPage.Areas.SysManage.Controllers
 {
     public class BussinessCustomerController : BaseController
     {
-        #region 声明容器
+        #region 聲明容器
         /// <summary>
-        /// 公司客户管理
+        /// 公司客戶管理
         /// </summary>
         IBussinessCustomerManage BussinessCustomerManage { get; set; }
         /// <summary>
-        /// 省市区管理
+        /// 省市區管理
         /// </summary>
         ICodeAreaManage CodeAreaManage { get; set; }
         /// <summary>
-        /// 大数据字段管理
+        /// 大資料欄位管理
         /// </summary>
         IContentManage ContentManage { get; set; }
         /// <summary>
-        /// 编码管理
+        /// 編碼管理
         /// </summary>
         ICodeManage CodeManage { get; set; }
         #endregion
@@ -38,7 +38,7 @@ namespace WebPage.Areas.SysManage.Controllers
 
 
         /// <summary>
-        /// 客户管理加载主页
+        /// 客戶管理載入主頁
         /// </summary>
         /// <returns></returns>
         [UserAuthorizeAttribute(ModuleAlias = "BussinessCustomer", OperaAction = "View")]
@@ -47,58 +47,58 @@ namespace WebPage.Areas.SysManage.Controllers
             try
             {
 
-                #region 处理查询参数
+                #region 處理查詢參數
                 //接收省份
                 string Province = Request.QueryString["Province"];
                 ViewData["Province"] = Province;
-                //接收客户类型
+                //接收客戶類型
                 string CustomerStyle = Request.QueryString["CustomerStyle"];
                 ViewData["CustomerStyle"] = CustomerStyle;
-                //文本框输入查询关键字
+                //文字方塊輸入查詢關鍵字
                 ViewBag.Search = base.keywords;
                 #endregion
 
                 ViewData["ProvinceList"] = CodeAreaManage.LoadListAll(p => p.LEVELS == 1);
                 ViewBag.KHLX = this.CodeManage.LoadAll(p => p.CODETYPE == "LXRLX").OrderBy(p => p.SHOWORDER).ToList();
 
-                //输出客户分页列表
+                //輸出客戶分頁清單
                 return View(BindList(Province, CustomerStyle));
             }
             catch (Exception e)
             {
-                WriteLog(Common.Enums.enumOperator.Select, "客户管理加载主页：", e);
+                WriteLog(Common.Enums.enumOperator.Select, "客戶管理載入主頁：", e);
                 throw e.InnerException;
             }
         }
-        #region 帮助方法及其他控制器调用
+        #region 幫助方法及其他控制器調用
         /// <summary>
-        /// 分页查询公司客户列表
+        /// 分頁查詢公司客戶清單
         /// </summary>
         private Common.PageInfo BindList(string Province, string CustomerStyle)
         {
-            //基础数据（缓存）
+            //基礎資料（緩存）
             var query = this.BussinessCustomerManage.LoadAll(null);
 
-            //非超级管理员只允许查看用户所在部门客户
+            //非超級管理員只允許查看使用者所在部門客戶
             if (!CurrentUser.IsAdmin)
             {
                 query = query.Where(p => p.Fk_DepartId == CurrentUser.DptInfo.ID);
             }
 
-            //客户所在省份
+            //客戶所在省份
             if (!string.IsNullOrEmpty(Province))
             {
                 query = query.Where(p => p.CompanyProvince == Province);
             }
 
-            //客户类型
+            //客戶類型
             if (!string.IsNullOrEmpty(CustomerStyle))
             {
                 int styleId = int.Parse(CustomerStyle);
                 query = query.Where(p => p.CustomerStyle == styleId);
             }
 
-            //查询关键字
+            //查詢關鍵字
             if (!string.IsNullOrEmpty(keywords))
             {
                 keywords = keywords.ToLower();
@@ -106,7 +106,7 @@ namespace WebPage.Areas.SysManage.Controllers
             }
             //排序
             query = query.OrderByDescending(p => p.UpdateDate).OrderByDescending(p => p.ID);
-            //分页
+            //分頁
             var result = this.BussinessCustomerManage.Query(query, page, pagesize);
 
             var list = result.List.Select(p => new
@@ -143,25 +143,25 @@ namespace WebPage.Areas.SysManage.Controllers
         }
 
         /// <summary>
-        /// 加载详情
+        /// 載入詳情
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         [UserAuthorizeAttribute(ModuleAlias = "BussinessCustomer", OperaAction = "Detail")]
         public ActionResult Detail(int? id)
         {
-            //初始化客户
+            //初始化客戶
             var entity = new Domain.SYS_BUSSINESSCUSTOMER() { ChargePersionSex = 1 };
 
             if (id != null && id > 0)
             {
-                //客户实体
+                //客戶實體
                 entity = BussinessCustomerManage.Get(p => p.ID == id);
-                //公司介绍
+                //公司介紹
                 ViewData["CompanyInstroduce"] = ContentManage.Get(p => p.FK_RELATIONID == entity.FK_RELATIONID && p.FK_TABLE == "SYS_BUSSINESSCUSTOMER") ?? new Domain.COM_CONTENT();
             }
 
-            //客户类型
+            //客戶類型
             ViewBag.KHLX = this.CodeManage.LoadAll(p => p.CODETYPE == "LXRLX").OrderBy(p => p.SHOWORDER).ToList();
 
             return View(entity);
@@ -171,7 +171,7 @@ namespace WebPage.Areas.SysManage.Controllers
 
 
         /// <summary>
-        /// 保存客户信息
+        /// 保存客戶資訊
         /// </summary>
         [ValidateInput(false)]
         [UserAuthorizeAttribute(ModuleAlias = "BussinessCustomer", OperaAction = "Add,Edit")]
@@ -184,7 +184,7 @@ namespace WebPage.Areas.SysManage.Controllers
             {
                 if (entity != null)
                 {
-                    //公司简介数据ID
+                    //公司簡介資料ID
                     var contentId = Request["ContentId"] == null ? 0 : Int32.Parse(Request["ContentId"].ToString());
 
                     if (entity.ID <= 0) //添加
@@ -205,7 +205,7 @@ namespace WebPage.Areas.SysManage.Controllers
                         entity.UpdateDate = DateTime.Now;
                         isEdit = true;
                     }
-                    //同部门下 客户名称不能重复
+                    //同部門下 客戶名稱不能重複
                     if (!this.BussinessCustomerManage.IsExist(p => p.CompanyName.Equals(entity.CompanyName) && p.ID != entity.ID && p.Fk_DepartId == entity.Fk_DepartId))
                     {
                         using (TransactionScope ts = new TransactionScope())
@@ -244,41 +244,41 @@ namespace WebPage.Areas.SysManage.Controllers
                             }
                             catch (Exception e)
                             {
-                                json.Msg = "保存客户信息发生内部错误！";
-                                WriteLog(Common.Enums.enumOperator.None, "保存客户错误：", e);
+                                json.Msg = "保存客戶資訊發生內部錯誤！";
+                                WriteLog(Common.Enums.enumOperator.None, "保存客戶錯誤：", e);
                             }
 
                         }
                     }
                     else
                     {
-                        json.Msg = "客户已经存在，请不要重复添加!";
+                        json.Msg = "客戶已經存在，請不要重複添加!";
                     }
                 }
                 else
                 {
-                    json.Msg = "未找到要操作的客户记录";
+                    json.Msg = "未找到要操作的客戶記錄";
                 }
                 if (isEdit)
                 {
-                    WriteLog(Common.Enums.enumOperator.Edit, "修改客户[" + entity.CompanyName + "]，结果：" + json.Msg, Common.Enums.enumLog4net.INFO);
+                    WriteLog(Common.Enums.enumOperator.Edit, "修改客戶[" + entity.CompanyName + "]，結果：" + json.Msg, Common.Enums.enumLog4net.INFO);
                 }
                 else
                 {
-                    WriteLog(Common.Enums.enumOperator.Add, "添加客户[" + entity.CompanyName + "]，结果：" + json.Msg, Common.Enums.enumLog4net.INFO);
+                    WriteLog(Common.Enums.enumOperator.Add, "添加客戶[" + entity.CompanyName + "]，結果：" + json.Msg, Common.Enums.enumLog4net.INFO);
                 }
             }
             catch (Exception e)
             {
-                json.Msg = "保存客户信息发生内部错误！";
-                WriteLog(Common.Enums.enumOperator.None, "保存客户错误：", e);
+                json.Msg = "保存客戶資訊發生內部錯誤！";
+                WriteLog(Common.Enums.enumOperator.None, "保存客戶錯誤：", e);
             }
             return Json(json);
 
         }
 
         /// <summary>
-        /// 客户信息
+        /// 客戶資訊
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -291,18 +291,18 @@ namespace WebPage.Areas.SysManage.Controllers
         }
 
         /// <summary>
-        /// 删除客户
-        /// 删除原则：1、删除客户信息
-        ///           2、删除客户公司简介数据
+        /// 刪除客戶
+        /// 刪除原則：1、刪除客戶資訊
+        ///           2、刪除客戶公司簡介資料
         /// </summary>
         [UserAuthorizeAttribute(ModuleAlias = "User", OperaAction = "Remove")]
         public ActionResult Delete(string idList)
         {
-            var json = new JsonHelper() { Status = "n", Msg = "删除客户成功" };
+            var json = new JsonHelper() { Status = "n", Msg = "刪除客戶成功" };
             try
             {
-                //是否为空
-                if (string.IsNullOrEmpty(idList)) { json.Msg = "未找到要删除的客户"; return Json(json); }
+                //是否為空
+                if (string.IsNullOrEmpty(idList)) { json.Msg = "未找到要刪除的客戶"; return Json(json); }
 
                 var id = idList.Trim(',').Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(p => int.Parse(p)).ToList();
 
@@ -312,30 +312,30 @@ namespace WebPage.Areas.SysManage.Controllers
                     {
                         foreach (var item in id)
                         {
-                            //删除客户公司简介
+                            //刪除客戶公司簡介
                             var entity = BussinessCustomerManage.Get(p => p.ID == item);
                             ContentManage.Delete(p => p.FK_RELATIONID == entity.FK_RELATIONID && p.FK_TABLE == "SYS_BUSSINESSCUSTOMER");
                         }
-                        //删除客户信息
+                        //刪除客戶資訊
                         BussinessCustomerManage.Delete(p => id.Contains(p.ID));
 
-                        WriteLog(Common.Enums.enumOperator.Remove, "删除客户：" + json.Msg, Common.Enums.enumLog4net.WARN);
+                        WriteLog(Common.Enums.enumOperator.Remove, "刪除客戶：" + json.Msg, Common.Enums.enumLog4net.WARN);
 
                         ts.Complete();
 
                     }
                     catch (Exception e)
                     {
-                        json.Msg = "删除客户发生内部错误！";
-                        WriteLog(Common.Enums.enumOperator.Remove, "删除客户：", e);
+                        json.Msg = "刪除客戶發生內部錯誤！";
+                        WriteLog(Common.Enums.enumOperator.Remove, "刪除客戶：", e);
                     }
 
                 }
             }
             catch (Exception e)
             {
-                json.Msg = "删除客户发生内部错误！";
-                WriteLog(Common.Enums.enumOperator.Remove, "删除客户：", e);
+                json.Msg = "刪除客戶發生內部錯誤！";
+                WriteLog(Common.Enums.enumOperator.Remove, "刪除客戶：", e);
             }
             return Json(json);
         }

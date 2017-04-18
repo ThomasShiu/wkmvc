@@ -15,9 +15,9 @@ namespace WebPage.Areas.ComManage.Controllers
 {
     public class UploadController : BaseController
     {
-        IUploadManage UploadManage{get;set;}
+        IUploadManage UploadManage { get; set; }
         /// <summary>
-        /// 文件管理默认页面
+        /// 檔管理預設頁面
         /// </summary>
         /// <returns></returns>
         [UserAuthorizeAttribute(ModuleAlias = "Files", OperaAction = "View")]
@@ -29,7 +29,7 @@ namespace WebPage.Areas.ComManage.Controllers
         }
 
         /// <summary>
-        /// 通过路径获取所有文件
+        /// 通過路徑獲取所有檔
         /// </summary>
         /// <returns></returns>
         public ActionResult GetAllFileData()
@@ -74,14 +74,14 @@ namespace WebPage.Areas.ComManage.Controllers
             catch (Exception e)
             {
                 jsonM.Status = "err";
-                jsonM.Msg = "获取文件失败！";
+                jsonM.Msg = "獲取檔失敗！";
             }
             return Content(JsonConverter.Serialize(jsonM, true));
         }
 
 
         /// <summary>
-        /// 删除文件或文件夹
+        /// 刪除檔或資料夾
         /// </summary>
         /// <returns></returns>
         [UserAuthorizeAttribute(ModuleAlias = "Files", OperaAction = "Remove")]
@@ -94,17 +94,17 @@ namespace WebPage.Areas.ComManage.Controllers
 
                 foreach (var file in path)
                 {
-                    //删除文件
+                    //刪除檔
                     FileHelper.DeleteFile(Server.MapPath(file));
                 }
 
-                WriteLog(Common.Enums.enumOperator.Remove, "删除文件：" + path, Common.Enums.enumLog4net.WARN);
+                WriteLog(Common.Enums.enumOperator.Remove, "刪除檔：" + path, Common.Enums.enumLog4net.WARN);
             }
             catch (Exception ex)
             {
                 jsonM.Status = "err";
-                jsonM.Msg = "删除过程中发生错误！";
-                WriteLog(Common.Enums.enumOperator.Remove, "删除文件发生错误：", ex);
+                jsonM.Msg = "刪除過程中發生錯誤！";
+                WriteLog(Common.Enums.enumOperator.Remove, "刪除檔發生錯誤：", ex);
             }
             return Json(jsonM);
         }
@@ -112,7 +112,7 @@ namespace WebPage.Areas.ComManage.Controllers
 
 
         /// <summary>
-        /// 复制文件到文件夹
+        /// 複製檔到資料夾
         /// </summary>
         /// <returns></returns>
         [UserAuthorizeAttribute(ModuleAlias = "Files", OperaAction = "Copy")]
@@ -125,7 +125,7 @@ namespace WebPage.Areas.ComManage.Controllers
         [UserAuthorizeAttribute(ModuleAlias = "Files", OperaAction = "Copy")]
         public ActionResult CopyFiles()
         {
-            var json = new JsonHelper() { Msg = "复制文件完成", Status = "n" };
+            var json = new JsonHelper() { Msg = "複製檔完成", Status = "n" };
 
             try
             {
@@ -135,13 +135,13 @@ namespace WebPage.Areas.ComManage.Controllers
                 {
                     FileHelper.Copy(Server.MapPath(file), Server.MapPath(path) + FileHelper.GetFileName(Server.MapPath(file)));
                 }
-                WriteLog(Common.Enums.enumOperator.None, "复制文件：" + Request.Form["files"].Trim(';') + "，结果：" + json.Msg, Common.Enums.enumLog4net.WARN);
+                WriteLog(Common.Enums.enumOperator.None, "複製檔：" + Request.Form["files"].Trim(';') + "，結果：" + json.Msg, Common.Enums.enumLog4net.WARN);
                 json.Status = "y";
             }
             catch (Exception e)
             {
-                json.Msg = "复制文件失败！";
-                WriteLog(Common.Enums.enumOperator.None, "复制文件：", e);
+                json.Msg = "複製檔失敗！";
+                WriteLog(Common.Enums.enumOperator.None, "複製檔：", e);
             }
 
             return Json(json);
@@ -149,7 +149,7 @@ namespace WebPage.Areas.ComManage.Controllers
 
 
         /// <summary>
-        /// 移动文件到文件夹
+        /// 移動文件到資料夾
         /// </summary>
         /// <returns></returns>
         [UserAuthorizeAttribute(ModuleAlias = "Files", OperaAction = "Cut")]
@@ -162,7 +162,7 @@ namespace WebPage.Areas.ComManage.Controllers
         [UserAuthorizeAttribute(ModuleAlias = "Files", OperaAction = "Cut")]
         public ActionResult CutFiles()
         {
-            var json = new JsonHelper() { Msg = "移动文件完成", Status = "n" };
+            var json = new JsonHelper() { Msg = "移動檔完成", Status = "n" };
 
             try
             {
@@ -172,13 +172,13 @@ namespace WebPage.Areas.ComManage.Controllers
                 {
                     FileHelper.Move(Server.MapPath(file), Server.MapPath(path));
                 }
-                WriteLog(Common.Enums.enumOperator.None, "移动文件：" + Request.Form["files"].Trim(';') + "，结果：" + json.Msg, Common.Enums.enumLog4net.WARN);
+                WriteLog(Common.Enums.enumOperator.None, "移動文件：" + Request.Form["files"].Trim(';') + "，結果：" + json.Msg, Common.Enums.enumLog4net.WARN);
                 json.Status = "y";
             }
             catch (Exception e)
             {
-                json.Msg = "移动文件失败！";
-                WriteLog(Common.Enums.enumOperator.None, "移动文件：", e);
+                json.Msg = "移動檔失敗！";
+                WriteLog(Common.Enums.enumOperator.None, "移動文件：", e);
             }
 
             return Json(json);
@@ -186,7 +186,7 @@ namespace WebPage.Areas.ComManage.Controllers
 
 
         /// <summary>
-        /// 压缩文件
+        /// 壓縮檔
         /// </summary>
         /// <returns></returns>
         [UserAuthorizeAttribute(ModuleAlias = "Files", OperaAction = "Compress")]
@@ -199,7 +199,7 @@ namespace WebPage.Areas.ComManage.Controllers
         [UserAuthorizeAttribute(ModuleAlias = "Files", OperaAction = "Compress")]
         public ActionResult CompressFiles()
         {
-            var json = new JsonHelper() { Msg = "压缩文件完成", Status = "n" };
+            var json = new JsonHelper() { Msg = "壓縮檔完成", Status = "n" };
 
             try
             {
@@ -210,20 +210,20 @@ namespace WebPage.Areas.ComManage.Controllers
                     ZipHelper.ZipFile(Server.MapPath(file), Server.MapPath(path));
                 }
                 //ZipHelper.ZipDirectory(Server.MapPath("/upload/files/"), Server.MapPath(path));
-                WriteLog(Common.Enums.enumOperator.None, "压缩文件：" + Request.Form["files"].Trim(';') + "，结果：" + json.Msg, Common.Enums.enumLog4net.WARN);
+                WriteLog(Common.Enums.enumOperator.None, "壓縮檔：" + Request.Form["files"].Trim(';') + "，結果：" + json.Msg, Common.Enums.enumLog4net.WARN);
                 json.Status = "y";
             }
             catch (Exception e)
             {
-                json.Msg = "压缩文件失败！";
-                WriteLog(Common.Enums.enumOperator.None, "压缩文件：", e);
+                json.Msg = "壓縮檔失敗！";
+                WriteLog(Common.Enums.enumOperator.None, "壓縮檔：", e);
             }
 
             return Json(json);
         }
 
         /// <summary>
-        /// 解压文件
+        /// 解壓文件
         /// </summary>
         /// <returns></returns>
         [UserAuthorizeAttribute(ModuleAlias = "Files", OperaAction = "Expand")]
@@ -236,7 +236,7 @@ namespace WebPage.Areas.ComManage.Controllers
         [UserAuthorizeAttribute(ModuleAlias = "Files", OperaAction = "Expand")]
         public ActionResult ExpandFiles()
         {
-            var json = new JsonHelper() { Msg = "解压文件完成", Status = "n" };
+            var json = new JsonHelper() { Msg = "解壓檔完成", Status = "n" };
 
             try
             {
@@ -246,7 +246,7 @@ namespace WebPage.Areas.ComManage.Controllers
 
                 if (string.IsNullOrEmpty(password))
                 {
-                    json.Msg = "请输入解压密码！";
+                    json.Msg = "請輸入解壓密碼！";
                     return Json(json);
                 }
 
@@ -254,19 +254,19 @@ namespace WebPage.Areas.ComManage.Controllers
 
                 if (password != CurrentPassword)
                 {
-                    json.Msg = "解压密码无效！";
+                    json.Msg = "解壓密碼無效！";
                     return Json(json);
                 }
 
                 ZipHelper.UnZip(Server.MapPath(files), Server.MapPath(path), password);
 
-                WriteLog(Common.Enums.enumOperator.None, "解压文件：" + Request.Form["files"].Trim(';') + "，结果：" + json.Msg, Common.Enums.enumLog4net.WARN);
+                WriteLog(Common.Enums.enumOperator.None, "解壓文件：" + Request.Form["files"].Trim(';') + "，結果：" + json.Msg, Common.Enums.enumLog4net.WARN);
                 json.Status = "y";
             }
             catch (Exception e)
             {
-                json.Msg = "解压文件失败！";
-                WriteLog(Common.Enums.enumOperator.None, "解压文件：", e);
+                json.Msg = "解壓檔失敗！";
+                WriteLog(Common.Enums.enumOperator.None, "解壓文件：", e);
             }
 
             return Json(json);
@@ -274,7 +274,7 @@ namespace WebPage.Areas.ComManage.Controllers
 
 
         /// <summary>
-        /// 单文件上传视图
+        /// 單文件上傳視圖
         /// </summary>
         /// <returns></returns>
         public ActionResult FileMain()
@@ -284,7 +284,7 @@ namespace WebPage.Areas.ComManage.Controllers
         }
 
         /// <summary>
-        /// 单个文件上传
+        /// 單個文件上傳
         /// </summary>
         [HttpPost]
         public ActionResult SignUpFile()
@@ -292,26 +292,26 @@ namespace WebPage.Areas.ComManage.Controllers
             var jsonM = new JsonHelper() { Status = "n", Msg = "success" };
             try
             {
-                //取得上传文件
+                //取得上傳檔
                 HttpPostedFileBase upfile = Request.Files["fileUp"];
 
-                //原始文件路径
+                //原始檔路徑
                 string delpath = Request.QueryString["delpath"];
 
-                //缩略图
+                //縮略圖
                 bool isThumbnail = string.IsNullOrEmpty(Request.QueryString["isThumbnail"]) ? false : Request.QueryString["isThumbnail"].ToLower() == "true" ? true : false;
-                //水印
+                //浮水印
                 bool isWater = string.IsNullOrEmpty(Request.QueryString["isWater"]) ? false : Request.QueryString["isWater"].ToLower() == "true" ? true : false;
 
 
                 if (upfile == null)
                 {
-                    jsonM.Msg = "请选择要上传文件！";
+                    jsonM.Msg = "請選擇要上傳檔！";
                     return Json(jsonM);
                 }
                 jsonM = FileSaveAs(upfile, isThumbnail, isWater);
 
-                #region 移除原始文件
+                #region 移除原始檔
                 if (jsonM.Status == "y" && !string.IsNullOrEmpty(delpath))
                 {
                     if (System.IO.File.Exists(Utils.GetMapPath(delpath)))
@@ -323,7 +323,7 @@ namespace WebPage.Areas.ComManage.Controllers
 
                 if (jsonM.Status == "y")
                 {
-                    #region 记录上传数据
+                    #region 記錄上傳資料
                     string unit = string.Empty;
                     var jsonValue = JsonConverter.ConvertJson(jsonM.Data.ToString());
                     var entity = new Domain.COM_UPLOAD()
@@ -345,33 +345,33 @@ namespace WebPage.Areas.ComManage.Controllers
                     this.UploadManage.Save(entity);
                     #endregion
 
-                    #region 返回文件信息
-                    jsonM.Data = "{\"oldname\": \"" + jsonValue.oldname + "\","; //原始名称
-                    jsonM.Data += " \"newname\":\"" + jsonValue.newname + "\","; //新名称
-                    jsonM.Data += " \"path\": \"" + jsonValue.path + "\", ";  //路径
-                    jsonM.Data += " \"thumbpath\":\"" + jsonValue.thumbpath + "\","; //缩略图
+                    #region 返回檔資訊
+                    jsonM.Data = "{\"oldname\": \"" + jsonValue.oldname + "\","; //原始名稱
+                    jsonM.Data += " \"newname\":\"" + jsonValue.newname + "\","; //新名稱
+                    jsonM.Data += " \"path\": \"" + jsonValue.path + "\", ";  //路徑
+                    jsonM.Data += " \"thumbpath\":\"" + jsonValue.thumbpath + "\","; //縮略圖
                     jsonM.Data += " \"size\": \"" + jsonValue.size + "\",";   //大小
-                    jsonM.Data += " \"id\": \"" + entity.ID + "\",";   //上传文件ID
-                    jsonM.Data += " \"uptime\": \"" + entity.UPTIME + "\",";   //上传时间
-                    jsonM.Data += " \"operator\": \"" + entity.UPOPEATOR + "\",";   //上传人
-                    jsonM.Data += " \"unitsize\": \"" + entity.UPFILESIZE + unit + "\",";   //带单位大小
-                    jsonM.Data += "\"ext\":\"" + jsonValue.ext + "\"}";//后缀名
+                    jsonM.Data += " \"id\": \"" + entity.ID + "\",";   //上傳文件ID
+                    jsonM.Data += " \"uptime\": \"" + entity.UPTIME + "\",";   //上傳時間
+                    jsonM.Data += " \"operator\": \"" + entity.UPOPEATOR + "\",";   //上傳人
+                    jsonM.Data += " \"unitsize\": \"" + entity.UPFILESIZE + unit + "\",";   //帶單位大小
+                    jsonM.Data += "\"ext\":\"" + jsonValue.ext + "\"}";//尾碼名
                     #endregion
                 }
 
             }
             catch (Exception ex)
             {
-                jsonM.Msg = "上传过程中发生错误，消息：" + ex.Message;
+                jsonM.Msg = "上傳過程中發生錯誤，消息：" + ex.Message;
                 jsonM.Status = "n";
             }
             return Json(jsonM);
         }
 
-        
+
 
         /// <summary>
-        /// 通过路径获取文件
+        /// 通過路徑獲取檔
         /// </summary>
         /// <returns></returns>
         public ActionResult GetFileData()
@@ -383,7 +383,7 @@ namespace WebPage.Areas.ComManage.Controllers
                 if (!FileHelper.IsExistDirectory(Server.MapPath(path)))
                 {
                     jsonM.Status = "n";
-                    jsonM.Msg = "目录不存在！";
+                    jsonM.Msg = "目錄不存在！";
                 }
                 else if (FileHelper.IsEmptyDirectory(Server.MapPath(path)))
                 {
@@ -397,74 +397,74 @@ namespace WebPage.Areas.ComManage.Controllers
             catch (Exception)
             {
                 jsonM.Status = "err";
-                jsonM.Msg = "获取文件失败！";
+                jsonM.Msg = "獲取檔失敗！";
             }
             return Content(JsonConverter.Serialize(jsonM, true));
         }
 
         #region private
         /// <summary>
-        /// 文件上传方法
+        /// 檔上傳方法
         /// </summary>
         /// <param name="postedFile">文件流</param>
-        /// <param name="isThumbnail">是否生成缩略图</param>
-        /// <param name="isWater">是否生成水印</param>
-        /// <returns>上传后文件信息</returns>
+        /// <param name="isThumbnail">是否生成縮略圖</param>
+        /// <param name="isWater">是否生成浮水印</param>
+        /// <returns>上傳後檔資訊</returns>
         private JsonHelper FileSaveAs(HttpPostedFileBase postedFile, bool isThumbnail, bool isWater)
         {
             var jsons = new JsonHelper { Status = "n" };
             try
             {
-                string fileExt = Utils.GetFileExt(postedFile.FileName); //文件扩展名，不含“.”
-                int fileSize = postedFile.ContentLength; //获得文件大小，以字节为单位
-                string fileName = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf(@"\") + 1); //取得原文件名
-                string newFileName = Utils.GetRamCode() + "." + fileExt; //随机生成新的文件名
-                string upLoadPath = GetUpLoadPath(fileExt); //上传目录相对路径
-                string fullUpLoadPath = Utils.GetMapPath(upLoadPath); //上传目录的物理路径
-                string newFilePath = upLoadPath + newFileName; //上传后的路径
-                string newThumbnailFileName = "thumb_" + newFileName; //随机生成缩略图文件名
+                string fileExt = Utils.GetFileExt(postedFile.FileName); //文件副檔名，不含“.”
+                int fileSize = postedFile.ContentLength; //獲得檔大小，以位元組為單位
+                string fileName = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf(@"\") + 1); //取得原檔案名
+                string newFileName = Utils.GetRamCode() + "." + fileExt; //隨機生成新的檔案名
+                string upLoadPath = GetUpLoadPath(fileExt); //上傳目錄相對路徑
+                string fullUpLoadPath = Utils.GetMapPath(upLoadPath); //上傳目錄的物理路徑
+                string newFilePath = upLoadPath + newFileName; //上傳後的路徑
+                string newThumbnailFileName = "thumb_" + newFileName; //隨機生成縮略圖檔案名
 
-                //检查文件扩展名是否合法
+                //檢查檔副檔名是否合法
                 if (!CheckFileExt(fileExt))
                 {
-                    jsons.Msg = "不允许上传" + fileExt + "类型的文件！";
+                    jsons.Msg = "不允許上傳" + fileExt + "類型的檔！";
                     return jsons;
                 }
 
-                //检查文件大小是否合法
+                //檢查檔大小是否合法
                 if (!CheckFileSize(fileExt, fileSize))
                 {
-                    jsons.Msg = "文件超过限制的大小啦！";
+                    jsons.Msg = "檔超過限制的大小啦！";
                     return jsons;
                 }
 
-                //检查上传的物理路径是否存在，不存在则创建
+                //檢查上傳的物理路徑是否存在，不存在則創建
                 if (!Directory.Exists(fullUpLoadPath))
                 {
                     Directory.CreateDirectory(fullUpLoadPath);
                 }
 
-                //检查文件是否真实合法
-                //如果文件真实合法 则 保存文件 关闭文件流
+                //檢查檔是否真實合法
+                //如果檔真實合法 則 保存檔 關閉文件流
                 //if (!CheckFileTrue(postedFile, fullUpLoadPath + newFileName))
                 //{
-                //    jsons.Msg = "不允许上传不可识别的文件!";
+                //    jsons.Msg = "不允許上傳不可識別的檔!";
                 //    return jsons;
                 //}
 
-                //保存文件
+                //保存檔
                 postedFile.SaveAs(fullUpLoadPath + newFileName);
 
                 string thumbnail = string.Empty;
 
-                //如果是图片，检查是否需要生成缩略图，是则生成
+                //如果是圖片，檢查是否需要生成縮略圖，是則生成
                 if (IsImage(fileExt) && isThumbnail && ConfigurationManager.AppSettings["ThumbnailWidth"].ToString() != "0" && ConfigurationManager.AppSettings["ThumbnailHeight"].ToString() != "0")
                 {
                     Thumbnail.MakeThumbnailImage(fullUpLoadPath + newFileName, fullUpLoadPath + newThumbnailFileName,
                        int.Parse(ConfigurationManager.AppSettings["ThumbnailWidth"]), int.Parse(ConfigurationManager.AppSettings["ThumbnailHeight"]), "W");
                     thumbnail = upLoadPath + newThumbnailFileName;
                 }
-                //如果是图片，检查是否需要打水印
+                //如果是圖片，檢查是否需要打浮水印
                 if (IsImage(fileExt) && isWater)
                 {
                     switch (ConfigurationManager.AppSettings["WatermarkType"].ToString())
@@ -484,26 +484,26 @@ namespace WebPage.Areas.ComManage.Controllers
 
                 string unit = string.Empty;
 
-                //处理完毕，返回JOSN格式的文件信息
-                jsons.Data = "{\"oldname\": \"" + fileName + "\",";     //原始文件名
-                jsons.Data += " \"newname\":\"" + newFileName + "\",";  //文件新名称
-                jsons.Data += " \"path\": \"" + newFilePath + "\", ";   //文件路径
-                jsons.Data += " \"thumbpath\":\"" + thumbnail + "\",";  //缩略图路径
+                //處理完畢，返回JOSN格式的檔資訊
+                jsons.Data = "{\"oldname\": \"" + fileName + "\",";     //原始檔案名
+                jsons.Data += " \"newname\":\"" + newFileName + "\",";  //檔新名稱
+                jsons.Data += " \"path\": \"" + newFilePath + "\", ";   //檔路徑
+                jsons.Data += " \"thumbpath\":\"" + thumbnail + "\",";  //縮略圖路徑
                 jsons.Data += " \"size\": \"" + fileSize + "\",";       //文件大小
-                jsons.Data += "\"ext\":\"" + fileExt + "\"}";           //文件格式
+                jsons.Data += "\"ext\":\"" + fileExt + "\"}";           //檔案格式
                 jsons.Status = "y";
                 return jsons;
             }
             catch
             {
-                jsons.Msg = "上传过程中发生意外错误！";
+                jsons.Msg = "上傳過程中發生意外錯誤！";
                 return jsons;
             }
         }
 
         private bool CheckFileExt(string _fileExt)
         {
-            string[] array = new []
+            string[] array = new[]
             {
                 "asp",
                 "aspx",
@@ -519,13 +519,13 @@ namespace WebPage.Areas.ComManage.Controllers
                     return false;
                 }
             }
-            List<string> list = (from p in ConfigurationManager.AppSettings["AttachExtension"].Trim(',').Split(new []{","}, StringSplitOptions.RemoveEmptyEntries)
+            List<string> list = (from p in ConfigurationManager.AppSettings["AttachExtension"].Trim(',').Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries)
                                  select p).ToList();
             return list.Contains(_fileExt.ToLower());
         }
         private bool IsImage(string _fileExt)
         {
-            List<string> list = (from p in ConfigurationManager.AppSettings["Image"].Trim(',').Split(new []{","}, StringSplitOptions.RemoveEmptyEntries)
+            List<string> list = (from p in ConfigurationManager.AppSettings["Image"].Trim(',').Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries)
                                  select p).ToList();
             return list.Contains(_fileExt.ToLower());
         }
@@ -543,7 +543,7 @@ namespace WebPage.Areas.ComManage.Controllers
         }
         private bool IsMusics(string _fileExt)
         {
-            List<string> list = (from p in ConfigurationManager.AppSettings["Music"].Trim(',').Split(new []{","}, StringSplitOptions.RemoveEmptyEntries)
+            List<string> list = (from p in ConfigurationManager.AppSettings["Music"].Trim(',').Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries)
                                  select p).ToList();
             return list.Contains(_fileExt.ToLower());
         }
@@ -609,7 +609,7 @@ namespace WebPage.Areas.ComManage.Controllers
                 text = text + CurrentUser.PinYin + "/";
             }
             string text2 = text;
-            return string.Concat(new []
+            return string.Concat(new[]
             {
                 text2,
                 DateTime.Now.ToString("yyyy"),

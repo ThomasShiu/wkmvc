@@ -170,7 +170,7 @@ namespace WebPage.Areas.SysManage.Controllers
         {
             var json = new JsonHelper() { Msg = "删除角色完毕", Status = "n" };
             var id = idList.Trim(',').Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(p => int.Parse(p)).ToList();
-            if (id.Contains(Common.Enums.ClsDic.DicRole["超级管理员"]))
+            if (id.Contains(Common.Enums.ClsDic.DicRole["超級管理員"]))
             {
                 json.Msg = "删除失败，不能删除系统固有角色!";
                 WriteLog(Common.Enums.enumOperator.Remove, "删除用户角色：" + json.Msg, Common.Enums.enumLog4net.ERROR);
@@ -284,7 +284,7 @@ namespace WebPage.Areas.SysManage.Controllers
             //系统
             if (!string.IsNullOrEmpty(system))
             {
-                int SuperAdminId = Common.Enums.ClsDic.DicRole["超级管理员"];
+                int SuperAdminId = Common.Enums.ClsDic.DicRole["超級管理員"];
                 query = query.Where(p => p.FK_BELONGSYSTEM == system || p.ISCUSTOM == 1);
             }
             else

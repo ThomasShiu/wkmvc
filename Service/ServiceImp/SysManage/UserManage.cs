@@ -45,7 +45,7 @@ namespace Service.ServiceImp
         }
 
         /// <summary>
-        /// 是否超级管理员
+        /// 是否超級管理員
         /// </summary>
         public bool IsAdmin(int userId)
         {
@@ -56,7 +56,8 @@ namespace Service.ServiceImp
             {
                 ID = p.SYS_ROLE.ID
             });
-            return roles.ToList().Any(item => item.ID == ClsDic.DicRole["超级管理员"]);
+            //return roles.ToList().Any(item => item.ID == ClsDic.DicRole["超級管理員"]);
+            return roles.ToList().Any(item => item.ID == ClsDic.DicRole["超級管理員"]);
         }
 
         /// <summary>
@@ -138,7 +139,7 @@ namespace Service.ServiceImp
         /// </summary>
         private List<Domain.SYS_PERMISSION> GetPermissionByUser(Domain.SYS_USER users)
         {
-            //1、超级管理员拥有所有权限
+            //1、超級管理員拥有所有权限
             if (IsAdmin(users.ID))
                 return PermissionManage.LoadListAll(null);
             //2、普通用户，合并当前用户权限与角色权限

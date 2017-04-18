@@ -7,40 +7,40 @@ using System.ComponentModel;
 namespace Common.Enums
 {
     /// <summary>
-    /// 枚举独特类
+    /// 枚舉獨特類
     /// add yuangang by 2016-05-10
     /// </summary>
     public class EnumsClass
     {
         /// <summary>
-        /// 枚举value
+        /// 枚舉value
         /// </summary>
         public int Value { get; set; }
         /// <summary>
-        /// 枚举显示值
+        /// 枚舉顯示值
         /// </summary>
         public string Name { get; set; }
         /// <summary>
-        /// 枚举说明
+        /// 枚舉說明
         /// </summary>
         public string Text { get; set; }
     }
 
-    #region 系统管理相关
+    #region 系統管理相關
     /// <summary>
-    /// 系统操作枚举
+    /// 系統操作枚舉
     /// </summary>
     public enum enumOperator
     {
         /// <summary>
-        /// 无
+        /// 無
         /// </summary>
-        [Description("无")]
+        [Description("無")]
         None,
         /// <summary>
-        /// 查询
+        /// 查詢
         /// </summary>
-        [Description("查询")]
+        [Description("查詢")]
         Select,
         /// <summary>
         /// 添加
@@ -58,9 +58,9 @@ namespace Common.Enums
         [Description("移除")]
         Remove,
         /// <summary>
-        /// 登录
+        /// 登錄
         /// </summary>
-        [Description("登录")]
+        [Description("登錄")]
         Login,
         /// <summary>
         /// 登出
@@ -68,34 +68,34 @@ namespace Common.Enums
         [Description("登出")]
         LogOut,
         /// <summary>
-        /// 导出
+        /// 匯出
         /// </summary>
-        [Description("导出")]
+        [Description("匯出")]
         Export,
         /// <summary>
-        /// 导入
+        /// 導入
         /// </summary>
-        [Description("导入")]
+        [Description("導入")]
         Import,
         /// <summary>
-        /// 审核
+        /// 審核
         /// </summary>
-        [Description("审核")]
+        [Description("審核")]
         Audit,
         /// <summary>
-        /// 回复
+        /// 回復
         /// </summary>
-        [Description("回复")]
+        [Description("回復")]
         Reply,
         /// <summary>
-        /// 下载
+        /// 下載
         /// </summary>
-        [Description("下载")]
+        [Description("下載")]
         Download,
         /// <summary>
-        /// 上传
+        /// 上傳
         /// </summary>
-        [Description("上传")]
+        [Description("上傳")]
         Upload,
         /// <summary>
         /// 分配
@@ -114,7 +114,7 @@ namespace Common.Enums
         Flow
     }
     /// <summary>
-    /// log4net枚举
+    /// log4net枚舉
     /// </summary>
     public enum enumLog4net
     {
@@ -122,37 +122,39 @@ namespace Common.Enums
         INFO,
         [Description("警告")]
         WARN,
-        [Description("错误")]
+        [Description("錯誤")]
         ERROR,
-        [Description("异常")]
+        [Description("異常")]
         FATAL
+
     }
     /// <summary>
-    /// 模块类别枚举,对应TBSYS_Module表的ModuleType字段
+    /// 模組類別枚舉,對應TBSYS_Module表的ModuleType欄位
     /// </summary>
     public enum enumModuleType
     {
-        无页面 = 1,
-        列表页 = 2,
-        弹出页 = 3
+        無頁面 = 1,
+        列表頁 = 2,
+        彈出頁 = 3
     }
     /// <summary>
-    /// 部门类型
+    /// 部門類型
     /// </summary>
     public enum enumDepartmentType
     {
-        胜利石油管理局 = 1,
-        施工队 = 2,
+        勝利石油管理局 = 1,
+        施工隊 = 2,
         工程部 = 3,
-        计划科 = 4,
-        其他单位 = 5
+        計畫科 = 4,
+        其他單位 = 5
+
     }
 
     #endregion
 
-    #region 流程枚举
+    #region 流程枚舉
     /// <summary>
-    /// 流程枚举
+    /// 流程枚舉
     /// </summary>
     public enum FLowEnums
     {
@@ -167,9 +169,9 @@ namespace Common.Enums
         [Description("草稿")]
         Draft = 1,
         /// <summary>
-        /// 运行中
+        /// 運行中
         /// </summary>
-        [Description("运行中")]
+        [Description("運行中")]
         Runing = 2,
         /// <summary>
         /// 已完成
@@ -177,9 +179,9 @@ namespace Common.Enums
         [Description("已完成")]
         Complete = 3,
         /// <summary>
-        /// 挂起
+        /// 掛起
         /// </summary>
-        [Description("挂起")]
+        [Description("掛起")]
         HungUp = 4,
         /// <summary>
         /// 退回
@@ -187,48 +189,48 @@ namespace Common.Enums
         [Description("退回")]
         ReturnSta = 5,
         /// <summary>
-        /// 转发(移交)
+        /// 轉發(移交)
         /// </summary>
         [Description("移交")]
         Shift = 6,
         /// <summary>
-        /// 删除(逻辑删除状态)
+        /// 刪除(邏輯刪除狀態)
         /// </summary>
-        [Description("删除")]
+        [Description("刪除")]
         Delete = 7,
         /// <summary>
-        /// 加签
+        /// 加簽
         /// </summary>
-        [Description("加签")]
+        [Description("加簽")]
         Askfor = 8,
         /// <summary>
-        /// 冻结
+        /// 凍結
         /// </summary>
-        [Description("冻结")]
+        [Description("凍結")]
         Fix = 9,
         /// <summary>
-        /// 批处理
+        /// 批次處理
         /// </summary>
-        [Description("批处理")]
+        [Description("批次處理")]
         Batch = 10,
         /// <summary>
-        /// 加签回复状态
+        /// 加簽回復狀態
         /// </summary>
-        [Description("加签回复")]
+        [Description("加簽回復")]
         AskForReplay = 11
     }
     #endregion
 
-    #region 系统字典
+    #region 系統字典
 
     /// <summary>
-    /// 类描述:系统字典
-    /// 创建标识:add yuangang by 2016-05-10
+    /// 類描述:系統字典
+    /// 創建標識:add yuangang by 2016-05-10
     /// </summary>
     public class ClsDic
     {
         /// <summary>
-        /// 聊天信息类型
+        /// 聊天資訊類型
         /// </summary>
         public static Dictionary<string, int> DicMessageType
         {
@@ -236,8 +238,8 @@ namespace Common.Enums
             {
                 return new Dictionary<string, int>
                 {
-                    {"广播",0},
-                    {"群组",1},
+                    {"廣播",0},
+                    {"群組",1},
                     {"私聊",2}
                 };
             }
@@ -245,7 +247,7 @@ namespace Common.Enums
 
 
         /// <summary>
-        /// 根据DicKey值获取value
+        /// 根據DicKey值獲取value
         /// </summary>
         public static string GetDicValueByKey(string key, Dictionary<string, string> p)
         {
@@ -260,7 +262,7 @@ namespace Common.Enums
             return "";
         }
         /// <summary>
-        /// 根据DICValue获取Key
+        /// 根據DICValue獲取Key
         /// </summary>
         public static string GetDicKeyByValue(string value, Dictionary<string, string> p)
         {
@@ -275,42 +277,42 @@ namespace Common.Enums
             return "";
         }
         /// <summary>
-        /// 描述:实体与编码对应字典,在验证数据权限时,通过此处字典来枚举实体编号
-        /// <author>创建标识: add yuangang by 2016-05-10</author>
+        /// 描述:實體與編碼對應字典,在驗證資料許可權時,通過此處字典來枚舉實體編號
+        /// <author>創建標識: add yuangang by 2016-05-10</author>
         /// </summary>
         public static Dictionary<string, string> DicEntity
         {
             get
             {
                 Dictionary<string, string> _dic = new Dictionary<string, string>();
-                _dic.Add("日志", "");
-                _dic.Add("用户", "18da4207-3bfc-49ea-90f7-16867721805c");
+                _dic.Add("日誌", "");
+                _dic.Add("用戶", "18da4207-3bfc-49ea-90f7-16867721805c");
                 return _dic;
             }
         }
         /// <summary>
-        /// 描述:存放特别的角色编号字典,在验证操作权限时用到
-        /// 创建标识:add by liuj 2013-8-9 9:56
+        /// 描述:存放特別的角色編號字典,在驗證操作許可權時用到
+        /// 創建標識:add by liuj 2013-8-9 9:56
         /// </summary>
         public static Dictionary<string, int> DicRole
         {
             get
             {
                 Dictionary<string, int> _dic = new Dictionary<string, int>();
-                _dic.Add("超级管理员", 1);
+                _dic.Add("超級管理員", 1);
                 return _dic;
             }
         }
         /// <summary>
-        /// 字典类型
+        /// 字典類型
         /// </summary>
         public static Dictionary<string, string> DicCodeType
         {
             get
             {
                 Dictionary<string, string> _dic = new Dictionary<string, string>();
-               
-                string dicStr = "职务-ZW,在岗状态-ZGZT,婚姻状况-HYZK,学历-XL,政治面貌-ZZMM,民族-MZ,职称-ZC,业务授权-YWSQ,岗位类型-POSTTYPE,权限值-ROLEVALUE,员工级别-YGJB,合同类型-HTLB,合同状态-HTZT,客户分类-KHFL,IP类型-IPLX,项目类型-XMLX,项目状态-XMZT,成本类别-CBLB,任务状态-RWZT,任务类别-RWLB,任务阶段-RWJD,日志类别-RZLB,文章类别-WZLB,流程状态-WZZT,优先级-YXJ,联系人类型-LXRLX,消息类型-XXLX";
+
+                string dicStr = "職務-ZW,在崗狀態-ZGZT,婚姻狀況-HYZK,學歷-XL,政治面貌-ZZMM,民族-MZ,職稱-ZC,業務授權-YWSQ,職位類型-POSTTYPE,許可權值-ROLEVALUE,員工級別-YGJB,合同類型-HTLB,合同狀態-HTZT,客戶分類-KHFL,IP類型-IPLX,專案類型-XMLX,專案狀態-XMZT,成本類別-CBLB,任務狀態-RWZT,任務類別-RWLB,任務階段-RWJD,日誌類別-RZLB,文章類別-WZLB,流程狀態-WZZT,優先順序-YXJ,連絡人類型-LXRLX,消息類型-XXLX";
                 var diclist = dicStr.TrimEnd(',').TrimStart(',').Split(',').ToList();
                 if (diclist.Count > 0)
                 {
@@ -319,64 +321,64 @@ namespace Common.Enums
                         _dic.Add(item.Split('-')[0], item.Split('-')[1]);
                     }
                 }
-                
+
                 return _dic;
             }
         }
         /// <summary>
-        /// 附件上传路径
-        /// 创建标识:add yuangang by 2016-05-10
+        /// 附件上傳路徑
+        /// 創建標識:add yuangang by 2016-05-10
         /// </summary>
         public static Dictionary<string, string> DicAttachmentPath
         {
             get
             {
                 Dictionary<string, string> _dic = new Dictionary<string, string>();
-                _dic.Add("上传路径", System.Configuration.ConfigurationManager.AppSettings["upfile"]);
-                _dic.Add("档案简历", System.Configuration.ConfigurationManager.AppSettings["upfile"]);
-                _dic.Add("手机文件", System.Configuration.ConfigurationManager.AppSettings["upphone"]);
-                _dic.Add("手机照片", System.Configuration.ConfigurationManager.AppSettings["photofile"]);
-                _dic.Add("技术文件", System.Configuration.ConfigurationManager.AppSettings["upTsfile"]);
-                _dic.Add("工程图", System.Configuration.ConfigurationManager.AppSettings["UploadFiles"]);
-                _dic.Add("档案头像", System.Configuration.ConfigurationManager.AppSettings["upfile"]);
+                _dic.Add("上傳路徑", System.Configuration.ConfigurationManager.AppSettings["upfile"]);
+                _dic.Add("檔案簡歷", System.Configuration.ConfigurationManager.AppSettings["upfile"]);
+                _dic.Add("手機文件", System.Configuration.ConfigurationManager.AppSettings["upphone"]);
+                _dic.Add("手機照片", System.Configuration.ConfigurationManager.AppSettings["photofile"]);
+                _dic.Add("技術檔", System.Configuration.ConfigurationManager.AppSettings["upTsfile"]);
+                _dic.Add("工程圖", System.Configuration.ConfigurationManager.AppSettings["UploadFiles"]);
+                _dic.Add("檔案頭像", System.Configuration.ConfigurationManager.AppSettings["upfile"]);
                 return _dic;
             }
         }
         /// <summary>
-        /// 业务办理图片宽高
-        /// 创建标识:add yuangang by 2016-05-10
+        /// 業務辦理圖片寬高
+        /// 創建標識:add yuangang by 2016-05-10
         /// </summary>
         public static Dictionary<string, string> DicImageWH
         {
             get
             {
                 Dictionary<string, string> _dic = new Dictionary<string, string>();
-                _dic.Add("图片宽度", System.Configuration.ConfigurationManager.AppSettings["imgWidth"]);
-                _dic.Add("图片高度", System.Configuration.ConfigurationManager.AppSettings["imgHeight"]);
-                _dic.Add("手机用户头像高", System.Configuration.ConfigurationManager.AppSettings["UserPhotoHeight"]);
-                _dic.Add("手机用户头像宽", System.Configuration.ConfigurationManager.AppSettings["UserPhotoWidth"]);
-                _dic.Add("用户头像高", System.Configuration.ConfigurationManager.AppSettings["PolicePhotoHeight"]);
-                _dic.Add("用户头像宽", System.Configuration.ConfigurationManager.AppSettings["PolicePhotoWidth"]);
+                _dic.Add("圖片寬度", System.Configuration.ConfigurationManager.AppSettings["imgWidth"]);
+                _dic.Add("圖片高度", System.Configuration.ConfigurationManager.AppSettings["imgHeight"]);
+                _dic.Add("手機用戶頭像高", System.Configuration.ConfigurationManager.AppSettings["UserPhotoHeight"]);
+                _dic.Add("手機用戶頭像寬", System.Configuration.ConfigurationManager.AppSettings["UserPhotoWidth"]);
+                _dic.Add("用戶頭像高", System.Configuration.ConfigurationManager.AppSettings["PolicePhotoHeight"]);
+                _dic.Add("用戶頭像寬", System.Configuration.ConfigurationManager.AppSettings["PolicePhotoWidth"]);
                 return _dic;
             }
         }
         /// <summary>
-        /// 警务室图片宽高
-        /// 创建标识:add yuangang by 2016-05-10
+        /// 警務室圖片寬高
+        /// 創建標識:add yuangang by 2016-05-10
         /// </summary>
         public static Dictionary<string, string> DicPoliceHouseImageWH
         {
             get
             {
                 Dictionary<string, string> _dic = new Dictionary<string, string>();
-                _dic.Add("图片宽度", System.Configuration.ConfigurationManager.AppSettings["imgPoliceWidth"]);
-                _dic.Add("图片高度", System.Configuration.ConfigurationManager.AppSettings["imgPoliceHeight"]);
+                _dic.Add("圖片寬度", System.Configuration.ConfigurationManager.AppSettings["imgPoliceWidth"]);
+                _dic.Add("圖片高度", System.Configuration.ConfigurationManager.AppSettings["imgPoliceHeight"]);
                 return _dic;
             }
         }
         /// <summary>
         /// OracleReportData
-        /// 创建标识:add yuangang by 2016-05-10
+        /// 創建標識:add yuangang by 2016-05-10
         /// </summary>
         public static Dictionary<string, string> OracleReportData
         {
@@ -388,43 +390,43 @@ namespace Common.Enums
             }
         }
         /// <summary>
-        /// 手机客户端命名
-        /// 创建标识:add yuangang by 2016-05-10
+        /// 手機用戶端命名
+        /// 創建標識:add yuangang by 2016-05-10
         /// </summary>
         public static Dictionary<string, string> DicPhone
         {
             get
             {
                 Dictionary<string, string> _dic = new Dictionary<string, string>();
-                _dic.Add("安卓程序", System.Configuration.ConfigurationManager.AppSettings["AndroidName"]);
-                _dic.Add("苹果程序", System.Configuration.ConfigurationManager.AppSettings["IOSName"]);
+                _dic.Add("安卓程式", System.Configuration.ConfigurationManager.AppSettings["AndroidName"]);
+                _dic.Add("蘋果程式", System.Configuration.ConfigurationManager.AppSettings["IOSName"]);
                 return _dic;
             }
         }
         /// <summary>
-        /// 功能描述：记录Cookie的Key值 
-        /// 创建标识：徐戈
+        /// 功能描述：記錄Cookie的Key值 
+        /// 創建標識：徐戈
         /// </summary>
         public static Dictionary<string, string> DicCookie
         {
             get
             {
                 Dictionary<string, string> _dic = new Dictionary<string, string>();
-                _dic.Add("Session中存储的帐号和CookieID", "AccountCookieID_Session");
-                _dic.Add("Cookie中存储的帐号和CookieID", "AccountCookieIDNew");
+                _dic.Add("Session中存儲的帳號和CookieID", "AccountCookieID_Session");
+                _dic.Add("Cookie中存儲的帳號和CookieID", "AccountCookieIDNew");
                 return _dic;
             }
         }
         /// <summary>
-        /// 功能描述：记录Cookie的Key值 
-        /// 创建标识：徐戈
+        /// 功能描述：記錄Cookie的Key值 
+        /// 創建標識：徐戈
         /// </summary>
         public static Dictionary<string, string> DicCookieTimeout
         {
             get
             {
                 Dictionary<string, string> _dic = new Dictionary<string, string>();
-                _dic.Add("帐号过期时间", "30");
+                _dic.Add("帳號過期時間", "30");
                 return _dic;
             }
         }
@@ -437,11 +439,11 @@ namespace Common.Enums
                 return new Dictionary<string, int>
                 {
                     {
-                        "准备中",
+                        "準備中",
                         0
                     },
                     {
-                        "进行中",
+                        "進行中",
                         1
                     },
                     {
@@ -449,15 +451,15 @@ namespace Common.Enums
                         2
                     },
                     {
-                        "已超时",
+                        "已超時",
                         3
                     },
                     {
-                        "已终止",
+                        "已終止",
                         4
                     },
                     {
-                        "已验收",
+                        "已驗收",
                         5
                     },
                     {
@@ -465,15 +467,15 @@ namespace Common.Enums
                         6
                     },
                     {
-                        "已失败",
+                        "已失敗",
                         7
                     },
                     {
-                        "已违约",
+                        "已違約",
                         8
                     },
                     {
-                        "对方违约",
+                        "對方違約",
                         9
                     }
                 };
@@ -487,15 +489,15 @@ namespace Common.Enums
                 return new System.Collections.Generic.Dictionary<string, int>
                 {
                     {
-                        "驳回",
+                        "駁回",
                         0
                     },
                     {
-                        "通过",
+                        "通過",
                         1
                     },
                     {
-                        "等待审核",
+                        "等待審核",
                         2
                     }
                 };
@@ -504,68 +506,68 @@ namespace Common.Enums
     }
     #endregion
 
-    #region 业务相关
+    #region 業務相關
     /// <summary>
-    /// 计划流转状态
+    /// 計畫流轉狀態
     /// </summary>
     public enum enumHCA_RecognitionProgramProcessType
     {
-        上报 = 1,
+        上報 = 1,
         同意 = 2,
         不同意 = 3
     }
     /// <summary>
-    /// 上传文件类型
+    /// 上傳檔案類型
     /// </summary>
     public enum enumFileType
     {
         其他 = 0,
         Word = 1,
         Excel = 2,
-        图片 = 3,
+        圖片 = 3,
         PPT = 4,
         PDF = 5,
         RAR = 6
     }
     /// <summary>
-    ///路单状态
+    ///路單狀態
     /// </summary>
     public enum enumWAYBILLSTATE
     {
         分派 = 1,
-        打印 = 2,
-        数据录入 = 3,
-        数据填报 = 4,
-        车队审核回收 = 5,
-        删除 = 6,
-        作废 = 7,
+        列印 = 2,
+        資料錄入 = 3,
+        數據填報 = 4,
+        車隊審核回收 = 5,
+        刪除 = 6,
+        作廢 = 7,
         交接 = 8,
-        纳入结算 = 9,
-        完成结算 = 10
+        納入結算 = 9,
+        完成結算 = 10
 
 
     }
     /// <summary>
-    /// 来源
+    /// 來源
     /// </summary>
     public enum enumORIGIN
     {
         自建 = 1,
-        任务 = 2,
-        外委申请 = 3
+        任務 = 2,
+        外委申請 = 3
     }
 
     /// <summary>
-    /// 应急物资规格型号
+    /// 應急物資規格型號
     /// </summary>
     public enum enumReliefGoodsModel
     {
-        规格型号1 = 1,
-        规格型号2 = 2,
-        规格型号3 = 3
+        規格型號1 = 1,
+        規格型號2 = 2,
+        規格型號3 = 3
     }
     /// <summary>
-    /// 应急抢险救援物资类别
+    /// 應急搶險救援物資類別
     /// </summary>
     public enum enumReliefGoodsType
     {
@@ -573,103 +575,103 @@ namespace Common.Enums
         防汛 = 2
     }
     /// <summary>
-    /// 业务咨询枚举,对应业务咨询表的bptype字段
+    /// 業務諮詢枚舉,對應業務諮詢表的bptype欄位
     /// </summary>
     public enum enumBptType
     {
-        在线咨询 = 401002,
-        身份证 = 501001,
-        户籍 = 501002,
+        線上諮詢 = 401002,
+        身份證 = 501001,
+        戶籍 = 501002,
         治安管理 = 501003,
         出入境 = 501004,
         消防 = 501005,
-        其他业务 = 501006,
+        其他業務 = 501006,
         交警 = 501007,
-        网安 = 501008,
+        網安 = 501008,
         法制 = 501009
     }
 
     public enum enumNewsType
     {
-        警务信息 = 301001,
+        警務信息 = 301001,
         警方公告 = 301002,
-        防范提示 = 101501
+        防範提示 = 101501
     }
 
     /// <summary>
-    /// 上传文件类型
+    /// 上傳檔案類型
     /// </summary>
     public enum enumBusType
     {
 
-        车辆图片上传 = 100001,
-        套管图片上传 = 103002,
-        三通图片上传 = 103003,
-        阀门图片上传 = 103004,
-        占压图片上传 = 103005,
+        車輛圖片上傳 = 100001,
+        套管圖片上傳 = 103002,
+        三通圖片上傳 = 103003,
+        閥門圖片上傳 = 103004,
+        占壓圖片上傳 = 103005,
 
 
     }
 
 
     /// <summary>
-    /// 管道维修应急预案级别
+    /// 管道維修應急預案級別
     /// </summary>
     public enum enumEmergencyPlanLevel
     {
         中石化 = 1,
         油田 = 2,
-        总厂 = 3,
-        分厂 = 4
+        總廠 = 3,
+        分廠 = 4
     }
 
     /// <summary>
-    /// 阳极材料
+    /// 陽極材料
     /// </summary>
     public enum enumAnodeMaterial
     {
         未知 = 0,
-        镀铂阳极 = 1,
-        磁性氧化铁 = 2,
-        混合金属氧化物 = 3,
-        镁 = 4,
-        锌 = 5,
-        铂 = 6,
-        高硅铸铁 = 7,
+        鍍鉑陽極 = 1,
+        磁性氧化鐵 = 2,
+        混合金屬氧化物 = 3,
+        鎂 = 4,
+        鋅 = 5,
+        鉑 = 6,
+        高矽鑄鐵 = 7,
         石墨 = 8,
-        废钢铁 = 9,
+        廢鋼鐵 = 9,
         碳 = 10,
-        铝合金 = 11,
+        鋁合金 = 11,
         其它 = 99
     }
 
 
     /// <summary>
-    /// 业务咨询处理状态枚举,对应业务咨询表的requesStatus字段
+    /// 業務諮詢處理狀態枚舉,對應業務諮詢表的requesStatus欄位
     /// </summary>
     public enum enumBussinessType
     {
-        后台办理本部门业务 = 1,
-        手机办理本部门业务 = 2,
-        手机业务 = 3,
-        社区民警 = 4
+        後臺辦理本部門業務 = 1,
+        手機辦理本部門業務 = 2,
+        手機業務 = 3,
+        社區民警 = 4
     }
 
     /// <summary>
-    /// 业务咨询处理状态枚举,对应业务咨询表的requesStatus字段
+    /// 業務諮詢處理狀態枚舉,對應業務諮詢表的requesStatus欄位
     /// </summary>
     public enum enumRequesStatus
     {
-        用户提交 = 0,
-        指定处理 = 1,
-        处理完成 = 2
+        用戶提交 = 0,
+        指定處理 = 1,
+        處理完成 = 2
     }
 
     public enum enumWorkType
     {
         未指定 = -1,
-        手机方式 = 0,
-        电脑Web = 1
+        手機方式 = 0,
+        電腦Web = 1
     }
     public enum enumIsBool
     {
@@ -679,22 +681,22 @@ namespace Common.Enums
 
     public enum enumPhoneUserType
     {
-        注册用户 = 1,
-        匿名用户 = 2
+        註冊用戶 = 1,
+        匿名使用者 = 2
     }
 
     public enum enumReplyType
     {
-        未处理 = 0,
-        审核通过 = 1,
-        审核不通过 = 2
+        未處理 = 0,
+        審核通過 = 1,
+        審核不通過 = 2
     }
 
     public enum enumBlogType
     {
         新浪微博 = 0,
-        腾讯微博 = 1,
-        东营公安局的腾讯微博 = 2
+        騰訊微博 = 1,
+        東營公安局的騰訊微博 = 2
     }
 
 

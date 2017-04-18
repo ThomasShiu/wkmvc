@@ -7,11 +7,11 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>模块管理</h5>
+                    <h5>模組管理</h5>
                     <div class="ibox-tools">
-                        <a class="btn btn-primary btn-xs p210" id="insert" action="add"><i class="fa fa-plus-circle fa-fw"></i> 创建新模块</a>
-                        <a class="btn btn-warning btn-xs p210" id="modify" action="edit"><i class="fa fa-pencil fa-fw"></i> 编辑</a>
-                        <a class="btn btn-danger btn-xs p210" id="delete" action="remove"><i class="fa fa-trash-o fa-fw"></i> 删除</a>
+                        <a class="btn btn-primary btn-xs p210" id="insert" action="add"><i class="fa fa-plus-circle fa-fw"></i> 創建新模組</a>
+                        <a class="btn btn-warning btn-xs p210" id="modify" action="edit"><i class="fa fa-pencil fa-fw"></i> 編輯</a>
+                        <a class="btn btn-danger btn-xs p210" id="delete" action="remove"><i class="fa fa-trash-o fa-fw"></i> 刪除</a>
                         <a class="reload-link" style="color: #c4c4c4" href="javascript:dig.reload()" data-toggle="tooltip" data-placement="left" title="刷新">
                             <i class="fa fa-repeat fa-lg"></i>
                         </a>
@@ -22,9 +22,9 @@
                     {
                         <div class="row">
                             <div class="col-sm-9">
-                                <label>选择系统：</label>
+                                <label>選擇系統：</label>
                                 <select name="System" class="form-control input-sm  input-s-sm inline" onchange="submit()">
-                                    <option value="" @(ViewData["System"] == null || ViewData["System"].ToString() == "" ? "selected=\"selected\"" : "")>全部系统</option>
+                                    <option value="" @(ViewData["System"] == null || ViewData["System"].ToString() == "" ? "selected=\"selected\"" : "")>全部系統</option>
                                     @{
                                         foreach (var item in ViewData["Systemlist"] as dynamic)
                                         {
@@ -36,7 +36,7 @@
                             </div>
                             <div class="col-sm-3">
                                 <div class="input-group">
-                                    @Html.TextBox("Search", null, new { @class = "input-sm form-control", @placeholder = "请输入查询关键词" })
+                                    @Html.TextBox("Search", null, new { @class = "input-sm form-control", @placeholder = "請輸入查詢關鍵字" })
                                     <span class="input-group-btn">
                                         <button type="submit" onclick="submit()" class="btn btn-sm btn-primary"> 搜索</button>
                                     </span>
@@ -49,12 +49,12 @@
                             <thead>
                                 <tr>
                                     <th class="tn" style="width: 50px !important"><input name="checkall" class="icheck_box" type="checkbox" value=""></th>
-                                    <th>所属系统</th>
-                                    <th>模块名称</th>
-                                    <th style="width: 100px !important;">模块别名</th>
-                                    <th style="width:100px !important;">模块类型</th>
-                                    <th>模块地址</th>
-                                    <th style="width: 100px !important;">状态/顺序</th>
+                                    <th>所屬系統</th>
+                                    <th>模組名稱</th>
+                                    <th style="width: 100px !important;">模組別名</th>
+                                    <th style="width:100px !important;">模組類型</th>
+                                    <th>模組位址</th>
+                                    <th style="width: 100px !important;">狀態/順序</th>
                                     <th style="width: 120px !important;">操作</th>
                                 </tr>
                             </thead>
@@ -72,7 +72,7 @@
                                             <td>@item.MODULEPATH</td>
                                             <td>@item.ISSHOW/@item.SHOWORDER</td>
                                             <td style="text-align:center;">
-                                                <a href="javascript:AddChild('@item.ID','@item.FK_BELONGSYSTEM')" listaction="addchild" class="text-navy" title="添加子模块">[添加子模块]</a>
+                                                <a href="javascript:AddChild('@item.ID','@item.FK_BELONGSYSTEM')" listaction="addchild" class="text-navy" title="添加子模組">[添加子模組]</a>
                                             </td>
                                         </tr>
                                     }
@@ -88,15 +88,15 @@
 @section scripts{
     <script type="text/javascript">
         $(function () {
-            //添加新模块
+            //添加新模組
             $("#insert").click(function () {
-                dig.addPage("添加新模块", "/sys/module/detail", 1000, 450, function () {
+                dig.addPage("添加新模組", "/sys/module/detail", 1000, 450, function () {
                     if (this.returnValue == 'yes') {
                         location.reload();
                     }
                 });
             });
-            //列表选择修改
+            //列表選擇修改
             $('#modify').click(function () {
                 var vals = '';
                 var num = 0;
@@ -105,31 +105,31 @@
                     num++;
                 });
                 if (!vals) {
-                    dig.error("对不起，请选中您要操作的记录！");
+                    dig.error("對不起，請選中您要操作的記錄！");
                     return;
                 }
                 if (num > 1) {
-                    dig.error("对不起，每次只能修改一条记录！");
+                    dig.error("對不起，每次只能修改一條記錄！");
                     return;
                 }
-                dig.addPage("编辑模块", "/Sys/Module/detail/" + vals, 700, 450, function () {
+                dig.addPage("編輯模組", "/Sys/Module/detail/" + vals, 700, 450, function () {
                     if (this.returnValue == 'yes') {
                         location.reload();
                     }
                 });
             });
         });
-        //添加子模块
+        //添加子模組
         function AddChild(n, e) {
-            dig.addPage("添加子模块", "/sys/module/detail?parentId=" + n + "&sys=" + e, 1000, 450, function () {
+            dig.addPage("添加子模組", "/sys/module/detail?parentId=" + n + "&sys=" + e, 1000, 450, function () {
                 if (this.returnValue == 'yes') {
                     location.reload();
                 }
             });
         }
-        //跳转修改
+        //跳轉修改
         function EditModule(n) {
-            dig.addPage("编辑模块", "/sys/module/detail/" + n, 1000, 450, function () {
+            dig.addPage("編輯模組", "/sys/module/detail/" + n, 1000, 450, function () {
                 if (this.returnValue == 'yes') {
                     location.reload();
                 }
@@ -137,4 +137,5 @@
         }
     </script>
 }
+
 

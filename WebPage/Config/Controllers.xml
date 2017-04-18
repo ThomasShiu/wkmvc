@@ -1,25 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <objects xmlns="http://www.springframework.net">
-  <description>Spring注入控制器，容器指向Service层封装的接口</description>
-  <!--系统管理 Begin-->
-  <!--主页控制器-->
+  <description>Spring注入控制器，容器指向Service層封裝的介面</description>
+  <!--系統管理 Begin-->
+  <!--主頁控制器-->
   <object type="WebPage.Areas.SysManage.Controllers.HomeController,WebPage" singleton="false">
     <property name="ModuleManage" ref="Service.Module"/>
     <property name="DepartmentManage" ref="Service.Department"/>
     <property name="UserOnlineManage" ref="Service.UserOnline"/>
   </object>
-  <!--登录控制器-->
+  <!--登錄控制器-->
   <object type="WebPage.Areas.SysManage.Controllers.AccountController,WebPage" singleton="false">
     <property name="UserManage" ref="Service.User"/>
     <property name="UserOnlineManage" ref="Service.UserOnline"/>
   </object>
-  <!--模块管理-->
+  <!--模組管理-->
   <object type="WebPage.Areas.SysManage.Controllers.ModuleController,WebPage" singleton="false">
     <property name="ModuleManage" ref="Service.Module"/>
     <property name="PermissionManage" ref="Service.Permission"/>
     <property name="SystemManage" ref="Service.System"/>
   </object>
-  <!--权限管理-->
+  <!--許可權管理-->
   <object type="WebPage.Areas.SysManage.Controllers.PermissionController,WebPage" singleton="false">
     <property name="ModuleManage" ref="Service.Module"/>
     <property name="SystemManage" ref="Service.System"/>
@@ -36,19 +36,19 @@
     <property name="RolePermissionManage" ref="Service.RolePermission"></property>
     <property name="SystemManage" ref="Service.System"/>
   </object>
-  <!--部门管理-->
+  <!--部門管理-->
   <object type="WebPage.Areas.SysManage.Controllers.DepartmentController,WebPage" singleton="false">
     <property name="DepartmentManage" ref="Service.Department"/>
     <property name="PostManage" ref="Service.Post"></property>
   </object>
-  <!--岗位管理-->
+  <!--職位管理-->
   <object type="WebPage.Areas.SysManage.Controllers.PostController,WebPage" singleton="false">
     <property name="PostManage" ref="Service.Post"/>
     <property name="PostUserManage" ref="Service.PostUser"/>
     <property name="CodeManage" ref="Service.Code"/>
     <property name="DepartmentManage" ref="Service.Department"/>
   </object>
-  <!--用户管理-->
+  <!--用戶管理-->
   <object type="WebPage.Areas.SysManage.Controllers.UserController,WebPage" singleton="false">
     <property name="PostUserManage" ref="Service.PostUser"/>
     <property name="DepartmentManage" ref="Service.Department"/>
@@ -58,20 +58,20 @@
     <property name="RoleManage" ref="Service.Role"/>
   </object>
 
-  <!--公司客户管理-->
+  <!--公司客戶管理-->
   <object type="WebPage.Areas.SysManage.Controllers.BussinessCustomerController,WebPage" singleton="false">
     <property name="BussinessCustomerManage" ref="Service.BussinessCustomer"/>
     <property name="CodeAreaManage" ref="Service.CodeArea"/>
     <property name="ContentManage" ref="Service.Com.Content"/>
     <property name="CodeManage" ref="Service.Code"/>
   </object>
-  <!--省市级联管理-->
+  <!--省市級聯管理-->
   <object type="WebPage.Areas.SysManage.Controllers.CodeAreaController,WebPage" singleton="false">
     <property name="CodeAreaManage" ref="Service.CodeArea"/>
   </object>
-  <!--日志管理-->
+  <!--日誌管理-->
   <object type="WebPage.Areas.SysManage.Controllers.SysLogController,WebPage" singleton="false">
     <property name="SyslogManage" ref="Service.Syslog"/>
   </object>
-  <!--系统管理 end-->
+  <!--系統管理 end-->
 </objects>

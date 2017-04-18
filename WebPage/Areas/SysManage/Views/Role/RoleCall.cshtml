@@ -40,7 +40,7 @@
                     <tr>
                         <td class="tn">
                             @{
-                    if (item.ID != Common.Enums.ClsDic.DicRole["超级管理员"])
+                    if (item.ID != Common.Enums.ClsDic.DicRole["超級管理員"])
                     {
                         <input name="checkbox_name" class="icheck_box" type="checkbox" value="@item.ID" @(item.IsChoosed ? "checked=\"checked\"" : "") />
                     }

@@ -8,19 +8,19 @@ namespace WebPage.Areas.ComManage.Models
     public class FileModel
     {
         /// <summary>
-        /// 文件名称
+        /// 檔案名稱
         /// </summary>
         public string name { get; set; }
         /// <summary>
-        /// 文件全称
+        /// 文件全稱
         /// </summary>
         public string fullname { get; set; }
         /// <summary>
-        /// 文件路径
+        /// 檔路徑
         /// </summary>
         public string path { get; set; }
         /// <summary>
-        /// 文件格式
+        /// 檔案格式
         /// </summary>
         public string ext { get; set; }
         /// <summary>
@@ -28,19 +28,19 @@ namespace WebPage.Areas.ComManage.Models
         /// </summary>
         public string size { get; set; }
         /// <summary>
-        /// 文件图标
+        /// 檔圖示
         /// </summary>
         public string icon { get; set; }
         /// <summary>
-        /// 是否为文件夹
+        /// 是否為資料夾
         /// </summary>
         public bool isfolder { get; set; }
         /// <summary>
-        /// 是否为图片
+        /// 是否為圖片
         /// </summary>
         public bool isImage { get; set; }
         /// <summary>
-        /// 上传时间
+        /// 上傳時間
         /// </summary>
         public DateTime time { get; set; }
     }

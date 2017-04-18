@@ -7,15 +7,15 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>员工管理</h5>
+                    <h5>員工管理</h5>
                     <div class="ibox-tools">
-                        <a class="btn btn-primary btn-xs p210" id="insert" action="add"><i class="fa fa-plus-circle fa-fw"></i> 创建新员工</a>
-                        <a class="btn btn-warning btn-xs p210" id="modify" action="edit"><i class="fa fa-pencil fa-fw"></i> 编辑</a>
-                        <a class="btn btn-danger btn-xs p210" id="delete" action="remove"><i class="fa fa-trash-o fa-fw"></i> 删除</a>
+                        <a class="btn btn-primary btn-xs p210" id="insert" action="add"><i class="fa fa-plus-circle fa-fw"></i> 創建新員工</a>
+                        <a class="btn btn-warning btn-xs p210" id="modify" action="edit"><i class="fa fa-pencil fa-fw"></i> 編輯</a>
+                        <a class="btn btn-danger btn-xs p210" id="delete" action="remove"><i class="fa fa-trash-o fa-fw"></i> 刪除</a>
                         <a class="btn btn-success btn-xs p310" id="role" action="AllocationRole"><i class="fa fa-gg fa-fw"></i> 分配角色</a>
-                        <a class="btn btn-info btn-xs p210" id="permission" action="Allocation"><i class="fa fa-sheqel fa-fw"></i> 分配权限</a>
-                        <a class="btn btn-warning btn-xs p210" id="pass" action="PwdReset"><i class="fa fa-paypal fa-fw"></i> 初始密码</a>  
-                        <a class="btn btn-white btn-xs p210" id="userinfo" action="UserInfo"><i class="fa fa-user fa-fw"></i> 人员档案</a>                      
+                        <a class="btn btn-info btn-xs p210" id="permission" action="Allocation"><i class="fa fa-sheqel fa-fw"></i> 分配許可權</a>
+                        <a class="btn btn-warning btn-xs p210" id="pass" action="PwdReset"><i class="fa fa-paypal fa-fw"></i> 初始密碼</a>
+                        <a class="btn btn-white btn-xs p210" id="userinfo" action="UserInfo"><i class="fa fa-user fa-fw"></i> 人員檔案</a>
                         <a class="reload-link" style="color: #c4c4c4" href="javascript:dig.reload()" data-toggle="tooltip" data-placement="left" title="刷新">
                             <i class="fa fa-repeat fa-lg"></i>
                         </a>
@@ -26,21 +26,21 @@
                     {
                         <div class="row">
                             <div class="col-sm-9">
-                                <label>选择部门：</label>
-                                <select id="DepartId" name="DepartId" class=" form-control inline input-sm  input-s" onchange="submit()">
-                                    <option value="" @(ViewData["DepartId"] == null || ViewData["DepartId"].ToString() == "" ? "selected" : "")>全部部门</option>
+                                <label>選擇部門：</label>
+                                <select id="DepartId" name="DepartId" class=" form-control inline input-sm input-s" onchange="submit()">
+                                    <option value="" @(ViewData["DepartId"] == null || ViewData["DepartId"].ToString() == "" ? "selected" : "")>全部部門</option>
                                     @{
-                        foreach (var item in ViewBag.dpt)
-                        {
-                            <option value="@item.id" @(ViewData["DepartId"] != null && ViewData["DepartId"].ToString() == item.id ? "selected" : "") >@WebPages.CommonHtmlHelper.RtfTextToHtml(item.name)</option>
-                        }
+                                        foreach (var item in ViewBag.dpt)
+                                        {
+                                            <option value="@item.id" @(ViewData["DepartId"] != null && ViewData["DepartId"].ToString() == item.id ? "selected" : "")>@WebPages.CommonHtmlHelper.RtfTextToHtml(item.name)</option>
+                                        }
                                     }
                                 </select>
 
                             </div>
                             <div class="col-sm-3">
                                 <div class="input-group">
-                                    @Html.TextBox("Search", null, new { @class = "input-sm form-control", @placeholder = "请输入查询关键词" })
+                                    @Html.TextBox("Search", null, new { @class = "input-sm form-control", @placeholder = "請輸入查詢關鍵字" })
                                     <span class="input-group-btn">
                                         <button type="submit" onclick="submit()" class="btn btn-sm btn-primary"> 搜索</button>
                                     </span>
@@ -53,34 +53,34 @@
                                     <tr>
                                         <th class="tn" style="width: 50px !important"><input name="checkall" class="icheck_box" type="checkbox" value=""></th>
                                         <th>姓名</th>
-                                        <th>账号</th>
-                                        <th>部门</th>
-                                        <th>岗位</th>
-                                        <th>部门职务</th>
-                                        <th>用户角色</th>
-                                        <th>创建时间</th>   
-                                        <th>操作</th>                                    
+                                        <th>帳號</th>
+                                        <th>部門</th>
+                                        <th>職位</th>
+                                        <th>部門職務</th>
+                                        <th>用戶角色</th>
+                                        <th>創建時間</th>
+                                        <th>操作</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @{foreach (var item in Model.List)
-                                    {
-                                        <tr>
-                                            <td class="tn"><input name="checkbox_name" class="icheck_box" type="checkbox" value="@item.ID" /></td>
-                                            <td><a href="javascript:EditUser('@item.ID')" listaction="detail" data-toggle="tooltip" data-placement="right" title="修改">@item.NAME</a></td>
-                                            <td>@Html.Raw(item.ISCANLOGIN) @item.ACCOUNT</td>
-                                            <td>@item.DPTNAME</td>
-                                            <td>@item.POSTNAME</td>
-                                            <td>@item.ZW</td>
-                                            <td>@item.ROLENAME</td>
-                                            <td>@item.CREATEDATE</td> 
-                                            <td>
-                                            <a class="btn btn-white btn-xs p210" href="/Sys/User/UserInfo?userid=@item.ID" listaction="UserInfo" data-toggle="tooltip" data-placement="top" title="档案"><i class="fa fa-user fa-fw"></i> 档案</a> 
-                                                <a class="btn btn-warning btn-xs p210" href="/Sys/User/UserDaily/@item.ID" listaction="UserDaily" data-toggle="tooltip" data-placement="top" title="工作日报"><i class="fa fa-calendar fa-fw"></i> 日报</a>  
-                                                <a class="btn btn-danger btn-xs p210" href="/Sys/User/UserAttendance/@item.ID" listaction="Attendance" data-toggle="tooltip" data-placement="top" title="考勤"><i class="fa fa-calendar-check-o fa-fw"></i> 考勤</a>  
-                                            </td>                                        
-                                        </tr>
-                                    }
+                                        {
+                                            <tr>
+                                                <td class="tn"><input name="checkbox_name" class="icheck_box" type="checkbox" value="@item.ID" /></td>
+                                                <td><a href="javascript:EditUser('@item.ID')" listaction="detail" data-toggle="tooltip" data-placement="right" title="修改">@item.NAME</a></td>
+                                                <td>@Html.Raw(item.ISCANLOGIN) @item.ACCOUNT</td>
+                                                <td>@item.DPTNAME</td>
+                                                <td>@item.POSTNAME</td>
+                                                <td>@item.ZW</td>
+                                                <td>@item.ROLENAME</td>
+                                                <td>@item.CREATEDATE</td>
+                                                <td>
+                                                    <a class="btn btn-white btn-xs p210" href="/Sys/User/UserInfo?userid=@item.ID" listaction="UserInfo" data-toggle="tooltip" data-placement="top" title="檔案"><i class="fa fa-user fa-fw"></i> 檔案</a>
+                                                    <a class="btn btn-warning btn-xs p210" href="/Sys/User/UserDaily/@item.ID" listaction="UserDaily" data-toggle="tooltip" data-placement="top" title="工作日報"><i class="fa fa-calendar fa-fw"></i> 日報</a>
+                                                    <a class="btn btn-danger btn-xs p210" href="/Sys/User/UserAttendance/@item.ID" listaction="Attendance" data-toggle="tooltip" data-placement="top" title="考勤"><i class="fa fa-calendar-check-o fa-fw"></i> 考勤</a>
+                                                </td>
+                                            </tr>
+                                        }
                                     }
                                 </tbody>
                             </table>
@@ -88,20 +88,20 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="dataTables_info">
-                                    显示 @Model.BeginPage 到 @Model.EndPage 项，共 @Model.Count 项, 每页显示
+                                    顯示 @Model.BeginPage 到 @Model.EndPage 項，共 @Model.Count 項, 每頁顯示
                                     <select name="example_length" class="form-control input-sm input-xs-sm inline" onchange="submit()">
                                         <option value="10" @(Model.PageSize == 10 ? "selected" : "")>10</option>
                                         <option value="25" @(Model.PageSize == 25 ? "selected" : "")>25</option>
                                         <option value="50" @(Model.PageSize == 50 ? "selected" : "")>50</option>
                                         <option value="100" @(Model.PageSize == 100 ? "selected" : "")>100</option>
-                                    </select> 条记录
+                                    </select> 條記錄
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 @WebPages.CommonHtmlHelper.PaginationPager(Model.Index, Model.PageSize, Model.Count, 7, Model.Url)
                             </div>
                         </div>
-                    }
+                                        }
                 </div>
             </div>
         </div>
@@ -110,15 +110,15 @@
 @section scripts{
     <script type="text/javascript">
         $(function () {
-            //添加新用户
+            //添加新用戶
             $("#insert").click(function () {
-                dig.addPage("添加新员工", "/Sys/User/detail", 600, 450, function () {
+                dig.addPage("添加新員工", "/Sys/User/detail", 600, 450, function () {
                     if (this.returnValue == 'yes') {
                         location.reload();
                     }
                 });
             });
-            //列表选择修改
+            //列表選擇修改
             $('#modify').click(function () {
                 var vals = '';
                 var num = 0;
@@ -127,14 +127,14 @@
                     num++;
                 });
                 if (!vals) {
-                    dig.error("对不起，请选中您要操作的记录！");
+                    dig.error("對不起，請選中您要操作的記錄！");
                     return;
                 }
                 if (num > 1) {
-                    dig.error("对不起，每次只能修改一条记录！");
+                    dig.error("對不起，每次只能修改一條記錄！");
                     return;
                 }
-                dig.addPage("编辑员工", "/Sys/User/detail/" + vals, 600, 450, function () {
+                dig.addPage("編輯員工", "/Sys/User/detail/" + vals, 600, 450, function () {
                     if (this.returnValue == 'yes') {
                         location.reload();
                     }
@@ -149,11 +149,11 @@
                     num++;
                 });
                 if (!vals) {
-                    dig.error("对不起，请选中您要操作的记录！");
+                    dig.error("對不起，請選中您要操作的記錄！");
                     return;
                 }
                 if (num > 1) {
-                    dig.error("对不起，每次只能操作一条记录！");
+                    dig.error("對不起，每次只能操作一條記錄！");
                     return;
                 }
                 dig.addPage("分配角色", "/Sys/Role/RoleCall/" + vals, 600, 450, function () {
@@ -162,7 +162,7 @@
                     }
                 });
             });
-            //分配权限
+            //分配許可權
             $('#permission').click(function () {
                 var vals = '';
                 var num = 0;
@@ -171,31 +171,31 @@
                     num++;
                 });
                 if (!vals) {
-                    dig.error("对不起，请选中您要操作的记录！");
+                    dig.error("對不起，請選中您要操作的記錄！");
                     return;
                 }
                 if (num > 1) {
-                    dig.error("对不起，每次只能操作一条记录！");
+                    dig.error("對不起，每次只能操作一條記錄！");
                     return;
                 }
-                dig.addPage('分配权限', '/Sys/Permission/PerAllocation/?id=' + vals + '&tp=user', 1000, 500, function () {
+                dig.addPage('分配許可權', '/Sys/Permission/PerAllocation/?id=' + vals + '&tp=user', 1000, 500, function () {
                     if (this.returnValue == 'yes') {
                         location.reload();
                     }
                 });
             });
-            //初始化密码
+            //初始化密碼
             $('#pass').click(function () {
                 var vals = '';
                 $('input[name="checkbox_name"]:checked').each(function () {
                     vals += $(this).val() + ',';
                 });
                 if (vals == '' || vals == ',') {
-                    dig.error("对不起，请选中您要操作的记录！");
+                    dig.error("對不起，請選中您要操作的記錄！");
                     return;
                 }
-                var msg = "您确定要为当前选中的用户进行密码初始化操作吗？";
-                dig.confirm('密码初始化', msg, function () {
+                var msg = "您確定要為當前選中的使用者進行密碼初始化操作嗎？";
+                dig.confirm('密碼初始化', msg, function () {
                     $.post("/Sys/User/ResetPwd", { idList: vals }, function (res) {
                         if (res.Status == "y") {
                             dig.successcallback(res.Msg, function () {
@@ -208,7 +208,7 @@
                     }, "json");
                 });
             });
-            //人员档案
+            //人員檔案
             $('#userinfo').click(function () {
                 var vals = '';
                 var num = 0;
@@ -217,19 +217,19 @@
                     num++;
                 });
                 if (!vals) {
-                    dig.error("对不起，请选中您要操作的记录！");
+                    dig.error("對不起，請選中您要操作的記錄！");
                     return;
                 }
                 if (num > 1) {
-                    dig.error("对不起，每次只能操作一条记录！");
+                    dig.error("對不起，每次只能操作一條記錄！");
                     return;
                 }
                 window.location.href = "/Sys/User/UserInfo?userid=" + vals;
             });
         });
-        //跳转修改
+        //跳轉修改
         function EditUser(n) {
-            dig.addPage("编辑员工", "/Sys/User/detail/" + n, 600, 450, function () {
+            dig.addPage("編輯員工", "/Sys/User/detail/" + n, 600, 450, function () {
                 if (this.returnValue == 'yes') {
                     location.reload();
                 }

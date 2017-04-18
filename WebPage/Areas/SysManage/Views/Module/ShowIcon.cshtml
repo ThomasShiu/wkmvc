@@ -1,6 +1,8 @@
-﻿@{ ViewBag.Title = "选择图标"; Layout = "~/Views/Shared/_Layout.cshtml"; }
+﻿@{ ViewBag.Title = "選擇圖示"; Layout = "~/Views/Shared/_Layout.cshtml"; }
 <style>
-   .gray-bg {background-color: white;}
+    .gray-bg {
+        background-color: white;
+    }
 
     #div-icon {
         border: 1px solid #e5e6e7;
@@ -17,11 +19,11 @@
             display: inline-block;
             margin-bottom: 5px;
             margin-right: 5px;
-            text-align:center;
-            height:23px;
-            width:23px;
-            line-height:23px;
-            cursor:pointer;
+            text-align: center;
+            height: 23px;
+            width: 23px;
+            line-height: 23px;
+            cursor: pointer;
         }
 
             #div-icon span:hover {
@@ -35,23 +37,23 @@
 <div class="wrapper-content" style="padding:5px 5px 0px;">
     <div id="div-icon">
         @{ string[] icons = ViewData["icon"] as string[];
-         for (int i = 0; i < icons.Length; i++)
-         { <span><i class="@icons[i]"></i></span>
-         } }
+            for (int i = 0; i < icons.Length; i++)
+            { <span><i class="@icons[i]"></i></span>
+            } }
     </div>
     <div class="hr-line-dashed"></div>
     <div class="text-center">
-        <button class="btn btn-primary" id="saveIcon" type="submit"><i class="fa fa-check"></i> <span>确定保存</span></button>
+        <button class="btn btn-primary" id="saveIcon" type="submit"><i class="fa fa-check"></i> <span>確定保存</span></button>
         <button class="btn btn-warning" id="btn-dig-close" type="button"><i class="im-undo2"></i> 取消返回</button>
     </div>
 </div>
 @section scripts{
     <script type="text/javascript">
         $(function () {
-            //获取传递过来的值
+            //獲取傳遞過來的值
             var dialog = top.dialog.get(window);
             var data = dialog.data;
-            //选中原有图标
+            //選中原有圖示
             if (data != '') {
                  $('#div-icon span i[class="' + data + '"]').parent().attr('class', 'span-active');
             }

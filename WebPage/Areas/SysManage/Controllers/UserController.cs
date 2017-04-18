@@ -11,25 +11,25 @@ namespace WebPage.Areas.SysManage.Controllers
 {
     public class UserController : BaseController
     {
-        #region 声明容器
+        #region 聲明容器
         /// <summary>
-        /// 部门
+        /// 部門
         /// </summary>
         IDepartmentManage DepartmentManage { get; set; }
         /// <summary>
-        /// 岗位管理
+        /// 職位管理
         /// </summary>
         IPostManage PostManage { get; set; }
         /// <summary>
-        /// 用户岗位
+        /// 用戶職位
         /// </summary>
         IPostUserManage PostUserManage { get; set; }
         /// <summary>
-        /// 用户信息
+        /// 使用者資訊
         /// </summary>
         IUserInfoManage UserInfoManage { get; set; }
         /// <summary>
-        /// 字典编码
+        /// 字典編碼
         /// </summary>
         ICodeManage CodeManage { get; set; }
         /// <summary>
@@ -40,7 +40,7 @@ namespace WebPage.Areas.SysManage.Controllers
 
 
         /// <summary>
-        /// 加载首页
+        /// 載入首頁
         /// </summary>
         /// <returns></returns>
         [UserAuthorizeAttribute(ModuleAlias = "User", OperaAction = "View")]
@@ -49,7 +49,7 @@ namespace WebPage.Areas.SysManage.Controllers
             try
             {
 
-                #region 处理查询参数
+                #region 處理查詢參數
                 string DepartId = Request.QueryString["DepartId"];
                 ViewBag.Search = base.keywords;
                 ViewData["DepartId"] = DepartId;
@@ -61,7 +61,7 @@ namespace WebPage.Areas.SysManage.Controllers
             }
             catch (Exception e)
             {
-                WriteLog(Common.Enums.enumOperator.Select, "员工管理加载主页：", e);
+                WriteLog(Common.Enums.enumOperator.Select, "員工管理載入主頁：", e);
                 throw e.InnerException;
             }
 
@@ -72,7 +72,7 @@ namespace WebPage.Areas.SysManage.Controllers
 
 
         /// <summary>
-        /// 加载用户详情信息（基本）
+        /// 載入使用者詳情資訊（基本）
         /// </summary>
         [UserAuthorizeAttribute(ModuleAlias = "User", OperaAction = "Detail")]
         public ActionResult Detail(int? id)
@@ -95,14 +95,14 @@ namespace WebPage.Areas.SysManage.Controllers
             }
             catch (Exception e)
             {
-                WriteLog(Common.Enums.enumOperator.Select, "加载用户详情发生错误：", e);
+                WriteLog(Common.Enums.enumOperator.Select, "載入使用者詳情發生錯誤：", e);
                 throw e.InnerException;
             }
         }
 
 
         /// <summary>
-        /// 保存人员基本信息
+        /// 保存人員基本資訊
         /// </summary>
         [ValidateInput(false)]
         [UserAuthorizeAttribute(ModuleAlias = "User", OperaAction = "Add,Edit")]
@@ -132,21 +132,21 @@ namespace WebPage.Areas.SysManage.Controllers
                         entity.PINYIN2 = Common.ConvertHzToPz.ConvertFirst(entity.NAME).ToLower();
                         isEdit = true;
                     }
-                    //检测此用户名是否重复
+                    //檢測此用戶名是否重複
                     if (!this.UserManage.IsExist(p => p.ACCOUNT.Equals(entity.ACCOUNT) && p.ID != entity.ID))
                     {
                         if (this.UserManage.SaveOrUpdate(entity, isEdit))
                         {
-                            //员工岗位
+                            //員工職位
                             var postlist = Request.Form["postlist"];
                             if (!string.IsNullOrEmpty(postlist))
                             {
-                                //删除员工岗位
+                                //刪除員工職位
                                 if (PostUserManage.IsExist(p => p.FK_USERID == entity.ID))
                                 {
                                     PostUserManage.Delete(p => p.FK_USERID == entity.ID);
                                 }
-                                //添加新的员工岗位
+                                //添加新的員工職位
                                 List<Domain.SYS_POST_USER> PostUser = new List<Domain.SYS_POST_USER>();
                                 foreach (var item in postlist.Trim(',').Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(p => p).ToList())
                                 {
@@ -159,71 +159,71 @@ namespace WebPage.Areas.SysManage.Controllers
                     }
                     else
                     {
-                        json.Msg = "登录账号已被使用，请修改后再提交!";
+                        json.Msg = "登錄帳號已被使用，請修改後再提交!";
                     }
                 }
                 else
                 {
-                    json.Msg = "未找到要操作的用户记录";
+                    json.Msg = "未找到要操作的使用者記錄";
                 }
                 if (isEdit)
                 {
-                    WriteLog(Common.Enums.enumOperator.Edit, "修改用户，结果：" + json.Msg, Common.Enums.enumLog4net.INFO);
+                    WriteLog(Common.Enums.enumOperator.Edit, "修改用戶，結果：" + json.Msg, Common.Enums.enumLog4net.INFO);
                 }
                 else
                 {
-                    WriteLog(Common.Enums.enumOperator.Add, "添加用户，结果：" + json.Msg, Common.Enums.enumLog4net.INFO);
+                    WriteLog(Common.Enums.enumOperator.Add, "添加用戶，結果：" + json.Msg, Common.Enums.enumLog4net.INFO);
                 }
             }
             catch (Exception e)
             {
-                json.Msg = "保存人员信息发生内部错误！";
-                WriteLog(Common.Enums.enumOperator.None, "保存用户错误：", e);
+                json.Msg = "保存人員資訊發生內部錯誤！";
+                WriteLog(Common.Enums.enumOperator.None, "保存使用者錯誤：", e);
             }
             return Json(json);
 
         }
         /// <summary>
-        /// 方法注解：删除用户
-        /// 验证规则：1、超级管理员不能删除
-        ///           2、当前登录用户不能删除
-        ///           3、正常状态用户不能删除
-        ///           4、上级部门用户不能删除
-        /// 删除原则：1、删除用户档案
-        ///           2、删除用户角色关系
-        ///           3、删除用户权限关系
-        ///           4、删除用户岗位关系
-        ///           5、删除用户部门关系
-        ///           6、删除用户
+        /// 方法注解：刪除用戶
+        /// 驗證規則：1、超級管理員不能刪除
+        ///           2、當前登錄用戶不能刪除
+        ///           3、正常狀態使用者不能刪除
+        ///           4、上級部門用戶不能刪除
+        /// 刪除原則：1、刪除使用者檔案
+        ///           2、刪除用戶角色關係
+        ///           3、刪除用戶許可權關係
+        ///           4、刪除用戶職位關係
+        ///           5、刪除用戶部門關係
+        ///           6、刪除用戶
         /// </summary>
         [UserAuthorizeAttribute(ModuleAlias = "User", OperaAction = "Remove")]
         public ActionResult Delete(string idList)
         {
-            var json = new JsonHelper() { Status = "n", Msg = "删除用户成功" };
+            var json = new JsonHelper() { Status = "n", Msg = "刪除用戶成功" };
             try
             {
-                //是否为空
-                if (string.IsNullOrEmpty(idList)) { json.Msg = "未找到要删除的用户"; return Json(json); }
+                //是否為空
+                if (string.IsNullOrEmpty(idList)) { json.Msg = "未找到要刪除的用戶"; return Json(json); }
                 string[] id = idList.Trim(',').Split(',');
                 for (int i = 0; i < id.Length; i++)
                 {
                     int userId = int.Parse(id[i]);
                     if (this.UserManage.IsAdmin(userId))
                     {
-                        json.Msg = "被删除用户存在超级管理员，不能删除!";
-                        WriteLog(Common.Enums.enumOperator.Remove, "删除用户：" + json.Msg, Common.Enums.enumLog4net.ERROR);
+                        json.Msg = "被刪除用戶存在超級管理員，不能刪除!";
+                        WriteLog(Common.Enums.enumOperator.Remove, "刪除用戶：" + json.Msg, Common.Enums.enumLog4net.ERROR);
                         return Json(json);
                     }
                     if (this.CurrentUser.Id == userId)
                     {
-                        json.Msg = "当前登录用户，不能删除!";
-                        WriteLog(Common.Enums.enumOperator.Remove, "删除用户：" + json.Msg, Common.Enums.enumLog4net.ERROR);
+                        json.Msg = "當前登錄用戶，不能刪除!";
+                        WriteLog(Common.Enums.enumOperator.Remove, "刪除用戶：" + json.Msg, Common.Enums.enumLog4net.ERROR);
                         return Json(json);
                     }
                     if (this.UserManage.Get(p => p.ID == userId).ISCANLOGIN)
                     {
-                        json.Msg = "用户未锁定，不能删除!";
-                        WriteLog(Common.Enums.enumOperator.Remove, "删除用户：" + json.Msg, Common.Enums.enumLog4net.ERROR);
+                        json.Msg = "用戶未鎖定，不能刪除!";
+                        WriteLog(Common.Enums.enumOperator.Remove, "刪除用戶：" + json.Msg, Common.Enums.enumLog4net.ERROR);
                         return Json(json);
                     }
                     if (this.CurrentUser.DptInfo != null)
@@ -231,28 +231,28 @@ namespace WebPage.Areas.SysManage.Controllers
                         string dptid = this.UserManage.Get(p => p.ID == userId).DPTID;
                         if (this.DepartmentManage.Get(m => m.ID == dptid).BUSINESSLEVEL < this.CurrentUser.DptInfo.BUSINESSLEVEL)
                         {
-                            json.Msg = "不能删除上级部门用户!";
-                            WriteLog(Common.Enums.enumOperator.Remove, "删除用户：" + json.Msg, Common.Enums.enumLog4net.ERROR);
+                            json.Msg = "不能刪除上級部門用戶!";
+                            WriteLog(Common.Enums.enumOperator.Remove, "刪除用戶：" + json.Msg, Common.Enums.enumLog4net.ERROR);
                             return Json(json);
                         }
                     }
                     this.UserManage.Remove(userId);
                     json.Status = "y";
-                    WriteLog(Common.Enums.enumOperator.Remove, "删除用户：" + json.Msg, Common.Enums.enumLog4net.WARN);
+                    WriteLog(Common.Enums.enumOperator.Remove, "刪除用戶：" + json.Msg, Common.Enums.enumLog4net.WARN);
                 }
             }
             catch (Exception e)
             {
-                json.Msg = "删除用户发生内部错误！";
-                WriteLog(Common.Enums.enumOperator.Remove, "删除用户：", e);
+                json.Msg = "刪除使用者發生內部錯誤！";
+                WriteLog(Common.Enums.enumOperator.Remove, "刪除用戶：", e);
             }
             return Json(json);
         }
 
         /// <summary>
-        /// 方法描述:根据传入的用户编号重置当前用户密码
+        /// 方法描述:根據傳入的使用者編號重置當前使用者密碼
         /// </summary>
-        /// <param name="Id">用户编号</param>
+        /// <param name="Id">用戶編號</param>
         /// <returns></returns>
         [UserAuthorizeAttribute(ModuleAlias = "User", OperaAction = "PwdReset")]
         public ActionResult ResetPwd(string idList)
@@ -260,11 +260,11 @@ namespace WebPage.Areas.SysManage.Controllers
             var json = new JsonHelper() { Status = "n", Msg = "操作成功" };
             try
             {
-                //校验用户编号是否为空
+                //校驗用戶編號是否為空
                 if (string.IsNullOrEmpty(idList))
                 {
-                    json.Msg = "校验失败，用户编号不能为空";
-                    WriteLog(Common.Enums.enumOperator.Edit, "重置当前用户密码：" + json.Msg, Common.Enums.enumLog4net.ERROR);
+                    json.Msg = "校驗失敗，用戶編號不能為空";
+                    WriteLog(Common.Enums.enumOperator.Edit, "重置當前使用者密碼：" + json.Msg, Common.Enums.enumLog4net.ERROR);
                     return Json(json);
                 }
                 var idlist1 = idList.Trim(',').Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(p => int.Parse(p)).ToList();
@@ -278,18 +278,18 @@ namespace WebPage.Areas.SysManage.Controllers
                     }
                 }
                 json.Status = "y";
-                WriteLog(Common.Enums.enumOperator.Edit, "重置当前用户密码：" + json.Msg, Common.Enums.enumLog4net.INFO);
+                WriteLog(Common.Enums.enumOperator.Edit, "重置當前使用者密碼：" + json.Msg, Common.Enums.enumLog4net.INFO);
             }
             catch (Exception e)
             {
-                json.Msg = "操作失败";
-                WriteLog(Common.Enums.enumOperator.Edit, "重置当前用户密码：", e);
+                json.Msg = "操作失敗";
+                WriteLog(Common.Enums.enumOperator.Edit, "重置當前使用者密碼：", e);
             }
             return Json(json);
         }
 
         /// <summary>
-        /// 加载人员档案
+        /// 載入人員檔案
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -298,7 +298,7 @@ namespace WebPage.Areas.SysManage.Controllers
         {
             try
             {
-                //是否为人事部
+                //是否為人事部
                 var IsMatters = true;
 
                 var entity = new Domain.SYS_USERINFO();
@@ -325,11 +325,11 @@ namespace WebPage.Areas.SysManage.Controllers
 
                 Dictionary<string, string> dic = Common.Enums.ClsDic.DicCodeType;
                 var dictype = this.CodeManage.GetDicType();
-                //在岗状态
-                string zgzt = dic["在岗状态"];
+                //在職狀態
+                string zgzt = dic["在職狀態"];
                 ViewData["zgzt"] = dictype.Where(p => p.CODETYPE == zgzt).ToList();
-                //婚姻状况
-                string hyzk = dic["婚姻状况"];
+                //婚姻狀況
+                string hyzk = dic["婚姻狀況"];
                 ViewData["hunyin"] = dictype.Where(p => p.CODETYPE == hyzk).ToList();
                 //政治面貌
                 string zzmm = dic["政治面貌"];
@@ -337,39 +337,39 @@ namespace WebPage.Areas.SysManage.Controllers
                 //民族
                 string mz = dic["民族"];
                 ViewData["mz"] = dictype.Where(p => p.CODETYPE == mz).ToList();
-                //职称级别
-                string zcjb = dic["职称"];
+                //職稱級別
+                string zcjb = dic["職稱"];
                 ViewData["zcjb"] = dictype.Where(p => p.CODETYPE == zcjb).ToList();
-                //学历
-                string xl = dic["学历"];
+                //學歷
+                string xl = dic["學歷"];
                 ViewData["xl"] = dictype.Where(p => p.CODETYPE == xl).ToList();
 
                 return View(entity);
             }
             catch (Exception e)
             {
-                WriteLog(Common.Enums.enumOperator.Select, "加载人员档案：", e);
+                WriteLog(Common.Enums.enumOperator.Select, "載入人員檔案：", e);
                 throw e.InnerException;
             }
 
         }
         /// <summary>
-        /// 保存人员档案
+        /// 保存人員檔案
         /// </summary>
         public ActionResult SetUserInfo(Domain.SYS_USERINFO entity)
         {
             bool isEdit = false;
-            var json = new JsonHelper() { Msg = "保存人员档案成功", Status = "n" };
+            var json = new JsonHelper() { Msg = "保存人員檔案成功", Status = "n" };
             try
             {
                 if (entity != null)
                 {
-                    #region 获取html标签值
+                    #region 獲取html標籤值
 
-                    //籍贯
+                    //籍貫
                     entity.HomeTown = Request.Form["jgprov"] + "," + Request.Form["jgcity"] + "," +
                                       Request.Form["jgcountry"];
-                    //户口所在地
+                    //戶口所在地
                     entity.HuJiSuoZaiDi = Request.Form["hkprov"] + "," + Request.Form["hkcity"] + "," +
                                           Request.Form["hkcountry"];
 
@@ -392,7 +392,7 @@ namespace WebPage.Areas.SysManage.Controllers
 
 
 
-                    //修改用户档案
+                    //修改使用者檔案
                     if (this.UserInfoManage.SaveOrUpdate(entity, isEdit))
                     {
                         json.Status = "y";
@@ -400,49 +400,49 @@ namespace WebPage.Areas.SysManage.Controllers
                     }
                     else
                     {
-                        json.Msg = "保存用户档案失败";
+                        json.Msg = "保存使用者檔案失敗";
 
                     }
 
                 }
                 else
                 {
-                    json.Msg = "未找到要编辑的用户记录";
+                    json.Msg = "未找到要編輯的使用者記錄";
                 }
                 if (isEdit)
                 {
-                    WriteLog(Common.Enums.enumOperator.Edit, "保存人员档案：" + json.Msg, Common.Enums.enumLog4net.INFO);
+                    WriteLog(Common.Enums.enumOperator.Edit, "保存人員檔案：" + json.Msg, Common.Enums.enumLog4net.INFO);
                 }
                 else
                 {
-                    WriteLog(Common.Enums.enumOperator.Add, "保存人员档案：" + json.Msg, Common.Enums.enumLog4net.INFO);
+                    WriteLog(Common.Enums.enumOperator.Add, "保存人員檔案：" + json.Msg, Common.Enums.enumLog4net.INFO);
                 }
             }
             catch (Exception e)
             {
                 json.Msg = e.InnerException.Message;
-                WriteLog(Common.Enums.enumOperator.None, "保存人员档案：", e);
+                WriteLog(Common.Enums.enumOperator.None, "保存人員檔案：", e);
             }
             return Json(json);
         }
 
         #region private
         /// <summary>
-        /// 分页查询用户列表
+        /// 分頁查詢用戶列表
         /// </summary>
         private Common.PageInfo BindList(string DepartId)
         {
-            //基础数据
+            //基礎資料
             var query = this.UserManage.LoadAll(p => p.ID > 0);
 
-            //部门(本部门用户及所有下级部门用户)
+            //部門(本部門用戶及所有下級部門用戶)
             if (!string.IsNullOrEmpty(DepartId))
             {
                 var childDepart = this.DepartmentManage.LoadAll(p => p.PARENTID == DepartId).Select(p => p.ID).ToList();
                 query = query.Where(p => p.DPTID == DepartId || childDepart.Any(e => e == p.DPTID));
             }
 
-            //查询关键字
+            //查詢關鍵字
             if (!string.IsNullOrEmpty(keywords))
             {
                 keywords = keywords.ToLower();
@@ -450,7 +450,7 @@ namespace WebPage.Areas.SysManage.Controllers
             }
             //排序
             query = query.OrderBy(p => p.SHOWORDER1).OrderByDescending(p => p.CREATEDATE);
-            //分页
+            //分頁
             var result = this.UserManage.Query(query, page, pagesize);
 
             var list = result.List.Select(p => new
@@ -470,7 +470,7 @@ namespace WebPage.Areas.SysManage.Controllers
             return new Common.PageInfo(result.Index, result.PageSize, result.Count, JsonConverter.JsonClass(list));
         }
         /// <summary>
-        /// 根据岗位集合获取岗位名称
+        /// 根據職位集合獲取職位名稱
         /// </summary>
         private string GetPostName(ICollection<Domain.SYS_POST_USER> collection)
         {
@@ -483,7 +483,7 @@ namespace WebPage.Areas.SysManage.Controllers
             return retval = retval.TrimEnd(',');
         }
         /// <summary>
-        /// 根据角色集合获取角色名称
+        /// 根據角色集合獲取角色名稱
         /// </summary>
         private string GetRoleName(ICollection<Domain.SYS_USER_ROLE> collection)
         {

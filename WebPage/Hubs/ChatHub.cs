@@ -54,11 +54,11 @@ namespace WebPage.Hubs
                     DateTime dtHistory = DateTime.Now.AddDays(-days);
                     var ChatMessageList = ChatMessageManage.LoadAll(p => p.MessageDate > dtHistory);
 
-                    //超级管理员
-                    if (User.ID == ClsDic.DicRole["超级管理员"])
+                    //超級管理員
+                    if (User.ID == ClsDic.DicRole["超級管理員"])
                     {
                         //通知用户上线
-                        Clients.All.UserLoginNotice("超级管理员：" + User.NAME + " 上线了!");
+                        Clients.All.UserLoginNotice("超級管理員：" + User.NAME + " 上线了!");
 
                         var HistoryMessage = ChatMessageList.OrderBy(p => p.MessageDate).ToList().Select(p => new
                         {

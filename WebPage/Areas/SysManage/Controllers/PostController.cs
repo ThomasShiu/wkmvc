@@ -11,21 +11,21 @@ namespace WebPage.Areas.SysManage.Controllers
 {
     public class PostController : BaseController
     {
-        #region 声明容器
+        #region 聲明容器
         /// <summary>
-        /// 岗位
+        /// 職位
         /// </summary>
         IPostManage PostManage { get; set; }
         /// <summary>
-        /// 部门
+        /// 部門
         /// </summary>
         IDepartmentManage DepartmentManage { get; set; }
         /// <summary>
-        /// 字典编码
+        /// 字典編碼
         /// </summary>
         ICodeManage CodeManage { get; set; }
         /// <summary>
-        /// 岗位人员
+        /// 職位人員
         /// </summary>
         IPostUserManage PostUserManage { get; set; }
         #endregion
@@ -36,7 +36,7 @@ namespace WebPage.Areas.SysManage.Controllers
             return base.View();
         }
         /// <summary>
-        /// 岗位管理 岗位列表
+        /// 職位管理 職位列表
         /// </summary>
         /// <returns></returns>
         [UserAuthorizeAttribute(ModuleAlias = "Post", OperaAction = "View")]
@@ -44,19 +44,19 @@ namespace WebPage.Areas.SysManage.Controllers
         {
             try
             {
-                #region 处理查询参数
-                //获取部门ID
+                #region 處理查詢參數
+                //獲取部門ID
                 var departId = Request.QueryString["departId"] ?? (Request.Form["departId"] ?? "");
-                //岗位类型
+                //職位類型
                 string posttype = Request.QueryString["posttype"];
 
                 ViewBag.Search = base.keywords;
                 #endregion
 
-                //如果部门ID不为空或NULL
+                //如果部門ID不為空或NULL
                 if (!string.IsNullOrEmpty(departId))
                 {
-                    //部门信息
+                    //部門資訊
                     var department = this.DepartmentManage.Get(p => p.ID == departId);
 
                     ViewBag.Department = department;
@@ -72,19 +72,19 @@ namespace WebPage.Areas.SysManage.Controllers
             }
             catch (Exception e)
             {
-                WriteLog(Common.Enums.enumOperator.Select, "对模块权限按钮的管理加载主页：", e);
+                WriteLog(Common.Enums.enumOperator.Select, "對模組許可權按鈕的管理載入主頁：", e);
                 throw e.InnerException;
             }
         }
 
         /// <summary>
-        /// 分页查询岗位列表
+        /// 分頁查詢職位列表
         /// </summary>
         private Common.PageInfo BindList(string posttype, string departId)
         {
-            //基础数据
+            //基礎資料
             var query = this.PostManage.LoadAll(null);
-            //岗位类型
+            //職位類型
             if (!string.IsNullOrEmpty(posttype))
             {
                 query = query.Where(p => p.POSTTYPE == posttype && p.FK_DEPARTID == departId);
@@ -93,14 +93,14 @@ namespace WebPage.Areas.SysManage.Controllers
             {
                 query = query.Where(p => p.FK_DEPARTID == departId);
             }
-            //查询关键字
+            //查詢關鍵字
             if (!string.IsNullOrEmpty(keywords))
             {
                 query = query.Where(p => p.POSTNAME.Contains(keywords));
             }
             //排序
             query = query.OrderBy(p => p.SHOWORDER);
-            //分页
+            //分頁
             var result = this.PostManage.Query(query, page, pagesize);
 
             var list = result.List.Select(p => new
@@ -117,7 +117,7 @@ namespace WebPage.Areas.SysManage.Controllers
         }
 
         /// <summary>
-        /// 加载详情
+        /// 載入詳情
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -126,9 +126,9 @@ namespace WebPage.Areas.SysManage.Controllers
         {
             try
             {
-                //岗位类型
+                //職位類型
                 ViewData["PostType"] = this.CodeManage.GetCode("POSTTYPE");
-                //获取部门ID
+                //獲取部門ID
                 var departId = Request.QueryString["departId"];
 
                 var _entity = this.PostManage.Get(p => p.ID == id) ?? new Domain.SYS_POST() { FK_DEPARTID = departId };
@@ -137,20 +137,20 @@ namespace WebPage.Areas.SysManage.Controllers
             }
             catch (Exception e)
             {
-                WriteLog(Common.Enums.enumOperator.Select, "岗位管理加载详情：", e);
+                WriteLog(Common.Enums.enumOperator.Select, "職位管理載入詳情：", e);
                 throw e.InnerException;
             }
         }
 
         /// <summary>
-        /// 保存岗位
+        /// 保存職位
         /// </summary>
         [UserAuthorizeAttribute(ModuleAlias = "Post", OperaAction = "Add,Edit")]
         public ActionResult Save(Domain.SYS_POST entity)
         {
 
             bool isEdit = false;
-            var json = new JsonHelper() { Msg = "保存岗位成功", Status = "n", ReUrl = "/Post/Index" };
+            var json = new JsonHelper() { Msg = "保存職位成功", Status = "n", ReUrl = "/Post/Index" };
             try
             {
                 if (entity != null)
@@ -170,7 +170,7 @@ namespace WebPage.Areas.SysManage.Controllers
                         entity.UPDATEUSER = this.CurrentUser.Name;
                         isEdit = true;
                     }
-                    //判断岗位是否重名 
+                    //判斷職位是否重名 
                     if (!this.PostManage.IsExist(p => p.POSTNAME == entity.POSTNAME && p.ID != entity.ID))
                     {
                         if (PostManage.SaveOrUpdate(entity, isEdit))
@@ -179,31 +179,31 @@ namespace WebPage.Areas.SysManage.Controllers
                         }
                         else
                         {
-                            json.Msg = "保存失败";
+                            json.Msg = "保存失敗";
                         }
                     }
                     else
                     {
-                        json.Msg = "岗位" + entity.POSTNAME + "已存在，不能重复添加";
+                        json.Msg = "職位" + entity.POSTNAME + "已存在，不能重複添加";
                     }
                 }
                 else
                 {
-                    json.Msg = "未找到需要保存的岗位";
+                    json.Msg = "未找到需要保存的職位";
                 }
                 if (isEdit)
                 {
-                    WriteLog(Common.Enums.enumOperator.Edit, "修改岗位，结果：" + json.Msg, Common.Enums.enumLog4net.INFO);
+                    WriteLog(Common.Enums.enumOperator.Edit, "修改職位，結果：" + json.Msg, Common.Enums.enumLog4net.INFO);
                 }
                 else
                 {
-                    WriteLog(Common.Enums.enumOperator.Add, "添加岗位，结果：" + json.Msg, Common.Enums.enumLog4net.INFO);
+                    WriteLog(Common.Enums.enumOperator.Add, "添加職位，結果：" + json.Msg, Common.Enums.enumLog4net.INFO);
                 }
             }
             catch (Exception e)
             {
-                json.Msg = "保存岗位发生内部错误！";
-                WriteLog(Common.Enums.enumOperator.None, "保存岗位：", e);
+                json.Msg = "保存職位發生內部錯誤！";
+                WriteLog(Common.Enums.enumOperator.None, "保存職位：", e);
             }
             return Json(json);
 
@@ -211,18 +211,18 @@ namespace WebPage.Areas.SysManage.Controllers
         }
 
         /// <summary>
-        /// 删除岗位
+        /// 刪除職位
         /// </summary>
         [UserAuthorizeAttribute(ModuleAlias = "Post", OperaAction = "Remove")]
         public ActionResult Delete(string idList)
         {
-            JsonHelper json = new JsonHelper() { Msg = "删除岗位完毕", Status = "n" };
+            JsonHelper json = new JsonHelper() { Msg = "刪除職位完畢", Status = "n" };
             try
             {
                 if (!string.IsNullOrEmpty(idList))
                 {
                     idList = idList.Trim(',');
-                    //判断岗位是否分配人员
+                    //判斷職位是否分配人員
                     if (!this.PostUserManage.IsExist(p => idList.Contains(p.FK_POSTID)))
                     {
                         this.PostManage.Delete(p => idList.Contains(p.ID));
@@ -230,25 +230,25 @@ namespace WebPage.Areas.SysManage.Controllers
                     }
                     else
                     {
-                        json.Msg = "该岗位已经分配人员，不能删除";
+                        json.Msg = "該職位已經分配人員，不能刪除";
                     }
                 }
                 else
                 {
-                    json.Msg = "未找到要删除的岗位记录";
+                    json.Msg = "未找到要刪除的職位記錄";
                 }
-                WriteLog(Common.Enums.enumOperator.Remove, "删除岗位，结果：" + json.Msg, Common.Enums.enumLog4net.WARN);
+                WriteLog(Common.Enums.enumOperator.Remove, "刪除職位，結果：" + json.Msg, Common.Enums.enumLog4net.WARN);
             }
             catch (Exception e)
             {
-                json.Msg = "删除岗位发生内部错误！";
-                WriteLog(Common.Enums.enumOperator.Remove, "删除岗位：", e);
+                json.Msg = "刪除職位發生內部錯誤！";
+                WriteLog(Common.Enums.enumOperator.Remove, "刪除職位：", e);
             }
             return Json(json);
         }
 
         /// <summary>
-        /// 获取岗位列表
+        /// 獲取職位列表
         /// </summary>
         /// <returns></returns>
         public ActionResult GetPostByDepart()

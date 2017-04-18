@@ -14,41 +14,41 @@ namespace WebPage.Controllers
 {
     public class BaseController : Controller
     {
-        #region 公用变量
+        #region 公用變數
         /// <summary>
-        /// 查询关键词
+        /// 查詢關鍵字
         /// </summary>
         public string keywords { get; set; }
         /// <summary>
-        /// 视图传递的分页页码
+        /// 視圖傳遞的分頁頁碼
         /// </summary>
         public int page { get; set; }
         /// <summary>
-        /// 视图传递的分页条数
+        /// 視圖傳遞的分頁條數
         /// </summary>
         public int pagesize { get; set; }
         /// <summary>
-        /// 用户容器，公用
+        /// 用戶容器，公用
         /// </summary>
         public IUserManage UserManage = Spring.Context.Support.ContextRegistry.GetContext().GetObject("Service.User") as IUserManage;
         #endregion
 
         protected IExtLog _log = ExtLogManager.GetLogger("dblog");
 
-        #region 用户对象
+        #region 使用者物件
         /// <summary>
-        /// 获取当前用户对象
+        /// 獲取當前使用者物件
         /// </summary>
         public Account CurrentUser
         {
             get
             {
-                //从Session中获取用户对象
+                //從Session中獲取使用者物件
                 if (SessionHelper.GetSession("CurrentUser") != null)
                 {
                     return SessionHelper.GetSession("CurrentUser") as Account;
                 }
-                //Session过期 通过Cookies中的信息 重新获取用户对象 并存储于Session中
+                //Session過期 通過Cookies中的資訊 重新獲取使用者物件 並存儲於Session中
                 var account = UserManage.GetAccountByCookie();
                 SessionHelper.SetSession("CurrentUser", account);
                 return account;
@@ -67,21 +67,21 @@ namespace WebPage.Controllers
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            #region 登录用户验证
-            //1、判断Session对象是否存在
+            #region 登錄用戶驗證
+            //1、判斷Session物件是否存在
             if (filterContext.HttpContext.Session == null)
             {
                 filterContext.HttpContext.Response.Write(
-                       " <script type='text/javascript'> alert('~登录已过期，请重新登录');window.top.location='/sys/account'; </script>");
+                       " <script type='text/javascript'> alert('~登錄已過期，請重新登錄');window.top.location='/sys/account'; </script>");
                 filterContext.RequestContext.HttpContext.Response.End();
                 filterContext.Result = new EmptyResult();
                 return;
             }
-            //2、登录验证
+            //2、登錄驗證
             if (CurrentUser == null)
             {
                 filterContext.HttpContext.Response.Write(
-                    " <script type='text/javascript'> alert('登录已过期，请重新登录'); window.top.location='/sys/account';</script>");
+                    " <script type='text/javascript'> alert('登錄已過期，請重新登錄'); window.top.location='/sys/account';</script>");
                 filterContext.RequestContext.HttpContext.Response.End();
                 filterContext.Result = new EmptyResult();
                 return;
@@ -90,15 +90,15 @@ namespace WebPage.Controllers
             #endregion
 
 
-            #region 公共Get变量
-            //分页页码
+            #region 公共Get變數
+            //分頁頁碼
             object p = filterContext.HttpContext.Request["page"];
             if (p == null || p.ToString() == "") { page = 1; } else { page = int.Parse(p.ToString()); }
 
-            //搜索关键词
+            //搜索關鍵字
             string search = filterContext.HttpContext.Request.QueryString["Search"];
             if (!string.IsNullOrEmpty(search)) { keywords = search; }
-            //显示分页条数
+            //顯示分頁條數
             string size = filterContext.HttpContext.Request.QueryString["example_length"];
             if (!string.IsNullOrEmpty(size) && System.Text.RegularExpressions.Regex.IsMatch(size.ToString(), @"^\d+$")) { pagesize = int.Parse(size.ToString()); } else { pagesize = 10; }
             #endregion
@@ -130,21 +130,21 @@ namespace WebPage.Controllers
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
     public class UserAuthorizeAttribute : AuthorizeAttribute
     {
-        #region 字段和属性
+        #region 欄位和屬性
         /// <summary>
-        /// 模块别名，可配置更改
+        /// 模組別名，可配置更改
         /// </summary>
         public string ModuleAlias { get; set; }
         /// <summary>
-        /// 权限动作
+        /// 許可權動作
         /// </summary>
         public string OperaAction { get; set; }
         /// <summary>
-        /// 权限访问控制器参数
+        /// 許可權存取控制器參數
         /// </summary>
         private string Sign { get; set; }
         /// <summary>
-        /// 基类实例化
+        /// 基類產生實體
         /// </summary>
         public BaseController baseController = new BaseController();
 
@@ -153,28 +153,28 @@ namespace WebPage.Controllers
 
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
-            //1、判断模块是否对应
+            //1、判斷模組是否對應
             if (string.IsNullOrEmpty(ModuleAlias))
             {
-                filterContext.HttpContext.Response.Write(" <script type='text/javascript'> alert('^您没有访问该页面的权限！'); </script>");
+                filterContext.HttpContext.Response.Write(" <script type='text/javascript'> alert('^您沒有訪問該頁面的許可權！'); </script>");
                 filterContext.RequestContext.HttpContext.Response.End();
                 filterContext.Result = new EmptyResult();
                 return;
             }
 
-            //2、判断用户是否存在
+            //2、判斷用戶是否存在
             if (baseController.CurrentUser == null)
             {
-                filterContext.HttpContext.Response.Write(" <script type='text/javascript'> alert('^登录已过期，请重新登录！');window.top.location='/'; </script>");
+                filterContext.HttpContext.Response.Write(" <script type='text/javascript'> alert('^登錄已過期，請重新登錄！');window.top.location='/'; </script>");
                 filterContext.RequestContext.HttpContext.Response.End();
                 filterContext.Result = new EmptyResult();
                 return;
             }
 
-            //对比变量，用于权限认证
+            //對比變數，用於許可權認證
             var alias = ModuleAlias;
 
-            #region 配置Sign调取控制器标识
+            #region 配置Sign調取控制器標識
             Sign = filterContext.RequestContext.HttpContext.Request.QueryString["sign"];
             if (!string.IsNullOrEmpty(Sign))
             {
@@ -186,38 +186,38 @@ namespace WebPage.Controllers
             }
             #endregion
 
-            //3、调用下面的方法，验证是否有访问此页面的权限，查看加操作
+            //3、調用下面的方法，驗證是否有訪問此頁面的許可權，查看加操作
             var moduleId = baseController.CurrentUser.Modules.Where(p => p.ALIAS.ToLower() == alias.ToLower()).Select(p => p.ID).FirstOrDefault();
             bool _blAllowed = IsAllowed(baseController.CurrentUser, moduleId, OperaAction);
             if (!_blAllowed)
             {
-                filterContext.HttpContext.Response.Write(" <script type='text/javascript'> alert('您没有访问当前页面的权限！');</script>");
+                filterContext.HttpContext.Response.Write(" <script type='text/javascript'> alert('您沒有訪問當前頁面的許可權！');</script>");
                 filterContext.RequestContext.HttpContext.Response.End();
                 filterContext.Result = new EmptyResult();
                 return;
             }
 
-            //4、有权限访问页面，将此页面的权限集合传给页面
+            //4、有許可權訪問頁面，將此頁面的許可權集合傳給頁面
             filterContext.Controller.ViewData["PermissionList"] = GetPermissByJson(baseController.CurrentUser, moduleId);
         }
         /// <summary>
-        /// 获取操作权限Json字符串，供视图JS判断使用
+        /// 獲取操作許可權Json字串，供視圖JS判斷使用
         /// </summary>
         string GetPermissByJson(Account account, int moduleId)
         {
-            //操作权限
+            //操作許可權
             var _varPerListThisModule = account.Permissions.Where(p => p.MODULEID == moduleId).Select(R => new { R.PERVALUE }).ToList();
             return Common.JsonHelper.JsonConverter.Serialize(_varPerListThisModule);
         }
 
         /// <summary>
-        /// 功能描述：判断用户是否有此模块的操作权限
+        /// 功能描述：判斷使用者是否有此模組的操作許可權
         /// </summary>
         bool IsAllowed(Account user, int moduleId, string action)
         {
-            //判断入口
+            //判斷入口
             if (user == null || user.Id <= 0 || moduleId == 0 || string.IsNullOrEmpty(action)) return false;
-            //验证权限
+            //驗證許可權
             var permission = user.Permissions.Where(p => p.MODULEID == moduleId);
             action = action.Trim(',');
             if (action.IndexOf(',') > 0)

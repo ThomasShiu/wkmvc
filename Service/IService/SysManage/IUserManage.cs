@@ -17,7 +17,7 @@ namespace Service.IService
         Domain.SYS_USER UserLogin(string useraccount, string password);
 
         /// <summary>
-        /// 是否超级管理员
+        /// 是否超級管理員
         /// </summary>
         /// <param name="userId">用户ID</param>
         /// <returns></returns>
