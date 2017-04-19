@@ -97,7 +97,7 @@ function ldate(obj, format) {
         elem: '#' + obj,
         format: format,
         festival: true,
-        min: '2016-01-01 00:00:00', //設定最小日期
+        min: '1960-01-01 00:00:00', //設定最小日期
         max: '2099-06-16 23:59:59', //設定最大日期
         istime: true,
         istoday: false,

@@ -76,7 +76,7 @@
                                                     <label class="col-xs-2 control-label">手機號碼：</label>
                                                     <div class="col-xs-10">
                                                         <div class="input-group m-b">
-                                                            @Html.TextBoxFor(p => p.PHONE, new { @class = "form-control", @placeholder = "請輸入手機號碼", @datatype = "m", @nullmsg = "請輸入手機號碼！", @errormsg = "請輸入手機號碼！" })
+                                                            @Html.TextBoxFor(p => p.PHONE, new { @class = "form-control", @placeholder = "請輸入手機號碼",  @nullmsg = "請輸入手機號碼！", @errormsg = "手機號碼錯誤！" })
                                                             <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
                                                         </div>
                                                     </div>
@@ -109,7 +109,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-xs-2 control-label">在崗狀態：</label>
+                                                    <label class="col-xs-2 control-label">在職狀態：</label>
                                                     <div class="col-xs-10">
                                                         <select name="WORKCODE" class="form-control input-sm  input-s-sm inline">
                                                             <option value="-1">--請選擇--</option>

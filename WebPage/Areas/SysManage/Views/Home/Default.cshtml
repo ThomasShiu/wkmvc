@@ -44,7 +44,7 @@
                             <img alt="image" class="img-circle" src="@(string.IsNullOrEmpty(Model.Face_Img) ? "/Pro/Project/User_Default_Avatat?name="+Model.Name.Substring(0,1) : Model.Face_Img)" style="width:200px;height:200px;" />
                         </div>
                         <h1>@Model.Name</h1>
-                        <p class="font-bold">@(Model.DptInfo==null?"——":Model.DptInfo.NAME)</p>
+                        <p class="font-bold">@(Model.DptInfo == null ? "——" : Model.DptInfo.NAME)</p>
                         <div class="text-center">
                             <a class="btn btn-xs btn-white text-danger">@(new Models.CommonHelper().GetUserZW(Model.Levels))</a>
                         </div>
@@ -233,4 +233,483 @@
             <iframe class="J_iframe" name="iframe0" style="width:100%;height:824px;margin-top:-20px;" src="/pro/daily" frameborder="0" seamless></iframe>
         </div>
     </div>
+    <div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="col-sm-4">
+
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>二次開發</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <p>我們提供基於H+的二次開發服務，具體費用請聯繫作者。</p>
+                        <p>同時，我們也提供以下服務：</p>
+                        <ol>
+                            <li>基於WordPress的網站建設和主題定制</li>
+                            <li>PSD轉WordPress主題</li>
+                            <li>PSD轉XHTML</li>
+                            <li>Html頁面（CSS+XHTML+jQuery）製作</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>聯繫資訊</h5>
+
+                    </div>
+                    <div class="ibox-content">
+                        <p>
+                            <i class="fa fa-send-o"></i> 博客：<a href="http://www.zi-han.net" target="_blank">http://www.zi-han.net</a>
+                        </p>
+                        <p>
+                            <i class="fa fa-qq"></i> QQ：<a href="http://wpa.qq.com/msgrd?v=3&uin=516477188&site=qq&menu=yes" target="_blank">516477188</a>
+                        </p>
+                        <p>
+                            <i class="fa fa-weixin"></i> 微信：<a href="javascript:;">zheng-zihan</a>
+                        </p>
+                        <p>
+                            <i class="fa fa-credit-card"></i> 支付寶：<a href="javascript:;" class="支付寶資訊">zheng-zihan@qq.com / *子涵</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>更新日誌</h5>
+                    </div>
+                    <div class="ibox-content no-padding">
+                        <div class="panel-body">
+                            <div class="panel-group" id="version">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h5 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#version" href="#v41">v4.1.0</a><code class="pull-right">2015.12.21</code>
+                                        </h5>
+                                    </div>
+                                    <div id="v41" class="panel-collapse collapse in">
+                                        <div class="panel-body">
+                                            <div class="alert alert-warning">此版本是一個維護版本，主要是升級和修復bug，讓我們共同期待5.0版的到來</div>
+                                            <ol>
+                                                <li>增加不支援IE8的頁面提示</li>
+                                                <li>修復頁面連結和表單提交預設在新視窗中打開的問題</li>
+                                                <li>更新suggest外掛程式，修復錯位問題</li>
+                                                <li>升級bootstrap版本到3.3.6版本</li>
+                                                <li>升級layer到2.1版本</li>
+                                                <li>升級echarts到2.2.7版本</li>
+                                                <li>升級webuploader到0.1.5版本</li>
+                                                <li>修復網路條件不好情況下，頁面載入提示遮擋頁面無法操作的問題</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h5 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#version" href="#v40">v4.0.0</a><code class="pull-right">2015.10.21</code>
+                                        </h5>
+                                    </div>
+                                    <div id="v40" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ol>
+                                                <li>升級bootstrap到最新版本3.3.5；</li>
+                                                <li>升級jquery版本到最新版本2.1.4；</li>
+                                                <li>升級Font Awesome到最新版本4.4.0；</li>
+                                                <li>修復了登錄頁面的一處錯誤；</li>
+                                                <li>修復了主頁面出現多個捲軸的問題；</li>
+                                                <li>修復了已知的各種流覽器相容問題；</li>
+                                                <li>修復了layphoto和suggest等頁面的顯示問題；</li>
+                                                <li>新增Glyphicons字體圖示的預覽；</li>
+                                                <li>新增對不支持的流覽器的友好提示；</li>
+                                                <li>新增視頻/音樂播放機的支援；</li>
+                                                <li>新增Bootstrap Table(推薦)；</li>
+                                                <li>進一步完善了開發文檔；</li>
+                                                <li>提供了離線支援，開箱即用；</li>
+                                                <li>對IE系列的流覽器支援更好。</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h5 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#version" href="#v32">v3.2.0</a><code class="pull-right">2015.09.22</code>
+                                        </h5>
+                                    </div>
+                                    <div id="v32" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ol>
+                                                <li>修復360流覽器個別情況下崩潰的問題；</li>
+                                                <li>優化360流覽器的顯示效果；</li>
+                                                <li>修復layim彈出聊天視窗出錯的問題；</li>
+                                                <li>優化登錄、註冊、鎖屏頁面，使其在右側主體區域打開時轉到新頁面打開；</li>
+                                                <li>優化了移動設備的展示效果。</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h5 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#version" href="#v31">v3.1.0</a><code class="pull-right">2015.09.18</code>
+                                        </h5>
+                                    </div>
+                                    <div id="v31" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ol>
+                                                <li>修復登錄頁面文字方塊輸入字元不可見的問題；</li>
+                                                <li>修復火狐下conTabs關閉操作按鈕不下拉的問題；</li>
+                                                <li>修復IOS系統下各種流覽器右側內容不滾動的問題；</li>
+                                                <li>優化了主頁示例三的顯示；</li>
+                                                <li>修復了jqgrid編輯彈框導致頁面錯位的問題；</li>
+                                                <li>使百度Echarts圖示支援回應式，並優化了其顯示；</li>
+                                                <li>修復Summernote文字編輯器下拉式功能表顯示不全的問題；</li>
+                                                <li>修復Toastr通知圖示顯示多個的問題。</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h5 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#version" href="#v301">v3.0.x</a><code class="pull-right">2015.09.04</code>
+                                        </h5>
+                                    </div>
+                                    <div id="v301" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <p>自H+ v3.0版發佈後，又陸續發佈了7個小版本，修復了一些相容性問題，但是沒有對外發佈，更新日誌略過……</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h5 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#version" href="#v30">v3.0.0</a><code class="pull-right">2015.09.03</code>
+                                        </h5>
+                                    </div>
+                                    <div id="v30" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ol>
+                                                <li>
+                                                    今天是情人節，H+終於跨到了v3.0，就是是情人節禮物吧，感謝你們的不離不棄，一路相伴！ <a href="#" class="viewlog"><i class="fa fa-eye"></i> 查看升級日誌</a>
+                                                </li>
+                                                <li><span class="text-danger">注意：</span>本次更新調整較大，不建議直接覆蓋升級！</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h5 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#version" href="#v22">v2.2.0</a><code class="pull-right">2015.05.12</code>
+                                        </h5>
+                                    </div>
+                                    <div id="v22" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ol>
+                                                <li>
+                                                    根據使用者的回饋，根據使用者的回饋，移除了CDN支援，CDN服務將於2015年6月30日之後結束支持，如果您正在使用CDN服務，請儘快完成遷移，對於給您造成的不便，我們表示非常抱歉；
+                                                </li>
+                                                <li>
+                                                    升級Bootstrap到最新版本v3.3.4；
+                                                </li>
+                                                <li>
+                                                    修改了style.css，修復了其中的一些bug；
+                                                </li>
+
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h5 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#version" href="#v21">v2.1.0</a><code class="pull-right">2015.03.19</code>
+                                        </h5>
+                                    </div>
+                                    <div id="v21" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ol>
+                                                <li>
+                                                    增加cdn服務支援，cdn節點使用阿裡雲服務，可保證您的項目隨時使用最新版本的H+，免去反復升級的麻煩；
+                                                </li>
+                                                <li>修復一些問題；</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h5 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#version" href="#v20">v2.0.0</a><code class="pull-right">2015.03.02</code>
+                                        </h5>
+                                    </div>
+                                    <div id="v20" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ol>
+                                                <li>
+                                                    增加RTL佈局及RTL支持，可點擊右上角齒輪按鈕選擇RTL模式查看；
+                                                </li>
+                                                <li>
+                                                    增加上下佈局； <a href="index_4.html" title="去看看"><i class="fa fa-eye"></i></a>
+                                                </li>
+                                                <li>
+                                                    在360流覽器6.0以上版本中強制以webkit內核解析，體驗更佳；
+                                                </li>
+                                                <li>
+                                                    增加<a href="toastr_notifications.html">Toastr通知</a>、<a href="nestable_list.html">嵌套列表</a>、<a href="timeline_v2.html">時間軸</a>、<a href="forum_main.html">論壇</a>、<a href="code_editor.html">代碼編輯器</a>、<a href="modal_window.html">模態窗口</a>、<a href="validation.html">表單驗證</a>、<a href="tree_view_v2.html">樹形視圖</a>、<a href="chat_view.html">聊天視窗</a>等頁面；
+                                                </li>
+                                                <li>
+                                                    升級<a href="icons.html">Font Awesome</a>，<a href="form_simditor.html">Simditor</a>等到最新版本；
+                                                </li>
+                                                <li>
+                                                    優化部分內容
+                                                </li>
+
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h5 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#version" href="#v18">v1.8.0</a><code class="pull-right">2015.02.23</code>
+                                        </h5>
+                                    </div>
+                                    <div id="v18" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ol>
+                                                <li>
+                                                    修復一些錯誤；
+                                                </li>
+                                                <li>
+                                                    修復了WebUploader中的一些問題； <a href="form_webuploader.html" title="去看看"><i class="fa fa-eye"></i></a>
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h5 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#version" href="#v17">v1.7.0</a><code class="pull-right">2015.02.11</code>
+                                        </h5>
+                                    </div>
+                                    <div id="v17" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ol>
+                                                <li>
+                                                    更新jquery版本到官方最新版v2.1.1；
+                                                </li>
+                                                <li>
+                                                    更新Bootstrap版本到官方最新版v3.3.0；
+                                                </li>
+                                                <li>
+                                                    增加jqGrid組件； <a href="table_jqgrid.html" title="去看看"><i class="fa fa-eye"></i></a>
+                                                </li>
+                                                <li>
+                                                    修復Summernote編輯器中的一個嚴重錯誤； <a href="form_editors.html" title="去看看"><i class="fa fa-eye"></i></a>
+                                                </li>
+                                                <li>
+                                                    修改了一些已知的bug，並修復了演示示例中的一些錯誤；
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h5 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#version" href="#v16">v1.6.0</a><code class="pull-right">2014.01.26</code>
+                                        </h5>
+                                    </div>
+                                    <div id="v16" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ol>
+                                                <li>
+                                                    優化資源檔路徑，刪除多餘檔
+                                                </li>
+                                                <li>
+                                                    增加Markdown編輯器 <a href="form_markdown.html" title="去看看"><i class="fa fa-eye"></i></a>
+                                                </li>
+                                                <li>
+                                                    增加拾色器ColorPicker <a href="form_advanced.html" title="去看看"><i class="fa fa-eye"></i></a>
+                                                </li>
+                                                <li>
+                                                    優化部分頁面代碼
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#version" href="#v15">v1.5.0</a><code class="pull-right">2014.01.17</code>
+                                        </h4>
+                                    </div>
+                                    <div id="v15" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ol>
+                                                <li>
+                                                    增加了Bootstrap3表單構建器，表單設計更輕鬆； <a href="form_builder.html" title="去看看"><i class="fa fa-eye"></i></a>
+                                                </li>
+                                                <li>
+                                                    修改了webim的高度；
+                                                </li>
+                                                <li>
+                                                    修復了因缺少jquery.min.map檔而導致頁面載入進度條速度過慢的問題；
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#version" href="#v14">v1.4.0</a><code class="pull-right">2015.01.05</code>
+                                        </h4>
+                                    </div>
+                                    <div id="v14" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ol>
+                                                <li>
+                                                    修復了百度ECharts圖表顯示不正確的問題； <a href="graph_echarts.html" title="去看看"><i class="fa fa-eye"></i></a>
+                                                </li>
+                                                <li>
+                                                    新增表單驗證示例，使用jQuery Validate外掛程式實現； <a href="form_validate.html" title="去看看"><i class="fa fa-eye"></i></a>
+                                                </li>
+                                                <li>
+                                                    新增樹形視圖示例； <a href="tree_view.html" title="去看看"><i class="fa fa-eye"></i></a>
+                                                </li>
+                                                <li>
+                                                    修復彈框遮罩的Bug；
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#version" href="#v13">v1.3.0</a><code class="pull-right">2014.12.21</code>
+                                        </h4>
+                                    </div>
+                                    <div id="v13" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ol>
+                                                <li>
+                                                    加入阿裡巴巴團隊的字體圖示庫，字體圖示可以自訂啦； <a href="iconfont.html" title="去看看"><i class="fa fa-eye"></i></a>
+                                                </li>
+                                                <li>
+                                                    新增頭像裁剪上傳組件FullAvatareditor； <a href="form_avatar.html" title="去看看"><i class="fa fa-eye"></i></a>
+                                                </li>
+                                                <li>
+                                                    集成網頁彈層外掛程式layer； <a href="layer.html" title="去看看"><i class="fa fa-eye"></i></a>
+                                                </li>
+                                                <li>
+                                                    集成日期選擇器layerDate； <a href="layerdate.html" title="去看看"><i class="fa fa-eye"></i></a>
+                                                </li>
+                                                <li class="text-danger">
+                                                    <b>增加web即時通訊功能，可以在系統內線上聊天了；</b> <a href="webim.html" title="去看看"><i class="fa fa-eye"></i></a>
+                                                </li>
+                                                <li>增加主題預覽功能，點擊右上側齒輪圖示預覽；</li>
+                                                <li>增加左側邊欄固定功能；</li>
+                                                <li>修復了多處問題。</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#version" href="#v12">v1.2.0</a><code class="pull-right">2014.12.05</code>
+                                        </h4>
+                                    </div>
+                                    <div id="v12" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ol>
+                                                <li>
+                                                    新增百度WebUploader拖動上傳檔組件；<a href="form_webuploader.html" title="去看看"><i class="fa fa-eye"></i></a>
+                                                </li>
+                                                <li>
+                                                    新增國產優秀富文字編輯器外掛程式Simditor；<a href="form_simditor.html" title="去看看"><i class="fa fa-eye"></i></a>
+                                                </li>
+                                                <li>
+                                                    新增百度ECharts統計圖表外掛程式；<a href="form_simditor.html" title="去看看"><i class="fa fa-eye"></i></a>
+                                                </li>
+                                                <li>修復了幾處問題。</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#version" href="#v11">v1.1.0</a><code class="pull-right">2014.11.18</code>
+                                        </h4>
+                                    </div>
+                                    <div id="v11" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ol>
+                                                <li>修復了幾處問題。</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#version" href="#v11">v1.0.0</a><code class="pull-right">2014.11.10</code>
+                                        </h4>
+                                    </div>
+                                    <div id="v11" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <ol>
+                                                <li>Hplus正式發佈。</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>購買說明</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <p>購買後我可以獲得什麼？</p>
+                        <ol>
+                            <li>所有源碼(未壓縮、帶注釋版本)；</li>
+                            <li>說明文檔；</li>
+                            <li>終身免費升級服務；</li>
+                            <li>必要的技術支援；</li>
+                            <li>付費二次開發服務；</li>
+                            <li>授權許可；</li>
+                            <li>……</li>
+                        </ol>
+                        <hr>
+                        <p>如果需要購買H+主題，可直接付款到支付寶：<a href="javascript;">zheng-zihan@qq.com</a>，收款人：<a href="javascript;">*子涵</a>。也可以使用手機支付寶或者微信掃碼支付：</p>
+                        <div class="alert alert-warning">
+                            付款完成後請及時聯繫作者，或在付款備註中留下郵箱或QQ，方便作者及時聯繫您。
+                            <br>如果圖片太小，可以點擊圖片放大。
+                        </div>
+                        <p id="pay-qrcode">
+                            <a href="javascript:;">
+                                <img src="img/pay.png" width="100%" alt="請使用手機支付寶或者微信掃碼支付">
+                            </a>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

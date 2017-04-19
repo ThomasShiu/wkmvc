@@ -312,7 +312,7 @@ namespace Common.Enums
             {
                 Dictionary<string, string> _dic = new Dictionary<string, string>();
 
-                string dicStr = "職務-ZW,在崗狀態-ZGZT,婚姻狀況-HYZK,學歷-XL,政治面貌-ZZMM,民族-MZ,職稱-ZC,業務授權-YWSQ,職位類型-POSTTYPE,許可權值-ROLEVALUE,員工級別-YGJB,合同類型-HTLB,合同狀態-HTZT,客戶分類-KHFL,IP類型-IPLX,專案類型-XMLX,專案狀態-XMZT,成本類別-CBLB,任務狀態-RWZT,任務類別-RWLB,任務階段-RWJD,日誌類別-RZLB,文章類別-WZLB,流程狀態-WZZT,優先順序-YXJ,連絡人類型-LXRLX,消息類型-XXLX";
+                string dicStr = "職務-ZW,在職狀態-ZGZT,婚姻狀況-HYZK,學歷-XL,政治面貌-ZZMM,民族-MZ,職稱-ZC,業務授權-YWSQ,職位類型-POSTTYPE,許可權值-ROLEVALUE,員工級別-YGJB,合同類型-HTLB,合同狀態-HTZT,客戶分類-KHFL,IP類型-IPLX,專案類型-XMLX,專案狀態-XMZT,成本類別-CBLB,任務狀態-RWZT,任務類別-RWLB,任務階段-RWJD,日誌類別-RZLB,文章類別-WZLB,流程狀態-WZZT,優先順序-YXJ,連絡人類型-LXRLX,消息類型-XXLX";
                 var diclist = dicStr.TrimEnd(',').TrimStart(',').Split(',').ToList();
                 if (diclist.Count > 0)
                 {
