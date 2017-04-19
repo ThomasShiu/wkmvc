@@ -6,24 +6,24 @@ using System.Text;
 namespace Common
 {
     /// <summary>
-    /// 分页逻辑处理类
+    /// 分頁邏輯處理類
     /// </summary>
     public class PageCollection
     {
         /// <summary>
-        /// 总页数
+        /// 總頁數
         /// </summary>
         public int TotalPages { get; set; }
         /// <summary>
-        /// 当前页面
+        /// 當前頁面
         /// </summary>
         public int CurrentPage { get; set; }
         /// <summary>
-        /// 每页的记录数
+        /// 每頁的記錄數
         /// </summary>
         public int OnePageSize { get; set; }
         /// <summary>
-        /// 总记录数
+        /// 總記錄數
         /// </summary>
         public long TotalRows { get; set; }
         /// <summary>
@@ -32,16 +32,16 @@ namespace Common
         public string OrderBy { get; set; }
 
         /// <summary>
-        /// 构造无参默认为最大数
+        /// 構造無參默認為最大數
         /// </summary>
         public PageCollection()
         {
             this.CurrentPage = 0;
-            this.OnePageSize = 20;//默认最大行数20条
+            this.OnePageSize = 20;//默認最大行數20條
         }
     }
     /// <summary>
-    /// 分页逻辑处理类 linq to entites
+    /// 分頁邏輯處理類 linq to entites
     /// </summary>
     public class PageInfo<TEntity> where TEntity : class
     {
@@ -52,7 +52,7 @@ namespace Common
             Count = count;
             List = list;
             Url = url;
-            //计算数据条数从开始到结束的值
+            //計算資料條數從開始到結束的值
             if (count == 0)
             {
                 BeginPage = 0;
@@ -91,7 +91,7 @@ namespace Common
     }
 
     /// <summary>
-    /// 分页逻辑处理类 dynamic
+    /// 分頁邏輯處理類 dynamic
     /// </summary>
     public class PageInfo
     {
@@ -102,7 +102,7 @@ namespace Common
             Count = count;
             List = list;
             Url = url;
-            //计算数据条数从开始到结束的值
+            //計算資料條數從開始到結束的值
             if (count == 0)
             {
                 BeginPage = 0;
@@ -141,7 +141,7 @@ namespace Common
     }
 
     /// <summary>
-    /// Eazyui分页处理逻辑类
+    /// Eazyui分頁處理邏輯類
     /// </summary>
     public class PageEazyUi
     {
@@ -159,3 +159,4 @@ namespace Common
         public object rows { get; private set; }
     }
 }
+

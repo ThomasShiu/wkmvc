@@ -10,9 +10,9 @@ namespace Service.ServiceImp
     public class SystemManage : RepositoryBase<Domain.SYS_SYSTEM>, ISystemManage
     {
         /// <summary>
-        /// 获取系统ID、NAME
+        /// 獲取系統ID、NAME
         /// </summary>
-        /// <param name="systems">用户拥有操作权限的系统</param>
+        /// <param name="systems">使用者擁有操作許可權的系統</param>
         /// <returns></returns>
         public dynamic LoadSystemInfo(List<string> systems)
         {

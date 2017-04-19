@@ -8,7 +8,7 @@
             data: { files: $("#operationfiles").val(), path: $("#path").val() },
             dataType: "json",
             beforeSend: function () {
-                dig.loading("正在复制文件");
+                dig.loading("正在複製檔");
                 $(".btn-save").attr("disabled", "disabled");
             },
             success: function (data) {
@@ -35,7 +35,7 @@
             }
         });
     });
-    //返回上级目录
+    //返回上級目錄
     $(".btn-higher-up").click(function () {
         signfiles.OpenParentFolder();
     });
@@ -50,14 +50,14 @@ var signfiles = {
         $.post("/Com/Upload/GetFileData", { path: path }, function (res) {
             if (res.Status == "y") {
                 if (res.Data == "" || res.Data == null) {
-                    dig.error("该目录下没有文件了！");
+                    dig.error("該目錄下沒有檔了！");
                     signfiles.OpenParentFolder();
                 } else {
                     $("#filesPanel").empty();
                     $("#tlist").tmpl(res.Data).appendTo('#filesPanel');
                 }
             } else if (res.Status == "empty") {
-                $("#filesPanel").html('<div class="alert alert-warning text-center"><span style="font-size:16px;"><i class="fa fa-warning"></i>&nbsp;没有找到任何文件</span></div>');
+                $("#filesPanel").html('<div class="alert alert-warning text-center"><span style="font-size:16px;"><i class="fa fa-warning"></i>&nbsp;沒有找到任何檔</span></div>');
             }
             else {
                 dig.error(res.Msg);

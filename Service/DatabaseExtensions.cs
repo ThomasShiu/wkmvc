@@ -12,13 +12,13 @@ using System.Text;
 namespace Service
 {
     /// <summary>
-    /// 查询动态类
+    /// 查詢動態類
     /// add yuangang by 2016-05-10
     /// </summary>
     public static class DatabaseExtensions
     {
         /// <summary>
-        /// 自定义Connection对象
+        /// 自訂Connection對象
         /// </summary>
         private static IDbConnection DefaultConnection
         {
@@ -28,7 +28,7 @@ namespace Service
             }
         }
         /// <summary>
-        /// 自定义数据库连接字符串，与EF连接模式一致
+        /// 自訂資料庫連接字串，與EF連接模式一致
         /// </summary>
         private static string DefaultConnectionString
         {
@@ -38,7 +38,7 @@ namespace Service
             }
         }
         /// <summary>
-        /// 动态查询主方法
+        /// 動態查詢主方法
         /// </summary>
         /// <returns></returns>
         public static IEnumerable SqlQueryForDynamic(this Database db,
@@ -47,7 +47,7 @@ namespace Service
         {
             IDbConnection defaultConn = DefaultConnection;
 
-            //ADO.NET数据库连接字符串
+            //ADO.NET資料庫連接字串
             db.Connection.ConnectionString = DefaultConnectionString;
 
             return SqlQueryForDynamicOtherDB(db, sql, defaultConn, parameters);
@@ -76,10 +76,10 @@ namespace Service
 
                 if (!dataReader.Read())
                 {
-                    return null; //无结果返回Null
+                    return null; //無結果返回Null
                 }
 
-                #region 构建动态字段
+                #region 構建動態欄位
 
                 TypeBuilder builder = DatabaseExtensions.CreateTypeBuilder(
                     "EF_DynamicModelAssembly",
@@ -223,7 +223,7 @@ namespace Service
         {
             IDbConnection conn = DefaultConnection;
 
-            //ADO.NET数据库连接字符串
+            //ADO.NET資料庫連接字串
             conn.ConnectionString = DefaultConnectionString;
 
             if (conn.State != ConnectionState.Open)
@@ -241,30 +241,30 @@ namespace Service
                     cmd.Parameters.Add(item);
                 }
             }
-            //1、DataReader查询数据
+            //1、DataReader查詢資料
             using (IDataReader dataReader = cmd.ExecuteReader())
             {
                 if (!dataReader.Read())
                 {
                     return null;
                 }
-                //2、DataReader转换Json
+                //2、DataReader轉換Json
                 string jsonstr = Common.JsonHelper.JsonConverter.ToJson(dataReader);
                 dataReader.Close();
                 dataReader.Dispose();
                 cmd.Dispose();
                 conn.Close();
                 conn.Dispose();
-                //3、Json转换动态类
+                //3、Json轉換動態類
                 dynamic dyna = Common.JsonHelper.JsonConverter.ConvertJson(jsonstr);
                 return dyna;
             }
         }
         /// <summary>
-        /// 对可空类型进行判断转换(*要不然会报错)
+        /// 對可空類型進行判斷轉換(*要不然會報錯)
         /// </summary>
-        /// <param name="value">DataReader字段的值</param>
-        /// <param name="conversionType">该字段的类型</param>
+        /// <param name="value">DataReader欄位的值</param>
+        /// <param name="conversionType">該欄位的類型</param>
         /// <returns></returns>
         private static object CheckType(object value, Type conversionType)
         {
@@ -279,7 +279,7 @@ namespace Service
         }
 
         /// <summary>
-        /// 判断指定对象是否是有效值
+        /// 判斷指定物件是否是有效值
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>

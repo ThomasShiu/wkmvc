@@ -25,18 +25,18 @@ namespace Service.ServiceImp
         IPostUserManage PostUserManage { get; set; }
         IPermissionManage PermissionManage { get; set; }
         /// <summary>
-        /// 管理用户登录验证
+        /// 管理用戶登錄驗證
         /// add yuangang by 2016-05-12
         /// </summary>
-        /// <param name="useraccount">用户名</param>
-        /// <param name="password">加密密码（AES）</param>
+        /// <param name="useraccount">用戶名</param>
+        /// <param name="password">加密密碼（AES）</param>
         /// <returns></returns>
         public Domain.SYS_USER UserLogin(string useraccount, string password)
         {
             var entity = this.Get(p => p.ACCOUNT == useraccount);
 
-            //因为我们用的是AES的动态加密算法，也就是没有统一的密钥，那么两次同样字符串的加密结果是不一样的，所以这里要通过解密来匹配
-            //而不能通过再次加密输入的密码来匹配
+            //因為我們用的是AES的動態加密演算法，也就是沒有統一的金鑰，那麼兩次同樣字串的加密結果是不一樣的，所以這裡要通過解密來匹配
+            //而不能通過再次加密輸入的密碼來匹配
             if (entity != null && new Common.CryptHelper.AESCrypt().Decrypt(entity.PASSWORD) == password)
             {
                 return entity;
@@ -49,7 +49,7 @@ namespace Service.ServiceImp
         /// </summary>
         public bool IsAdmin(int userId)
         {
-            //通过用户ID获取角色
+            //通過用戶ID獲取角色
             Domain.SYS_USER entity = this.Get(p => p.ID == userId);
             if (entity == null) return false;
             var roles = entity.SYS_USER_ROLE.Select(p => new Domain.SYS_ROLE
@@ -61,9 +61,9 @@ namespace Service.ServiceImp
         }
 
         /// <summary>
-        /// 根据用户ID获取用户名
+        /// 根據使用者ID獲取用戶名
         /// </summary>
-        /// <param name="Id">用户ID</param>
+        /// <param name="Id">用戶ID</param>
         /// <returns></returns>
         public string GetUserName(int Id)
         {
@@ -76,7 +76,7 @@ namespace Service.ServiceImp
         }
 
         /// <summary>
-        /// 根据用户ID获取部门名称
+        /// 根據使用者ID獲取部門名稱
         /// </summary>
         public string GetUserDptName(int id)
         {
@@ -87,44 +87,44 @@ namespace Service.ServiceImp
         }
 
         /// <summary>
-        /// 根据用户ID删除用户相关记录
-        /// 删除原则：1、删除用户档案
-        ///           2、删除用户角色关系
-        ///           3、删除用户权限关系
-        ///           4、删除用户岗位关系
-        ///           5、删除用户部门关系
-        ///           6、删除用户
+        /// 根據使用者ID刪除使用者相關記錄
+        /// 刪除原則：1、刪除使用者檔案
+        ///           2、刪除用戶角色關係
+        ///           3、刪除用戶許可權關係
+        ///           4、刪除用戶崗位關係
+        ///           5、刪除用戶部門關係
+        ///           6、刪除用戶
         /// </summary>
         public bool Remove(int userId)
         {
             try
             {
-                //档案
+                //檔案
                 if (this.UserInfoManage.IsExist(p => p.USERID == userId))
                 {
                     this.UserInfoManage.Delete(p => p.USERID == userId);
                 }
-                //用户角色
+                //用戶角色
                 if (this.UserRoleManage.IsExist(p => p.FK_USERID == userId))
                 {
                     this.UserRoleManage.Delete(p => p.FK_USERID == userId);
                 }
-                //用户权限
+                //用戶許可權
                 if (this.UserPermissionManage.IsExist(p => p.FK_USERID == userId))
                 {
                     this.UserPermissionManage.Delete(p => p.FK_USERID == userId);
                 }
-                //用户岗位
+                //用戶崗位
                 if (this.PostUserManage.IsExist(p => p.FK_USERID == userId))
                 {
                     this.PostUserManage.Delete(p => p.FK_USERID == userId);
                 }
-                //用户部门
+                //用戶部門
                 if (this.UserDepartmentManage.IsExist(p => p.USER_ID == userId))
                 {
                     this.UserDepartmentManage.Delete(p => p.USER_ID == userId);
                 }
-                //用户自身
+                //用戶自身
                 if (this.IsExist(p => p.ID == userId))
                 {
                     this.Delete(p => p.ID == userId);
@@ -135,42 +135,42 @@ namespace Service.ServiceImp
         }
 
         /// <summary>
-        /// 根据用户信息获取用户所有的权限
+        /// 根據使用者資訊獲取使用者所有的許可權
         /// </summary>
         private List<Domain.SYS_PERMISSION> GetPermissionByUser(Domain.SYS_USER users)
         {
-            //1、超級管理員拥有所有权限
+            //1、超級管理員擁有所有權限
             if (IsAdmin(users.ID))
                 return PermissionManage.LoadListAll(null);
-            //2、普通用户，合并当前用户权限与角色权限
+            //2、普通用戶，合併當前用戶許可權與角色許可權
             var perlist = new List<Domain.SYS_PERMISSION>();
-            //2.1合并用户权限
+            //2.1合併用戶許可權
             perlist.AddRange(users.SYS_USER_PERMISSION.Select(p => p.SYS_PERMISSION).ToList());
-            //2.2合同角色权限
-            ////todo:经典多对多的数据查询Linq方法
+            //2.2合同角色許可權
+            ////todo:經典多對多的資料查詢Linq方法
             perlist.AddRange(users.SYS_USER_ROLE.Select(p => p.SYS_ROLE.SYS_ROLE_PERMISSION.Select(c => c.SYS_PERMISSION)).SelectMany(c => c.Select(e => e)).Cast<Domain.SYS_PERMISSION>().ToList());
             //3、去重
-            ////todo:通过重写IEqualityComparer<T>实现对象去重
+            ////todo:通過重寫IEqualityComparer<T>實現物件去重
             perlist = perlist.Distinct(new PermissionDistinct()).ToList();
             return perlist;
         }
         /// <summary>
-        /// 根据用户构造用户基本信息
+        /// 根據使用者構造使用者基本資訊
         /// </summary>
         public Account GetAccountByUser(Domain.SYS_USER user)
         {
             if (user == null) return null;
-            //用户授权--->注意用户的授权是包括角色权限与自身权限的
+            //用戶授權--->注意用戶的授權是包括角色許可權與自身許可權的
             var permission = GetPermissionByUser(user);
-            //用户角色
+            //用戶角色
             var role = user.SYS_USER_ROLE.Select(p => p.SYS_ROLE).ToList();
-            //用户部门
+            //用戶部門
             var dpt = user.SYS_USER_DEPARTMENT.Select(p => p.SYS_DEPARTMENT).ToList();
-            //用户岗位
+            //用戶崗位
             var post = user.SYS_POST_USER.ToList();
-            //用户主部门
+            //用戶主部門
             var dptInfo = this.DepartmentManage.Get(p => p.ID == user.DPTID);
-            //用户模块
+            //使用者模組
             var module = permission.Select(p => p.SYS_MODULE).ToList().Distinct(new ModuleDistinct()).ToList();
 
             var systemid = new List<string> { "fddeab19-3588-4fe1-83b6-c15d4abb942d" };
@@ -196,19 +196,19 @@ namespace Service.ServiceImp
         }
 
         /// <summary>
-        /// 从Cookie中获取用户信息
+        /// 從Cookie中獲取使用者資訊
         /// </summary>
         public Account GetAccountByCookie()
         {
             var cookie = CookieHelper.GetCookie("cookie_rememberme");
             if (cookie != null)
             {
-                //验证json的有效性
+                //驗證json的有效性
                 if (!string.IsNullOrEmpty(cookie.Value))
                 {
                     //解密
                     var cookievalue = new Common.CryptHelper.AESCrypt().Decrypt(cookie.Value);
-                    //是否为json
+                    //是否為json
                     if (!Common.JsonHelper.JsonSplit.IsJson(cookievalue)) return null;
                     try
                     {
@@ -229,7 +229,7 @@ namespace Service.ServiceImp
 
 
     /// <summary>
-    /// 权限去重，非常重要
+    /// 許可權去重覆，非常重要
     /// add yuangang by 2015-08-03
     /// </summary>
     public class PermissionDistinct : IEqualityComparer<Domain.SYS_PERMISSION>
@@ -245,3 +245,4 @@ namespace Service.ServiceImp
         }
     }
 }
+

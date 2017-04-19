@@ -4,7 +4,7 @@ using System.Web;
 namespace Common
 {
     /// <summary>
-    /// Cookie辅助类
+    /// Cookie輔助類
     /// </summary>
     public class CookieHelper
     {
@@ -24,7 +24,7 @@ namespace Common
             }
         }
         /// <summary>
-        /// 获取指定Cookie值
+        /// 獲取指定Cookie值
         /// </summary>
         /// <param name="cookiename">cookiename</param>
         /// <returns></returns>
@@ -39,7 +39,7 @@ namespace Common
             return str;
         }
         /// <summary>
-        /// 获取cookie
+        /// 獲取cookie
         /// </summary>
         /// <param name="cookiename"></param>
         /// <returns></returns>
@@ -48,7 +48,7 @@ namespace Common
             return HttpContext.Current.Request.Cookies[cookiename];
         }
         /// <summary>
-        /// 添加一个Cookie，默认浏览器关闭过期
+        /// 添加一個Cookie，默認流覽器關閉過期
         /// </summary>
         public static void SetCookie(string cookiename, System.Collections.Specialized.NameValueCollection cookievalue, int? days)
         {
@@ -69,12 +69,12 @@ namespace Common
 
         }
         /// <summary>
-        /// 添加一个Cookie
+        /// 添加一個Cookie
         /// </summary>
         /// <param name="cookiename">cookie名</param>
         /// <param name="cookievalue">cookie值</param>
-        /// <param name="expires">过期时间 null为浏览器过期</param>
-        public static void SetCookie(string cookiename, string cookievalue, int? expires=null)
+        /// <param name="expires">過期時間 null為流覽器過期</param>
+        public static void SetCookie(string cookiename, string cookievalue, int? expires = null)
         {
             var cookie = HttpContext.Current.Request.Cookies[cookiename];
             if (cookie == null)

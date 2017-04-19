@@ -1,5 +1,5 @@
 ﻿$(function () {
-    //获取IFrame传递过来的值
+    //獲取IFrame傳遞過來的值
     var dialog = top.dialog.get(window);
     var data = dialog.data;
     $("#fileUrl").val(data);
@@ -10,7 +10,7 @@
         $('#jsons').val('{"path":"' + data + '"}');
     }
     signfiles.initFiles($("#path").val());
-    //上传
+    //上傳
     $(".sign-upload").click(function () {
         $("#fileUp").unbind();
         $("#fileUp").click();
@@ -20,7 +20,7 @@
         dialog.close($("#jsons").val());
         dialog.remove();
     });
-    //返回上级目录
+    //返回上級目錄
     $(".btn-higher-up").click(function () {
         signfiles.OpenParentFolder();
     });
@@ -30,7 +30,7 @@ var signfiles = {
         var subUrl = "/Com/Upload/SignUpFile?fileUp=fileUrl&isThumbnail=" + $("#isThumbnail").prop("checked") + "&isWater=" + $("#isWater").prop("checked");
         $("#forms").ajaxSubmit({
             beforeSubmit: function () {
-                dig.loading("正在上传");
+                dig.loading("正在上傳");
                 $(".sign-upload").attr("disabled", "disabled");
             },
             success: function (data) {
@@ -69,14 +69,14 @@ var signfiles = {
         $.post("/Com/Upload/GetFileData", { path: path }, function (res) {
             if (res.Status == "y") {
                 if (res.Data == "" || res.Data == null) {
-                    dig.error("该目录下没有文件了！");
+                    dig.error("該目錄下沒有檔了！");
                     signfiles.OpenParentFolder();
                 } else {
                     $("#filesPanel").empty();
                     $("#tlist").tmpl(res.Data).appendTo('#filesPanel');
                 }
             } else if (res.Status == "empty") {
-                $("#filesPanel").html('<div class="alert alert-warning text-center"><span style="font-size:16px;"><i class="fa fa-warning"></i>&nbsp;没有找到任何文件</span></div>');
+                $("#filesPanel").html('<div class="alert alert-warning text-center"><span style="font-size:16px;"><i class="fa fa-warning"></i>&nbsp;沒有找到任何檔</span></div>');
             }
             else {
                 dig.error(res.Msg);
@@ -96,7 +96,7 @@ var signfiles = {
         $("#path").val(p);
         signfiles.initFiles(p);
     },
-    SetFile: function (path, ext,size,name) {
+    SetFile: function (path, ext, size, name) {
         $("#fileUrl").val($("#path").val() + path);
         $('#jsons').val('{"path":"' + $("#path").val() + path + '","thumbpath":"' + $("#path").val() + "thumb_" + path + ' ","ext":"' + ext + '","unitsize":"' + size + '","newname":"' + name + '","oldname":"' + name + '"}');
     }

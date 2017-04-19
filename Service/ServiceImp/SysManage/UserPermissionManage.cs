@@ -8,28 +8,28 @@ using Service.IService;
 namespace Service.ServiceImp
 {
     /// <summary>
-    /// Service层用户授权接口
+    /// Service層使用者授權介面
     /// add yuangang by 2016-05-19
     /// </summary>
     public class UserPermissionManage : RepositoryBase<SYS_USER_PERMISSION>, IUserPermissionManage
     {
         IPermissionManage PermissionManage { get; set; }
         /// <summary>
-        /// 保存用户权限
+        /// 保存用戶許可權
         /// </summary>
         public bool SetUserPermission(int userId, string newper)//, string sysId)
         {
             try
             {
-                ////1、获取当前系统的模块ID集合
+                ////1、獲取當前系統的模組ID集合
                 //var permissionId = this.PermissionManage.GetPermissionIdBySysId(sysId).Cast<int>().ToList();
-                //2、获取用户权限，是否存在，存在即删除
+                //2、獲取用戶許可權，是否存在，存在即刪除
                 if (this.IsExist(p => p.FK_USERID == userId)) // && permissionId.Any(e => e == p.FK_PERMISSIONID)))
                 {
-                    //3、删除用户权限
+                    //3、刪除用戶許可權
                     this.Delete(p => p.FK_USERID == userId); // && permissionId.Any(e => e == p.FK_PERMISSIONID));
                 }
-                //4、添加用户权限
+                //4、添加用戶許可權
                 var str = newper.Trim(',').Split(',');
                 foreach (var per in str.Select(t => new Domain.SYS_USER_PERMISSION()
                 {

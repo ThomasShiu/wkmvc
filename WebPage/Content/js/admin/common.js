@@ -9,32 +9,32 @@ $(function () {
         radioClass: 'iradio_minimal-red',
         increaseArea: '20%' // optional
     });
-    //ios7 复选框
+    //ios7 核取方塊
     var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
     elems.forEach(function (html) {
         var switchery = new Switchery(html, { color: 'rgb(237, 85, 101)' });
     });
-    //全选 反选
+    //全選 反選
     $('input[name="checkall"]').on('ifChecked', function (event) {
         $("input[name='checkbox_name']").iCheck('check');
     });
     $('input[name="checkall"]').on('ifUnchecked', function (event) {
         $("input[name='checkbox_name']").iCheck('uncheck');
     });
-    //下拉菜单
+    //下拉式功能表
     $('.select2').select2();
     //工具提示
     $("[data-toggle='tooltip']").tooltip();
-    //使用col插件实现表格头宽度拖拽
+    //使用col外掛程式實現表格頭寬度拖拽
     $(".table").colResizable();
-   //列表选择删除
+    //列表選擇刪除
     $('#delete').click(function () {
         var vals = '';
         $('input[name="checkbox_name"]:checked').each(function () {
             vals += $(this).val() + ',';
         });
         if (vals == '' || vals == ',') {
-            dig.error( "对不起，请选中您要操作的记录！");
+            dig.error("對不起，請選中您要操作的記錄！");
             return;
         }
         var url = window.location.href.split('?')[0].toLowerCase();
@@ -42,11 +42,11 @@ $(function () {
             url = url.substring(0, url.indexOf('/index'));
         }
         url = url + '/Delete';
-        var msg = "删除记录后不可恢复，您确定吗？";
-        dig.confirm("删除确认", msg, function () {
+        var msg = "刪除記錄後不可恢復，您確定嗎？";
+        dig.confirm("刪除確認", msg, function () {
             $.post(url, { idList: vals }, function (res) {
                 if (res.Status == "y") {
-                    dig.successcallback('删除成功', function () {
+                    dig.successcallback('刪除成功', function () {
                         window.location.reload();
                     });
                 }
@@ -56,7 +56,7 @@ $(function () {
             }, "json");
         });
     });
-    //刷新按钮
+    //刷新按鈕
     $(".reload-link").mouseover(function () {
         $(this).find("i").addClass("fa-spin");
     }).mouseout(function () { $(this).find("i").removeClass("fa-spin"); });
@@ -64,16 +64,14 @@ $(function () {
     $("#btn-dig-close").click(function () {
         dig.close();
     });
-    //点击表格，选中/取消 复选框
+    //點擊表格，選中/取消 核取方塊
     $("#dataTable tr").slice(1).each(function (g) {
         var p = $(this);
         $(this).children().slice(1).click(function () {
-            if($($(p.children()[0]).children()[0]).children().eq(0).prop("checked"))
-            {
+            if ($($(p.children()[0]).children()[0]).children().eq(0).prop("checked")) {
                 $($(p.children()[0]).children()[0]).iCheck("uncheck");
             }
-            else
-            {
+            else {
                 $($(p.children()[0]).children()[0]).iCheck("check");
             }
         });
@@ -89,28 +87,28 @@ $(function () {
             }
         });
     });
-    //时间
-    laydate.skin('molv');   
+    //時間
+    laydate.skin('molv');
 });
-//时间选择器
+//時間選擇器
 function ldate(obj, format) {
     if (format == '') { format = "YYYY-MM-DD"; }
     var de = {
         elem: '#' + obj,
         format: format,
         festival: true,
-        min: '2016-01-01 00:00:00', //设定最小日期
-        max: '2099-06-16 23:59:59', //设定最大日期
+        min: '2016-01-01 00:00:00', //設定最小日期
+        max: '2099-06-16 23:59:59', //設定最大日期
         istime: true,
         istoday: false,
         choose: function (datas) {
-            //end.min = datas; //开始日选好后，重置结束日的最小日期
-            //end.start = datas //将结束日的初始值设定为开始日
+            //end.min = datas; //開始日選好後，重置結束日的最小日期
+            //end.start = datas //將結束日的初始值設定為開始日
         }
     };
     laydate(de);
 }
-//验证按钮权限
+//驗證按鈕許可權
 function VaildatePermission(v) {
     var permissionlist = v
     if (permissionlist != '' && permissionlist != undefined) {
@@ -133,18 +131,18 @@ function VaildatePermission(v) {
         });
     }
 }
-//加载提示 
+//載入提示 
 var dig = {
     reload: function () {
         location.reload();
     },
-    addPage: function (t,u, w, h,f) {
+    addPage: function (t, u, w, h, f) {
         top.dialog({
             title: t,
             url: u,
             width: w,
             height: h,
-            onremove: function () {},
+            onremove: function () { },
             onclose: f
         }).showModal();
     },
@@ -171,7 +169,7 @@ var dig = {
             type: "success",
             showCancelButton: false,
             closeOnConfirm: false,
-            confirmButtonText: "确定",
+            confirmButtonText: "確定",
             confirmButtonColor: "#ec6c62"
         }, function () {
             i && i()
@@ -185,14 +183,14 @@ var dig = {
             confirmButtonColor: "#DD6B55"
         });
     },
-    confirm: function (t,n, i) {
+    confirm: function (t, n, i) {
         swal({
             title: t,
             text: n,
             type: "warning",
             showCancelButton: true,
             closeOnConfirm: false,
-            confirmButtonText: "是的,我确定",
+            confirmButtonText: "是的,我確定",
             confirmButtonColor: "#ec6c62",
             closeOnConfirm: false,
             closeOnCancel: true
@@ -222,7 +220,7 @@ var dig = {
             timer: 2000,
             showConfirmButton: false
         });
-    },    
+    },
     msgerror: function (n) {
         swal({
             title: n,
@@ -243,24 +241,24 @@ var dig = {
     },
     upload: function (o, t) {
         top.dialog({
-            title: '选择文件',
+            title: '選擇檔',
             url: '/Com/Upload/FileMain',
             width: 800,
             height: 480,
-            data: o, // 给 iframe 的数据
+            data: o, // 給 iframe 的數據
             onclose: t,
             oniframeload: function () {
             }
         }).showModal();
         return false;
     },
-    fileOperation: function (o,f,u,t) {
+    fileOperation: function (o, f, u, t) {
         top.dialog({
-            title: '选择目标文件夹',
-            url: u+'?files='+f,
+            title: '選擇目的檔案夾',
+            url: u + '?files=' + f,
             width: 800,
             height: 480,
-            data: o, // 给 iframe 的数据
+            data: o, // 給 iframe 的數據
             onclose: t,
             oniframeload: function () {
             }
@@ -269,12 +267,12 @@ var dig = {
     },
     logout: function () {
         swal({
-            title: "退出系统",
-            text: "您确定退出系统吗？",
+            title: "退出系統",
+            text: "您確定退出系統嗎？",
             type: "warning",
             showCancelButton: true,
             closeOnConfirm: false,
-            confirmButtonText: "是的,我确定",
+            confirmButtonText: "是的,我確定",
             confirmButtonColor: "#ec6c62",
             closeOnConfirm: false,
             closeOnCancel: true
@@ -283,12 +281,11 @@ var dig = {
             //else { swal({ title: '取消操作', text: '您已取消本次操作 :)', type: "error", confirmButtonColor: "#DD6B55" }); }
         });
     },
-    msg:function(t,n)
-    {
+    msg: function (t, n) {
         swal(t, n)
     }
 }
-//增删改提交ajax
+//增刪改提交ajax
 var SubAjax = {
     Loading: function () {
         $(".btn-save").attr("disabled", "disabled").find("span").html("正在保存中...")
@@ -298,16 +295,14 @@ var SubAjax = {
             document.writeln(result);
         } else if (result.Status == "y") {
             var dialog = top.dialog.get(window);
-            dig.successcallback(result.Msg, function () {                
-                if (dialog == "undefined" || dialog == undefined)
-                {
+            dig.successcallback(result.Msg, function () {
+                if (dialog == "undefined" || dialog == undefined) {
                     location.reload();
                 }
-                else
-                {                    
+                else {
                     dialog.close('yes').remove();
                 }
-                
+
             });
         } else {
             dig.error(result.Msg);
@@ -328,17 +323,16 @@ var SubAjax = {
         }
     },
     Failure: function () {
-        dig.error("网络超时,请稍后再试...");
+        dig.error("網路超時,請稍後再試...");
         SubAjax.Complete();
     },
     Complete: function () {
-        $(".btn-save").attr("disabled", false).find("span").html("确定保存");
+        $(".btn-save").attr("disabled", false).find("span").html("確定保存");
     }
 };
 //Toastr提示框
 var toasInfo = {
-    message_t:function(n)
-    {
+    message_t: function (n) {
         toastr.options = {
             "closeButton": true,
             "debug": true,
@@ -370,7 +364,7 @@ var toasInfo = {
             "showMethod": "fadeIn",
             "hideMethod": "fadeOut"
         }
-        toastr.info(n,t);
+        toastr.info(n, t);
     },
     message_b: function (n) {
         toastr.options = {

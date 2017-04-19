@@ -7,20 +7,20 @@ using System.Text;
 namespace Common
 {
     /// <summary>
-    /// 谓词表达式构建器
+    /// 謂詞運算式構建器
     /// add yuangang by 2015-09-08
     /// </summary>
     public static class PredicateBuilder
     {
         /// <summary>
-        /// 机关函数应用True时：单个AND有效，多个AND有效；单个OR无效，多个OR无效；混应时写在AND后的OR有效  
+        /// 機關函數應用True時：單個AND有效，多個AND有效；單個OR無效，多個OR無效；混應時寫在AND後的OR有效  
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public static Expression<Func<T, bool>> True<T>() { return f => true; }
 
         /// <summary>
-        /// 机关函数应用False时：单个AND无效，多个AND无效；单个OR有效，多个OR有效；混应时写在OR后面的AND有效  
+        /// 機關函數應用False時：單個AND無效，多個AND無效；單個OR有效，多個OR有效；混應時寫在OR後面的AND有效  
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>

@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "应用程序", "应用程序", "{5C8BCFCD-B363-449F-8178-F9EDC8B5829B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 應用程式", "3 應用程式", "{5C8BCFCD-B363-449F-8178-F9EDC8B5829B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "应用服务", "应用服务", "{3AB6E840-15FB-4369-BBEF-07797227F1BA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 應用服務", "1 應用服務", "{3AB6E840-15FB-4369-BBEF-07797227F1BA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{7415725A-9CB4-4B25-852E-FC8CEC447C57}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "应用类库", "应用类库", "{DFAA6457-A06E-4495-94BF-656A1172AD5A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 應用類庫", "2 應用類庫", "{DFAA6457-A06E-4495-94BF-656A1172AD5A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{9BEC400C-CF33-490D-ACA8-D10DB9BB3B73}"
 EndProject
@@ -17,9 +17,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebPage", "WebPage\WebPage.csproj", "{BF1517BE-FD29-46D8-B490-B04AA04313AC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "测试项目", "测试项目", "{7D88480E-32BB-4496-A2C3-80CBED348403}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 測試項目", "4 測試項目", "{7D88480E-32BB-4496-A2C3-80CBED348403}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8C9BD3AC-C59E-499F-9AA3-F9453ED4FCCF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 Solution Items", "0 Solution Items", "{8C9BD3AC-C59E-499F-9AA3-F9453ED4FCCF}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 		WE-Palette.css = WE-Palette.css

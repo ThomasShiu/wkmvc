@@ -8,9 +8,9 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>@Department.NAME - 下屬崗位</h5>
+                    <h5>@Department.NAME - 下屬職位</h5>
                     <div class="ibox-tools">
-                        <a class="btn btn-primary btn-xs p210" id="insert" action="add"><i class="fa fa-plus-circle fa-fw"></i> 創建新崗位</a>
+                        <a class="btn btn-primary btn-xs p210" id="insert" action="add"><i class="fa fa-plus-circle fa-fw"></i> 創建新職位</a>
                         <a class="btn btn-warning btn-xs p210" id="modify" action="edit"><i class="fa fa-pencil fa-fw"></i> 編輯</a>
                         <a class="btn btn-danger btn-xs p210" id="delete" action="remove"><i class="fa fa-trash-o fa-fw"></i> 刪除</a>
                         <a class="reload-link" style="color: #c4c4c4" href="javascript:dig.reload()" data-toggle="tooltip" data-placement="left" title="刷新">
@@ -24,7 +24,7 @@
                     {
                         <div class="row">
                             <div class="col-sm-9">
-                                <label>崗位類型：</label>
+                                <label>職位類型：</label>
                                 @Html.Hidden("departId", Department.ID)
                                 <select id="posttype" name="posttype" class="form-control input-sm  input-s-sm inline" onchange="submit()">
                                     <option value="" @(ViewData["post"] == null ? "selected=\"selected\"" : "")>全部</option>
@@ -54,8 +54,8 @@
                                 <thead>
                                     <tr>
                                         <th class="tn" style="width: 50px !important"><input name="checkall" class="icheck_box" type="checkbox" value=""></th>
-                                        <th>崗位名稱</th>
-                                        <th>崗位類型</th>
+                                        <th>職位名稱</th>
+                                        <th>職位類型</th>
                                         <th>員工數量</th>
                                         <th>創建時間</th>
                                     </tr>
@@ -104,7 +104,7 @@
     <script type="text/javascript">
         //點擊修改
         function EditPost(n) {
-            dig.addPage('編輯崗位', '/Sys/Post/Detail/' + n, 600, 475, function () {
+            dig.addPage('編輯職位', '/Sys/Post/Detail/' + n, 600, 475, function () {
                 if (this.returnValue == 'yes') {
                     location.reload();
                 }
@@ -115,10 +115,10 @@
             $('#insert').click(function () {
                 var departId = $('#departId').val();
                 if (departId == '' || departId == undefined) {
-                    dig.error("請先選擇部門後再進行添加崗位操作！");
+                    dig.error("請先選擇部門後再進行添加職位操作！");
                     return;
                 }
-                dig.addPage('添加崗位', '/Sys/Post/Detail?departId=' + departId, 600, 475, function () {
+                dig.addPage('添加職位', '/Sys/Post/Detail?departId=' + departId, 600, 475, function () {
                     if (this.returnValue == 'yes') {
                         location.reload();
                     }
@@ -140,7 +140,7 @@
                     dig.error("對不起，每次只能修改一條記錄！");
                     return;
                 }
-                dig.addPage('編輯崗位', '/Sys/Post/Detail/' + vals, 600, 475, function () {
+                dig.addPage('編輯職位', '/Sys/Post/Detail/' + vals, 600, 475, function () {
                     if (this.returnValue == 'yes') {
                         location.reload();
                     }

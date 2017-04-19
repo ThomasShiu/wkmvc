@@ -1,5 +1,5 @@
 ﻿$(function () {
-    //开始备份
+    //開始備份
     $(".btn-save").click(function () {
         $.ajax({
             type: "Post",
@@ -7,7 +7,7 @@
             data: {},
             dataType: "json",
             beforeSend: function () {
-                dig.loading("正在备份");
+                dig.loading("正在備份");
                 $(".btn-save").attr("disabled", "disabled");
             },
             success: function (data) {

@@ -14,24 +14,24 @@ namespace Common
     public class ZipHelper
     {
         /// <summary>
-        /// ZIP:压缩单个文件
+        /// ZIP:壓縮單個檔
         /// add yuangang by 2016-06-13
         /// </summary>
-        /// <param name="FileToZip">需要压缩的文件（绝对路径）</param>
-        /// <param name="ZipedPath">压缩后的文件路径（绝对路径）</param>
-        /// <param name="ZipedFileName">压缩后的文件名称（文件名，默认 同源文件同名）</param>
-        /// <param name="CompressionLevel">压缩等级（0 无 - 9 最高，默认 5）</param>
-        /// <param name="BlockSize">缓存大小（每次写入文件大小，默认 2048）</param>
-        /// <param name="IsEncrypt">是否加密（默认 加密）</param>
+        /// <param name="FileToZip">需要壓縮的檔（絕對路徑）</param>
+        /// <param name="ZipedPath">壓縮後的檔路徑（絕對路徑）</param>
+        /// <param name="ZipedFileName">壓縮後的檔案名稱（檔案名，默認 同原始檔案同名）</param>
+        /// <param name="CompressionLevel">壓縮等級（0 無 - 9 最高，默認 5）</param>
+        /// <param name="BlockSize">緩存大小（每次寫入文件大小，默認 2048）</param>
+        /// <param name="IsEncrypt">是否加密（默認 加密）</param>
         public static void ZipFile(string FileToZip, string ZipedPath, string ZipedFileName = "", int CompressionLevel = 5, int BlockSize = 2048, bool IsEncrypt = true)
         {
-            //如果文件没有找到，则报错
+            //如果檔沒有找到，則報錯
             if (!System.IO.File.Exists(FileToZip))
             {
-                throw new System.IO.FileNotFoundException("指定要压缩的文件: " + FileToZip + " 不存在!");
+                throw new System.IO.FileNotFoundException("指定要壓縮的檔: " + FileToZip + " 不存在!");
             }
 
-            //文件名称（默认同源文件名称相同）
+            //檔案名稱（默認同原始檔案名稱相同）
             string ZipFileName = string.IsNullOrEmpty(ZipedFileName) ? ZipedPath + "\\" + new FileInfo(FileToZip).Name.Substring(0, new FileInfo(FileToZip).Name.LastIndexOf('.')) + ".zip" : ZipedPath + "\\" + ZipedFileName + ".zip";
 
             using (System.IO.FileStream ZipFile = System.IO.File.Create(ZipFileName))
@@ -46,16 +46,16 @@ namespace Common
 
                         if (IsEncrypt)
                         {
-                            //压缩文件加密
+                            //壓縮檔加密
                             ZipStream.Password = "123";
                         }
 
                         ZipStream.PutNextEntry(ZipEntry);
 
-                        //设置压缩级别
+                        //設置壓縮層級
                         ZipStream.SetLevel(CompressionLevel);
 
-                        //缓存大小
+                        //緩存大小
                         byte[] buffer = new byte[BlockSize];
 
                         int sizeRead = 0;
@@ -85,12 +85,12 @@ namespace Common
             }
         }
 
-        
+
         public static void ZipDirectory(string DirectoryToZip, string ZipedPath, string ZipedFileName = "", bool IsEncrypt = true, System.Collections.Generic.List<string> IgNoreFiles = null)
         {
             if (!Directory.Exists(DirectoryToZip))
             {
-                throw new FileNotFoundException("指定的目录: " + DirectoryToZip + " 不存在!");
+                throw new FileNotFoundException("指定的目錄: " + DirectoryToZip + " 不存在!");
             }
             string path = string.IsNullOrEmpty(ZipedFileName) ? (ZipedPath + "\\" + new DirectoryInfo(DirectoryToZip).Name + ".zip") : (ZipedPath + "\\" + ZipedFileName + ".zip");
             using (FileStream fileStream = File.Create(path))
@@ -148,22 +148,22 @@ namespace Common
         }
 
         /// <summary>
-        /// ZIP：压缩文件夹
+        /// ZIP：壓縮檔夾
         /// add yuangang by 2016-06-13
         /// </summary>
-        /// <param name="DirectoryToZip">需要压缩的文件夹（绝对路径）</param>
-        /// <param name="ZipedPath">压缩后的文件路径（绝对路径）</param>
-        /// <param name="ZipedFileName">压缩后的文件名称（文件名，默认 同源文件夹同名）</param>
-        /// <param name="IsEncrypt">是否加密（默认 加密）</param>
+        /// <param name="DirectoryToZip">需要壓縮的資料夾（絕對路徑）</param>
+        /// <param name="ZipedPath">壓縮後的檔路徑（絕對路徑）</param>
+        /// <param name="ZipedFileName">壓縮後的檔案名稱（檔案名，默認 同原始檔案夾同名）</param>
+        /// <param name="IsEncrypt">是否加密（默認 加密）</param>
         public static void ZipDirectory(string DirectoryToZip, string ZipedPath, string ZipedFileName = "", bool IsEncrypt = true)
         {
-            //如果目录不存在，则报错
+            //如果目錄不存在，則報錯
             if (!System.IO.Directory.Exists(DirectoryToZip))
             {
-                throw new System.IO.FileNotFoundException("指定的目录: " + DirectoryToZip + " 不存在!");
+                throw new System.IO.FileNotFoundException("指定的目錄: " + DirectoryToZip + " 不存在!");
             }
 
-            //文件名称（默认同源文件名称相同）
+            //檔案名稱（默認同原始檔案名稱相同）
             string ZipFileName = string.IsNullOrEmpty(ZipedFileName) ? ZipedPath + "\\" + new DirectoryInfo(DirectoryToZip).Name + ".zip" : ZipedPath + "\\" + ZipedFileName + ".zip";
 
             using (System.IO.FileStream ZipFile = System.IO.File.Create(ZipFileName))
@@ -172,7 +172,7 @@ namespace Common
                 {
                     if (IsEncrypt)
                     {
-                        //压缩文件加密
+                        //壓縮檔加密
                         s.Password = "123";
                     }
                     ZipSetp(DirectoryToZip, s, "");
@@ -180,7 +180,7 @@ namespace Common
             }
         }
         /// <summary>
-        /// 递归遍历目录
+        /// 遞迴遍歷目錄
         /// add yuangang by 2016-06-13
         /// </summary>
         private static void ZipSetp(string strDirectory, ZipOutputStream s, string parentPath)
@@ -193,10 +193,10 @@ namespace Common
 
             string[] filenames = Directory.GetFileSystemEntries(strDirectory);
 
-            foreach (string file in filenames)// 遍历所有的文件和目录
+            foreach (string file in filenames)// 遍歷所有的檔和目錄
             {
 
-                if (Directory.Exists(file))// 先当作目录处理如果存在这个目录就递归Copy该目录下面的文件
+                if (Directory.Exists(file))// 先當作目錄處理如果存在這個目錄就遞迴Copy該目錄下面的檔
                 {
                     string pPath = parentPath;
                     pPath += file.Substring(file.LastIndexOf("\\") + 1);
@@ -204,9 +204,9 @@ namespace Common
                     ZipSetp(file, s, pPath);
                 }
 
-                else // 否则直接压缩文件
+                else // 否則直接壓縮檔
                 {
-                    //打开压缩文件
+                    //打開壓縮檔
                     using (FileStream fs = File.OpenRead(file))
                     {
 
@@ -234,21 +234,21 @@ namespace Common
         }
 
         /// <summary>
-        /// ZIP:解压一个zip文件
+        /// ZIP:解壓一個zip檔
         /// add yuangang by 2016-06-13
         /// </summary>
-        /// <param name="ZipFile">需要解压的Zip文件（绝对路径）</param>
-        /// <param name="TargetDirectory">解压到的目录</param>
-        /// <param name="Password">解压密码</param>
-        /// <param name="OverWrite">是否覆盖已存在的文件</param>
+        /// <param name="ZipFile">需要解壓的Zip檔（絕對路徑）</param>
+        /// <param name="TargetDirectory">解壓到的目錄</param>
+        /// <param name="Password">解壓密碼</param>
+        /// <param name="OverWrite">是否覆蓋已存在的檔</param>
         public static void UnZip(string ZipFile, string TargetDirectory, string Password, bool OverWrite = true)
         {
-            //如果解压到的目录不存在，则报错
+            //如果解壓到的目錄不存在，則報錯
             if (!System.IO.Directory.Exists(TargetDirectory))
             {
-                throw new System.IO.FileNotFoundException("指定的目录: " + TargetDirectory + " 不存在!");
+                throw new System.IO.FileNotFoundException("指定的目錄: " + TargetDirectory + " 不存在!");
             }
-            //目录结尾
+            //目錄結尾
             if (!TargetDirectory.EndsWith("\\")) { TargetDirectory = TargetDirectory + "\\"; }
 
             using (ZipInputStream zipfiles = new ZipInputStream(File.OpenRead(ZipFile)))

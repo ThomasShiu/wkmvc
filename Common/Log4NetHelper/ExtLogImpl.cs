@@ -17,7 +17,7 @@ namespace Common.Log4NetHelper
             : base(logger)
         {
         }
-        #region IExtLog 成员
+        #region IExtLog 成員
 
         public void Info(string clientIP, string clientUser, string requestUri, string action, object message)
         {

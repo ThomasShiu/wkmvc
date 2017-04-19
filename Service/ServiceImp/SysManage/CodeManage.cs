@@ -8,13 +8,13 @@ using System.Data.Entity;
 namespace Service.ServiceImp
 {
     /// <summary>
-    /// Service层代码配置
+    /// Service層代碼配置
     /// add yuangang by 2015-05-22
     /// </summary>
     public class CodeManage : RepositoryBase<Domain.SYS_CODE>, IService.ICodeManage
     {
         /// <summary>
-        /// 根据编码类型获取编码集合
+        /// 根據編碼類型獲取編碼集合
         /// </summary>
         public List<Domain.SYS_CODE> GetCode(string codetype, params string[] codevalue)
         {
@@ -29,7 +29,7 @@ namespace Service.ServiceImp
         }
 
         /// <summary>
-        /// 通过系统字典获取编码值
+        /// 通過系統字典獲取編碼值
         /// </summary>
         public IQueryable<Domain.SYS_CODE> GetDicType()
         {
@@ -39,7 +39,7 @@ namespace Service.ServiceImp
         }
 
         /// <summary>
-        /// 根据字典ID与类型获取一条数据
+        /// 根據字典ID與類型獲取一條資料
         /// </summary>
         public string GetCodeByID(int id, string codetype)
         {
@@ -47,7 +47,7 @@ namespace Service.ServiceImp
         }
 
         /// <summary>
-        /// 根据字典编码值与类型获取一条数据
+        /// 根據字典編碼值與類型獲取一條資料
         /// </summary>
         public string GetCodeNameByCodeValue(string codeType, string codevalue)
         {

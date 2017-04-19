@@ -8,13 +8,13 @@ using System.Text;
 namespace Service.ServiceImp
 {
     /// <summary>
-    /// Service 授权模块关系处理类
+    /// Service 授權模組關係處理類
     /// add yuangang by 2016-05-19
     /// </summary>
     public class PermissionManage : RepositoryBase<Domain.SYS_PERMISSION>, IService.IPermissionManage
     {
         /// <summary>
-        /// 根据系统ID获取所有模块的权限ID集合
+        /// 根據系統ID獲取所有模組的許可權ID集合
         /// </summary>
         public List<int> GetPermissionIdBySysId(string sysId)
         {

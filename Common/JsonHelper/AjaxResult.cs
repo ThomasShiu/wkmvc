@@ -3,7 +3,7 @@ using System.Web.Script.Serialization;
 namespace Common.JsonHelper
 {
     /// <summary>
-    /// 前台Ajax请求的统一返回结果类
+    /// 前臺Ajax請求的統一返回結果類
     /// </summary>
     public class AjaxResult
     {
@@ -14,17 +14,17 @@ namespace Common.JsonHelper
         private bool iserror = false;
 
         /// <summary>
-        /// 是否产生错误
+        /// 是否產生錯誤
         /// </summary>
         public bool IsError { get { return iserror; } }
 
         /// <summary>
-        /// 错误信息，或者成功信息
+        /// 錯誤資訊，或者成功資訊
         /// </summary>
         public string Message { get; set; }
 
         /// <summary>
-        /// 成功可能时返回的数据
+        /// 成功可能時返回的資料
         /// </summary>
         public object Data { get; set; }
 

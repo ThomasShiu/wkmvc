@@ -269,7 +269,7 @@ namespace WebPage.Areas.SysManage.Controllers
                     foreach (var newid in idlist1)
                     {
                         var _user = UserManage.Get(p => p.ID == newid);
-                        _user.PASSWORD = new Common.CryptHelper.AESCrypt().Encrypt("111111");
+                        _user.PASSWORD = new Common.CryptHelper.AESCrypt().Encrypt(_user.ACCOUNT);
                         UserManage.Update(_user);
                     }
                 }

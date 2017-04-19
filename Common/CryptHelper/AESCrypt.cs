@@ -21,8 +21,8 @@ namespace Common.CryptHelper
         }
         private bool m_containKey;
         /// <summary>
-        /// True：密文中包含密钥
-        /// False：密文中不包含密钥
+        /// True：密文中包含金鑰
+        /// False：密文中不包含金鑰
         /// </summary>
         public bool ContainKey
         {
@@ -90,12 +90,12 @@ namespace Common.CryptHelper
                 return RET_ERROR;
             }
         }
-        #region 指定密钥对明文进行AES加密、解密
+        #region 指定金鑰對明文進行AES加密、解密
         /// <summary>
-        /// 指定密钥对明文进行AES加密
+        /// 指定金鑰對明文進行AES加密
         /// </summary>
         /// <param name="s_crypto">明文</param>
-        /// <param name="s_key">加密密钥</param>
+        /// <param name="s_key">加密金鑰</param>
         /// <returns></returns>
         public string Encrypt(string s_crypto, string s_key)
         {
@@ -111,10 +111,10 @@ namespace Common.CryptHelper
             return Encrypt(s_crypto, key);
         }
         /// <summary>
-        /// 指定密钥，并对密文进行解密
+        /// 指定金鑰，並對密文進行解密
         /// </summary>
         /// <param name="s_encrypted">密文</param>
-        /// <param name="s_key">密钥</param>
+        /// <param name="s_key">金鑰</param>
         /// <returns></returns>
         public string Decrypt(string s_encrypted, string s_key)
         {
@@ -135,9 +135,9 @@ namespace Common.CryptHelper
         }
         #endregion
 
-        #region 动态生成密钥，并对明文进行AES加密、解密
+        #region 動態生成金鑰，並對明文進行AES加密、解密
         /// <summary>
-        /// 动态生成密钥，并对明文进行AES加密
+        /// 動態生成金鑰，並對明文進行AES加密
         /// </summary>
         /// <param name="s_crypto">明文</param>
         /// <returns></returns>
@@ -150,7 +150,7 @@ namespace Common.CryptHelper
             return Encrypt(s_crypto, key);
         }
         /// <summary>
-        /// 从密文中解析出密钥，并对密文进行解密
+        /// 從密文中解析出金鑰，並對密文進行解密
         /// </summary>
         /// <param name="s_encrypted">密文</param>
         /// <returns></returns>

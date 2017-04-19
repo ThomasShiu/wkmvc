@@ -7,7 +7,7 @@ using System.Web;
 namespace Common.JsonHelper
 {
     /// <summary>
-    /// 判断字符串是否为JSON
+    /// 判斷字串是否為JSON
     /// </summary>
     public class JsonSplit
     {
@@ -40,7 +40,7 @@ namespace Common.JsonHelper
                 for (int i = 0; i < json.Length; i++)
                 {
                     c = json[i];
-                    if (SetCharState(c, ref cs) && cs.childrenStart)//设置关键符号状态。
+                    if (SetCharState(c, ref cs) && cs.childrenStart)//設置關鍵符號狀態。
                     {
                         string item = json.Substring(i);
                         int err;
@@ -66,7 +66,7 @@ namespace Common.JsonHelper
         }
 
         /// <summary>
-        /// 获取值的长度（当Json值嵌套以"{"或"["开头时）
+        /// 獲取值的長度（當Json值嵌套以"{"或"["開頭時）
         /// </summary>
         private static int GetValueLength(string json, bool breakOnErr, out int errIndex)
         {
@@ -79,16 +79,16 @@ namespace Common.JsonHelper
                 for (int i = 0; i < json.Length; i++)
                 {
                     c = json[i];
-                    if (!SetCharState(c, ref cs))//设置关键符号状态。
+                    if (!SetCharState(c, ref cs))//設置關鍵符號狀態。
                     {
-                        if (!cs.jsonStart && !cs.arrayStart)//json结束，又不是数组，则退出。
+                        if (!cs.jsonStart && !cs.arrayStart)//json結束，又不是陣列，則退出。
                         {
                             break;
                         }
                     }
-                    else if (cs.childrenStart)//正常字符，值状态下。
+                    else if (cs.childrenStart)//正常字元，值狀態下。
                     {
-                        int length = GetValueLength(json.Substring(i), breakOnErr, out errIndex);//递归子值，返回一个长度。。。
+                        int length = GetValueLength(json.Substring(i), breakOnErr, out errIndex);//遞迴子值，返回一個長度。。。
                         cs.childrenStart = false;
                         cs.valueStart = 0;
                         //cs.state = 0;
@@ -99,9 +99,9 @@ namespace Common.JsonHelper
                         errIndex = i;
                         return i;
                     }
-                    if (!cs.jsonStart && !cs.arrayStart)//记录当前结束位置。
+                    if (!cs.jsonStart && !cs.arrayStart)//記錄當前結束位置。
                     {
-                        len = i + 1;//长度比索引+1
+                        len = i + 1;//長度比索引+1
                         break;
                     }
                 }
@@ -109,34 +109,34 @@ namespace Common.JsonHelper
             return len;
         }
         /// <summary>
-        /// 字符状态
+        /// 字元狀態
         /// </summary>
         private class CharState
         {
-            internal bool jsonStart = false;//以 "{"开始了...
-            internal bool setDicValue = false;// 可以设置字典值了。
-            internal bool escapeChar = false;//以"\"转义符号开始了
+            internal bool jsonStart = false;//以 "{"開始了...
+            internal bool setDicValue = false;// 可以設置字典值了。
+            internal bool escapeChar = false;//以"\"轉義符號開始了
             /// <summary>
-            /// 数组开始【仅第一开头才算】，值嵌套的以【childrenStart】来标识。
+            /// 陣列開始【僅第一開頭才算】，值嵌套的以【childrenStart】來標識。
             /// </summary>
-            internal bool arrayStart = false;//以"[" 符号开始了
-            internal bool childrenStart = false;//子级嵌套开始了。
+            internal bool arrayStart = false;//以"[" 符號開始了
+            internal bool childrenStart = false;//子級嵌套開始了。
             /// <summary>
-            /// 【0 初始状态，或 遇到“,”逗号】；【1 遇到“：”冒号】
+            /// 【0 初始狀態，或 遇到“,”逗號】；【1 遇到“：”冒號】
             /// </summary>
             internal int state = 0;
 
             /// <summary>
-            /// 【-1 取值结束】【0 未开始】【1 无引号开始】【2 单引号开始】【3 双引号开始】
+            /// 【-1 取值結束】【0 未開始】【1 無引號開始】【2 單引號開始】【3 雙引號開始】
             /// </summary>
             internal int keyStart = 0;
             /// <summary>
-            /// 【-1 取值结束】【0 未开始】【1 无引号开始】【2 单引号开始】【3 双引号开始】
+            /// 【-1 取值結束】【0 未開始】【1 無引號開始】【2 單引號開始】【3 雙引號開始】
             /// </summary>
             internal int valueStart = 0;
-            internal bool isError = false;//是否语法错误。
+            internal bool isError = false;//是否語法錯誤。
 
-            internal void CheckIsError(char c)//只当成一级处理（因为GetLength会递归到每一个子项处理）
+            internal void CheckIsError(char c)//只當成一級處理（因為GetLength會遞迴到每一個子項處理）
             {
                 if (keyStart > 1 || valueStart > 1)
                 {
@@ -146,23 +146,23 @@ namespace Common.JsonHelper
                 switch (c)
                 {
                     case '{'://[{ "[{A}]":[{"[{B}]":3,"m":"C"}]}]
-                        isError = jsonStart && state == 0;//重复开始错误 同时不是值处理。
+                        isError = jsonStart && state == 0;//重複開始錯誤 同時不是值處理。
                         break;
                     case '}':
-                        isError = !jsonStart || (keyStart != 0 && state == 0);//重复结束错误 或者 提前结束{"aa"}。正常的有{}
+                        isError = !jsonStart || (keyStart != 0 && state == 0);//重複結束錯誤 或者 提前結束{"aa"}。正常的有{}
                         break;
                     case '[':
-                        isError = arrayStart && state == 0;//重复开始错误
+                        isError = arrayStart && state == 0;//重複開始錯誤
                         break;
                     case ']':
-                        isError = !arrayStart || jsonStart;//重复开始错误 或者 Json 未结束
+                        isError = !arrayStart || jsonStart;//重複開始錯誤 或者 Json 未結束
                         break;
                     case '"':
                     case '\'':
-                        isError = !(jsonStart || arrayStart); //json 或数组开始。
+                        isError = !(jsonStart || arrayStart); //json 或陣列開始。
                         if (!isError)
                         {
-                            //重复开始 [""",{"" "}]
+                            //重複開始 [""",{"" "}]
                             isError = (state == 0 && keyStart == -1) || (state == 1 && valueStart == -1);
                         }
                         if (!isError && arrayStart && !jsonStart && c == '\'')//['aa',{}]
@@ -171,15 +171,15 @@ namespace Common.JsonHelper
                         }
                         break;
                     case ':':
-                        isError = !jsonStart || state == 1;//重复出现。
+                        isError = !jsonStart || state == 1;//重複出現。
                         break;
                     case ',':
-                        isError = !(jsonStart || arrayStart); //json 或数组开始。
+                        isError = !(jsonStart || arrayStart); //json 或陣列開始。
                         if (!isError)
                         {
                             if (jsonStart)
                             {
-                                isError = state == 0 || (state == 1 && valueStart > 1);//重复出现。
+                                isError = state == 0 || (state == 1 && valueStart > 1);//重複出現。
                             }
                             else if (arrayStart)//["aa,] [,]  [{},{}]
                             {
@@ -193,7 +193,7 @@ namespace Common.JsonHelper
                     case '\0':
                     case '\t':
                         break;
-                    default: //值开头。。
+                    default: //值開頭。。
                         isError = (!jsonStart && !arrayStart) || (state == 0 && keyStart == -1) || (valueStart == -1 && state == 1);//
                         break;
                 }
@@ -204,7 +204,7 @@ namespace Common.JsonHelper
             }
         }
         /// <summary>
-        /// 设置字符状态(返回true则为关键词，返回false则当为普通字符处理）
+        /// 設置字元狀態(返回true則為關鍵字，返回false則當為普通字元處理）
         /// </summary>
         private static bool SetCharState(char c, ref CharState cs)
         {
@@ -212,7 +212,7 @@ namespace Common.JsonHelper
             switch (c)
             {
                 case '{'://[{ "[{A}]":[{"[{B}]":3,"m":"C"}]}]
-                    #region 大括号
+                    #region 大括弧
                     if (cs.keyStart <= 0 && cs.valueStart <= 0)
                     {
                         cs.keyStart = 0;
@@ -225,16 +225,16 @@ namespace Common.JsonHelper
                         {
                             cs.state = 0;
                         }
-                        cs.jsonStart = true;//开始。
+                        cs.jsonStart = true;//開始。
                         return true;
                     }
                     #endregion
                     break;
                 case '}':
-                    #region 大括号结束
+                    #region 大括弧結束
                     if (cs.keyStart <= 0 && cs.valueStart < 2 && cs.jsonStart)
                     {
-                        cs.jsonStart = false;//正常结束。
+                        cs.jsonStart = false;//正常結束。
                         cs.state = 0;
                         cs.keyStart = 0;
                         cs.valueStart = 0;
@@ -245,7 +245,7 @@ namespace Common.JsonHelper
                     #endregion
                     break;
                 case '[':
-                    #region 中括号开始
+                    #region 中括弧開始
                     if (!cs.jsonStart)
                     {
                         cs.arrayStart = true;
@@ -259,8 +259,8 @@ namespace Common.JsonHelper
                     #endregion
                     break;
                 case ']':
-                    #region 中括号结束
-                    if (cs.arrayStart && !cs.jsonStart && cs.keyStart <= 2 && cs.valueStart <= 0)//[{},333]//这样结束。
+                    #region 中括弧結束
+                    if (cs.arrayStart && !cs.jsonStart && cs.keyStart <= 2 && cs.valueStart <= 0)//[{},333]//這樣結束。
                     {
                         cs.keyStart = 0;
                         cs.valueStart = 0;
@@ -271,10 +271,10 @@ namespace Common.JsonHelper
                     break;
                 case '"':
                 case '\'':
-                    #region 引号
+                    #region 引號
                     if (cs.jsonStart || cs.arrayStart)
                     {
-                        if (cs.state == 0)//key阶段,有可能是数组["aa",{}]
+                        if (cs.state == 0)//key階段,有可能是陣列["aa",{}]
                         {
                             if (cs.keyStart <= 0)
                             {
@@ -294,7 +294,7 @@ namespace Common.JsonHelper
                                 }
                             }
                         }
-                        else if (cs.state == 1 && cs.jsonStart)//值阶段必须是Json开始了。
+                        else if (cs.state == 1 && cs.jsonStart)//值階段必須是Json開始了。
                         {
                             if (cs.valueStart <= 0)
                             {
@@ -319,7 +319,7 @@ namespace Common.JsonHelper
                     #endregion
                     break;
                 case ':':
-                    #region 冒号
+                    #region 冒號
                     if (cs.jsonStart && cs.keyStart < 2 && cs.valueStart < 2 && cs.state == 0)
                     {
                         if (cs.keyStart == 1)
@@ -333,7 +333,7 @@ namespace Common.JsonHelper
                     #endregion
                     break;
                 case ',':
-                    #region 逗号 //["aa",{aa:12,}]
+                    #region 逗號 //["aa",{aa:12,}]
 
                     if (cs.jsonStart)
                     {
@@ -368,11 +368,11 @@ namespace Common.JsonHelper
                 case '\t':
                     if (cs.keyStart <= 0 && cs.valueStart <= 0) //cs.jsonStart && 
                     {
-                        return true;//跳过空格。
+                        return true;//跳過空格。
                     }
                     break;
-                default: //值开头。。
-                    if (c == '\\') //转义符号
+                default: //值開頭。。
+                    if (c == '\\') //轉義符號
                     {
                         if (cs.escapeChar)
                         {
@@ -388,15 +388,15 @@ namespace Common.JsonHelper
                     {
                         cs.escapeChar = false;
                     }
-                    if (cs.jsonStart || cs.arrayStart) // Json 或数组开始了。
+                    if (cs.jsonStart || cs.arrayStart) // Json 或陣列開始了。
                     {
                         if (cs.keyStart <= 0 && cs.state == 0)
                         {
-                            cs.keyStart = 1;//无引号的
+                            cs.keyStart = 1;//無引號的
                         }
-                        else if (cs.valueStart <= 0 && cs.state == 1 && cs.jsonStart)//只有Json开始才有值。
+                        else if (cs.valueStart <= 0 && cs.state == 1 && cs.jsonStart)//只有Json開始才有值。
                         {
-                            cs.valueStart = 1;//无引号的
+                            cs.valueStart = 1;//無引號的
                         }
                     }
                     break;

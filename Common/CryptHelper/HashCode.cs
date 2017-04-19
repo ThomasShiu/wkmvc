@@ -4,18 +4,18 @@ using System.Security.Cryptography;
 namespace Common.CryptHelper
 {
     /// <summary>
-    /// 得到随机安全码（哈希加密）。
+    /// 得到隨機安全碼（雜湊加密）。
     /// </summary>
     public class HashEncode
     {
         public HashEncode()
         {
             //
-            // TODO: 在此处添加构造函数逻辑
+            // TODO: 在此處添加構造函數邏輯
             //
         }
         /// <summary>
-        /// 得到随机哈希加密字符串
+        /// 得到隨機雜湊加密字串
         /// </summary>
         /// <returns></returns>
         public static string GetSecurity()
@@ -24,7 +24,7 @@ namespace Common.CryptHelper
             return Security;
         }
         /// <summary>
-        /// 得到一个随机数值
+        /// 得到一個亂數值
         /// </summary>
         /// <returns></returns>
         public static string GetRandomValue()
@@ -34,7 +34,7 @@ namespace Common.CryptHelper
             return RandomVaule;
         }
         /// <summary>
-        /// 哈希加密一个字符串
+        /// 雜湊加密一個字串
         /// </summary>
         /// <param name="Security"></param>
         /// <returns></returns>

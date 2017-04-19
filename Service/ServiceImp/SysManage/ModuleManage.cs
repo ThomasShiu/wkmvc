@@ -6,36 +6,36 @@ using System.Text;
 namespace Service.ServiceImp
 {
     /// <summary>
-    /// Service模型处理类
+    /// Service模型處理類
     /// add yuangang by 2015-05-22
     /// </summary>
     public class ModuleManage : RepositoryBase<Domain.SYS_MODULE>, IService.IModuleManage
     {
         /// <summary>
-        /// 获取用户权限模块集合
+        /// 獲取使用者許可權模組集合
         /// add yuangang by 2015-05-30
         /// </summary>
-        /// <param name="userId">用户ID</param>
-        /// <param name="permission">用户授权集合</param>
-        /// <param name="siteId">站点ID</param>
+        /// <param name="userId">用戶ID</param>
+        /// <param name="permission">使用者授權集合</param>
+        /// <param name="siteId">網站ID</param>
         /// <returns></returns>
         public List<Domain.SYS_MODULE> GetModule(int userId, List<Domain.SYS_PERMISSION> permission, List<string> systemid)
         {
-            //返回模块
+            //返回模組
             var retmodule = new List<Domain.SYS_MODULE>();
             var permodule = new List<Domain.SYS_MODULE>();
-            //权限转模块
+            //許可權轉模組
             if (permission != null)
             {
                 permodule.AddRange(permission.Select(p => p.SYS_MODULE));
                 //去重
                 permodule = permodule.Distinct(new ModuleDistinct()).ToList();
             }
-            //检索显示与系统
+            //檢索顯示與系統
             permodule = permodule.Where(p => p.ISSHOW && systemid.Any(e => e == p.FK_BELONGSYSTEM)).ToList();
-            //构造上级导航模块
+            //構造上級導航模組
             var prevModule = this.LoadListAll(p => systemid.Any(e => e == p.FK_BELONGSYSTEM));
-            //反向递归算法构造模块带上级上上级模块
+            //反向遞迴演算法構造模組帶上級上上級模組
             if (permodule.Count > 0)
             {
                 foreach (var item in permodule)
@@ -46,16 +46,16 @@ namespace Service.ServiceImp
             }
             //去重
             retmodule = retmodule.Distinct(new ModuleDistinct()).ToList();
-            //返回模块集合
+            //返回模組集合
             return retmodule.OrderBy(p => p.LEVELS).ThenBy(p => p.SHOWORDER).ToList();
         }
 
         /// <summary>
-        /// 反向递归模块集合，可重复模块数据，最后去重
+        /// 反向遞迴模組集合，可重複模組資料，最後去重
         /// </summary>
-        /// <param name="PrevModule">总模块</param>
-        /// <param name="retmodule">返回模块</param>
-        /// <param name="parentId">上级ID</param>
+        /// <param name="PrevModule">總模組</param>
+        /// <param name="retmodule">返回模組</param>
+        /// <param name="parentId">上級ID</param>
         private void RecursiveModule(List<Domain.SYS_MODULE> PrevModule, List<Domain.SYS_MODULE> retmodule, int? parentId)
         {
             var result = PrevModule.Where(p => p.ID == parentId);
@@ -70,7 +70,7 @@ namespace Service.ServiceImp
         }
 
         /// <summary>
-        /// 递归模块列表，返回按级别排序
+        /// 遞迴模組清單，返回按級別排序
         /// add yuangang by 2015-06-03
         /// </summary>
         public List<Domain.SYS_MODULE> RecursiveModule(List<Domain.SYS_MODULE> list)
@@ -83,7 +83,7 @@ namespace Service.ServiceImp
             return result;
         }
         /// <summary>
-        /// 递归模块列表
+        /// 遞迴模組清單
         /// add yuangang by 2015-06-03
         /// </summary>
         private void ChildModule(List<Domain.SYS_MODULE> list, List<Domain.SYS_MODULE> newlist, int parentId)
@@ -100,11 +100,11 @@ namespace Service.ServiceImp
         }
 
         /// <summary>
-        /// 批量变更下级模块的级别
+        /// 批量變更下級模組的級別
         /// </summary>
         public bool MoreModifyModule(int moduleId, int levels)
         {
-            //根据当前模块ID获取下级模块的集合
+            //根據當前模組ID獲取下級模組的集合
             var ChildModule = this.LoadAll(p => p.PARENTID == moduleId).ToList();
             if (ChildModule.Any())
             {
@@ -119,7 +119,7 @@ namespace Service.ServiceImp
         }
 
         /// <summary>
-        /// 获取模板列表
+        /// 獲取範本清單
         /// </summary>
         public dynamic LoadModuleInfo(int id)
         {

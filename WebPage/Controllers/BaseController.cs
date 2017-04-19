@@ -233,7 +233,7 @@ namespace WebPage.Controllers
     }
 
     /// <summary>
-    /// 模型去重，非常重要
+    /// 模型去重覆，非常重要
     /// add yuangang by 2016-05-25
     /// </summary>
     public class ModuleDistinct : IEqualityComparer<Domain.SYS_MODULE>

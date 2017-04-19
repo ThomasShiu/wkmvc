@@ -114,7 +114,7 @@
     data: r.concat(n(this).serializeArray())
 })
 })
-}(jQuery), "undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requires jQuery");+
+}(jQuery), "undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requires jQuery"); +
 function (n, t, i) {
     function h(t, i) {
         var u = (n(window).width() - t.outerWidth()) / 2,
@@ -150,28 +150,28 @@ function (n, t, i) {
     f = null,
     o = !0,
     u = {
-        tit: "提示信息",
+        tit: "提示資訊",
         w: {
-            "*": "不能为空！",
-            "*6-16": "请填写6到16位任意字符！",
-            n: "请填写数字！",
-            "n6-16": "请填写6到16位数字！",
-            s: "不能输入特殊字符！",
-            "s6-18": "请填写6到18位字符！",
-            p: "请填写邮政编码！",
-            m: "请填写手机号码！",
-            e: "邮箱地址格式不对！",
-            url: "请填写网址！",
-            am: "请输入正确的金额"
+            "*": "不能為空！",
+            "*6-16": "請填寫6到16位元任意字元！",
+            n: "請填寫數字！",
+            "n6-16": "請填寫6到16位元數字！",
+            s: "不能輸入特殊字元！",
+            "s6-18": "請填寫6到18位元字元！",
+            p: "請填寫郵遞區號！",
+            m: "請填寫手機號碼！",
+            e: "郵箱地址格式不對！",
+            url: "請填寫網址！",
+            am: "請輸入正確的金額"
         },
-        def: "请填写正确信息！",
-        undef: "datatype未定义！",
-        reck: "两次输入的内容不一致！",
-        r: "通过信息验证！",
-        c: "正在检测信息…",
-        s: "请{填写|选择}{0|信息}！",
-        v: "所填信息没有经过验证，请稍后…",
-        p: "正在提交数据…"
+        def: "請填寫正確資訊！",
+        undef: "datatype未定義！",
+        reck: "兩次輸入的內容不一致！",
+        r: "通過資訊驗證！",
+        c: "正在檢測資訊…",
+        s: "請{填寫|選擇}{0|資訊}！",
+        v: "所填資訊沒有經過驗證，請稍後…",
+        p: "正在提交資料…"
     },
     r;
     n.Tipmsg = u;

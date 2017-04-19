@@ -2440,10 +2440,10 @@ namespace Common
 			{
 				return null;
 			}
-			System.Text.Encoding encoding = System.Text.Encoding.GetEncoding("GB2312");
+			System.Text.Encoding encoding = System.Text.Encoding.GetEncoding("UTF-8");
 			if (encoding == null)
 			{
-				throw new System.ArgumentException("没有找到编码集GB2312");
+				throw new System.ArgumentException("沒有找到編碼集UTF-8");
 			}
 			char[] array = str.ToCharArray();
 			byte[] array2 = new byte[2];

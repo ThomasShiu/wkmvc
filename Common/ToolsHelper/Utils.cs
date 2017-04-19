@@ -17,13 +17,13 @@ using System.Reflection;
 namespace Common
 {
     /// <summary>
-    /// 系统帮助类
+    /// 系統説明類
     /// </summary>
     public class Utils
     {
-        #region 对象转换处理
+        #region 物件轉換處理
         /// <summary>
-        /// 判断对象是否为Int32类型的数字
+        /// 判斷物件是否為Int32類型的數字
         /// </summary>
         /// <param name="Expression"></param>
         /// <returns></returns>
@@ -37,7 +37,7 @@ namespace Common
         }
 
         /// <summary>
-        /// 判断对象是否为Int32类型的数字
+        /// 判斷物件是否為Int32類型的數字
         /// </summary>
         /// <param name="Expression"></param>
         /// <returns></returns>
@@ -56,7 +56,7 @@ namespace Common
         }
 
         /// <summary>
-        /// 是否为Double类型
+        /// 是否為Double類型
         /// </summary>
         /// <param name="expression"></param>
         /// <returns></returns>
@@ -69,20 +69,20 @@ namespace Common
         }
 
         /// <summary>
-        /// 将字符串转换为数组
+        /// 將字串轉換為陣列
         /// </summary>
-        /// <param name="str">字符串</param>
-        /// <returns>字符串数组</returns>
+        /// <param name="str">字串</param>
+        /// <returns>字串陣列</returns>
         public static string[] GetStrArray(string str)
         {
             return str.Split(new char[',']);
         }
 
         /// <summary>
-        /// 将数组转换为字符串
+        /// 將陣列轉換為字串
         /// </summary>
         /// <param name="list">List</param>
-        /// <param name="speater">分隔符</param>
+        /// <param name="speater">分隔符號</param>
         /// <returns>String</returns>
         public static string GetArrayStr(List<string> list, string speater)
         {
@@ -103,11 +103,11 @@ namespace Common
         }
 
         /// <summary>
-        /// object型转换为bool型
+        /// object型轉換為bool型
         /// </summary>
-        /// <param name="strValue">要转换的字符串</param>
+        /// <param name="strValue">要轉換的字串</param>
         /// <param name="defValue">缺省值</param>
-        /// <returns>转换后的bool类型结果</returns>
+        /// <returns>轉換後的bool類型結果</returns>
         public static bool StrToBool(object expression, bool defValue)
         {
             if (expression != null)
@@ -117,11 +117,11 @@ namespace Common
         }
 
         /// <summary>
-        /// string型转换为bool型
+        /// string型轉換為bool型
         /// </summary>
-        /// <param name="strValue">要转换的字符串</param>
+        /// <param name="strValue">要轉換的字串</param>
         /// <param name="defValue">缺省值</param>
-        /// <returns>转换后的bool类型结果</returns>
+        /// <returns>轉換後的bool類型結果</returns>
         public static bool StrToBool(string expression, bool defValue)
         {
             if (expression != null)
@@ -135,11 +135,11 @@ namespace Common
         }
 
         /// <summary>
-        /// 将对象转换为Int32类型
+        /// 將對象轉換為Int32類型
         /// </summary>
-        /// <param name="expression">要转换的字符串</param>
+        /// <param name="expression">要轉換的字串</param>
         /// <param name="defValue">缺省值</param>
-        /// <returns>转换后的int类型结果</returns>
+        /// <returns>轉換後的int類型結果</returns>
         public static int ObjToInt(object expression, int defValue)
         {
             if (expression != null)
@@ -149,11 +149,11 @@ namespace Common
         }
 
         /// <summary>
-        /// 将字符串转换为Int32类型
+        /// 將字串轉換為Int32類型
         /// </summary>
-        /// <param name="expression">要转换的字符串</param>
+        /// <param name="expression">要轉換的字串</param>
         /// <param name="defValue">缺省值</param>
-        /// <returns>转换后的int类型结果</returns>
+        /// <returns>轉換後的int類型結果</returns>
         public static int StrToInt(string expression, int defValue)
         {
             if (string.IsNullOrEmpty(expression) || expression.Trim().Length >= 11 || !Regex.IsMatch(expression.Trim(), @"^([-]|[0-9])[0-9]*(\.\w*)?$"))
@@ -167,11 +167,11 @@ namespace Common
         }
 
         /// <summary>
-        /// Object型转换为decimal型
+        /// Object型轉換為decimal型
         /// </summary>
-        /// <param name="strValue">要转换的字符串</param>
+        /// <param name="strValue">要轉換的字串</param>
         /// <param name="defValue">缺省值</param>
-        /// <returns>转换后的decimal类型结果</returns>
+        /// <returns>轉換後的decimal類型結果</returns>
         public static decimal ObjToDecimal(object expression, decimal defValue)
         {
             if (expression != null)
@@ -181,11 +181,11 @@ namespace Common
         }
 
         /// <summary>
-        /// string型转换为decimal型
+        /// string型轉換為decimal型
         /// </summary>
-        /// <param name="strValue">要转换的字符串</param>
+        /// <param name="strValue">要轉換的字串</param>
         /// <param name="defValue">缺省值</param>
-        /// <returns>转换后的decimal类型结果</returns>
+        /// <returns>轉換後的decimal類型結果</returns>
         public static decimal StrToDecimal(string expression, decimal defValue)
         {
             if ((expression == null) || (expression.Length > 10))
@@ -202,11 +202,11 @@ namespace Common
         }
 
         /// <summary>
-        /// Object型转换为float型
+        /// Object型轉換為float型
         /// </summary>
-        /// <param name="strValue">要转换的字符串</param>
+        /// <param name="strValue">要轉換的字串</param>
         /// <param name="defValue">缺省值</param>
-        /// <returns>转换后的int类型结果</returns>
+        /// <returns>轉換後的int類型結果</returns>
         public static float ObjToFloat(object expression, float defValue)
         {
             if (expression != null)
@@ -216,11 +216,11 @@ namespace Common
         }
 
         /// <summary>
-        /// string型转换为float型
+        /// string型轉換為float型
         /// </summary>
-        /// <param name="strValue">要转换的字符串</param>
+        /// <param name="strValue">要轉換的字串</param>
         /// <param name="defValue">缺省值</param>
-        /// <returns>转换后的int类型结果</returns>
+        /// <returns>轉換後的int類型結果</returns>
         public static float StrToFloat(string expression, float defValue)
         {
             if ((expression == null) || (expression.Length > 10))
@@ -237,11 +237,11 @@ namespace Common
         }
 
         /// <summary>
-        /// 将对象转换为日期时间类型
+        /// 將對象轉換為日期時間類型
         /// </summary>
-        /// <param name="str">要转换的字符串</param>
+        /// <param name="str">要轉換的字串</param>
         /// <param name="defValue">缺省值</param>
-        /// <returns>转换后的int类型结果</returns>
+        /// <returns>轉換後的int類型結果</returns>
         public static DateTime StrToDateTime(string str, DateTime defValue)
         {
             if (!string.IsNullOrEmpty(str))
@@ -254,41 +254,41 @@ namespace Common
         }
 
         /// <summary>
-        /// 将对象转换为日期时间类型
+        /// 將對象轉換為日期時間類型
         /// </summary>
-        /// <param name="str">要转换的字符串</param>
-        /// <returns>转换后的int类型结果</returns>
+        /// <param name="str">要轉換的字串</param>
+        /// <returns>轉換後的int類型結果</returns>
         public static DateTime StrToDateTime(string str)
         {
             return StrToDateTime(str, DateTime.Now);
         }
 
         /// <summary>
-        /// 将对象转换为日期时间类型
+        /// 將對象轉換為日期時間類型
         /// </summary>
-        /// <param name="obj">要转换的对象</param>
-        /// <returns>转换后的int类型结果</returns>
+        /// <param name="obj">要轉換的對象</param>
+        /// <returns>轉換後的int類型結果</returns>
         public static DateTime ObjectToDateTime(object obj)
         {
             return StrToDateTime(obj.ToString());
         }
 
         /// <summary>
-        /// 将对象转换为日期时间类型
+        /// 將對象轉換為日期時間類型
         /// </summary>
-        /// <param name="obj">要转换的对象</param>
+        /// <param name="obj">要轉換的對象</param>
         /// <param name="defValue">缺省值</param>
-        /// <returns>转换后的int类型结果</returns>
+        /// <returns>轉換後的int類型結果</returns>
         public static DateTime ObjectToDateTime(object obj, DateTime defValue)
         {
             return StrToDateTime(obj.ToString(), defValue);
         }
 
         /// <summary>
-        /// 将对象转换为字符串
+        /// 將物件轉換為字串
         /// </summary>
-        /// <param name="obj">要转换的对象</param>
-        /// <returns>转换后的string类型结果</returns>
+        /// <param name="obj">要轉換的對象</param>
+        /// <returns>轉換後的string類型結果</returns>
         public static string ObjectToStr(object obj)
         {
             if (obj == null)
@@ -297,9 +297,9 @@ namespace Common
         }
         #endregion
 
-        #region 分割字符串
+        #region 分割字串
         /// <summary>
-        /// 分割字符串
+        /// 分割字串
         /// </summary>
         public static string[] SplitString(string strContent, string strSplit)
         {
@@ -315,7 +315,7 @@ namespace Common
         }
 
         /// <summary>
-        /// 分割字符串
+        /// 分割字串
         /// </summary>
         /// <returns></returns>
         public static string[] SplitString(string strContent, string strSplit, int count)
@@ -335,7 +335,7 @@ namespace Common
         }
         #endregion
 
-        #region 截取字符串
+        #region 截取字串
         public static string GetSubString(string p_SrcString, int p_Length, string p_TailString)
         {
             return GetSubString(p_SrcString, 0, p_Length, p_TailString);
@@ -404,9 +404,9 @@ namespace Common
         }
         #endregion
 
-        #region 删除最后结尾的一个逗号
+        #region 刪除最後結尾的一個逗號
         /// <summary>
-        /// 删除最后结尾的一个逗号
+        /// 刪除最後結尾的一個逗號
         /// </summary>
         public static string DelLastComma(string str)
         {
@@ -414,9 +414,9 @@ namespace Common
         }
         #endregion
 
-        #region 删除最后结尾的指定字符后的字符
+        #region 刪除最後結尾的指定字元後的字元
         /// <summary>
-        /// 删除最后结尾的指定字符后的字符
+        /// 刪除最後結尾的指定字元後的字元
         /// </summary>
         public static string DelLastChar(string str, string strchar)
         {
@@ -430,12 +430,12 @@ namespace Common
         }
         #endregion
 
-        #region 生成指定长度的字符串
+        #region 生成指定長度的字串
         /// <summary>
-        /// 生成指定长度的字符串,即生成strLong个str字符串
+        /// 生成指定長度的字串,即生成strLong個str字串
         /// </summary>
-        /// <param name="strLong">生成的长度</param>
-        /// <param name="str">以str生成字符串</param>
+        /// <param name="strLong">生成的長度</param>
+        /// <param name="str">以str生成字串</param>
         /// <returns></returns>
         public static string StringOfChar(int strLong, string str)
         {
@@ -449,9 +449,9 @@ namespace Common
         }
         #endregion
 
-        #region 生成日期随机码
+        #region 生成日期隨機碼
         /// <summary>
-        /// 生成日期随机码
+        /// 生成日期隨機碼
         /// </summary>
         /// <returns></returns>
         public static string GetRamCode()
@@ -462,11 +462,11 @@ namespace Common
         }
         #endregion
 
-        #region 生成随机字母或数字
+        #region 生成隨機字母或數位
         /// <summary>
-        /// 生成随机数字
+        /// 生成亂數字
         /// </summary>
-        /// <param name="length">生成长度</param>
+        /// <param name="length">生成長度</param>
         /// <returns></returns>
         public static string Number(int Length)
         {
@@ -474,10 +474,10 @@ namespace Common
         }
 
         /// <summary>
-        /// 生成随机数字
+        /// 生成亂數字
         /// </summary>
-        /// <param name="Length">生成长度</param>
-        /// <param name="Sleep">是否要在生成前将当前线程阻止以避免重复</param>
+        /// <param name="Length">生成長度</param>
+        /// <param name="Sleep">是否要在生成前將當前執行緒阻止以避免重複</param>
         /// <returns></returns>
         public static string Number(int Length, bool Sleep)
         {
@@ -492,9 +492,9 @@ namespace Common
             return result;
         }
         /// <summary>
-        /// 生成随机字母字符串(数字字母混和)
+        /// 生成隨機字母字串(數位字母混和)
         /// </summary>
-        /// <param name="codeCount">待生成的位数</param>
+        /// <param name="codeCount">待生成的位數</param>
         public static string GetCheckCode(int codeCount)
         {
             string str = string.Empty;
@@ -519,7 +519,7 @@ namespace Common
             return str;
         }
         /// <summary>
-        /// 根据日期和随机码生成订单号
+        /// 根據日期和隨機碼生成訂單號
         /// </summary>
         /// <returns></returns>
         public static string GetOrderNumber()
@@ -532,7 +532,7 @@ namespace Common
             byte[] buffer = new byte[length];
             System.Security.Cryptography.RNGCryptoServiceProvider Gen = new System.Security.Cryptography.RNGCryptoServiceProvider();
             Gen.GetBytes(buffer);
-            uint randomResult = 0x0;//这里用uint作为生成的随机数  
+            uint randomResult = 0x0;//這裡用uint作為生成的亂數  
             for (int i = 0; i < length; i++)
             {
                 randomResult |= ((uint)buffer[i] << ((length - 1 - i) * 8));
@@ -541,12 +541,12 @@ namespace Common
         }
         #endregion
 
-        #region 截取字符长度
+        #region 截取字元長度
         /// <summary>
-        /// 截取字符长度
+        /// 截取字元長度
         /// </summary>
-        /// <param name="inputString">字符</param>
-        /// <param name="len">长度</param>
+        /// <param name="inputString">字元</param>
+        /// <param name="len">長度</param>
         /// <returns></returns>
         public static string CutString(string inputString, int len)
         {
@@ -580,7 +580,7 @@ namespace Common
                 if (tempLen > len)
                     break;
             }
-            //如果截过则加上半个省略号 
+            //如果截過則加上半個省略號 
             byte[] mybyte = System.Text.Encoding.Default.GetBytes(inputString);
             if (mybyte.Length > len)
                 tempString += "…";
@@ -588,12 +588,12 @@ namespace Common
         }
         #endregion
 
-        #region 对象<-->JSON 4.0使用
+        #region 物件<-->JSON 4.0使用
         /// <summary>
-        /// 对象转JSON
+        /// 對象轉JSON
         /// </summary>
-        /// <typeparam name="T">对象实体</typeparam>
-        /// <param name="t">内容</param>
+        /// <typeparam name="T">物件實體</typeparam>
+        /// <param name="t">內容</param>
         /// <returns>json包</returns>
         public static string ObjetcToJson<T>(T t)
         {
@@ -612,11 +612,11 @@ namespace Common
         }
 
         /// <summary>
-        /// Json包转对象
+        /// Json包轉對象
         /// </summary>
-        /// <typeparam name="T">对象</typeparam>
+        /// <typeparam name="T">對象</typeparam>
         /// <param name="jsonstring">json包</param>
-        /// <returns>异常抛null</returns>
+        /// <returns>異常拋null</returns>
         public static object JsonToObject<T>(string jsonstring)
         {
             object result = null;
@@ -633,9 +633,9 @@ namespace Common
         }
         #endregion
 
-        #region 对象<-->JSON 2.0 使用litjson插件
+        #region 物件<-->JSON 2.0 使用litjson外掛程式
         /// <summary>
-        /// 对象转JSON  jsonData
+        /// 對象轉JSON  jsonData
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="t"></param>
@@ -654,7 +654,7 @@ namespace Common
         //}
 
         ///// <summary>
-        ///// 对象转JSON jsonMapper
+        ///// 對象轉JSON jsonMapper
         ///// </summary>
         ///// <typeparam name="T"></typeparam>
         ///// <param name="t"></param>
@@ -673,7 +673,7 @@ namespace Common
         //}
 
         ///// <summary>
-        ///// json转对象 jsonMapper
+        ///// json轉對象 jsonMapper
         ///// </summary>
         ///// <param name="jsons"></param>
         ///// <returns></returns>
@@ -691,10 +691,10 @@ namespace Common
 
         #region DataTable<-->JSON
         /// <summary> 
-        /// DataTable转为json 
+        /// DataTable轉為json 
         /// </summary> 
         /// <param name="dt">DataTable</param> 
-        /// <returns>json数据</returns> 
+        /// <returns>json數據</returns> 
         public static string DataTableToJson(DataTable dt)
         {
             List<Dictionary<string, object>> list = new List<Dictionary<string, object>>();
@@ -711,11 +711,11 @@ namespace Common
             return SerializeToJson(list);
         }
         /// <summary>
-        /// 序列化对象为Json字符串
+        /// 序列化物件為Json字串
         /// </summary>
-        /// <param name="obj">要序列化的对象</param>
-        /// <param name="recursionLimit">序列化对象的深度，默认为100</param>
-        /// <returns>Json字符串</returns>
+        /// <param name="obj">要序列化的物件</param>
+        /// <param name="recursionLimit">序列化物件的深度，預設為100</param>
+        /// <returns>Json字串</returns>
         public static string SerializeToJson(object obj, int recursionLimit = 100)
         {
             try
@@ -727,7 +727,7 @@ namespace Common
             catch { return ""; }
         }
         /// <summary>
-        /// json包转DataTable
+        /// json包轉DataTable
         /// </summary>
         /// <param name="jsons"></param>
         /// <returns></returns>
@@ -743,7 +743,7 @@ namespace Common
                 {
                     foreach (Dictionary<string, object> item in list)
                     {
-                        if (item.Keys.Count == 0)//无值返回空
+                        if (item.Keys.Count == 0)//無值返回空
                         {
                             return dt;
                         }
@@ -773,7 +773,7 @@ namespace Common
 
         #region List<--->DataTable
         /// <summary>
-        /// DataTable转换泛型集合
+        /// DataTable轉換泛型集合
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="table"></param>
@@ -806,7 +806,7 @@ namespace Common
         }
 
         /// <summary>
-        /// 将集合类转换成DataTable
+        /// 將集合類轉換成DataTable
         /// </summary>
         /// <param name="list">集合</param>
         /// <returns>DataTable</returns>
@@ -845,9 +845,9 @@ namespace Common
                 List<string> columnsName = new List<string>();
                 foreach (DataColumn dataColumn in dt.Columns)
                 {
-                    columnsName.Add(dataColumn.ColumnName);//得到所有的表头
+                    columnsName.Add(dataColumn.ColumnName);//得到所有的表頭
                 }
-                list = dt.AsEnumerable().ToList().ConvertAll<T>(row => GetObject<T>(row, columnsName));  //转换
+                list = dt.AsEnumerable().ToList().ConvertAll<T>(row => GetObject<T>(row, columnsName));  //轉換
                 return list;
             }
             catch
@@ -864,23 +864,23 @@ namespace Common
                 string columnname = "";
                 string value = "";
                 PropertyInfo[] Properties = typeof(T).GetProperties();
-                foreach (PropertyInfo objProperty in Properties)  //遍历T的属性
+                foreach (PropertyInfo objProperty in Properties)  //遍歷T的屬性
                 {
-                    columnname = columnsName.Find(name => name.ToLower() == objProperty.Name.ToLower()); //寻找可以匹配的表头名称
+                    columnname = columnsName.Find(name => name.ToLower() == objProperty.Name.ToLower()); //尋找可以匹配的表頭名稱
                     if (!string.IsNullOrEmpty(columnname))
                     {
                         value = row[columnname].ToString();
                         if (!string.IsNullOrEmpty(value))
                         {
-                            if (Nullable.GetUnderlyingType(objProperty.PropertyType) != null) //存在匹配的表头
+                            if (Nullable.GetUnderlyingType(objProperty.PropertyType) != null) //存在匹配的表頭
                             {
-                                value = row[columnname].ToString().Replace("$", "").Replace(",", ""); //从dataRow中提取数据
-                                objProperty.SetValue(obj, Convert.ChangeType(value, Type.GetType(Nullable.GetUnderlyingType(objProperty.PropertyType).ToString())), null); //赋值操作
+                                value = row[columnname].ToString().Replace("$", "").Replace(",", ""); //從dataRow中提取資料
+                                objProperty.SetValue(obj, Convert.ChangeType(value, Type.GetType(Nullable.GetUnderlyingType(objProperty.PropertyType).ToString())), null); //賦值操作
                             }
                             else
                             {
-                                value = row[columnname].ToString().Replace("%", ""); //存在匹配的表头
-                                objProperty.SetValue(obj, Convert.ChangeType(value, Type.GetType(objProperty.PropertyType.ToString())), null);//赋值操作
+                                value = row[columnname].ToString().Replace("%", ""); //存在匹配的表頭
+                                objProperty.SetValue(obj, Convert.ChangeType(value, Type.GetType(objProperty.PropertyType.ToString())), null);//賦值操作
                             }
                         }
                     }
@@ -893,12 +893,12 @@ namespace Common
             }
         }
         /// <summary>
-        /// 将泛型集合类转换成DataTable
+        /// 將泛型集合類轉換成DataTable
         /// </summary>
-        /// <typeparam name="T">集合项类型</typeparam>
+        /// <typeparam name="T">集合項類型</typeparam>
         /// <param name="list">集合</param>
         /// <param name="propertyName">需要返回的列的列名</param>
-        /// <returns>数据集(表)</returns>
+        /// <returns>資料集(表)</returns>
         public static DataTable ListToDataTable<T>(IList<T> list, params string[] propertyName)
         {
             List<string> propertyNameList = new List<string>();
@@ -948,13 +948,13 @@ namespace Common
 
         #endregion
 
-        #region 清除HTML标记
+        #region 清除HTML標記
         public static string DropHTML(string Htmlstring)
         {
             if (string.IsNullOrEmpty(Htmlstring)) return "";
-            //删除脚本  
+            //刪除腳本  
             Htmlstring = Regex.Replace(Htmlstring, @"<script[^>]*?>.*?</script>", "", RegexOptions.IgnoreCase);
-            //删除HTML  
+            //刪除HTML  
             Htmlstring = Regex.Replace(Htmlstring, @"<(.[^>]*)>", "", RegexOptions.IgnoreCase);
             Htmlstring = Regex.Replace(Htmlstring, @"([\r\n])[\s]+", "", RegexOptions.IgnoreCase);
             Htmlstring = Regex.Replace(Htmlstring, @"-->", "", RegexOptions.IgnoreCase);
@@ -976,20 +976,20 @@ namespace Common
         }
         #endregion
 
-        #region 清除HTML标记且返回相应的长度
+        #region 清除HTML標記且返回相應的長度
         public static string DropHTML(string Htmlstring, int strLen)
         {
             return CutString(DropHTML(Htmlstring), strLen);
         }
         #endregion
 
-        #region TXT代码转换成HTML格式
+        #region TXT代碼轉換成HTML格式
         /// <summary>
-        /// 字符串字符处理
+        /// 字串字元處理
         /// </summary>
-        /// <param name="chr">等待处理的字符串</param>
-        /// <returns>处理后的字符串</returns>
-        /// //把TXT代码转换成HTML格式
+        /// <param name="chr">等待處理的字串</param>
+        /// <returns>處理後的字串</returns>
+        /// //把TXT代碼轉換成HTML格式
         public static String ToHtml(string Input)
         {
             StringBuilder sb = new StringBuilder(Input);
@@ -1004,13 +1004,13 @@ namespace Common
         }
         #endregion
 
-        #region HTML代码转换成TXT格式
+        #region HTML代碼轉換成TXT格式
         /// <summary>
-        /// 字符串字符处理
+        /// 字串字元處理
         /// </summary>
-        /// <param name="chr">等待处理的字符串</param>
-        /// <returns>处理后的字符串</returns>
-        /// //把HTML代码转换成TXT格式
+        /// <param name="chr">等待處理的字串</param>
+        /// <returns>處理後的字串</returns>
+        /// //把HTML代碼轉換成TXT格式
         public static String ToTxt(String Input)
         {
             StringBuilder sb = new StringBuilder(Input);
@@ -1026,19 +1026,19 @@ namespace Common
         }
         #endregion
 
-        #region 检测是否有Sql危险字符
+        #region 檢測是否有Sql危險字元
         /// <summary>
-        /// 检测是否有Sql危险字符
+        /// 檢測是否有Sql危險字元
         /// </summary>
-        /// <param name="str">要判断字符串</param>
-        /// <returns>判断结果</returns>
+        /// <param name="str">要判斷字串</param>
+        /// <returns>判斷結果</returns>
         public static bool IsSafeSqlString(string str)
         {
             return !Regex.IsMatch(str, @"[-|;|,|\/|\(|\)|\[|\]|\}|\{|%|@|\*|!|\']");
         }
 
         /// <summary>
-        /// 检查危险字符
+        /// 檢查危險字元
         /// </summary>
         /// <param name="Input"></param>
         /// <returns></returns>
@@ -1051,7 +1051,7 @@ namespace Common
             string pattern = @"*|and|exec|insert|select|delete|update|count|master|truncate|declare|char(|mid(|chr(|'";
             if (Regex.Match(sInput1, Regex.Escape(pattern), RegexOptions.Compiled | RegexOptions.IgnoreCase).Success)
             {
-                throw new Exception("字符串中含有非法字符!");
+                throw new Exception("字串中含有非法字元!");
             }
             else
             {
@@ -1061,10 +1061,10 @@ namespace Common
         }
 
         /// <summary> 
-        /// 检查过滤设定的危险字符
+        /// 檢查過濾設定的危險字元
         /// </summary> 
-        /// <param name="InText">要过滤的字符串 </param> 
-        /// <returns>如果参数存在不安全字符，则返回true </returns> 
+        /// <param name="InText">要過濾的字串 </param> 
+        /// <returns>如果參數存在不安全字元，則返回true </returns> 
         public static bool SqlFilter(string word, string InText)
         {
             if (InText == null)
@@ -1080,9 +1080,9 @@ namespace Common
         }
         #endregion
 
-        #region 过滤特殊字符
+        #region 過濾特殊字元
         /// <summary>
-        /// 过滤特殊字符
+        /// 過濾特殊字元
         /// </summary>
         /// <param name="Input"></param>
         /// <returns></returns>
@@ -1106,9 +1106,9 @@ namespace Common
         }
         #endregion
 
-        #region 检查是否为IP地址
+        #region 檢查是否為IP地址
         /// <summary>
-        /// 是否为ip
+        /// 是否為ip
         /// </summary>
         /// <param name="ip"></param>
         /// <returns></returns>
@@ -1118,19 +1118,19 @@ namespace Common
         }
         #endregion
 
-        #region 获得配置文件节点XML文件的绝对路径
+        #region 獲得設定檔節點XML檔的絕對路徑
         public static string GetXmlMapPath(string xmlName)
         {
             return GetMapPath(ConfigurationManager.AppSettings[xmlName].ToString());
         }
         #endregion
 
-        #region 获得当前绝对路径
+        #region 獲得當前絕對路徑
         /// <summary>
-        /// 获得当前绝对路径
+        /// 獲得當前絕對路徑
         /// </summary>
-        /// <param name="strPath">指定的路径</param>
-        /// <returns>绝对路径</returns>
+        /// <param name="strPath">指定的路徑</param>
+        /// <returns>絕對路徑</returns>
         public static string GetMapPath(string strPath)
         {
             if (strPath.ToLower().StartsWith("http://"))
@@ -1141,7 +1141,7 @@ namespace Common
             {
                 return HttpContext.Current.Server.MapPath(strPath);
             }
-            else //非web程序引用
+            else //非web程式引用
             {
                 strPath = strPath.Replace("/", "\\");
                 if (strPath.StartsWith("\\"))
@@ -1153,11 +1153,11 @@ namespace Common
         }
         #endregion
 
-        #region 文件操作
+        #region 檔操作
         /// <summary>
-        /// 删除单个文件
+        /// 刪除單個檔
         /// </summary>
-        /// <param name="_filepath">文件相对路径</param>
+        /// <param name="_filepath">檔相對路徑</param>
         public static bool DeleteFile(string _filepath)
         {
             if (string.IsNullOrEmpty(_filepath))
@@ -1174,7 +1174,7 @@ namespace Common
         }
 
         /// <summary>
-        /// 删除上传的文件(及缩略图)
+        /// 刪除上傳的檔(及縮略圖)
         /// </summary>
         /// <param name="_filepath"></param>
         public static void DeleteUpFile(string _filepath)
@@ -1184,8 +1184,8 @@ namespace Common
                 return;
             }
             string thumbnailpath = _filepath.Substring(0, _filepath.LastIndexOf("/")) + "mall_" + _filepath.Substring(_filepath.LastIndexOf("/") + 1);
-            string fullTPATH = GetMapPath(_filepath); //宿略图
-            string fullpath = GetMapPath(_filepath); //原图
+            string fullTPATH = GetMapPath(_filepath); //宿略圖
+            string fullpath = GetMapPath(_filepath); //原圖
             if (File.Exists(fullpath))
             {
                 File.Delete(fullpath);
@@ -1199,7 +1199,7 @@ namespace Common
         /// <summary>
         /// 返回文件大小KB
         /// </summary>
-        /// <param name="_filepath">文件相对路径</param>
+        /// <param name="_filepath">檔相對路徑</param>
         /// <returns>int</returns>
         public static int GetFileSize(string _filepath)
         {
@@ -1217,9 +1217,9 @@ namespace Common
         }
 
         /// <summary>
-        /// 返回文件扩展名，不含“.”
+        /// 返回文件副檔名，不含“.”
         /// </summary>
-        /// <param name="_filepath">文件全名称</param>
+        /// <param name="_filepath">檔全名稱</param>
         /// <returns>string</returns>
         public static string GetFileExt(string _filepath)
         {
@@ -1229,15 +1229,15 @@ namespace Common
             }
             if (_filepath.LastIndexOf(".") > 0)
             {
-                return _filepath.Substring(_filepath.LastIndexOf(".") + 1); //文件扩展名，不含“.”
+                return _filepath.Substring(_filepath.LastIndexOf(".") + 1); //文件副檔名，不含“.”
             }
             return "";
         }
 
         /// <summary>
-        /// 返回文件名，不含路径
+        /// 返回檔案名，不含路徑
         /// </summary>
-        /// <param name="_filepath">文件相对路径</param>
+        /// <param name="_filepath">檔相對路徑</param>
         /// <returns>string</returns>
         public static string GetFileName(string _filepath)
         {
@@ -1245,9 +1245,9 @@ namespace Common
         }
 
         /// <summary>
-        /// 文件是否存在
+        /// 檔是否存在
         /// </summary>
-        /// <param name="_filepath">文件相对路径</param>
+        /// <param name="_filepath">檔相對路徑</param>
         /// <returns>bool</returns>
         public static bool FileExists(string _filepath)
         {
@@ -1260,7 +1260,7 @@ namespace Common
         }
 
         /// <summary>
-        /// 获得远程字符串
+        /// 獲得遠端字串
         /// </summary>
         public static string GetDomainStr(string key, string uriPath)
         {
@@ -1275,7 +1275,7 @@ namespace Common
                 }
                 catch
                 {
-                    result = "暂时无法连接!";
+                    result = "暫時無法連接!";
                 }
                 //CacheHelper.Insert(key, result, 60);
             }
@@ -1283,10 +1283,10 @@ namespace Common
             return result;
         }
         /// <summary>
-        /// 读取指定文件中的内容,文件名为空或找不到文件返回空串
+        /// 讀取指定檔中的內容,檔案名為空或找不到檔返回空串
         /// </summary>
-        /// <param name="FileName">文件全路径</param>
-        /// <param name="isLineWay">是否按行读取返回字符串 true为是</param>
+        /// <param name="FileName">檔全路徑</param>
+        /// <param name="isLineWay">是否按行讀取返回字串 true為是</param>
         public static string GetFileContent(string FileName, bool isLineWay)
         {
             string result = string.Empty;
@@ -1318,11 +1318,11 @@ namespace Common
         }
         #endregion
 
-        #region 读取或写入cookie
+        #region 讀取或寫入cookie
         /// <summary>
-        /// 写cookie值
+        /// 寫cookie值
         /// </summary>
-        /// <param name="strName">名称</param>
+        /// <param name="strName">名稱</param>
         /// <param name="strValue">值</param>
         public static void WriteCookie(string strName, string strValue)
         {
@@ -1336,9 +1336,9 @@ namespace Common
         }
 
         /// <summary>
-        /// 写cookie值
+        /// 寫cookie值
         /// </summary>
-        /// <param name="strName">名称</param>
+        /// <param name="strName">名稱</param>
         /// <param name="strValue">值</param>
         public static void WriteCookie(string strName, string key, string strValue)
         {
@@ -1352,9 +1352,9 @@ namespace Common
         }
 
         /// <summary>
-        /// 写cookie值
+        /// 寫cookie值
         /// </summary>
-        /// <param name="strName">名称</param>
+        /// <param name="strName">名稱</param>
         /// <param name="strValue">值</param>
         public static void WriteCookie(string strName, string key, string strValue, int expires)
         {
@@ -1369,11 +1369,11 @@ namespace Common
         }
 
         /// <summary>
-        /// 写cookie值
+        /// 寫cookie值
         /// </summary>
-        /// <param name="strName">名称</param>
+        /// <param name="strName">名稱</param>
         /// <param name="strValue">值</param>
-        /// <param name="strValue">过期时间(分钟)</param>
+        /// <param name="strValue">過期時間(分鐘)</param>
         public static void WriteCookie(string strName, string strValue, int expires)
         {
             HttpCookie cookie = HttpContext.Current.Request.Cookies[strName];
@@ -1386,10 +1386,10 @@ namespace Common
             HttpContext.Current.Response.AppendCookie(cookie);
         }
         /// <summary>
-        /// 写cookie值
+        /// 寫cookie值
         /// </summary>
-        /// <param name="strName">名称</param>
-        /// <param name="expires">过期时间(天)</param>
+        /// <param name="strName">名稱</param>
+        /// <param name="expires">過期時間(天)</param>
         public static void WriteCookie(string strName, int expires)
         {
             HttpCookie cookie = HttpContext.Current.Request.Cookies[strName];
@@ -1402,11 +1402,11 @@ namespace Common
         }
 
         /// <summary>
-        /// 写入COOKIE，并指定过期时间
+        /// 寫入COOKIE，並指定過期時間
         /// </summary>
         /// <param name="strName">KEY</param>
         /// <param name="strValue">VALUE</param>
-        /// <param name="expires">过期时间</param>
+        /// <param name="expires">過期時間</param>
         public static void iWriteCookie(string strName, string strValue, int expires)
         {
             HttpCookie cookie = HttpContext.Current.Request.Cookies[strName];
@@ -1423,9 +1423,9 @@ namespace Common
         }
 
         /// <summary>
-        /// 读cookie值
+        /// 讀cookie值
         /// </summary>
-        /// <param name="strName">名称</param>
+        /// <param name="strName">名稱</param>
         /// <returns>cookie值</returns>
         public static string GetCookie(string strName)
         {
@@ -1435,9 +1435,9 @@ namespace Common
         }
 
         /// <summary>
-        /// 读cookie值
+        /// 讀cookie值
         /// </summary>
-        /// <param name="strName">名称</param>
+        /// <param name="strName">名稱</param>
         /// <returns>cookie值</returns>
         public static string GetCookie(string strName, string key)
         {
@@ -1448,13 +1448,13 @@ namespace Common
         }
         #endregion
 
-        #region 替换指定的字符串
+        #region 替換指定的字串
         /// <summary>
-        /// 替换指定的字符串
+        /// 替換指定的字串
         /// </summary>
-        /// <param name="originalStr">原字符串</param>
-        /// <param name="oldStr">旧字符串</param>
-        /// <param name="newStr">新字符串</param>
+        /// <param name="originalStr">原字串</param>
+        /// <param name="oldStr">舊字串</param>
+        /// <param name="newStr">新字串</param>
         /// <returns></returns>
         public static string ReplaceStr(string originalStr, string oldStr, string newStr)
         {
@@ -1466,9 +1466,9 @@ namespace Common
         }
         #endregion
 
-        #region URL处理
+        #region URL處理
         /// <summary>
-        /// URL字符编码
+        /// URL字元編碼
         /// </summary>
         public static string UrlEncode(string str)
         {
@@ -1481,7 +1481,7 @@ namespace Common
         }
 
         /// <summary>
-        /// URL字符解码
+        /// URL字元解碼
         /// </summary>
         public static string UrlDecode(string str)
         {
@@ -1493,11 +1493,11 @@ namespace Common
         }
 
         /// <summary>
-        /// 组合URL参数
+        /// 組合URL參數
         /// </summary>
-        /// <param name="_url">页面地址</param>
-        /// <param name="_keys">参数名称</param>
-        /// <param name="_values">参数值</param>
+        /// <param name="_url">頁面位址</param>
+        /// <param name="_keys">參數名稱</param>
+        /// <param name="_values">參數值</param>
         /// <returns>String</returns>
         public static string CombUrlTxt(string _url, string _keys, params string[] _values)
         {
@@ -1537,11 +1537,11 @@ namespace Common
         }
         #endregion
 
-        #region 获得当前页面客户端的IP
+        #region 獲得當前頁面用戶端的IP
         /// <summary>
-        /// 获得当前页面客户端的IP
+        /// 獲得當前頁面用戶端的IP
         /// </summary>
-        /// <returns>当前页面客户端的IP</returns>
+        /// <returns>當前頁面用戶端的IP</returns>
         public static string GetIP()
         {
             string result = HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"]; GetDnsRealHost();
@@ -1554,7 +1554,7 @@ namespace Common
             return result;
         }
         /// <summary>
-        /// 得到当前完整主机头
+        /// 得到當前完整主機頭
         /// </summary>
         /// <returns></returns>
         public static string GetCurrentFullHost()
@@ -1567,7 +1567,7 @@ namespace Common
         }
 
         /// <summary>
-        /// 得到主机头
+        /// 得到主機頭
         /// </summary>
         public static string GetHost()
         {
@@ -1575,7 +1575,7 @@ namespace Common
         }
 
         /// <summary>
-        /// 得到主机名
+        /// 得到主機名稱
         /// </summary>
         public static string GetDnsSafeHost()
         {
@@ -1592,9 +1592,9 @@ namespace Common
             return host;
         }
         /// <summary>
-        /// 获得当前完整Url地址
+        /// 獲得當前完整Url地址
         /// </summary>
-        /// <returns>当前完整Url地址</returns>
+        /// <returns>當前完整Url地址</returns>
         public static string GetUrl()
         {
             return HttpContext.Current.Request.Url.ToString();
@@ -1609,10 +1609,10 @@ namespace Common
             return new Common.CryptHelper.DESCrypt().Decrypt(strTxt.ToString(), key);
         }
         /// <summary>
-        /// 返回指定的服务器变量信息
+        /// 返回指定的伺服器變數資訊
         /// </summary>
-        /// <param name="strName">服务器变量名</param>
-        /// <returns>服务器变量信息</returns>
+        /// <param name="strName">伺服器變數名</param>
+        /// <returns>伺服器變數資訊</returns>
         public static string GetServerString(string strName)
         {
             if (HttpContext.Current.Request.ServerVariables[strName] == null)
@@ -1622,7 +1622,7 @@ namespace Common
         }
         #endregion
 
-        #region 数据导出为EXCEL
+        #region 數據匯出為EXCEL
         public static void CreateExcel(DataTable dt, string fileName)
         {
             StringBuilder strb = new StringBuilder();
@@ -1669,14 +1669,14 @@ namespace Common
             if (dt.Rows.Count > 0)
             {
                 strb.Append("<tr>");
-                //写列标题   
+                //寫列標題   
                 int columncount = dt.Columns.Count;
                 for (int columi = 0; columi < columncount; columi++)
                 {
                     strb.Append(" <td style='text-align:center;'><b>" + ColumnName(dt.Columns[columi].ToString()) + "</b></td>");
                 }
                 strb.Append(" </tr>");
-                //写数据   
+                //寫數據   
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     strb.Append(" <tr>");
@@ -1694,7 +1694,7 @@ namespace Common
             HttpContext.Current.Response.Charset = "utf-8";
             HttpContext.Current.Response.AddHeader("Content-Disposition", "attachment; filename=" + fileName + ".xls");
             HttpContext.Current.Response.ContentEncoding = System.Text.Encoding.UTF8;// 
-            HttpContext.Current.Response.ContentType = "application/ms-excel";//设置输出文件类型为excel文件。 
+            HttpContext.Current.Response.ContentType = "application/ms-excel";//設置輸出檔案類型為excel檔。 
             //HttpContext.Current.p.EnableViewState = false;
             HttpContext.Current.Response.Write(strb);
             HttpContext.Current.Response.End();
@@ -1707,150 +1707,150 @@ namespace Common
             switch (column)
             {
                 case "area":
-                    return "地区";
+                    return "地區";
                 case "tongxun":
-                    return "通讯费";
+                    return "通訊費";
                 case "jietong":
                     return "接通";
                 case "weijietong":
                     return "未接通";
                 case "youxiao":
-                    return "有效电话";
+                    return "有效電話";
                 case "shangji":
-                    return "消耗商机费";
+                    return "消耗商機費";
                 case "zongji":
-                    return "总机费";
+                    return "總機費";
                 case "account":
-                    return "帐号";
+                    return "帳號";
                 case "extensionnum":
-                    return "分机";
+                    return "分機";
                 case "accountname":
-                    return "商户名称";
+                    return "商戶名稱";
                 case "transfernum":
-                    return "转接号码";
+                    return "轉接號碼";
                 case "calledcalltime":
-                    return "通话时长(秒)";
+                    return "通話時長(秒)";
                 case "callerstarttime":
-                    return "通话时间";
+                    return "通話時間";
                 case "caller":
-                    return "主叫号码";
+                    return "主叫號碼";
                 case "callerlocation":
-                    return "归属地";
+                    return "歸屬地";
                 case "callresult":
-                    return "结果";
+                    return "結果";
                 case "Opportunitycosts":
-                    return "商机费";
+                    return "商機費";
                 case "memberfee":
-                    return "通讯费";
+                    return "通訊費";
                 case "licenid":
-                    return "客服编号";
+                    return "客服編號";
                 case "servicename":
-                    return "客服名称";
+                    return "客服名稱";
                 case "serviceaccount":
-                    return "客服帐号";
+                    return "客服帳號";
                 case "messageconsume":
                     return "短信消耗";
                 case "receivingrate":
-                    return "接听率";
+                    return "接聽率";
                 case "youxiaop":
-                    return "有效接听率";
+                    return "有效接聽率";
                 case "telamount":
-                    return "电话量";
+                    return "電話量";
                 case "extennum":
-                    return "拨打分机个数";
+                    return "撥打分機個數";
                 case "telconnum":
-                    return "继续拨打分机次数";
+                    return "繼續撥打分機次數";
                 case "listenarea":
-                    return "接听区域";
+                    return "接聽區域";
                 case "specialfield":
-                    return "专业领域";
+                    return "專業領域";
                 case "calltime":
-                    return "接听时间";
+                    return "接聽時間";
                 case "userstart":
-                    return "当前状态";
+                    return "當前狀態";
                 case "currentbalance":
-                    return "当前余额";
+                    return "當前餘額";
                 case "call400all":
-                    return "400电话总量";
+                    return "400電話總量";
                 case "call400youxiao":
-                    return "400有效电话量";
+                    return "400有效電話量";
                 case "call400consume":
-                    return "400消耗额";
+                    return "400消耗額";
                 case "call400avgopp":
-                    return "400平均商机费";
+                    return "400平均商機費";
                 case "call800all":
-                    return "800电话总量";
+                    return "800電話總量";
                 case "call800youxiao":
-                    return "800有效电话量";
+                    return "800有效電話量";
                 case "call800consume":
-                    return "800消耗额";
+                    return "800消耗額";
                 case "call800avgopp":
-                    return "800平均商机费";
+                    return "800平均商機費";
                 case "callall":
-                    return "电话总量";
+                    return "電話總量";
                 case "callyouxiao":
-                    return "总有效电话量";
+                    return "總有效電話量";
                 case "callconsume":
-                    return "总消耗额";
+                    return "總消耗額";
                 case "callavgoppo":
-                    return "总平均商机费";
+                    return "總平均商機費";
                 case "hr":
-                    return "小时";
+                    return "小時";
                 case "shangji400":
-                    return "400商机费";
+                    return "400商機費";
                 case "shangji800":
-                    return "800商机费";
+                    return "800商機費";
                 case "tongxun400":
-                    return "400通讯费";
+                    return "400通訊費";
                 case "tongxun800":
-                    return "800通讯费";
+                    return "800通訊費";
                 case "zongji400":
-                    return "400总机费";
+                    return "400總機費";
                 case "zongji800":
-                    return "800总机费";
+                    return "800總機費";
                 case "datet":
                     return "日期";
                 case "opentime":
-                    return "开通时间";
+                    return "開通時間";
                 case "allrecharge":
-                    return "充值金额";
+                    return "充值金額";
                 case "Userstart":
-                    return "状态";
+                    return "狀態";
                 case "allnum":
-                    return "总接听量";
+                    return "總接聽量";
                 case "cbalance":
-                    return "合作金额";
+                    return "合作金額";
                 case "allmoney":
-                    return "续费额";
+                    return "續費額";
                 case "username":
-                    return "商户账号";
+                    return "商戶帳號";
                 case "isguoqi":
-                    return "是否过期";
+                    return "是否過期";
                 case "accounttype":
-                    return "商户类型";
+                    return "商戶類型";
                 case "mphone":
-                    return "客户手机号";
+                    return "客戶手機號";
                 case "specialText":
-                    return "专长";
+                    return "專長";
                 case "uuname":
                     return "客服";
                 case "opentimes":
-                    return "合作时间";
+                    return "合作時間";
                 case "shangjifei":
-                    return "商机费";
+                    return "商機費";
 
             }
             return "";
         }
         #endregion
 
-        #region 构造URL POST请求
-        public static int timeout = 5000;//时间点
+        #region 構造URL POST請求
+        public static int timeout = 5000;//時間點
         /// <summary>
-        /// 获取请求的反馈信息
+        /// 獲取請求的回饋資訊
         /// </summary>
         /// <param name="url"></param>
-        /// <param name="bData">参数字节数组</param>
+        /// <param name="bData">參數位元組陣列</param>
         /// <returns></returns>
         private static String doPostRequest(string url, byte[] bData)
         {
@@ -1860,7 +1860,7 @@ namespace Common
             string strResult = string.Empty;
             try
             {
-                ServicePointManager.Expect100Continue = false;//远程服务器返回错误: (417) Expectation failed 异常源自HTTP1.1协议的一个规范： 100(Continue)
+                ServicePointManager.Expect100Continue = false;//遠端伺服器返回錯誤: (417) Expectation failed 異常源自HTTP1.1協定的一個規範： 100(Continue)
                 hwRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(url);
                 hwRequest.Timeout = timeout;
                 hwRequest.Method = "POST";
@@ -1892,10 +1892,10 @@ namespace Common
             return strResult;
         }
         /// <summary>
-        /// 构造WebClient提交
+        /// 構造WebClient提交
         /// </summary>
         /// <param name="url">提交地址</param>
-        /// <param name="encoding">编码方式</param>
+        /// <param name="encoding">編碼方式</param>
         /// <returns></returns>
         private static string doPostRequest(string url, string encoding)
         {
@@ -1918,9 +1918,9 @@ namespace Common
         }
         #endregion
 
-        #region 构造URL GET请求
+        #region 構造URL GET請求
         /// <summary>
-        /// 获取请求的反馈信息
+        /// 獲取請求的回饋資訊
         /// </summary>
         /// <param name="url">地址</param>
         /// <returns></returns>
@@ -1960,19 +1960,19 @@ namespace Common
         }
         #endregion
 
-        #region POST请求
+        #region POST請求
         public static string PostMethod(string url, string param)
         {
             byte[] data = Encoding.UTF8.GetBytes(param);
             return doPostRequest(url, data);
         }
         /// <summary>
-        /// POST请求
+        /// POST請求
         /// </summary>
         /// <param name="url">URL</param>
-        /// <param name="encoding">编码gb2312/utf8</param>
-        /// <param name="param">参数</param>
-        /// <returns>结果</returns>
+        /// <param name="encoding">編碼gb2312/utf8</param>
+        /// <param name="param">參數</param>
+        /// <returns>結果</returns>
         public static string PostMethod(string url, string encoding, string param)
         {
             HttpWebRequest hwRequest;
@@ -1998,7 +1998,7 @@ namespace Common
             }
             try
             {
-                ServicePointManager.Expect100Continue = false;//远程服务器返回错误: (417) Expectation failed 异常源自HTTP1.1协议的一个规范： 100(Continue)
+                ServicePointManager.Expect100Continue = false;//遠端伺服器返回錯誤: (417) Expectation failed 異常源自HTTP1.1協定的一個規範： 100(Continue)
                 hwRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(url);
                 hwRequest.Timeout = timeout;
                 hwRequest.Method = "POST";
@@ -2030,13 +2030,13 @@ namespace Common
         }
         #endregion
 
-        #region 访问提交创建文件 （供生成静态页面使用，无需模板）
+        #region 訪問提交創建檔 （供生成靜態頁面使用，無需範本）
         /// <summary>
-        /// 访问提交创建文件 （供生成静态页面使用，无需模板）
-        /// 调用实例 Utils.CreateFileHtml("http://www.xiaomi.com", Server.MapPath("/xxx.html"));
+        /// 訪問提交創建檔 （供生成靜態頁面使用，無需範本）
+        /// 調用實例 Utils.CreateFileHtml("http://www.xiaomi.com", Server.MapPath("/xxx.html"));
         /// </summary>
-        /// <param name="url">原网址</param>
-        /// <param name="createpath">生成路径</param>
+        /// <param name="url">原網址</param>
+        /// <param name="createpath">生成路徑</param>
         /// <returns>true false</returns>
         public static bool CreateFileHtml(string url, string createpath)
         {
@@ -2073,11 +2073,11 @@ namespace Common
             return false;
         }
         /// <summary>
-        /// 访问提交创建文件 （供生成静态页面使用，需要模板）
-        /// 调用实例 Utils.CreateFileHtmlByTemp(html, Server.MapPath("/xxx.html"));
+        /// 訪問提交創建檔 （供生成靜態頁面使用，需要範本）
+        /// 調用實例 Utils.CreateFileHtmlByTemp(html, Server.MapPath("/xxx.html"));
         /// </summary>
-        /// <param name="url">原网址</param>
-        /// <param name="createpath">生成路径</param>
+        /// <param name="url">原網址</param>
+        /// <param name="createpath">生成路徑</param>
         /// <returns>true false</returns>
         public static bool CreateFileHtmlByTemp(string result, string createpath)
         {
@@ -2110,9 +2110,9 @@ namespace Common
         }
         #endregion
 
-        #region 汉字转拼音
+        #region 漢字轉拼音
 
-        #region 数组信息
+        #region 陣列資訊
         private static int[] pyValue = new int[]
 
         {
@@ -2290,208 +2290,208 @@ namespace Common
              "Zui", "Zun", "Zuo"
          };
 
-        #region 二级汉字
+        #region 二級漢字
         /// <summary>
-        /// 二级汉字数组
+        /// 二級漢字陣列
         /// </summary>
         private static string[] otherChinese = new string[]
         {
-            "亍","丌","兀","丐","廿","卅","丕","亘","丞","鬲","孬","噩","丨","禺","丿"
-            ,"匕","乇","夭","爻","卮","氐","囟","胤","馗","毓","睾","鼗","丶","亟","鼐","乜"
-            ,"乩","亓","芈","孛","啬","嘏","仄","厍","厝","厣","厥","厮","靥","赝","匚","叵"
-            ,"匦","匮","匾","赜","卦","卣","刂","刈","刎","刭","刳","刿","剀","剌","剞","剡"
+            "亍","丌","兀","丐","廿","卅","丕","亙","丞","鬲","孬","噩","丨","禺","丿"
+            ,"匕","乇","夭","爻","卮","氐","囟","胤","馗","毓","睾","鞀","丶","亟","鼐","乜"
+            ,"乩","亓","羋","孛","嗇","嘏","仄","厙","厝","厴","厥","廝","靨","贗","匚","叵"
+            ,"匭","匱","匾","賾","卦","卣","刂","刈","刎","剄","刳","劌","剴","剌","剞","剡"
             ,"剜","蒯","剽","劂","劁","劐","劓","冂","罔","亻","仃","仉","仂","仨","仡","仫"
-            ,"仞","伛","仳","伢","佤","仵","伥","伧","伉","伫","佞","佧","攸","佚","佝"
-            ,"佟","佗","伲","伽","佶","佴","侑","侉","侃","侏","佾","佻","侪","佼","侬"
-            ,"侔","俦","俨","俪","俅","俚","俣","俜","俑","俟","俸","倩","偌","俳","倬","倏"
-            ,"倮","倭","俾","倜","倌","倥","倨","偾","偃","偕","偈","偎","偬","偻","傥","傧"
-            ,"傩","傺","僖","儆","僭","僬","僦","僮","儇","儋","仝","氽","佘","佥","俎","龠"
-            ,"汆","籴","兮","巽","黉","馘","冁","夔","勹","匍","訇","匐","凫","夙","兕","亠"
-            ,"兖","亳","衮","袤","亵","脔","裒","禀","嬴","蠃","羸","冫","冱","冽","冼"
-            ,"凇","冖","冢","冥","讠","讦","讧","讪","讴","讵","讷","诂","诃","诋","诏"
-            ,"诎","诒","诓","诔","诖","诘","诙","诜","诟","诠","诤","诨","诩","诮","诰","诳"
-            ,"诶","诹","诼","诿","谀","谂","谄","谇","谌","谏","谑","谒","谔","谕","谖","谙"
-            ,"谛","谘","谝","谟","谠","谡","谥","谧","谪","谫","谮","谯","谲","谳","谵","谶"
-            ,"卩","卺","阝","阢","阡","阱","阪","阽","阼","陂","陉","陔","陟","陧","陬","陲"
-            ,"陴","隈","隍","隗","隰","邗","邛","邝","邙","邬","邡","邴","邳","邶","邺"
-            ,"邸","邰","郏","郅","邾","郐","郄","郇","郓","郦","郢","郜","郗","郛","郫"
-            ,"郯","郾","鄄","鄢","鄞","鄣","鄱","鄯","鄹","酃","酆","刍","奂","劢","劬","劭"
-            ,"劾","哿","勐","勖","勰","叟","燮","矍","廴","凵","凼","鬯","厶","弁","畚","巯"
-            ,"坌","垩","垡","塾","墼","壅","壑","圩","圬","圪","圳","圹","圮","圯","坜","圻"
-            ,"坂","坩","垅","坫","垆","坼","坻","坨","坭","坶","坳","垭","垤","垌","垲","埏"
-            ,"垧","垴","垓","垠","埕","埘","埚","埙","埒","垸","埴","埯","埸","埤","埝"
-            ,"堋","堍","埽","埭","堀","堞","堙","塄","堠","塥","塬","墁","墉","墚","墀"
-            ,"馨","鼙","懿","艹","艽","艿","芏","芊","芨","芄","芎","芑","芗","芙","芫","芸"
-            ,"芾","芰","苈","苊","苣","芘","芷","芮","苋","苌","苁","芩","芴","芡","芪","芟"
-            ,"苄","苎","芤","苡","茉","苷","苤","茏","茇","苜","苴","苒","苘","茌","苻","苓"
-            ,"茑","茚","茆","茔","茕","苠","苕","茜","荑","荛","荜","茈","莒","茼","茴","茱"
-            ,"莛","荞","茯","荏","荇","荃","荟","荀","茗","荠","茭","茺","茳","荦","荥"
-            ,"荨","茛","荩","荬","荪","荭","荮","莰","荸","莳","莴","莠","莪","莓","莜"
-            ,"莅","荼","莶","莩","荽","莸","荻","莘","莞","莨","莺","莼","菁","萁","菥","菘"
+            ,"仞","傴","仳","伢","佤","仵","倀","傖","伉","佇","佞","佧","攸","佚","佝"
+            ,"佟","佗","伲","伽","佶","佴","侑","侉","侃","侏","佾","佻","儕","佼","儂"
+            ,"侔","儔","儼","儷","俅","俚","俁","俜","俑","俟","俸","倩","偌","俳","倬","倏"
+            ,"倮","倭","俾","倜","倌","倥","倨","僨","偃","偕","偈","偎","傯","僂","儻","儐"
+            ,"儺","傺","僖","儆","僭","僬","僦","僮","儇","儋","仝","氽","佘","僉","俎","龠"
+            ,"汆","糴","兮","巽","黌","馘","囅","夔","勹","匍","訇","匐","鳧","夙","兕","亠"
+            ,"兗","亳","袞","袤","褻","臠","裒","稟","嬴","蠃","羸","冫","冱","冽","冼"
+            ,"凇","冖","塚","冥","訁","訐","訌","訕","謳","詎","訥","詁","訶","詆","詔"
+            ,"詘","詒","誆","誄","詿","詰","詼","詵","詬","詮","諍","諢","詡","誚","誥","誑"
+            ,"誒","諏","諑","諉","諛","諗","諂","誶","諶","諫","謔","謁","諤","諭","諼","諳"
+            ,"諦","諮","諞","謨","讜","謖","諡","謐","謫","譾","譖","譙","譎","讞","譫","讖"
+            ,"卩","巹","阝","阢","阡","阱","阪","阽","阼","陂","陘","陔","陟","隉","陬","陲"
+            ,"陴","隈","隍","隗","隰","邗","邛","鄺","邙","鄔","邡","邴","邳","邶","鄴"
+            ,"邸","邰","郟","郅","邾","鄶","郤","郇","鄆","酈","郢","郜","郗","郛","郫"
+            ,"郯","郾","鄄","鄢","鄞","鄣","鄱","鄯","鄹","酃","酆","芻","奐","勱","劬","劭"
+            ,"劾","哿","猛","勖","勰","叟","燮","矍","廴","凵","氹","鬯","厶","弁","畚","巰"
+            ,"坌","堊","垡","塾","墼","壅","壑","圩","圬","圪","圳","壙","圮","圯","壢","圻"
+            ,"阪","坩","壟","坫","壚","坼","坻","坨","坭","坶","坳","埡","垤","垌","塏","埏"
+            ,"坰","堖","垓","垠","埕","塒","堝","塤","埒","垸","埴","垵","埸","埤","墊"
+            ,"堋","堍","埽","埭","堀","堞","堙","塄","堠","塥","原","墁","墉","墚","墀"
+            ,"馨","鼙","懿","艸","艽","艿","芏","芊","芨","芄","芎","芑","薌","芙","芫","芸"
+            ,"芾","芰","藶","苊","苣","芘","芷","芮","莧","萇","蓯","芩","芴","芡","芪","芟"
+            ,"苄","苧","芤","苡","茉","苷","苤","蘢","茇","苜","苴","苒","檾","茌","苻","苓"
+            ,"蔦","茚","茆","塋","煢","苠","苕","茜","荑","蕘","蓽","茈","莒","茼","茴","茱"
+            ,"莛","蕎","茯","荏","荇","荃","薈","荀","茗","薺","茭","茺","茳","犖","滎"
+            ,"蕁","茛","藎","蕒","蓀","葒","葤","莰","荸","蒔","萵","莠","莪","莓","蓧"
+            ,"蒞","荼","薟","莩","荽","蕕","荻","莘","莞","莨","鶯","蓴","菁","萁","菥","菘"
             ,"堇","萘","萋","菝","菽","菖","萜","萸","萑","萆","菔","菟","萏","萃","菸","菹"
-            ,"菪","菅","菀","萦","菰","菡","葜","葑","葚","葙","葳","蒇","蒈","葺","蒉","葸"
-            ,"萼","葆","葩","葶","蒌","蒎","萱","葭","蓁","蓍","蓐","蓦","蒽","蓓","蓊","蒿"
-            ,"蒺","蓠","蒡","蒹","蒴","蒗","蓥","蓣","蔌","甍","蔸","蓰","蔹","蔟","蔺"
-            ,"蕖","蔻","蓿","蓼","蕙","蕈","蕨","蕤","蕞","蕺","瞢","蕃","蕲","蕻","薤"
-            ,"薨","薇","薏","蕹","薮","薜","薅","薹","薷","薰","藓","藁","藜","藿","蘧","蘅"
-            ,"蘩","蘖","蘼","廾","弈","夼","奁","耷","奕","奚","奘","匏","尢","尥","尬","尴"
-            ,"扌","扪","抟","抻","拊","拚","拗","拮","挢","拶","挹","捋","捃","掭","揶","捱"
-            ,"捺","掎","掴","捭","掬","掊","捩","掮","掼","揲","揸","揠","揿","揄","揞","揎"
-            ,"摒","揆","掾","摅","摁","搋","搛","搠","搌","搦","搡","摞","撄","摭","撖"
-            ,"摺","撷","撸","撙","撺","擀","擐","擗","擤","擢","攉","攥","攮","弋","忒"
-            ,"甙","弑","卟","叱","叽","叩","叨","叻","吒","吖","吆","呋","呒","呓","呔","呖"
-            ,"呃","吡","呗","呙","吣","吲","咂","咔","呷","呱","呤","咚","咛","咄","呶","呦"
-            ,"咝","哐","咭","哂","咴","哒","咧","咦","哓","哔","呲","咣","哕","咻","咿","哌"
-            ,"哙","哚","哜","咩","咪","咤","哝","哏","哞","唛","哧","唠","哽","唔","哳","唢"
-            ,"唣","唏","唑","唧","唪","啧","喏","喵","啉","啭","啁","啕","唿","啐","唼"
+            ,"菪","菅","菀","縈","菰","菡","葜","葑","葚","葙","葳","蕆","蒈","葺","蕢","葸"
+            ,"萼","葆","葩","葶","蔞","蒎","萱","葭","蓁","蓍","蓐","驀","蒽","蓓","蓊","蒿"
+            ,"蒺","蘺","蒡","蒹","蒴","蒗","鎣","蕷","蔌","甍","蔸","蓰","蘞","蔟","藺"
+            ,"蕖","蔻","蓿","蓼","蕙","蕈","蕨","蕤","蕞","蕺","瞢","蕃","蘄","蕻","薤"
+            ,"薨","薇","薏","蕹","藪","薜","薅","薹","薷","薰","蘚","槁","藜","藿","蘧","蘅"
+            ,"蘩","蘖","蘼","廾","弈","夼","奩","耷","奕","奚","奘","匏","尢","尥","尬","尷"
+            ,"扌","捫","摶","抻","拊","拚","拗","拮","撟","拶","挹","捋","捃","掭","揶","捱"
+            ,"捺","掎","摑","捭","掬","掊","捩","掮","摜","揲","摣","揠","撳","揄","揞","揎"
+            ,"摒","揆","掾","攄","摁","搋","搛","搠","搌","搦","搡","摞","攖","摭","撖"
+            ,"摺","擷","擼","撙","攛","擀","擐","擗","擤","擢","攉","攥","攮","弋","忒"
+            ,"甙","弑","卟","叱","嘰","叩","叨","叻","吒","吖","吆","呋","嘸","囈","呔","嚦"
+            ,"呃","吡","唄","咼","唚","吲","咂","哢","呷","呱","呤","咚","嚀","咄","呶","呦"
+            ,"噝","哐","咭","哂","噅","噠","咧","咦","嘵","嗶","呲","咣","噦","咻","咿","呱"
+            ,"噲","哚","嚌","咩","咪","吒","噥","哏","哞","嘜","哧","嘮","哽","唔","哳","嗩"
+            ,"唕","唏","唑","唧","唪","嘖","喏","喵","啉","囀","啁","啕","呼","啐","唼"
             ,"唷","啖","啵","啶","啷","唳","唰","啜","喋","嗒","喃","喱","喹","喈","喁"
-            ,"喟","啾","嗖","喑","啻","嗟","喽","喾","喔","喙","嗪","嗷","嗉","嘟","嗑","嗫"
-            ,"嗬","嗔","嗦","嗝","嗄","嗯","嗥","嗲","嗳","嗌","嗍","嗨","嗵","嗤","辔","嘞"
-            ,"嘈","嘌","嘁","嘤","嘣","嗾","嘀","嘧","嘭","噘","嘹","噗","嘬","噍","噢","噙"
-            ,"噜","噌","噔","嚆","噤","噱","噫","噻","噼","嚅","嚓","嚯","囔","囗","囝","囡"
-            ,"囵","囫","囹","囿","圄","圊","圉","圜","帏","帙","帔","帑","帱","帻","帼"
-            ,"帷","幄","幔","幛","幞","幡","岌","屺","岍","岐","岖","岈","岘","岙","岑"
-            ,"岚","岜","岵","岢","岽","岬","岫","岱","岣","峁","岷","峄","峒","峤","峋","峥"
-            ,"崂","崃","崧","崦","崮","崤","崞","崆","崛","嵘","崾","崴","崽","嵬","嵛","嵯"
-            ,"嵝","嵫","嵋","嵊","嵩","嵴","嶂","嶙","嶝","豳","嶷","巅","彳","彷","徂","徇"
-            ,"徉","後","徕","徙","徜","徨","徭","徵","徼","衢","彡","犭","犰","犴","犷","犸"
-            ,"狃","狁","狎","狍","狒","狨","狯","狩","狲","狴","狷","猁","狳","猃","狺"
-            ,"狻","猗","猓","猡","猊","猞","猝","猕","猢","猹","猥","猬","猸","猱","獐"
-            ,"獍","獗","獠","獬","獯","獾","舛","夥","飧","夤","夂","饣","饧","饨","饩","饪"
-            ,"饫","饬","饴","饷","饽","馀","馄","馇","馊","馍","馐","馑","馓","馔","馕","庀"
-            ,"庑","庋","庖","庥","庠","庹","庵","庾","庳","赓","廒","廑","廛","廨","廪","膺"
-            ,"忄","忉","忖","忏","怃","忮","怄","忡","忤","忾","怅","怆","忪","忭","忸","怙"
-            ,"怵","怦","怛","怏","怍","怩","怫","怊","怿","怡","恸","恹","恻","恺","恂"
-            ,"恪","恽","悖","悚","悭","悝","悃","悒","悌","悛","惬","悻","悱","惝","惘"
-            ,"惆","惚","悴","愠","愦","愕","愣","惴","愀","愎","愫","慊","慵","憬","憔","憧"
-            ,"憷","懔","懵","忝","隳","闩","闫","闱","闳","闵","闶","闼","闾","阃","阄","阆"
-            ,"阈","阊","阋","阌","阍","阏","阒","阕","阖","阗","阙","阚","丬","爿","戕","氵"
-            ,"汔","汜","汊","沣","沅","沐","沔","沌","汨","汩","汴","汶","沆","沩","泐","泔"
-            ,"沭","泷","泸","泱","泗","沲","泠","泖","泺","泫","泮","沱","泓","泯","泾"
-            ,"洹","洧","洌","浃","浈","洇","洄","洙","洎","洫","浍","洮","洵","洚","浏"
-            ,"浒","浔","洳","涑","浯","涞","涠","浞","涓","涔","浜","浠","浼","浣","渚","淇"
-            ,"淅","淞","渎","涿","淠","渑","淦","淝","淙","渖","涫","渌","涮","渫","湮","湎"
-            ,"湫","溲","湟","溆","湓","湔","渲","渥","湄","滟","溱","溘","滠","漭","滢","溥"
-            ,"溧","溽","溻","溷","滗","溴","滏","溏","滂","溟","潢","潆","潇","漤","漕","滹"
-            ,"漯","漶","潋","潴","漪","漉","漩","澉","澍","澌","潸","潲","潼","潺","濑"
+            ,"喟","啾","嗖","喑","啻","嗟","嘍","嚳","喔","喙","嗪","嗷","嗉","嘟","嗑","囁"
+            ,"呵","嗔","嗦","嗝","嗄","嗯","嗥","嗲","噯","嗌","嗍","嗨","嗵","嗤","轡","嘞"
+            ,"嘈","嘌","嘁","嚶","嘣","嗾","嘀","嘧","嘭","噘","嘹","噗","嘬","噍","噢","噙"
+            ,"嚕","噌","噔","嚆","噤","噱","噫","噻","劈","嚅","嚓","謔","囔","囗","囝","囡"
+            ,"圇","囫","囹","囿","圄","圊","圉","圜","幃","帙","帔","帑","幬","幘","幗"
+            ,"帷","幄","幔","幛","襆","幡","岌","屺","岍","岐","嶇","岈","峴","嶴","岑"
+            ,"嵐","岜","岵","岢","崠","岬","岫","岱","岣","峁","岷","嶧","峒","嶠","峋","崢"
+            ,"嶗","崍","崧","崦","崮","崤","崞","崆","崛","嶸","崾","崴","崽","嵬","崳","嵯"
+            ,"嶁","嵫","嵋","嵊","嵩","脊","嶂","嶙","嶝","豳","嶷","巔","彳","彷","徂","徇"
+            ,"徉","後","徠","徙","徜","徨","徭","徵","徼","衢","彡","犬","犰","犴","獷","獁"
+            ,"狃","狁","狎","麅","狒","狨","獪","狩","猻","狴","狷","猁","狳","獫","狺"
+            ,"狻","猗","猓","玀","猊","猞","猝","獼","猢","猹","猥","蝟","猸","猱","獐"
+            ,"獍","獗","獠","獬","獯","獾","舛","夥","飧","夤","夂","饣","餳","飩","餼","飪"
+            ,"飫","飭","飴","餉","餑","餘","餛","餷","餿","饃","饈","饉","饊","饌","饢","庀"
+            ,"廡","庋","庖","庥","庠","庹","庵","庾","庳","賡","廒","廑","廛","廨","廩","膺"
+            ,"忄","忉","忖","懺","憮","忮","慪","忡","忤","愾","悵","愴","忪","忭","忸","怙"
+            ,"怵","怦","怛","怏","怍","怩","怫","怊","懌","怡","慟","懨","惻","愷","恂"
+            ,"恪","惲","悖","悚","慳","悝","悃","悒","悌","悛","愜","悻","悱","惝","惘"
+            ,"惆","惚","悴","慍","憒","愕","愣","惴","愀","愎","愫","慊","慵","憬","憔","憧"
+            ,"怵","懍","懵","忝","隳","閂","閆","闈","閎","閔","閌","闥","閭","閫","鬮","閬"
+            ,"閾","閶","鬩","閿","閽","閼","闃","闋","闔","闐","闕","闞","爿","爿","戕","氵"
+            ,"汔","汜","汊","灃","沅","沐","沔","沌","汨","汩","汴","汶","沆","溈","泐","泔"
+            ,"沭","瀧","瀘","泱","泗","沲","泠","泖","濼","泫","泮","沱","泓","泯","涇"
+            ,"洹","洧","洌","浹","湞","洇","洄","洙","洎","洫","澮","洮","洵","洚","瀏"
+            ,"滸","潯","洳","涑","浯","淶","潿","浞","涓","涔","浜","浠","浼","浣","渚","淇"
+            ,"淅","淞","瀆","涿","淠","澠","淦","淝","淙","瀋","涫","淥","涮","渫","湮","湎"
+            ,"湫","溲","湟","漵","湓","湔","渲","渥","湄","灩","溱","溘","灄","漭","瀅","溥"
+            ,"溧","溽","溻","溷","潷","溴","滏","溏","滂","溟","潢","瀠","瀟","濫","漕","滹"
+            ,"漯","漶","瀲","瀦","漪","漉","漩","澉","澍","澌","潸","潲","潼","潺","瀨"
             ,"濉","澧","澹","澶","濂","濡","濮","濞","濠","濯","瀚","瀣","瀛","瀹","瀵"
-            ,"灏","灞","宀","宄","宕","宓","宥","宸","甯","骞","搴","寤","寮","褰","寰","蹇"
-            ,"謇","辶","迓","迕","迥","迮","迤","迩","迦","迳","迨","逅","逄","逋","逦","逑"
+            ,"灝","灞","宀","宄","宕","宓","宥","宸","甯","騫","搴","寤","寮","褰","寰","蹇"
+            ,"謇","辶","迓","迕","迥","迮","迤","邇","迦","逕","迨","逅","逄","逋","邐","逑"
             ,"逍","逖","逡","逵","逶","逭","逯","遄","遑","遒","遐","遨","遘","遢","遛","暹"
             ,"遴","遽","邂","邈","邃","邋","彐","彗","彖","彘","尻","咫","屐","屙","孱","屣"
-            ,"屦","羼","弪","弩","弭","艴","弼","鬻","屮","妁","妃","妍","妩","妪","妣"
-            ,"妗","姊","妫","妞","妤","姒","妲","妯","姗","妾","娅","娆","姝","娈","姣"
-            ,"姘","姹","娌","娉","娲","娴","娑","娣","娓","婀","婧","婊","婕","娼","婢","婵"
-            ,"胬","媪","媛","婷","婺","媾","嫫","媲","嫒","嫔","媸","嫠","嫣","嫱","嫖","嫦"
-            ,"嫘","嫜","嬉","嬗","嬖","嬲","嬷","孀","尕","尜","孚","孥","孳","孑","孓","孢"
-            ,"驵","驷","驸","驺","驿","驽","骀","骁","骅","骈","骊","骐","骒","骓","骖","骘"
-            ,"骛","骜","骝","骟","骠","骢","骣","骥","骧","纟","纡","纣","纥","纨","纩"
-            ,"纭","纰","纾","绀","绁","绂","绉","绋","绌","绐","绔","绗","绛","绠","绡"
-            ,"绨","绫","绮","绯","绱","绲","缍","绶","绺","绻","绾","缁","缂","缃","缇","缈"
-            ,"缋","缌","缏","缑","缒","缗","缙","缜","缛","缟","缡","缢","缣","缤","缥","缦"
-            ,"缧","缪","缫","缬","缭","缯","缰","缱","缲","缳","缵","幺","畿","巛","甾","邕"
-            ,"玎","玑","玮","玢","玟","珏","珂","珑","玷","玳","珀","珉","珈","珥","珙","顼"
-            ,"琊","珩","珧","珞","玺","珲","琏","琪","瑛","琦","琥","琨","琰","琮","琬"
-            ,"琛","琚","瑁","瑜","瑗","瑕","瑙","瑷","瑭","瑾","璜","璎","璀","璁","璇"
-            ,"璋","璞","璨","璩","璐","璧","瓒","璺","韪","韫","韬","杌","杓","杞","杈","杩"
-            ,"枥","枇","杪","杳","枘","枧","杵","枨","枞","枭","枋","杷","杼","柰","栉","柘"
-            ,"栊","柩","枰","栌","柙","枵","柚","枳","柝","栀","柃","枸","柢","栎","柁","柽"
-            ,"栲","栳","桠","桡","桎","桢","桄","桤","梃","栝","桕","桦","桁","桧","桀","栾"
-            ,"桊","桉","栩","梵","梏","桴","桷","梓","桫","棂","楮","棼","椟","椠","棹"
-            ,"椤","棰","椋","椁","楗","棣","椐","楱","椹","楠","楂","楝","榄","楫","榀"
-            ,"榘","楸","椴","槌","榇","榈","槎","榉","楦","楣","楹","榛","榧","榻","榫","榭"
-            ,"槔","榱","槁","槊","槟","榕","槠","榍","槿","樯","槭","樗","樘","橥","槲","橄"
-            ,"樾","檠","橐","橛","樵","檎","橹","樽","樨","橘","橼","檑","檐","檩","檗","檫"
-            ,"猷","獒","殁","殂","殇","殄","殒","殓","殍","殚","殛","殡","殪","轫","轭","轱"
-            ,"轲","轳","轵","轶","轸","轷","轹","轺","轼","轾","辁","辂","辄","辇","辋"
-            ,"辍","辎","辏","辘","辚","軎","戋","戗","戛","戟","戢","戡","戥","戤","戬"
-            ,"臧","瓯","瓴","瓿","甏","甑","甓","攴","旮","旯","旰","昊","昙","杲","昃","昕"
-            ,"昀","炅","曷","昝","昴","昱","昶","昵","耆","晟","晔","晁","晏","晖","晡","晗"
-            ,"晷","暄","暌","暧","暝","暾","曛","曜","曦","曩","贲","贳","贶","贻","贽","赀"
-            ,"赅","赆","赈","赉","赇","赍","赕","赙","觇","觊","觋","觌","觎","觏","觐","觑"
-            ,"牮","犟","牝","牦","牯","牾","牿","犄","犋","犍","犏","犒","挈","挲","掰"
-            ,"搿","擘","耄","毪","毳","毽","毵","毹","氅","氇","氆","氍","氕","氘","氙"
-            ,"氚","氡","氩","氤","氪","氲","攵","敕","敫","牍","牒","牖","爰","虢","刖","肟"
-            ,"肜","肓","肼","朊","肽","肱","肫","肭","肴","肷","胧","胨","胩","胪","胛","胂"
-            ,"胄","胙","胍","胗","朐","胝","胫","胱","胴","胭","脍","脎","胲","胼","朕","脒"
-            ,"豚","脶","脞","脬","脘","脲","腈","腌","腓","腴","腙","腚","腱","腠","腩","腼"
-            ,"腽","腭","腧","塍","媵","膈","膂","膑","滕","膣","膪","臌","朦","臊","膻"
-            ,"臁","膦","欤","欷","欹","歃","歆","歙","飑","飒","飓","飕","飙","飚","殳"
-            ,"彀","毂","觳","斐","齑","斓","於","旆","旄","旃","旌","旎","旒","旖","炀","炜"
-            ,"炖","炝","炻","烀","炷","炫","炱","烨","烊","焐","焓","焖","焯","焱","煳","煜"
-            ,"煨","煅","煲","煊","煸","煺","熘","熳","熵","熨","熠","燠","燔","燧","燹","爝"
-            ,"爨","灬","焘","煦","熹","戾","戽","扃","扈","扉","礻","祀","祆","祉","祛","祜"
-            ,"祓","祚","祢","祗","祠","祯","祧","祺","禅","禊","禚","禧","禳","忑","忐"
-            ,"怼","恝","恚","恧","恁","恙","恣","悫","愆","愍","慝","憩","憝","懋","懑"
-            ,"戆","肀","聿","沓","泶","淼","矶","矸","砀","砉","砗","砘","砑","斫","砭","砜"
-            ,"砝","砹","砺","砻","砟","砼","砥","砬","砣","砩","硎","硭","硖","硗","砦","硐"
-            ,"硇","硌","硪","碛","碓","碚","碇","碜","碡","碣","碲","碹","碥","磔","磙","磉"
-            ,"磬","磲","礅","磴","礓","礤","礞","礴","龛","黹","黻","黼","盱","眄","眍","盹"
-            ,"眇","眈","眚","眢","眙","眭","眦","眵","眸","睐","睑","睇","睃","睚","睨"
+            ,"屨","羼","弳","弩","弭","艴","弼","鬻","屮","妁","妃","妍","嫵","嫗","妣"
+            ,"妗","姊","媯","妞","妤","姒","妲","妯","姍","妾","婭","嬈","姝","孌","姣"
+            ,"姘","姹","娌","娉","媧","嫻","娑","娣","娓","婀","婧","婊","婕","娼","婢","嬋"
+            ,"胬","媼","媛","婷","婺","媾","嫫","媲","嬡","嬪","媸","嫠","嫣","嬙","嫖","嫦"
+            ,"嫘","嫜","嬉","嬗","嬖","嬲","嬤","孀","尕","尜","孚","孥","孳","孑","孓","孢"
+            ,"駔","駟","駙","騶","驛","駑","駘","驍","驊","駢","驪","騏","騍","騅","驂","騭"
+            ,"騖","驁","騮","騸","驃","驄","驏","驥","驤","糸","紆","紂","紇","紈","纊"
+            ,"紜","紕","紓","紺","絏","紱","縐","紼","絀","紿","絝","絎","絳","綆","綃"
+            ,"綈","綾","綺","緋","緔","緄","綞","綬","綹","綣","綰","緇","緙","緗","緹","緲"
+            ,"繢","緦","緶","緱","縋","緡","縉","縝","縟","縞","縭","縊","縑","繽","縹","縵"
+            ,"縲","繆","繅","纈","繚","繒","韁","繾","繰","繯","纘","么","畿","巛","甾","邕"
+            ,"玎","璣","瑋","玢","玟","玨","珂","瓏","玷","玳","珀","瑉","珈","珥","珙","頊"
+            ,"琊","珩","珧","珞","璽","琿","璉","琪","瑛","琦","琥","琨","琰","琮","琬"
+            ,"琛","琚","瑁","瑜","瑗","瑕","瑙","璦","瑭","瑾","璜","瓔","璀","璁","璿"
+            ,"璋","璞","璨","璩","璐","璧","瓚","璺","韙","韞","韜","杌","杓","杞","杈","榪"
+            ,"櫪","枇","杪","杳","枘","梘","杵","棖","樅","梟","枋","杷","杼","柰","櫛","柘"
+            ,"櫳","柩","枰","櫨","柙","枵","柚","枳","柝","梔","柃","枸","柢","櫟","柁","檉"
+            ,"栲","栳","椏","橈","桎","楨","桄","榿","梃","栝","桕","樺","桁","檜","桀","欒"
+            ,"棬","桉","栩","梵","梏","桴","桷","梓","桫","欞","楮","棼","櫝","槧","棹"
+            ,"欏","棰","椋","槨","楗","棣","椐","楱","椹","楠","楂","楝","欖","楫","榀"
+            ,"榘","楸","椴","槌","櫬","櫚","槎","櫸","楦","楣","楹","榛","榧","榻","榫","榭"
+            ,"槔","榱","槁","槊","檳","榕","櫧","榍","槿","檣","槭","樗","樘","櫫","槲","橄"
+            ,"樾","檠","橐","橛","樵","檎","櫓","樽","樨","橘","櫞","檑","簷","檁","檗","檫"
+            ,"猷","獒","歿","殂","殤","殄","殞","殮","殍","殫","殛","殯","殪","軔","軛","軲"
+            ,"軻","轤","軹","軼","軫","軤","轢","軺","軾","輊","輇","輅","輒","輦","輞"
+            ,"輟","輜","輳","轆","轔","軎","戔","戧","戛","戟","戢","戡","戥","戤","戩"
+            ,"臧","甌","瓴","瓿","甏","甑","甓","攴","旮","旯","旰","昊","曇","杲","昃","昕"
+            ,"昀","炅","曷","昝","昴","昱","昶","昵","耆","晟","曄","晁","晏","暉","晡","晗"
+            ,"晷","暄","暌","曖","暝","暾","曛","曜","曦","曩","賁","貰","貺","貽","贄","貲"
+            ,"賅","贐","賑","賚","賕","齎","賧","賻","覘","覬","覡","覿","覦","覯","覲","覷"
+            ,"牮","強","牝","犛","牯","牾","牿","犄","犋","犍","犏","犒","挈","挲","掰"
+            ,"搿","擘","耄","毪","毳","毽","毿","毹","氅","氌","氆","氍","氕","氘","氙"
+            ,"氚","氡","氬","氤","氪","氳","攵","敕","敫","牘","牒","牖","爰","虢","刖","肟"
+            ,"肜","肓","肼","朊","肽","肱","肫","肭","肴","膁","朧","腖","胩","臚","胛","胂"
+            ,"胄","胙","胍","胗","朐","胝","脛","胱","胴","胭","膾","脎","胲","胼","朕","脒"
+            ,"豚","腡","脞","脬","脘","脲","腈","醃","腓","腴","腙","腚","腱","腠","腩","靦"
+            ,"膃","齶","腧","塍","媵","膈","膂","臏","滕","膣","膪","臌","朦","臊","膻"
+            ,"臁","膦","歟","欷","欹","歃","歆","歙","颮","颯","颶","颼","飆","飆","殳"
+            ,"彀","轂","觳","斐","齏","斕","於","旆","旄","旃","旌","旎","旒","旖","煬","煒"
+            ,"燉","熗","炻","烀","炷","炫","炱","燁","烊","焐","焓","燜","焯","焱","糊","煜"
+            ,"煨","煆","煲","煊","煸","退","溜","熳","熵","熨","熠","燠","燔","燧","燹","爝"
+            ,"爨","灬","燾","煦","熹","戾","戽","扃","扈","扉","礻","祀","祆","祉","祛","祜"
+            ,"祓","祚","禰","祗","祠","禎","祧","祺","禪","禊","禚","禧","禳","忑","忐"
+            ,"懟","恝","恚","恧","恁","恙","恣","愨","愆","湣","慝","憩","憝","懋","懣"
+            ,"戇","肀","聿","遝","澩","淼","磯","矸","碭","砉","硨","砘","砑","斫","砭","碸"
+            ,"砝","砹","礪","礱","砟","砼","砥","砬","砣","砩","硎","硭","硤","磽","砦","硐"
+            ,"硇","硌","硪","磧","碓","碚","碇","磣","碡","碣","碲","镟","碥","磔","滾","磉"
+            ,"磬","磲","礅","磴","礓","礤","礞","礴","龕","黹","黻","黼","盱","眄","瞘","盹"
+            ,"眇","眈","眚","眢","眙","眭","眥","眵","眸","睞","瞼","睇","睃","睚","睨"
             ,"睢","睥","睿","瞍","睽","瞀","瞌","瞑","瞟","瞠","瞰","瞵","瞽","町","畀"
-            ,"畎","畋","畈","畛","畲","畹","疃","罘","罡","罟","詈","罨","罴","罱","罹","羁"
-            ,"罾","盍","盥","蠲","钅","钆","钇","钋","钊","钌","钍","钏","钐","钔","钗","钕"
-            ,"钚","钛","钜","钣","钤","钫","钪","钭","钬","钯","钰","钲","钴","钶","钷","钸"
-            ,"钹","钺","钼","钽","钿","铄","铈","铉","铊","铋","铌","铍","铎","铐","铑","铒"
-            ,"铕","铖","铗","铙","铘","铛","铞","铟","铠","铢","铤","铥","铧","铨","铪"
-            ,"铩","铫","铮","铯","铳","铴","铵","铷","铹","铼","铽","铿","锃","锂","锆"
-            ,"锇","锉","锊","锍","锎","锏","锒","锓","锔","锕","锖","锘","锛","锝","锞","锟"
-            ,"锢","锪","锫","锩","锬","锱","锲","锴","锶","锷","锸","锼","锾","锿","镂","锵"
-            ,"镄","镅","镆","镉","镌","镎","镏","镒","镓","镔","镖","镗","镘","镙","镛","镞"
-            ,"镟","镝","镡","镢","镤","镥","镦","镧","镨","镩","镪","镫","镬","镯","镱","镲"
-            ,"镳","锺","矧","矬","雉","秕","秭","秣","秫","稆","嵇","稃","稂","稞","稔"
-            ,"稹","稷","穑","黏","馥","穰","皈","皎","皓","皙","皤","瓞","瓠","甬","鸠"
-            ,"鸢","鸨","鸩","鸪","鸫","鸬","鸲","鸱","鸶","鸸","鸷","鸹","鸺","鸾","鹁","鹂"
-            ,"鹄","鹆","鹇","鹈","鹉","鹋","鹌","鹎","鹑","鹕","鹗","鹚","鹛","鹜","鹞","鹣"
-            ,"鹦","鹧","鹨","鹩","鹪","鹫","鹬","鹱","鹭","鹳","疒","疔","疖","疠","疝","疬"
-            ,"疣","疳","疴","疸","痄","疱","疰","痃","痂","痖","痍","痣","痨","痦","痤","痫"
-            ,"痧","瘃","痱","痼","痿","瘐","瘀","瘅","瘌","瘗","瘊","瘥","瘘","瘕","瘙"
-            ,"瘛","瘼","瘢","瘠","癀","瘭","瘰","瘿","瘵","癃","瘾","瘳","癍","癞","癔"
-            ,"癜","癖","癫","癯","翊","竦","穸","穹","窀","窆","窈","窕","窦","窠","窬","窨"
-            ,"窭","窳","衤","衩","衲","衽","衿","袂","袢","裆","袷","袼","裉","裢","裎","裣"
-            ,"裥","裱","褚","裼","裨","裾","裰","褡","褙","褓","褛","褊","褴","褫","褶","襁"
-            ,"襦","襻","疋","胥","皲","皴","矜","耒","耔","耖","耜","耠","耢","耥","耦","耧"
-            ,"耩","耨","耱","耋","耵","聃","聆","聍","聒","聩","聱","覃","顸","颀","颃"
-            ,"颉","颌","颍","颏","颔","颚","颛","颞","颟","颡","颢","颥","颦","虍","虔"
-            ,"虬","虮","虿","虺","虼","虻","蚨","蚍","蚋","蚬","蚝","蚧","蚣","蚪","蚓","蚩"
-            ,"蚶","蛄","蚵","蛎","蚰","蚺","蚱","蚯","蛉","蛏","蚴","蛩","蛱","蛲","蛭","蛳"
-            ,"蛐","蜓","蛞","蛴","蛟","蛘","蛑","蜃","蜇","蛸","蜈","蜊","蜍","蜉","蜣","蜻"
-            ,"蜞","蜥","蜮","蜚","蜾","蝈","蜴","蜱","蜩","蜷","蜿","螂","蜢","蝽","蝾","蝻"
-            ,"蝠","蝰","蝌","蝮","螋","蝓","蝣","蝼","蝤","蝙","蝥","螓","螯","螨","蟒"
+            ,"畎","畋","畈","畛","佘","畹","疃","罘","罡","罟","詈","罨","羆","罱","罹","羈"
+            ,"罾","盍","盥","蠲","钅","釓","釔","釙","釗","釕","釷","釧","釤","鍆","釵","釹"
+            ,"鈈","鈦","钜","鈑","鈐","鈁","鈧","鈄","鈥","鈀","鈺","鉦","鈷","鈳","鉕","鈽"
+            ,"鈸","鉞","鉬","鉭","鈿","鑠","鈰","鉉","鉈","鉍","鈮","鈹","鐸","銬","銠","鉺"
+            ,"銪","鋮","鋏","鐃","鋣","鐺","銱","銦","鎧","銖","鋌","銩","鏵","銓","鉿"
+            ,"鎩","銚","錚","銫","銃","鐋","銨","銣","鐒","錸","鋱","鏗","鋥","鋰","鋯"
+            ,"鋨","銼","鋝","鋶","鉲","鐧","鋃","鋟","鋦","錒","錆","鍩","錛","鍀","錁","錕"
+            ,"錮","鍃","錇","錈","錟","錙","鍥","鍇","鍶","鍔","鍤","鎪","鍰","鎄","鏤","鏘"
+            ,"鐨","鋂","鏌","鎘","鐫","錼","鎦","鎰","鎵","鑌","鏢","鏜","鏝","鏍","鏞","鏃"
+            ,"鏇","鏑","鐔","钁","鏷","鑥","鐓","鑭","鐠","鑹","鏹","鐙","鑊","鐲","鐿","鑔"
+            ,"鑣","鍾","矧","矬","雉","秕","秭","秣","秫","穭","嵇","稃","稂","稞","稔"
+            ,"稹","稷","穡","黏","馥","穰","皈","皎","皓","皙","皤","瓞","瓠","甬","鳩"
+            ,"鳶","鴇","鴆","鴣","鶇","鸕","鴝","鴟","鷥","鴯","鷙","鴰","鵂","鸞","鵓","鸝"
+            ,"鵠","鵒","鷳","鵜","鵡","鶓","鵪","鵯","鶉","鶘","鶚","鶿","鶥","鶩","鷂","鶼"
+            ,"鸚","鷓","鷚","鷯","鷦","鷲","鷸","鸌","鷺","鸛","疒","疔","癤","癘","疝","鬁"
+            ,"疣","疳","屙","疸","痄","皰","疰","痃","痂","瘂","痍","痣","癆","痦","痤","癇"
+            ,"痧","瘃","痱","痼","痿","瘐","瘀","癉","瘌","瘞","瘊","瘥","瘺","瘕","瘙"
+            ,"瘛","瘼","瘢","瘠","癀","瘭","瘰","癭","瘵","癃","癮","瘳","癍","癩","癔"
+            ,"癜","癖","癲","臒","翊","竦","穸","穹","窀","窆","窈","窕","竇","窠","窬","窨"
+            ,"窶","窳","衤","衩","衲","衽","衿","袂","袢","襠","袷","袼","裉","褳","裎","襝"
+            ,"襇","裱","褚","裼","裨","裾","裰","褡","褙","褓","褸","褊","襤","褫","褶","繈"
+            ,"襦","襻","疋","胥","皸","皴","矜","耒","耔","耖","耜","耠","耮","耥","耦","耬"
+            ,"耩","耨","耱","耋","耵","聃","聆","聹","聒","聵","聱","覃","頇","頎","頏"
+            ,"頡","頜","潁","頦","頷","顎","顓","顳","顢","顙","顥","顬","顰","虍","虔"
+            ,"虯","蟣","蠆","虺","虼","虻","蚨","蚍","蚋","蜆","蠔","蚧","蚣","蚪","蚓","蚩"
+            ,"蚶","蛄","蚵","蠣","蚰","蚺","蚱","蚯","蛉","蟶","蚴","蛩","蛺","蟯","蛭","螄"
+            ,"蛐","蜓","蛞","蠐","蛟","蛘","蛑","蜃","蜇","蛸","蜈","蜊","蜍","蜉","蜣","蜻"
+            ,"蜞","蜥","蜮","蜚","蜾","蟈","蜴","蜱","蜩","蜷","蜿","螂","蜢","蝽","蠑","蝻"
+            ,"蝠","蝰","蝌","蝮","螋","蝓","蝣","螻","蝤","蝙","蝥","螓","螯","蟎","蟒"
             ,"蟆","螈","螅","螭","螗","螃","螫","蟥","螬","螵","螳","蟋","蟓","螽","蟑"
-            ,"蟀","蟊","蟛","蟪","蟠","蟮","蠖","蠓","蟾","蠊","蠛","蠡","蠹","蠼","缶","罂"
-            ,"罄","罅","舐","竺","竽","笈","笃","笄","笕","笊","笫","笏","筇","笸","笪","笙"
-            ,"笮","笱","笠","笥","笤","笳","笾","笞","筘","筚","筅","筵","筌","筝","筠","筮"
-            ,"筻","筢","筲","筱","箐","箦","箧","箸","箬","箝","箨","箅","箪","箜","箢","箫"
-            ,"箴","篑","篁","篌","篝","篚","篥","篦","篪","簌","篾","篼","簏","簖","簋"
-            ,"簟","簪","簦","簸","籁","籀","臾","舁","舂","舄","臬","衄","舡","舢","舣"
-            ,"舭","舯","舨","舫","舸","舻","舳","舴","舾","艄","艉","艋","艏","艚","艟","艨"
-            ,"衾","袅","袈","裘","裟","襞","羝","羟","羧","羯","羰","羲","籼","敉","粑","粝"
-            ,"粜","粞","粢","粲","粼","粽","糁","糇","糌","糍","糈","糅","糗","糨","艮","暨"
-            ,"羿","翎","翕","翥","翡","翦","翩","翮","翳","糸","絷","綦","綮","繇","纛","麸"
-            ,"麴","赳","趄","趔","趑","趱","赧","赭","豇","豉","酊","酐","酎","酏","酤"
-            ,"酢","酡","酰","酩","酯","酽","酾","酲","酴","酹","醌","醅","醐","醍","醑"
-            ,"醢","醣","醪","醭","醮","醯","醵","醴","醺","豕","鹾","趸","跫","踅","蹙","蹩"
-            ,"趵","趿","趼","趺","跄","跖","跗","跚","跞","跎","跏","跛","跆","跬","跷","跸"
-            ,"跣","跹","跻","跤","踉","跽","踔","踝","踟","踬","踮","踣","踯","踺","蹀","踹"
-            ,"踵","踽","踱","蹉","蹁","蹂","蹑","蹒","蹊","蹰","蹶","蹼","蹯","蹴","躅","躏"
-            ,"躔","躐","躜","躞","豸","貂","貊","貅","貘","貔","斛","觖","觞","觚","觜"
-            ,"觥","觫","觯","訾","謦","靓","雩","雳","雯","霆","霁","霈","霏","霎","霪"
-            ,"霭","霰","霾","龀","龃","龅","龆","龇","龈","龉","龊","龌","黾","鼋","鼍","隹"
-            ,"隼","隽","雎","雒","瞿","雠","銎","銮","鋈","錾","鍪","鏊","鎏","鐾","鑫","鱿"
-            ,"鲂","鲅","鲆","鲇","鲈","稣","鲋","鲎","鲐","鲑","鲒","鲔","鲕","鲚","鲛","鲞"
-            ,"鲟","鲠","鲡","鲢","鲣","鲥","鲦","鲧","鲨","鲩","鲫","鲭","鲮","鲰","鲱","鲲"
-            ,"鲳","鲴","鲵","鲶","鲷","鲺","鲻","鲼","鲽","鳄","鳅","鳆","鳇","鳊","鳋"
-            ,"鳌","鳍","鳎","鳏","鳐","鳓","鳔","鳕","鳗","鳘","鳙","鳜","鳝","鳟","鳢"
-            ,"靼","鞅","鞑","鞒","鞔","鞯","鞫","鞣","鞲","鞴","骱","骰","骷","鹘","骶","骺"
-            ,"骼","髁","髀","髅","髂","髋","髌","髑","魅","魃","魇","魉","魈","魍","魑","飨"
-            ,"餍","餮","饕","饔","髟","髡","髦","髯","髫","髻","髭","髹","鬈","鬏","鬓","鬟"
+            ,"蟀","蟊","蟛","蟪","蟠","蟮","蠖","蠓","蟾","蠊","蠛","蠡","蠹","蠼","缶","罌"
+            ,"罄","罅","舐","竺","竽","笈","篤","笄","筧","笊","笫","笏","筇","笸","笪","笙"
+            ,"笮","笱","笠","笥","笤","笳","籩","笞","筘","篳","筅","筵","筌","箏","筠","筮"
+            ,"筻","筢","筲","筱","箐","簀","篋","箸","箬","箝","籜","箅","簞","箜","箢","簫"
+            ,"箴","簣","篁","篌","篝","篚","篥","篦","篪","簌","篾","篼","簏","籪","簋"
+            ,"簟","簪","簦","簸","籟","籀","臾","舁","舂","舄","臬","衄","舡","舢","艤"
+            ,"舭","舯","舨","舫","舸","艫","舳","舴","舾","艄","艉","艋","艏","艚","艟","艨"
+            ,"衾","嫋","袈","裘","裟","襞","羝","羥","羧","羯","羰","羲","秈","敉","粑","糲"
+            ,"糶","粞","粢","粲","粼","粽","糝","餱","糌","糍","糈","糅","糗","糨","艮","暨"
+            ,"羿","翎","翕","翥","翡","翦","翩","翮","翳","糸","縶","綦","綮","繇","纛","麩"
+            ,"麴","赳","趄","趔","趑","趲","赧","赭","豇","豉","酊","酐","酎","酏","酤"
+            ,"酢","酡","醯","酩","酯","釅","釃","酲","酴","酹","醌","醅","醐","醍","醑"
+            ,"醢","醣","醪","醭","醮","醯","醵","醴","醺","豕","鹺","躉","跫","踅","蹙","蹩"
+            ,"趵","趿","趼","趺","蹌","蹠","跗","跚","躒","跎","跏","跛","跆","跬","蹺","蹕"
+            ,"跣","躚","躋","跤","踉","跽","踔","踝","踟","躓","踮","踣","躑","踺","蹀","踹"
+            ,"踵","踽","踱","蹉","蹁","蹂","躡","蹣","蹊","躕","蹶","蹼","蹯","蹴","躅","躪"
+            ,"躔","躐","躦","躞","豸","貂","貊","貅","貘","貔","斛","觖","觴","觚","觜"
+            ,"觥","觫","觶","訾","謦","靚","雩","靂","雯","霆","霽","霈","霏","霎","霪"
+            ,"靄","霰","霾","齔","齟","齙","齠","齜","齦","齬","齪","齷","黽","黿","鼉","隹"
+            ,"隼","雋","雎","雒","瞿","讎","銎","鑾","鋈","鏨","鍪","鏊","鎏","鐾","鑫","魷"
+            ,"魴","鮁","鮃","鯰","鱸","穌","鮒","鱟","鮐","鮭","鮚","鮪","鮞","鱭","鮫","鯗"
+            ,"鱘","鯁","鱺","鰱","鰹","鰣","鰷","鯀","鯊","鯇","鯽","鯖","鯪","鯫","鯡","鯤"
+            ,"鯧","鯝","鯢","鯰","鯛","鯴","鯔","鱝","鰈","鱷","鰍","鰒","鰉","鯿","鰠"
+            ,"鼇","鰭","鰨","鰥","鰩","鰳","鰾","鱈","鰻","鰵","鱅","鱖","鱔","鱒","鱧"
+            ,"靼","鞅","韃","鞽","鞔","韉","鞫","鞣","鞲","韝","骱","骰","骷","鶻","骶","骺"
+            ,"骼","髁","髀","髏","髂","髖","髕","髑","魅","魃","魘","魎","魈","魍","魑","饗"
+            ,"饜","餮","饕","饔","髟","髡","髦","髯","髫","髻","髭","髹","鬈","鬏","鬢","鬟"
             ,"鬣","麽","麾","縻","麂","麇","麈","麋","麒","鏖","麝","麟","黛","黜","黝","黠"
-            ,"黟","黢","黩","黧","黥","黪","黯","鼢","鼬","鼯","鼹","鼷","鼽","鼾","齄"
+            ,"黟","黢","黷","黧","黥","黲","黯","鼢","鼬","鼯","鼴","鼷","鼽","鼾","齇"
         };
 
         /// <summary>
-        /// 二级汉字对应拼音数组
+        /// 二級漢字對應拼音陣列
         /// </summary>
         private static string[] otherPinYin = new string[]
            {
@@ -2684,22 +2684,22 @@ namespace Common
                 "Huan","Lie","Me","Hui","Mi","Ji","Jun","Zhu","Mi","Qi","Ao","She","Lin","Dai","Chu","You",
                 "Xia","Yi","Qu","Du","Li","Qing","Can","An","Fen","You","Wu","Yan","Xi","Qiu","Han","Zha"
            };
-        #endregion 二级汉字
-        #region 变量定义
-        // GB2312-80 标准规范中第一个汉字的机内码.即"啊"的机内码
+        #endregion 二級漢字
+        #region 變數定義
+        // GB2312-80 標準規範中第一個漢字的機內碼.即"啊"的機內碼
         private const int firstChCode = -20319;
-        // GB2312-80 标准规范中最后一个汉字的机内码.即"齄"的机内码
+        // GB2312-80 標準規範中最後一個漢字的機內碼.即"齇"的機內碼
         private const int lastChCode = -2050;
-        // GB2312-80 标准规范中最后一个一级汉字的机内码.即"座"的机内码
+        // GB2312-80 標準規範中最後一個一級漢字的機內碼.即"座"的機內碼
         private const int lastOfOneLevelChCode = -10247;
-        // 配置中文字符
+        // 配置中文字元
         //static Regex regex = new Regex("[\u4e00-\u9fa5]$");
 
         #endregion
         #endregion
 
         /// <summary>
-        /// 取拼音第一个字段
+        /// 取拼音第一個欄位
         /// </summary>        
         /// <param name="ch"></param>        
         /// <returns></returns>        
@@ -2712,7 +2712,7 @@ namespace Common
         }
 
         /// <summary>
-        /// 取拼音第一个字段
+        /// 取拼音第一個欄位
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
@@ -2732,53 +2732,53 @@ namespace Common
         }
 
         /// <summary>
-        /// 获取单字拼音
+        /// 獲取單字拼音
         /// </summary>
         /// <param name="ch"></param>
         /// <returns></returns>
         public static String Get(Char ch)
         {
-            // 拉丁字符            
+            // 拉丁字元            
             if (ch <= '\x00FF') return ch.ToString();
 
-            // 标点符号、分隔符            
+            // 標點符號、分隔符號            
             if (Char.IsPunctuation(ch) || Char.IsSeparator(ch)) return ch.ToString();
 
-            // 非中文字符            
+            // 非中文字元            
             if (ch < '\x4E00' || ch > '\x9FA5') return ch.ToString();
 
             var arr = Encoding.GetEncoding("gb2312").GetBytes(ch.ToString());
-            //Encoding.Default默认在中文环境里虽是GB2312，但在多变的环境可能是其它
+            //Encoding.Default默認在中文環境裡雖是GB2312，但在多變的環境可能是其它
             //var arr = Encoding.Default.GetBytes(ch.ToString()); 
             var chr = (Int16)arr[0] * 256 + (Int16)arr[1] - 65536;
 
-            //***// 单字符--英文或半角字符  
+            //***// 單字元--英文或半形字元  
             if (chr > 0 && chr < 160) return ch.ToString();
-            #region 中文字符处理
+            #region 中文字元處理
 
-            // 判断是否超过GB2312-80标准中的汉字范围
+            // 判斷是否超過GB2312-80標準中的漢字範圍
             if (chr > lastChCode || chr < firstChCode)
             {
                 return ch.ToString(); ;
             }
-            // 如果是在一级汉字中
+            // 如果是在一級漢字中
             else if (chr <= lastOfOneLevelChCode)
             {
-                // 将一级汉字分为12块,每块33个汉字.
+                // 將一級漢字分為12塊,每塊33個漢字.
                 for (int aPos = 11; aPos >= 0; aPos--)
                 {
                     int aboutPos = aPos * 33;
-                    // 从最后的块开始扫描,如果机内码大于块的第一个机内码,说明在此块中
+                    // 從最後的塊開始掃描,如果機內碼大於塊的第一個機內碼,說明在此塊中
                     if (chr >= pyValue[aboutPos])
                     {
-                        // Console.WriteLine("存在于第 " + aPos.ToString() + " 块,此块的第一个机内码是: " + pyValue[aPos * 33].ToString());
-                        // 遍历块中的每个音节机内码,从最后的音节机内码开始扫描,
-                        // 如果音节内码小于机内码,则取此音节
+                        // Console.WriteLine("存在於第 " + aPos.ToString() + " 塊,此塊的第一個機內碼是: " + pyValue[aPos * 33].ToString());
+                        // 遍歷塊中的每個音節機內碼,從最後的音節機內碼開始掃描,
+                        // 如果音節內碼小於機內碼,則取此音節
                         for (int i = aboutPos + 32; i >= aboutPos; i--)
                         {
                             if (pyValue[i] <= chr)
                             {
-                                // Console.WriteLine("找到第一个小于要查找机内码的机内码: " + pyValue[i].ToString());
+                                // Console.WriteLine("找到第一個小於要查找機內碼的機內碼: " + pyValue[i].ToString());
                                 return pyName[i];
                             }
                         }
@@ -2786,7 +2786,7 @@ namespace Common
                     }
                 }
             }
-            // 如果是在二级汉字中
+            // 如果是在二級漢字中
             else
             {
                 int pos = Array.IndexOf(otherChinese, ch.ToString());
@@ -2795,24 +2795,24 @@ namespace Common
                     return otherPinYin[pos];
                 }
             }
-            #endregion 中文字符处理
+            #endregion 中文字元處理
 
-            //if (chr < -20319 || chr > -10247) { // 不知道的字符  
+            //if (chr < -20319 || chr > -10247) { // 不知道的字元  
             //    return null;  
 
             //for (var i = pyValue.Length - 1; i >= 0; i--)
             //{                
-            //    if (pyValue[i] <= chr) return pyName[i];//这只能对应数组已经定义的           
+            //    if (pyValue[i] <= chr) return pyName[i];//這只能對應陣列已經定義的           
             //}             
 
             return String.Empty;
         }
 
         /// <summary>
-        /// 把汉字转换成拼音(全拼)
+        /// 把漢字轉換成拼音(全拼)
         /// </summary>
-        /// <param name="str">汉字字符串</param>
-        /// <returns>转换后的拼音(全拼)字符串</returns>
+        /// <param name="str">中文字元串</param>
+        /// <returns>轉換後的拼音(全拼)字串</returns>
         public static String GetPinYin(String str)
         {
             if (String.IsNullOrEmpty(str)) return String.Empty;
@@ -2829,8 +2829,8 @@ namespace Common
         }
         #endregion
 
-        #region  获取网页的HTML内容
-        // 获取网页的HTML内容，指定Encoding
+        #region  獲取網頁的HTML內容
+        // 獲取網頁的HTML內容，指定Encoding
         public static string GetHtml(string url, Encoding encoding)
         {
             byte[] buf = new WebClient().DownloadData(url);
@@ -2840,7 +2840,7 @@ namespace Common
             if (encoding == null || encoding == Encoding.UTF8) return html;
             return encoding.GetString(buf);
         }
-        // 根据网页的HTML内容提取网页的Encoding
+        // 根據網頁的HTML內容提取網頁的Encoding
         public static Encoding GetEncoding(string html)
         {
             string pattern = @"(?i)\bcharset=(?<charset>[-a-zA-Z_0-9]+)";

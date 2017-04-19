@@ -3,14 +3,14 @@
 namespace Common
 {
     /// <summary>
-    /// Session 操作类
-    /// 1、GetSession(string name)根据session名获取session对象
-    /// 2、SetSession(string name, object val)设置session
+    /// Session 操作類
+    /// 1、GetSession(string name)根據session名獲取session物件
+    /// 2、SetSession(string name, object val)設置session
     /// </summary>
     public class SessionHelper
     {
         /// <summary>
-        /// 根据session名获取session对象
+        /// 根據session名獲取session物件
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -19,7 +19,7 @@ namespace Common
             return HttpContext.Current.Session[name];
         }
         /// <summary>
-        /// 设置session
+        /// 設置session
         /// </summary>
         /// <param name="name">session 名</param>
         /// <param name="val">session 值</param>
@@ -29,9 +29,9 @@ namespace Common
             HttpContext.Current.Session.Add(name, val);
         }
         /// <summary>
-        /// 添加Session，调动有效期为20分钟
+        /// 添加Session，調動有效期為20分鐘
         /// </summary>
-        /// <param name="strSessionName">Session对象名称</param>
+        /// <param name="strSessionName">Session對象名稱</param>
         /// <param name="strValue">Session值</param>
         public static void Add(string strSessionName, string strValue)
         {
@@ -40,10 +40,10 @@ namespace Common
         }
 
         /// <summary>
-        /// 添加Session，调动有效期为20分钟
+        /// 添加Session，調動有效期為20分鐘
         /// </summary>
-        /// <param name="strSessionName">Session对象名称</param>
-        /// <param name="strValues">Session值数组</param>
+        /// <param name="strSessionName">Session對象名稱</param>
+        /// <param name="strValues">Session值陣列</param>
         public static void Adds(string strSessionName, string[] strValues)
         {
             HttpContext.Current.Session[strSessionName] = strValues;
@@ -53,9 +53,9 @@ namespace Common
         /// <summary>
         /// 添加Session
         /// </summary>
-        /// <param name="strSessionName">Session对象名称</param>
+        /// <param name="strSessionName">Session對象名稱</param>
         /// <param name="strValue">Session值</param>
-        /// <param name="iExpires">调动有效期（分钟）</param>
+        /// <param name="iExpires">調動有效期（分鐘）</param>
         public static void Add(string strSessionName, string strValue, int iExpires)
         {
             HttpContext.Current.Session[strSessionName] = strValue;
@@ -65,9 +65,9 @@ namespace Common
         /// <summary>
         /// 添加Session
         /// </summary>
-        /// <param name="strSessionName">Session对象名称</param>
-        /// <param name="strValues">Session值数组</param>
-        /// <param name="iExpires">调动有效期（分钟）</param>
+        /// <param name="strSessionName">Session對象名稱</param>
+        /// <param name="strValues">Session值陣列</param>
+        /// <param name="iExpires">調動有效期（分鐘）</param>
         public static void Adds(string strSessionName, string[] strValues, int iExpires)
         {
             HttpContext.Current.Session[strSessionName] = strValues;
@@ -75,10 +75,10 @@ namespace Common
         }
 
         /// <summary>
-        /// 读取某个Session对象值
+        /// 讀取某個Session對象值
         /// </summary>
-        /// <param name="strSessionName">Session对象名称</param>
-        /// <returns>Session对象值</returns>
+        /// <param name="strSessionName">Session對象名稱</param>
+        /// <returns>Session對象值</returns>
         public static string Get(string strSessionName)
         {
             if (HttpContext.Current.Session[strSessionName] == null)
@@ -92,10 +92,10 @@ namespace Common
         }
 
         /// <summary>
-        /// 读取某个Session对象值数组
+        /// 讀取某個Session物件值陣列
         /// </summary>
-        /// <param name="strSessionName">Session对象名称</param>
-        /// <returns>Session对象值数组</returns>
+        /// <param name="strSessionName">Session對象名稱</param>
+        /// <returns>Session物件值陣列</returns>
         public static string[] Gets(string strSessionName)
         {
             if (HttpContext.Current.Session[strSessionName] == null)
@@ -109,9 +109,9 @@ namespace Common
         }
 
         /// <summary>
-        /// 删除某个Session对象
+        /// 刪除某個Session對象
         /// </summary>
-        /// <param name="strSessionName">Session对象名称</param>
+        /// <param name="strSessionName">Session對象名稱</param>
         public static void Del(string strSessionName)
         {
             HttpContext.Current.Session[strSessionName] = null;

@@ -10,16 +10,16 @@ using System.ComponentModel;
 namespace Common
 {
     /// <summary>
-    /// 功能描述：共用工具类
+    /// 功能描述：共用工具類
     /// </summary>
     public static class Tools
     {
 
-        #region 得到字符串长度，一个汉字长度为2
+        #region 得到字串長度，一個漢字長度為2
         /// <summary>
-        /// 得到字符串长度，一个汉字长度为2
+        /// 得到字串長度，一個漢字長度為2
         /// </summary>
-        /// <param name="inputString">参数字符串</param>
+        /// <param name="inputString">參數字串</param>
         /// <returns></returns>
         public static int StrLength(string inputString)
         {
@@ -28,7 +28,7 @@ namespace Common
             byte[] s = ascii.GetBytes(inputString);
             for (int i = 0; i < s.Length; i++)
             {
-                if ((int)s[i] == 63) //todo:汉字会变为问号，但问号也算成2个了
+                if ((int)s[i] == 63) //todo:漢字會變為問號，但問號也算成2個了
                     tempLen += 2;
                 else
                     tempLen += 1;
@@ -37,13 +37,13 @@ namespace Common
         }
         #endregion
 
-        #region 截取指定长度字符串
+        #region 截取指定長度字串
         /// <summary>
-        /// 截取指定长度字符串
+        /// 截取指定長度字串
         /// </summary>
-        /// <param name="inputString">要处理的字符串</param>
-        /// <param name="len">指定长度</param>
-        /// <returns>返回处理后的字符串</returns>
+        /// <param name="inputString">要處理的字串</param>
+        /// <param name="len">指定長度</param>
+        /// <returns>返回處理後的字串</returns>
         public static string ClipString(string inputString, int len)
         {
             bool isShowFix = false;
@@ -83,13 +83,13 @@ namespace Common
         }
         #endregion
 
-        #region 获得两个日期的间隔
+        #region 獲得兩個日期的間隔
         /// <summary>
-        /// 获得两个日期的间隔
+        /// 獲得兩個日期的間隔
         /// </summary>
         /// <param name="DateTime1">日期一。</param>
         /// <param name="DateTime2">日期二。</param>
-        /// <returns>日期间隔TimeSpan。</returns>
+        /// <returns>日期間隔TimeSpan。</returns>
         public static TimeSpan DateDiff(DateTime DateTime1, DateTime DateTime2)
         {
             TimeSpan ts1 = new TimeSpan(DateTime1.Ticks);
@@ -99,13 +99,13 @@ namespace Common
         }
         #endregion
 
-        #region 格式化日期时间
+        #region 格式化日期時間
         /// <summary>
-        /// 格式化日期时间
+        /// 格式化日期時間
         /// </summary>
-        /// <param name="dateTime1">日期时间</param>
-        /// <param name="dateMode">显示模式</param>
-        /// <returns>0-9种模式的日期</returns>
+        /// <param name="dateTime1">日期時間</param>
+        /// <param name="dateMode">顯示模式</param>
+        /// <returns>0-9種模式的日期</returns>
         public static string FormatDate(DateTime dateTime1, string dateMode)
         {
             switch (dateMode)
@@ -136,13 +136,13 @@ namespace Common
         }
         #endregion
 
-        #region 得到随机日期
+        #region 得到隨機日期
         /// <summary>
-        /// 得到随机日期
+        /// 得到隨機日期
         /// </summary>
         /// <param name="time1">起始日期</param>
-        /// <param name="time2">结束日期</param>
-        /// <returns>间隔日期之间的 随机日期</returns>
+        /// <param name="time2">結束日期</param>
+        /// <returns>間隔日期之間的 隨機日期</returns>
         public static DateTime GetRandomTime(DateTime time1, DateTime time2)
         {
             Random random = new Random();
@@ -151,7 +151,7 @@ namespace Common
 
             System.TimeSpan ts = new System.TimeSpan(time1.Ticks - time2.Ticks);
 
-            // 获取两个时间相隔的秒数
+            // 獲取兩個時間相隔的秒數
             double dTotalSecontds = ts.TotalSeconds;
             int iTotalSecontds = 0;
 
@@ -194,7 +194,7 @@ namespace Common
             return minTime.AddSeconds(i);
         }
         /// <summary>
-        /// 获取时间戳
+        /// 獲取時間戳記
         /// </summary>
         public static string GetRandomTimeSpan()
         {
@@ -203,9 +203,9 @@ namespace Common
         }
         #endregion
 
-        #region HTML转行成TEXT
+        #region HTML轉行成TEXT
         /// <summary>
-        /// HTML转行成TEXT
+        /// HTML轉行成TEXT
         /// </summary>
         /// <param name="strHtml"></param>
         /// <returns></returns>
@@ -246,21 +246,21 @@ namespace Common
         }
         #endregion
 
-        #region 判断对象是否为空
+        #region 判斷物件是否為空
         /// <summary>
-        /// 判断对象是否为空，为空返回true
+        /// 判斷物件是否為空，為空返回true
         /// </summary>
-        /// <typeparam name="T">要验证的对象的类型</typeparam>
-        /// <param name="data">要验证的对象</param>        
+        /// <typeparam name="T">要驗證的對象的類型</typeparam>
+        /// <param name="data">要驗證的對象</param>        
         public static bool IsNullOrEmpty<T>(this T data)
         {
-            //如果为null
+            //如果為null
             if (data == null)
             {
                 return true;
             }
 
-            //如果为""
+            //如果為""
             if (data.GetType() == typeof(String))
             {
                 if (string.IsNullOrEmpty(data.ToString().Trim()) || data.ToString() == "")
@@ -269,29 +269,29 @@ namespace Common
                 }
             }
 
-            //如果为DBNull
+            //如果為DBNull
             if (data.GetType() == typeof(DBNull))
             {
                 return true;
             }
 
-            //不为空
+            //不為空
             return false;
         }
 
         /// <summary>
-        /// 判断对象是否为空，为空返回true
+        /// 判斷物件是否為空，為空返回true
         /// </summary>
-        /// <param name="data">要验证的对象</param>
+        /// <param name="data">要驗證的對象</param>
         public static bool IsNullOrEmpty(this object data)
         {
-            //如果为null
+            //如果為null
             if (data == null)
             {
                 return true;
             }
 
-            //如果为""
+            //如果為""
             if (data.GetType() == typeof(String))
             {
                 if (string.IsNullOrEmpty(data.ToString().Trim()))
@@ -300,90 +300,90 @@ namespace Common
                 }
             }
 
-            //如果为DBNull
+            //如果為DBNull
             if (data.GetType() == typeof(DBNull))
             {
                 return true;
             }
 
-            //不为空
+            //不為空
             return false;
         }
         #endregion      
 
-        #region 验证是否为浮点数
+        #region 驗證是否為浮點數
         /// <summary>
-        /// 验证是否浮点数
+        /// 驗證是否浮點數
         /// </summary>
         /// <param name="floatNum"></param>
         /// <returns></returns>
         public static bool IsFloat(this string floatNum)
         {
-            //如果为空，认为验证不合格
+            //如果為空，認為驗證不合格
             if (IsNullOrEmpty(floatNum))
             {
                 return false;
             }
-            //清除要验证字符串中的空格
+            //清除要驗證字串中的空格
             floatNum = floatNum.Trim();
 
-            //模式字符串
+            //模式字串
             string pattern = @"^(-?\d+)(\.\d+)?$";
 
-            //验证
+            //驗證
             return RegexHelper.IsMatch(floatNum, pattern);
         }
         #endregion
 
-        #region 验证是否为整数
+        #region 驗證是否為整數
         /// <summary>
-        /// 验证是否为整数 如果为空，认为验证不合格 返回false
+        /// 驗證是否為整數 如果為空，認為驗證不合格 返回false
         /// </summary>
-        /// <param name="number">要验证的整数</param>        
+        /// <param name="number">要驗證的整數</param>        
         public static bool IsInt(this string number)
         {
-            //如果为空，认为验证不合格
+            //如果為空，認為驗證不合格
             if (IsNullOrEmpty(number))
             {
                 return false;
             }
 
-            //清除要验证字符串中的空格
+            //清除要驗證字串中的空格
             number = number.Trim();
 
-            //模式字符串
+            //模式字串
             string pattern = @"^[0-9]+[0-9]*$";
 
-            //验证
+            //驗證
             return RegexHelper.IsMatch(number, pattern);
         }
         #endregion
 
-        #region 验证是否为数字
+        #region 驗證是否為數字
         /// <summary>
-        /// 验证是否为数字
+        /// 驗證是否為數字
         /// </summary>
-        /// <param name="number">要验证的数字</param>        
+        /// <param name="number">要驗證的數字</param>        
         public static bool IsNumber(this string number)
         {
-            //如果为空，认为验证不合格
+            //如果為空，認為驗證不合格
             if (IsNullOrEmpty(number))
             {
                 return false;
             }
 
-            //清除要验证字符串中的空格
+            //清除要驗證字串中的空格
             number = number.Trim();
 
-            //模式字符串
+            //模式字串
             string pattern = @"^[0-9]+[0-9]*[.]?[0-9]*$";
 
-            //验证
+            //驗證
             return RegexHelper.IsMatch(number, pattern);
         }
         #endregion
 
-        #region 验证日期是否合法
+        #region 驗證日期是否合法
         /// <summary>
         /// 是否是日期
         /// </summary>
@@ -392,7 +392,7 @@ namespace Common
         public static bool IsDate(this object date)
         {
 
-            //如果为空，认为验证合格
+            //如果為空，認為驗證合格
             if (IsNullOrEmpty(date))
             {
                 return false;
@@ -400,28 +400,28 @@ namespace Common
             string strdate = date.ToString();
             try
             {
-                //用转换测试是否为规则的日期字符
+                //用轉換測試是否為規則的日期字元
                 date = Convert.ToDateTime(date).ToString("d");
                 return true;
             }
             catch
             {
-                //如果日期字符串中存在非数字，则返回false
+                //如果日期字串中存在非數位，則返回false
                 if (!IsInt(strdate))
                 {
                     return false;
                 }
 
-                #region 对纯数字进行解析
-                //对8位纯数字进行解析
+                #region 對純數位進行解析
+                //對8位元純數位進行解析
                 if (strdate.Length == 8)
                 {
-                    //获取年月日
+                    //獲取年月日
                     string year = strdate.Substring(0, 4);
                     string month = strdate.Substring(4, 2);
                     string day = strdate.Substring(6, 2);
 
-                    //验证合法性
+                    //驗證合法性
                     if (Convert.ToInt32(year) < 1900 || Convert.ToInt32(year) > 2100)
                     {
                         return false;
@@ -436,14 +436,14 @@ namespace Common
                     return true;
                 }
 
-                //对6位纯数字进行解析
+                //對6位元純數位進行解析
                 if (strdate.Length == 6)
                 {
-                    //获取年月
+                    //獲取年月
                     string year = strdate.Substring(0, 4);
                     string month = strdate.Substring(4, 2);
 
-                    //验证合法性
+                    //驗證合法性
                     if (Convert.ToInt32(year) < 1900 || Convert.ToInt32(year) > 2100)
                     {
                         return false;
@@ -458,14 +458,14 @@ namespace Common
                     return true;
                 }
 
-                //对5位纯数字进行解析
+                //對5位元純數位進行解析
                 if (strdate.Length == 5)
                 {
-                    //获取年月
+                    //獲取年月
                     string year = strdate.Substring(0, 4);
                     string month = strdate.Substring(4, 1);
 
-                    //验证合法性
+                    //驗證合法性
                     if (Convert.ToInt32(year) < 1900 || Convert.ToInt32(year) > 2100)
                     {
                         return false;
@@ -476,13 +476,13 @@ namespace Common
                     return true;
                 }
 
-                //对4位纯数字进行解析
+                //對4位元純數位進行解析
                 if (strdate.Length == 4)
                 {
-                    //获取年
+                    //獲取年
                     string year = strdate.Substring(0, 4);
 
-                    //验证合法性
+                    //驗證合法性
                     if (Convert.ToInt32(year) < 1900 || Convert.ToInt32(year) > 2100)
                     {
                         return false;
@@ -499,26 +499,26 @@ namespace Common
 
         }
         /// <summary>
-        /// 验证日期是否合法,对不规则的作了简单处理
+        /// 驗證日期是否合法,對不規則的作了簡單處理
         /// </summary>
         /// <param name="date">日期</param>
         public static bool IsDate(ref string date)
         {
-            //如果为空，认为验证合格
+            //如果為空，認為驗證合格
             if (IsNullOrEmpty(date))
             {
                 return true;
             }
 
-            //清除要验证字符串中的空格
+            //清除要驗證字串中的空格
             date = date.Trim();
 
-            //替换\
+            //替換\
             date = date.Replace(@"\", "-");
-            //替换/
+            //替換/
             date = date.Replace(@"/", "-");
 
-            //如果查找到汉字"今",则认为是当前日期
+            //如果查找到漢字"今",則認為是當前日期
             if (date.IndexOf("今") != -1)
             {
                 date = DateTime.Now.ToString();
@@ -526,28 +526,28 @@ namespace Common
 
             try
             {
-                //用转换测试是否为规则的日期字符
+                //用轉換測試是否為規則的日期字元
                 date = Convert.ToDateTime(date).ToString("d");
                 return true;
             }
             catch
             {
-                //如果日期字符串中存在非数字，则返回false
+                //如果日期字串中存在非數位，則返回false
                 if (!IsInt(date))
                 {
                     return false;
                 }
 
-                #region 对纯数字进行解析
-                //对8位纯数字进行解析
+                #region 對純數位進行解析
+                //對8位元純數位進行解析
                 if (date.Length == 8)
                 {
-                    //获取年月日
+                    //獲取年月日
                     string year = date.Substring(0, 4);
                     string month = date.Substring(4, 2);
                     string day = date.Substring(6, 2);
 
-                    //验证合法性
+                    //驗證合法性
                     if (Convert.ToInt32(year) < 1900 || Convert.ToInt32(year) > 2100)
                     {
                         return false;
@@ -562,14 +562,14 @@ namespace Common
                     return true;
                 }
 
-                //对6位纯数字进行解析
+                //對6位元純數位進行解析
                 if (date.Length == 6)
                 {
-                    //获取年月
+                    //獲取年月
                     string year = date.Substring(0, 4);
                     string month = date.Substring(4, 2);
 
-                    //验证合法性
+                    //驗證合法性
                     if (Convert.ToInt32(year) < 1900 || Convert.ToInt32(year) > 2100)
                     {
                         return false;
@@ -584,14 +584,14 @@ namespace Common
                     return true;
                 }
 
-                //对5位纯数字进行解析
+                //對5位元純數位進行解析
                 if (date.Length == 5)
                 {
-                    //获取年月
+                    //獲取年月
                     string year = date.Substring(0, 4);
                     string month = date.Substring(4, 1);
 
-                    //验证合法性
+                    //驗證合法性
                     if (Convert.ToInt32(year) < 1900 || Convert.ToInt32(year) > 2100)
                     {
                         return false;
@@ -602,13 +602,13 @@ namespace Common
                     return true;
                 }
 
-                //对4位纯数字进行解析
+                //對4位元純數位進行解析
                 if (date.Length == 4)
                 {
-                    //获取年
+                    //獲取年
                     string year = date.Substring(0, 4);
 
-                    //验证合法性
+                    //驗證合法性
                     if (Convert.ToInt32(year) < 1900 || Convert.ToInt32(year) > 2100)
                     {
                         return false;
@@ -626,9 +626,9 @@ namespace Common
         #endregion
 
         /// <summary>
-        /// 前台显示邮箱的掩码替换(由tzh@qq.com等替换成t*****@qq.com)
+        /// 前臺顯示郵箱的遮罩替換(由tzh@qq.com等替換成t*****@qq.com)
         /// </summary>
-        /// <param name="Email">邮箱</param>
+        /// <param name="Email">郵箱</param>
         /// <returns></returns>
         public static string GetEmail(string Email)
         {
@@ -648,11 +648,11 @@ namespace Common
         }
 
         /// <summary>
-        /// 检查字符串是否存在与一个,组合到一起的字符串数组中
+        /// 檢查字串是否存在與一個,組合到一起的字串陣列中
         /// </summary>
-        /// <param name="strSplit">未分割的字符串</param>
-        /// <param name="split">分割符号</param>
-        /// <param name="targetValue">目标字符串</param>
+        /// <param name="strSplit">未分割的字串</param>
+        /// <param name="split">分割符號</param>
+        /// <param name="targetValue">目標字串</param>
         /// <returns></returns>
         public static bool CheckStringHasValue(string strSplit, char split, string targetValue)
         {
@@ -665,10 +665,10 @@ namespace Common
             return false;
         }
 
-        #region 枚举型相关操作
+        #region 枚舉型相關操作
 
         /// <summary>
-        /// 功能描述；获取枚举名称.传入枚举类型和枚举值
+        /// 功能描述；獲取枚舉名稱.傳入枚舉類型和枚舉值
         /// </summary>
         /// <param name="enumType"></param>
         /// <param name="intEnumValue"></param>
@@ -679,14 +679,14 @@ namespace Common
         }
 
         /// <summary>
-        /// 功能描述:获取枚举项集合，传入枚举类型
+        /// 功能描述:獲取枚舉項集合，傳入枚舉類型
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public static IList<object> BindEnums<T>()
         {
             IList<object> _list = new List<object>();
-            //遍历枚举集合
+            //遍歷枚舉集合
             foreach (int i in Enum.GetValues(typeof(T)))
             {
                 var _selItem = new
@@ -700,10 +700,10 @@ namespace Common
         }
 
         ///<summary>
-        /// 返回 Dic 枚举项，描述
+        /// 返回 Dic 枚舉項，描述
         ///</summary>
         ///<param name="enumType"></param>
-        ///<returns>Dic枚举项，描述</returns>
+        ///<returns>Dic枚舉項，描述</returns>
         public static Dictionary<string, string> BindEnums(Type enumType)
         {
             Dictionary<string, string> dic = new Dictionary<string, string>();
@@ -722,7 +722,7 @@ namespace Common
             return dic;
         }
         ///<summary>
-        /// 返回 List《Enums.EnumsClass》 枚举值、名称、描述
+        /// 返回 List《Enums.EnumsClass》 枚舉值、名稱、描述
         ///</summary>
         public static List<Enums.EnumsClass> BindEnumsList(Type enumType)
         {
@@ -756,38 +756,38 @@ namespace Common
 
         #endregion
 
-        #region 获取集合中某个字段的拼接，例：获取姓名拼接
+        #region 獲取集合中某個欄位的拼接，例：獲取姓名拼接
 
         /// <summary>
-        /// 功能描述：获取集合中某个字段的拼接，例：获取姓名拼接
+        /// 功能描述：獲取集合中某個欄位的拼接，例：獲取姓名拼接
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="list">集合</param>
-        /// <param name="strFieldName">字段名</param>
-        /// <param name="strSplit">分隔符</param>
+        /// <param name="strFieldName">欄位名</param>
+        /// <param name="strSplit">分隔符號</param>
         /// <returns></returns>
         public static string GetFieldValueJoin<T>(IList<T> list, string strFieldName, string strSplit)
         {
-            //判断入口
+            //判斷入口
             if (list == null || list.Count <= 0 || string.IsNullOrEmpty(strFieldName))
                 return string.Empty;
 
 
-            //获取属性
+            //獲取屬性
             PropertyInfo _pro = typeof(T).GetProperty(strFieldName);
             if (_pro == null)
                 return string.Empty;
-            //变量，记录返回值
+            //變數，記錄返回值
             string _strReturn = string.Empty;
             foreach (T _entityI in list)
             {
-                //获取属性值
+                //獲取屬性值
                 object _objValue = _pro.GetValue(_entityI, null);
                 if (_objValue == null || string.IsNullOrEmpty(_objValue.ToString()))
-                    //没有属性值，则跳过
+                    //沒有屬性值，則跳過
                     continue;
 
-                //有属性值，则拼接
+                //有屬性值，則拼接
                 _strReturn += _objValue.ToString() + strSplit;
             }
 

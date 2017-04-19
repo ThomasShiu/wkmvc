@@ -1,94 +1,181 @@
-/* 前后端通信相关的配置,注释只允许使用多行方式 */
+/* 前後端通信相關的配置,注釋只允許使用多行方式 */
 {
-    /* 上传图片配置项 */
-    "imageActionName": "uploadimage", /* 执行上传图片的action名称 */
-    "imageFieldName": "upfile", /* 提交的图片表单名称 */
-    "imageMaxSize": 2048000, /* 上传大小限制，单位B */
-    "imageAllowFiles": [".png", ".jpg", ".jpeg", ".gif", ".bmp"], /* 上传图片格式显示 */
-    "imageCompressEnable": true, /* 是否压缩图片,默认是true */
-    "imageCompressBorder": 1600, /* 图片压缩最长边限制 */
-    "imageInsertAlign": "none", /* 插入的图片浮动方式 */
-    "imageUrlPrefix": "", /* 图片访问路径前缀 */
-    "imagePathFormat": "/upload/images/{yyyy}/{mm}/{time}{rand:6}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
-                                /* {filename} 会替换成原文件名,配置这项需要注意中文乱码问题 */
-                                /* {rand:6} 会替换成随机数,后面的数字是随机数的位数 */
-                                /* {time} 会替换成时间戳 */
-                                /* {yyyy} 会替换成四位年份 */
-                                /* {yy} 会替换成两位年份 */
-                                /* {mm} 会替换成两位月份 */
-                                /* {dd} 会替换成两位日期 */
-                                /* {hh} 会替换成两位小时 */
-                                /* {ii} 会替换成两位分钟 */
-                                /* {ss} 会替换成两位秒 */
-                                /* 非法字符 \ : * ? " < > | */
-                                /* 具请体看线上文档: fex.baidu.com/ueditor/#use-format_upload_filename */
+  /* 上傳圖片配置項 */
+  "imageActionName": "uploadimage", /* 執行上傳圖片的action名稱 */
+  "imageFieldName": "upfile", /* 提交的圖片表單名稱 */
+  "imageMaxSize": 2048000, /* 上傳大小限制，單位B */
+  "imageAllowFiles": [ ".png", ".jpg", ".jpeg", ".gif", ".bmp" ], /* 上傳圖片格式顯示 */
+  "imageCompressEnable": true, /* 是否壓縮圖片,預設是true */
+  "imageCompressBorder": 1600, /* 圖片壓縮最長邊限制 */
+  "imageInsertAlign": "none", /* 插入的圖片浮動方式 */
+  "imageUrlPrefix": "", /* 圖片訪問路徑首碼 */
+  "imagePathFormat": "/upload/images/{yyyy}/{mm}/{time}{rand:6}", /* 上傳保存路徑,可以自訂保存路徑和檔案名格式 */
+  /* {filename} 會替換成原檔案名,配置這項需要注意中文亂碼問題 */
+  /* {rand:6} 會替換成亂數,後面的數字是亂數的位元數 */
+  /* {time} 會替換成時間戳記 */
+  /* {yyyy} 會替換成四位年份 */
+  /* {yy} 會替換成兩位年份 */
+  /* {mm} 會替換成兩位月份 */
+  /* {dd} 會替換成兩位日期 */
+  /* {hh} 會替換成兩位小時 */
+  /* {ii} 會替換成兩位分鐘 */
+  /* {ss} 會替換成兩位秒 */
+  /* 非法字元 \ : * ? " < > | */
+  /* 具請體看線上文檔: fex.baidu.com/ueditor/#use-format_upload_filename */
 
-    /* 涂鸦图片上传配置项 */
-    "scrawlActionName": "uploadscrawl", /* 执行上传涂鸦的action名称 */
-    "scrawlFieldName": "upfile", /* 提交的图片表单名称 */
-    "scrawlPathFormat": "/upload/images/{yyyy}/{mm}/{time}{rand:6}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
-    "scrawlMaxSize": 2048000, /* 上传大小限制，单位B */
-    "scrawlUrlPrefix": "", /* 图片访问路径前缀 */
-    "scrawlInsertAlign": "none",
+  /* 塗鴉圖片上傳配置項 */
+  "scrawlActionName": "uploadscrawl", /* 執行上傳塗鴉的action名稱 */
+  "scrawlFieldName": "upfile", /* 提交的圖片表單名稱 */
+  "scrawlPathFormat": "/upload/images/{yyyy}/{mm}/{time}{rand:6}", /* 上傳保存路徑,可以自訂保存路徑和檔案名格式 */
+  "scrawlMaxSize": 2048000, /* 上傳大小限制，單位B */
+  "scrawlUrlPrefix": "", /* 圖片訪問路徑首碼 */
+  "scrawlInsertAlign": "none",
 
-    /* 截图工具上传 */
-    "snapscreenActionName": "uploadimage", /* 执行上传截图的action名称 */
-    "snapscreenPathFormat": "/upload/images/{yyyy}/{mm}/{time}{rand:6}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
-    "snapscreenUrlPrefix": "", /* 图片访问路径前缀 */
-    "snapscreenInsertAlign": "none", /* 插入的图片浮动方式 */
+  /* 截圖工具上傳 */
+  "snapscreenActionName": "uploadimage", /* 執行上傳截圖的action名稱 */
+  "snapscreenPathFormat": "/upload/images/{yyyy}/{mm}/{time}{rand:6}", /* 上傳保存路徑,可以自訂保存路徑和檔案名格式 */
+  "snapscreenUrlPrefix": "", /* 圖片訪問路徑首碼 */
+  "snapscreenInsertAlign": "none", /* 插入的圖片浮動方式 */
 
-    /* 抓取远程图片配置 */
-    "catcherLocalDomain": ["127.0.0.1", "localhost", "img.baidu.com"],
-    "catcherActionName": "catchimage", /* 执行抓取远程图片的action名称 */
-    "catcherFieldName": "source", /* 提交的图片列表表单名称 */
-    "catcherPathFormat": "/upload/images/{yyyy}/{mm}/{time}{rand:6}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
-    "catcherUrlPrefix": "", /* 图片访问路径前缀 */
-    "catcherMaxSize": 2048000, /* 上传大小限制，单位B */
-    "catcherAllowFiles": [".png", ".jpg", ".jpeg", ".gif", ".bmp"], /* 抓取图片格式显示 */
+  /* 抓取遠端圖片配置 */
+  "catcherLocalDomain": [ "127.0.0.1", "localhost", "img.baidu.com" ],
+  "catcherActionName": "catchimage", /* 執行抓取遠端圖片的action名稱 */
+  "catcherFieldName": "source", /* 提交的圖片清單表單名稱 */
+  "catcherPathFormat": "/upload/images/{yyyy}/{mm}/{time}{rand:6}", /* 上傳保存路徑,可以自訂保存路徑和檔案名格式 */
+  "catcherUrlPrefix": "", /* 圖片訪問路徑首碼 */
+  "catcherMaxSize": 2048000, /* 上傳大小限制，單位B */
+  "catcherAllowFiles": [ ".png", ".jpg", ".jpeg", ".gif", ".bmp" ], /* 抓取圖片格式顯示 */
 
-    /* 上传视频配置 */
-    "videoActionName": "uploadvideo", /* 执行上传视频的action名称 */
-    "videoFieldName": "upfile", /* 提交的视频表单名称 */
-    "videoPathFormat": "/upload/videos/{yyyy}/{mm}/{time}{rand:6}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
-    "videoUrlPrefix": "", /* 视频访问路径前缀 */
-    "videoMaxSize": 1024000000, /* 上传大小限制，单位B，默认100MB */
-    "videoAllowFiles": [
-        ".flv", ".swf", ".mkv", ".avi", ".rm", ".rmvb", ".mpeg", ".mpg",
-        ".ogg", ".ogv", ".mov", ".wmv", ".mp4", ".webm", ".mp3", ".wav", ".mid"], /* 上传视频格式显示 */
+  /* 上傳視頻配置 */
+  "videoActionName": "uploadvideo", /* 執行上傳視頻的action名稱 */
+  "videoFieldName": "upfile", /* 提交的視頻表單名稱 */
+  "videoPathFormat": "/upload/videos/{yyyy}/{mm}/{time}{rand:6}", /* 上傳保存路徑,可以自訂保存路徑和檔案名格式 */
+  "videoUrlPrefix": "", /* 視頻訪問路徑首碼 */
+  "videoMaxSize": 1024000000, /* 上傳大小限制，單位B，預設100MB */
+  "videoAllowFiles": [
+    ".flv",
+    ".swf",
+    ".mkv",
+    ".avi",
+    ".rm",
+    ".rmvb",
+    ".mpeg",
+    ".mpg",
+    ".ogg",
+    ".ogv",
+    ".mov",
+    ".wmv",
+    ".mp4",
+    ".webm",
+    ".mp3",
+    ".wav",
+    ".mid"
+  ], /* 上傳視頻格式顯示 */
 
-    /* 上传文件配置 */
-    "fileActionName": "uploadfile", /* controller里,执行上传视频的action名称 */
-    "fileFieldName": "upfile", /* 提交的文件表单名称 */
-    "filePathFormat": "/upload/files/{yyyy}/{mm}/{time}{rand:6}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
-    "fileUrlPrefix": "", /* 文件访问路径前缀 */
-    "fileMaxSize": 512000000, /* 上传大小限制，单位B，默认500MB */
-    "fileAllowFiles": [
-        ".png", ".jpg", ".jpeg", ".gif", ".bmp",
-        ".flv", ".swf", ".mkv", ".avi", ".rm", ".rmvb", ".mpeg", ".mpg",
-        ".ogg", ".ogv", ".mov", ".wmv", ".mp4", ".webm", ".mp3", ".wav", ".mid",
-        ".rar", ".zip", ".tar", ".gz", ".7z", ".bz2", ".cab", ".iso",
-        ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx", ".pdf", ".txt", ".md", ".xml",".apk"
-    ], /* 上传文件格式显示 */
+  /* 上傳檔配置 */
+  "fileActionName": "uploadfile", /* controller裡,執行上傳視頻的action名稱 */
+  "fileFieldName": "upfile", /* 提交的文件表單名稱 */
+  "filePathFormat": "/upload/files/{yyyy}/{mm}/{time}{rand:6}", /* 上傳保存路徑,可以自訂保存路徑和檔案名格式 */
+  "fileUrlPrefix": "", /* 檔訪問路徑首碼 */
+  "fileMaxSize": 512000000, /* 上傳大小限制，單位B，預設500MB */
+  "fileAllowFiles": [
+    ".png",
+    ".jpg",
+    ".jpeg",
+    ".gif",
+    ".bmp",
+    ".flv",
+    ".swf",
+    ".mkv",
+    ".avi",
+    ".rm",
+    ".rmvb",
+    ".mpeg",
+    ".mpg",
+    ".ogg",
+    ".ogv",
+    ".mov",
+    ".wmv",
+    ".mp4",
+    ".webm",
+    ".mp3",
+    ".wav",
+    ".mid",
+    ".rar",
+    ".zip",
+    ".tar",
+    ".gz",
+    ".7z",
+    ".bz2",
+    ".cab",
+    ".iso",
+    ".doc",
+    ".docx",
+    ".xls",
+    ".xlsx",
+    ".ppt",
+    ".pptx",
+    ".pdf",
+    ".txt",
+    ".md",
+    ".xml",
+    ".apk"
+  ], /* 上傳檔案格式顯示 */
 
-    /* 列出指定目录下的图片 */
-    "imageManagerActionName": "listimage", /* 执行图片管理的action名称 */
-    "imageManagerListPath": "/upload/images", /* 指定要列出图片的目录 */
-    "imageManagerListSize": 20, /* 每次列出文件数量 */
-    "imageManagerUrlPrefix": "", /* 图片访问路径前缀 */
-    "imageManagerInsertAlign": "none", /* 插入的图片浮动方式 */
-    "imageManagerAllowFiles": [".png", ".jpg", ".jpeg", ".gif", ".bmp"], /* 列出的文件类型 */
+  /* 列出指定目錄下的圖片 */
+  "imageManagerActionName": "listimage", /* 執行圖片管理的action名稱 */
+  "imageManagerListPath": "/upload/images", /* 指定要列出圖片的目錄 */
+  "imageManagerListSize": 20, /* 每次列出檔數量 */
+  "imageManagerUrlPrefix": "", /* 圖片訪問路徑首碼 */
+  "imageManagerInsertAlign": "none", /* 插入的圖片浮動方式 */
+  "imageManagerAllowFiles": [ ".png", ".jpg", ".jpeg", ".gif", ".bmp" ], /* 列出的檔案類型 */
 
-    /* 列出指定目录下的文件 */
-    "fileManagerActionName": "listfile", /* 执行文件管理的action名称 */
-    "fileManagerListPath": "/upload/files", /* 指定要列出文件的目录 */
-    "fileManagerUrlPrefix": "", /* 文件访问路径前缀 */
-    "fileManagerListSize": 20, /* 每次列出文件数量 */
-    "fileManagerAllowFiles": [
-        ".png", ".jpg", ".jpeg", ".gif", ".bmp",
-        ".flv", ".swf", ".mkv", ".avi", ".rm", ".rmvb", ".mpeg", ".mpg",
-        ".ogg", ".ogv", ".mov", ".wmv", ".mp4", ".webm", ".mp3", ".wav", ".mid",
-        ".rar", ".zip", ".tar", ".gz", ".7z", ".bz2", ".cab", ".iso",
-        ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx", ".pdf", ".txt", ".md", ".xml"
-    ] /* 列出的文件类型 */
+  /* 列出指定目錄下的檔 */
+  "fileManagerActionName": "listfile", /* 執行檔管理的action名稱 */
+  "fileManagerListPath": "/upload/files", /* 指定要列出檔的目錄 */
+  "fileManagerUrlPrefix": "", /* 檔訪問路徑首碼 */
+  "fileManagerListSize": 20, /* 每次列出檔數量 */
+  "fileManagerAllowFiles": [
+    ".png",
+    ".jpg",
+    ".jpeg",
+    ".gif",
+    ".bmp",
+    ".flv",
+    ".swf",
+    ".mkv",
+    ".avi",
+    ".rm",
+    ".rmvb",
+    ".mpeg",
+    ".mpg",
+    ".ogg",
+    ".ogv",
+    ".mov",
+    ".wmv",
+    ".mp4",
+    ".webm",
+    ".mp3",
+    ".wav",
+    ".mid",
+    ".rar",
+    ".zip",
+    ".tar",
+    ".gz",
+    ".7z",
+    ".bz2",
+    ".cab",
+    ".iso",
+    ".doc",
+    ".docx",
+    ".xls",
+    ".xlsx",
+    ".ppt",
+    ".pptx",
+    ".pdf",
+    ".txt",
+    ".md",
+    ".xml"
+  ] /* 列出的檔案類型 */
 
 }

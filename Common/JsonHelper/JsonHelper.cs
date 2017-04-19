@@ -8,13 +8,13 @@ namespace Common.JsonHelper
 {
 
     /// <summary>
-    /// 提供了一个关于json的辅助类
+    /// 提供了一個關於json的輔助類
     /// </summary>
     public class JsonHelper
     {
         #region Method
         /// <summary>
-        /// 类对像转换成json格式
+        /// 類對像轉換成json格式
         /// </summary> 
         /// <returns></returns>
         public static string ToJson(object t)
@@ -22,7 +22,7 @@ namespace Common.JsonHelper
             return JsonConvert.SerializeObject(t, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Include });
         }
         /// <summary>
-        /// 类对像转换成json格式
+        /// 類對像轉換成json格式
         /// </summary>
         /// <param name="t"></param>
         /// <param name="HasNullIgnore">是否忽略NULL值</param>
@@ -35,7 +35,7 @@ namespace Common.JsonHelper
                 return ToJson(t);
         }
         /// <summary>
-        /// json格式转换
+        /// json格式轉換
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="strJson"></param>
@@ -47,7 +47,7 @@ namespace Common.JsonHelper
             return null;
         }
         /// <summary>
-        /// 功能描述：将List转换为Json
+        /// 功能描述：將List轉換為Json
         /// </summary>
         /// <param name="a"></param>
         /// <returns></returns>
@@ -68,19 +68,19 @@ namespace Common.JsonHelper
 
         #region Property
         /// <summary>
-        /// 数据状态
+        /// 資料狀態
         /// </summary>
         public string Status { get; set; }
         /// <summary>
-        /// 提示信息
+        /// 提示資訊
         /// </summary>
         public string Msg { get; set; }
         /// <summary>
-        /// 回传URL
+        /// 回傳URL
         /// </summary>
         public string ReUrl { get; set; }
         /// <summary>
-        /// 数据包
+        /// 數據包
         /// </summary>
         public object Data { get; set; }
         #endregion

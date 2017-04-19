@@ -10,24 +10,24 @@ namespace Common.JsonHelper
 {
     public class JsonConverter
     {
-        
+
         /// <summary>
-        /// 自定义查询对象转换动态类
+        /// 自訂查詢物件轉換動態類
         /// add yuangang by 2015-05-19
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public static dynamic JsonClass(object obj) 
+        public static dynamic JsonClass(object obj)
         {
             return ConvertJson(Serialize(obj, true));
         }
 
         /// <summary>
-        /// object动态类转换json包
+        /// object動態類轉換json包
         /// add yuangang by 2015-05-19
         /// </summary>
-        /// <param name="obj">对象</param>
-        /// <param name="DateConvert">时间戳是否转换成日期类型</param>
+        /// <param name="obj">對象</param>
+        /// <param name="DateConvert">時間戳記是否轉換成日期類型</param>
         /// <returns></returns>
         public static string Serialize(object obj, bool DateConvert = false)
         {
@@ -47,7 +47,7 @@ namespace Common.JsonHelper
         }
 
         /// <summary>
-        /// json转换object动态类
+        /// json轉換object動態類
         /// add yuangang by 2015-05-19
         /// </summary>
         /// <param name="json"></param>
@@ -61,10 +61,10 @@ namespace Common.JsonHelper
         }
 
         /// <summary>   
-        /// DataReader转换为Json   
+        /// DataReader轉換為Json   
         /// </summary>   
-        /// <param name="dataReader">DataReader对象</param>   
-        /// <returns>Json字符串</returns>   
+        /// <param name="dataReader">DataReader對象</param>   
+        /// <returns>Json字串</returns>   
         public static string ToJson(IDataReader dataReader)
         {
             try
@@ -112,11 +112,11 @@ namespace Common.JsonHelper
         }
 
         /// <summary>   
-        /// DataSet转换为Json   
+        /// DataSet轉換為Json   
         /// add yuangang by 2015-05-19
         /// </summary>   
-        /// <param name="dataSet">DataSet对象</param>   
-        /// <returns>Json字符串</returns>   
+        /// <param name="dataSet">DataSet對象</param>   
+        /// <returns>Json字串</returns>   
         public static string ToJson(DataSet dataSet)
         {
             string jsonString = "{";
@@ -128,7 +128,7 @@ namespace Common.JsonHelper
             return jsonString + "}";
         }
         /// <summary>  
-        /// DataTable转成Json   
+        /// DataTable轉成Json   
         /// add yuangang by 2015-05-19
         /// </summary>  
         /// <param name="jsonName"></param>  
@@ -165,11 +165,11 @@ namespace Common.JsonHelper
             return Json.ToString();
         }
         /// <summary>   
-        /// Datatable转换为Json   
+        /// Datatable轉換為Json   
         /// add yuangang by 2015-05-19
         /// </summary>   
-        /// <param name="table">Datatable对象</param>   
-        /// <returns>Json字符串</returns>   
+        /// <param name="table">Datatable對象</param>   
+        /// <returns>Json字串</returns>   
         public static string ToJson(DataTable dt)
         {
             StringBuilder jsonString = new StringBuilder();
@@ -203,9 +203,9 @@ namespace Common.JsonHelper
                 return "[]";
             }
             return jsonString.ToString();
-        }  
+        }
         /// <summary>  
-        /// 格式化字符型、日期型、布尔型  
+        /// 格式化字元型、日期型、布林型  
         /// add yuangang by 2015-05-19
         /// </summary>  
         /// <param name="str"></param>  
@@ -241,7 +241,7 @@ namespace Common.JsonHelper
             return str;
         }
         /// <summary>  
-        /// 过滤特殊字符  
+        /// 過濾特殊字元  
         /// add yuangang by 2015-05-19
         /// </summary>  
         /// <param name="s"></param>  
@@ -397,10 +397,10 @@ namespace Common.JsonHelper
             }
             return dtTree;
         }
-  
+
     }
     /// <summary>
-    /// 动态JSON解析
+    /// 動態JSON解析
     /// add yuangang by 2015-05-19
     /// </summary>
     public class DynamicJsonObject : System.Dynamic.DynamicObject
@@ -433,7 +433,7 @@ namespace Common.JsonHelper
         }
     }
     /// <summary>
-    /// 动态JSON转换
+    /// 動態JSON轉換
     /// add yuangang by 2015-05-19
     /// </summary>
     public class DynamicJsonConverter : JavaScriptConverter

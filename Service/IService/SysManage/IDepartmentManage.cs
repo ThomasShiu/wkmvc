@@ -6,13 +6,13 @@ using System.Text;
 namespace Service.IService
 {
     /// <summary>
-    /// Service层部门管理接口
+    /// Service層部門管理介面
     /// add yuangang by 2016-05-19
     /// </summary>
     public interface IDepartmentManage : IRepository<Domain.SYS_DEPARTMENT>
     {
         /// <summary>
-        /// 递归部门列表，返回按级别排序
+        /// 遞迴部門列表，返回按級別排序
         /// add yuangang by 2016-05-19
         /// </summary>
         /// <param name="list"></param>
@@ -20,32 +20,32 @@ namespace Service.IService
         List<Domain.SYS_DEPARTMENT> RecursiveDepartment(List<Domain.SYS_DEPARTMENT> list);
 
         /// <summary>
-        /// 根据部门ID递归部门列表，返回子部门+本部门的对象集合
+        /// 根據部門ID遞迴部門清單，返回子部門+本部門的物件集合
         /// add yuangang by 2016-05-19
         /// </summary>
         List<Domain.SYS_DEPARTMENT> RecursiveDepartment(string parentId);
         /// <summary>
-        /// 自动创建部门编号
+        /// 自動創建部門編號
         /// add yuangang by 2016-05-19
         /// </summary>
         string CreateCode(string parentCode);
 
         /// <summary>
-        /// 部门是否存在下级部门
+        /// 部門是否存在下級部門
         /// add huafg by 2015-06-03
         /// </summary>
         bool DepartmentIsExists(string idlist);
 
         /// <summary>
-        /// 根据部门ID获取部门名称，不存在返回空
+        /// 根據部門ID獲取部門名稱，不存在返回空
         /// </summary>
         string GetDepartmentName(string id);
         /// <summary>
-        /// 显示错层方法
+        /// 顯示錯層方法
         /// </summary>
         object GetDepartmentName(string name, decimal? level);
         /// <summary>
-        /// 获取部门父级列表
+        /// 獲取部門父級列表
         /// </summary>
         System.Collections.IList GetDepartmentByDetail();
 

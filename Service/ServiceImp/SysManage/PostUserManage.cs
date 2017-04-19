@@ -6,13 +6,13 @@ using System.Text;
 namespace Service.ServiceImp
 {
     /// <summary>
-    /// 岗位人员关系业务实现类
+    /// 職位人員關係業務實現類
     /// add yuangang by 2016-05-19
     /// </summary>
     public class PostUserManage : RepositoryBase<Domain.SYS_POST_USER>, IService.IPostUserManage
     {
         ///// <summary>
-        ///// 根据岗位ID获取人员列表
+        ///// 根據職位ID獲取人員清單
         ///// </summary>
         //public List<Domain.SYS_USER> GetUserListByPostId(string postId)
         //{
@@ -27,7 +27,7 @@ namespace Service.ServiceImp
         //    catch (Exception e) { throw e.InnerException; }
         //}
         ///// <summary>
-        ///// 根据用户ID获取所持有的岗位集合
+        ///// 根據使用者ID獲取所持有的崗位集合
         ///// </summary>
         //public List<Domain.SYS_POST> GetPostListByUserId(string userId)
         //{
@@ -36,10 +36,10 @@ namespace Service.ServiceImp
         //}
 
         ///// <summary>
-        ///// 添加岗位人员关系
+        ///// 添加職位人員關係
         ///// </summary>
-        ///// <param name="userId">人员ID</param>
-        ///// <param name="postId">岗位ID集合</param>
+        ///// <param name="userId">人員ID</param>
+        ///// <param name="postId">崗位ID集合</param>
         ///// <returns></returns>
         //public bool SavePostUser(int userId, string postId)
         //{
@@ -47,16 +47,16 @@ namespace Service.ServiceImp
         //    {
         //        if (this.IsExist(p => p.FK_USERID == userId))
         //        {
-        //            //存在之后再对比是否一致 
+        //            //存在之後再對比是否一致 
         //            var oldCount = this.LoadAll(p => p.FK_USERID == userId).Select(p => p.FK_POST_DEPARTMENTID).ToList().Cast<int>().ToList();
         //            var newpostId = postId.Trim(',').Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(p => int.Parse(p)).ToList();
         //            if (oldCount.Count == newpostId.Count && oldCount.All(newpostId.Contains)) return true;
-        //            //删除原有关系
+        //            //刪除原有關係
         //            this.Delete(p => p.FK_USERID == userId);
         //        }
         //        if (!string.IsNullOrEmpty(postId))
         //        {
-        //            //添加现有关系
+        //            //添加現有關係
         //            var list = postId.Split(',').Select(item => new Domain.SYS_POST_USER()
         //            {
         //                FK_USERID = userId,
@@ -70,11 +70,11 @@ namespace Service.ServiceImp
         //}
 
         ///// <summary>
-        ///// 根据岗位集合获取岗位名称，部门-岗位模式        
+        ///// 根據崗位集合獲取崗位名稱，部門-崗位模式        
         ///// </summary>
         //public dynamic GetPostNameBySysPostUser(ICollection<Domain.SYS_POST_USER> collection)
         //{
-        //    //岗位部门关系ID集合
+        //    //崗位部門關係ID集合
         //    string post_departmentid = collection.Select(p => p.FK_POST_DEPARTMENTID).Aggregate(string.Empty, (current, t) => current + "'" + t + "',").TrimEnd(',');
         //    try
         //    {

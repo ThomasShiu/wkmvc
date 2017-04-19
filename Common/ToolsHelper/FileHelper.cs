@@ -12,7 +12,7 @@ namespace Common
     public class FileHelper
     {
         /// <summary>
-        /// 获取目录下所有文件（包含子目录）
+        /// 獲取目錄下所有檔（包含子目錄）
         /// </summary>
         /// <param name="Path"></param>
         /// <returns></returns>
@@ -55,20 +55,20 @@ namespace Common
                     {
 
                         fi = (FileInfo)fsi;
-                        //获取文件名称
+                        //獲取檔案名稱
                         FileName = fi.Name.Substring(0, fi.Name.LastIndexOf('.'));
                         FileFullName = fi.Name;
-                        //获取文件扩展名
+                        //獲取文件副檔名
                         FileExt = fi.Extension.ToLower();
-                        //获取文件大小
+                        //獲取文件大小
                         FileSize = GetDiyFileSize(fi);
-                        //获取文件最后修改时间
+                        //獲取檔最後修改時間
                         FileModify = fi.LastWriteTime;
-                        //文件图标
+                        //檔圖示
                         FileIcon = GetFileIcon(FileExt);
-                        //是否为图片
+                        //是否為圖片
                         IsImage = IsImageFile(FileExt.Substring(1, FileExt.Length - 1));
-                        //文件路径
+                        //檔路徑
                         FilePath = urlconvertor(fi.FullName);
 
                         DataRow dr = dt.NewRow();
@@ -96,9 +96,9 @@ namespace Common
 
 
         /// <summary>
-        /// 读取指定位置文件列表到集合中
+        /// 讀取指定位置檔清單到集合中
         /// </summary>
-        /// <param name="Path">指定路径</param>
+        /// <param name="Path">指定路徑</param>
         /// <returns></returns>
         public static DataTable GetFileTable(string Path)
         {
@@ -126,35 +126,35 @@ namespace Common
                     if (fsi is FileInfo)
                     {
                         fi = (FileInfo)fsi;
-                        //获取文件名称
+                        //獲取檔案名稱
                         FileName = fi.Name.Substring(0, fi.Name.LastIndexOf('.'));
                         FileFullName = fi.Name;
-                        //获取文件扩展名
+                        //獲取文件副檔名
                         FileExt = fi.Extension;
-                        //获取文件大小
+                        //獲取文件大小
                         FileSize = GetDiyFileSize(fi);
-                        //获取文件最后修改时间
+                        //獲取檔最後修改時間
                         FileModify = fi.LastWriteTime;
-                        //文件图标
+                        //檔圖示
                         FileIcon = GetFileIcon(FileExt);
-                        //是否为图片
+                        //是否為圖片
                         IsImage = IsImageFile(FileExt.Substring(1, FileExt.Length - 1));
-                        //文件路径
+                        //檔路徑
                         FilePath = urlconvertor(fi.FullName);
                     }
                     else
                     {
                         dir = (DirectoryInfo)fsi;
-                        //获取目录名
+                        //獲取目錄名
                         FileName = dir.Name;
-                        //获取目录最后修改时间
+                        //獲取目錄最後修改時間
                         FileModify = dir.LastWriteTime;
-                        //设置目录文件为文件夹
+                        //設置目錄檔為資料夾
                         FileExt = "folder";
-                        //文件夹图标
+                        //資料夾圖示
                         FileIcon = "fa fa-folder";
                         IsFloder = true;
-                        //文件路径
+                        //檔路徑
                         FilePath = urlconvertor(dir.FullName);
 
                     }
@@ -573,7 +573,7 @@ namespace Common
             {
                 ","
             }, StringSplitOptions.RemoveEmptyEntries)
-                                                            select p).ToList<string>();
+                                 select p).ToList<string>();
             List<string> list2 = (from p in ConfigurationManager.AppSettings["Video"].Trim(new char[]
             {
                 ','
@@ -581,7 +581,7 @@ namespace Common
             {
                 ","
             }, StringSplitOptions.RemoveEmptyEntries)
-                                                             select p).ToList<string>();
+                                  select p).ToList<string>();
             List<string> list3 = (from p in ConfigurationManager.AppSettings["Music"].Trim(new char[]
             {
                 ','
@@ -589,7 +589,7 @@ namespace Common
             {
                 ","
             }, StringSplitOptions.RemoveEmptyEntries)
-                                                             select p).ToList<string>();
+                                  select p).ToList<string>();
             if (list.Contains(_fileExt.ToLower().Remove(0, 1)))
             {
                 return "fa fa-image";
@@ -634,7 +634,7 @@ namespace Common
             {
                 ","
             }, StringSplitOptions.RemoveEmptyEntries)
-                                                            select p).ToList<string>();
+                                 select p).ToList<string>();
             return list.Contains(_fileExt.ToLower());
         }
     }
